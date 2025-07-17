@@ -1,0 +1,31 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="APP_Versioni" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="APP_Versioni">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" type="xs:int" minOccurs="0" />
+                <xs:element name="TitVers" type="xs:string" minOccurs="0" />
+                <xs:element name="NewFeatures" type="xs:string" minOccurs="0" />
+                <xs:element name="BugFix" type="xs:string" minOccurs="0" />
+                <xs:element name="NumeroLic" type="xs:string" minOccurs="0" />
+                <xs:element name="RagSoc" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <APP_Versioni>
+    <Id>1</Id>
+    <TitVers>INTRANET V1.1</TitVers>
+    <NewFeatures>0</NewFeatures>
+    <BugFix>0</BugFix>
+    <NumeroLic> INTR-23-12-20-INT</NumeroLic>
+    <RagSoc> Info4u Srl</RagSoc>
+  </APP_Versioni>
+</NewDataSet>

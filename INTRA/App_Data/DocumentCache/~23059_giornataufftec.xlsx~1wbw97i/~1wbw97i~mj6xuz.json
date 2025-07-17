@@ -1,0 +1,39 @@
+{
+  "CacheSourceKey": "1wbw97i",
+  "CachePdfKey": "1wbw97i/1wbw97i-b3umsz.pdf",
+  "CacheXpzKey": "1wbw97i/1wbw97i-mj6xuz.xpz",
+  "CacheInfoKey": "1wbw97i/1wbw97i-mj6xuz.json",
+  "CacheCopyKey": null,
+  "Document": "~/Public/Documentale/31/OFFCLI/1105/23059_giornataufftec.xlsx",
+  "DocumentHandlerType": null,
+  "DocumentHandlerParameters": null,
+  "DocumentLocation": null,
+  "DocumentFileName": "23059_giornataufftec.xlsx",
+  "InputOptions": {
+    "$type": "GleamTech.DocumentUltimate.SpreadsheetInputOptions, GleamTech.DocumentUltimate",
+    "OutputSheetRange": "visible",
+    "RenderColumnsFitToPages": 1,
+    "RenderRowsFitToPages": 0,
+    "RenderHeadings": false,
+    "RenderGridlines": false,
+    "RenderTitleColumns": null,
+    "RenderTitleRows": null,
+    "RenderArea": null,
+    "RenderBlackAndWhite": false,
+    "RenderCenterHorizontally": false,
+    "RenderCenterVertically": false,
+    "Format": "Xlsx",
+    "Password": null
+  },
+  "PdfOutputOptions": {
+    "Watermarks": [],
+    "FastWebViewEnabled": false,
+    "Password": null,
+    "Format": "Pdf"
+  },
+  "XpzOutputOptions": {
+    "Password": "1wbw97i",
+    "HighQualityEnabled": false,
+    "Format": "Xpz"
+  }
+}

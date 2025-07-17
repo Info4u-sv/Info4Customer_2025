@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Pages>
+  <mail>
+    <Item ToolTip="Back" Name="back" SpriteClassName="Sprite_Back" Text="Indietro" />
+    <Item ToolTip="Compose" Name="new" SpriteClassName="Sprite_NewMail" Text="Nuovo"/>
+    <Item ToolTip="Send" Name="send" SpriteClassName="Sprite_SendMail" />
+    <Item ToolTip="Save to drafts" Name="save" SpriteClassName="Sprite_Save" />
+    <Item ToolTip="Reply" Name="reply" SpriteClassName="Sprite_Reply" />
+    <Item ToolTip="Mark as" Name="markAs" SpriteClassName="Sprite_MarkAs">
+      <Item Text="Read" ToolTip="Read" Name="read" SpriteClassName="Sprite_MarkAsRead" />
+      <Item Text="Unread" ToolTip="Unread" Name="unread" SpriteClassName="Sprite_MarkAsUnread" />
+    </Item>
+    <Item ToolTip="Delete" Name="delete" SpriteClassName="Sprite_RemoveLarge" />
+  </mail>
+  <calendar>
+    <Item ToolTip="New Appointment" Name="new" SpriteClassName="Sprite_NewAppointment" />
+  </calendar>
+  <contacts>
+    <Item ToolTip="New Contact" Name="new" SpriteClassName="Sprite_NewContact" />
+    <Item ToolTip="Back" Name="back" SpriteClassName="Sprite_Back" />
+    <Item ToolTip="Save" Name="save" SpriteClassName="Sprite_Save" />
+  </contacts>
+  <feeds>
+    <Item ToolTip="Back" Name="back" SpriteClassName="Sprite_Back" />
+  </feeds>
+  <lista_cl>
+    <Item ToolTip="Back" Name="back" SpriteClassName="Sprite_Back" Text="Indietro" IconCssClassField="fa fa-home"/>
+    <Item ToolTip="Compose" Name="new" SpriteClassName="Sprite_NewMail" Text="Nuovo" IconCssClassField="fa fa-home"/>
+  </lista_cl>
+</Pages>

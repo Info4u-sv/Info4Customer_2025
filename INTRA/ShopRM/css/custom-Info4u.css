@@ -1,0 +1,59 @@
+@import url(https://fonts.googleapis.com/css?family=Karla|Ubuntu);
+/*!
+ * Bootstrap v2.0.4
+ *
+ * Copyright 2012 Twitter, Inc
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Designed and built with all the love in the world @twitter by @mdo and @fat.
+ */
+
+.uploadifive-button {
+    text-transform: none !important;
+    width: 115px !important;
+}
+
+.horizontal-Rbt label 
+{
+    display:block;
+    margin-left:6px;
+}
+
+.horizontal-Rbt td
+{
+    text-align:center;
+}
+
+ #myModalMsgDanger h3
+{
+  color:Red !important;
+}
+
+#myModalMsgDanger .modal-body
+{
+  color:Red !important;
+}
+
+.x-mini
+{
+  width:40px !important;
+}
+
+.Facebook {
+    color: #3B5998 !important;
+}
+
+.Instagram {
+    color: #9A684D !important;
+}
+.Twitter {
+    color: #32CDFD !important
+}
+.LinkedIn {
+    color: #0077B5 !important;
+}
+
+.price .current {
+    font-size: 13px !important;
+}

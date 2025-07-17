@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.125, 8.5" name="U_StoricoVenditeArticoloPerAgentePerCliente_LINQ">
+  <DataContextMoniker Name="/U_StoricoVenditeArticoloPerAgentePerCliente_LINQDataContext" />
+  <nestedChildShapes>
+    <classShape Id="27a680cb-ceb0-40f6-9185-8c25b3508b89" absoluteBounds="9.875, 3.375, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/U_StoricoVenditeArticoloPerAgentePerCliente_LINQDataContext/U_StoricoVenditeArticoloPerAgentePerCliente_VIew" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a93e9905-e88f-48a7-96e8-003dfc9db088" absoluteBounds="9.89, 3.835, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

@@ -1,0 +1,83 @@
+.body {
+  width: 450px;
+  height: 50%;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0.75rem 1.25rem;
+  border-radius: 2em;
+  margin: 10% auto;
+  outline: 1px solid yellow;
+}
+
+/* Globale */
+
+.rosso {
+  color: red;
+}
+
+.maiuscolo {
+  text-transform: uppercase;
+}
+
+/* Header */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.image-container {
+  flex: 1;
+}
+
+.contenitore-logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.normale {
+  margin-left: 1.5rem;
+}
+
+/* Main */
+
+.titolo {
+  font-size: 1.25rem;
+  background-color: yellow;
+  padding: 0.5rem 0.25rem;
+  border-radius: 0.25em;
+}
+
+.sottotitolo {
+  font-size: 1rem;
+}
+
+.lista {
+  list-style-type: "- ";
+  padding: 0.75rem;
+}
+
+/* Footer */
+
+.footer {
+  display: flex;
+  flex-basis: 100%;
+  justify-content: stretch;
+  gap: 1rem;
+}
+
+.footer > * {
+  flex-shrink: 0;
+  flex-grow: 1;
+}
+
+.titolo-tabella {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.tabella-item {
+  font-size: 11px;
+  margin: 0 0 0.75rem;
+}

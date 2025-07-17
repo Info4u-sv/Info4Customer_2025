@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s1="http://tempuri.org/AbstractTypes" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="SendMailAimCore1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fromAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="toAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="body" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TipoAllegato" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdAllegato" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMailAimCore1Response">
+        <s:complexType />
+      </s:element>
+      <s:element name="SendMailNoTemplateAttachByDb">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="From" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Destinatari" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CopiaConoscenza" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CopiaConoscenzaNascosta" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Oggetto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Messaggio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdDocAllegati" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="ATT" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="Filename" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UtenteSMTP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SendMailNoTemplateAttachByDbResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendMailNoTemplateAttachByDbResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckHostStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hostCodParam" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userNameCodParam" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passwordCodParam" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="portCodParam" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SslModeCodParam" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EnableImplicitSslCodParam" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckHostStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckHostStatusResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestSendEmai">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="from" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="to" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="msgObject" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestSendEmaiResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="addTckCustomerArray">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TckPost" type="tns:TCK_Ticket_WS" />
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TCK_Ticket_WS">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CodRapportino" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodCliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Società" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PIva" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Indirizzo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cap" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Località" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Provincia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telefono" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fax" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Matricola" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Scala" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TipoImpianto" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PersonaDaContattare" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TipoChiamata" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AreaAss" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="MotivoChiamata" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Note" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GuastoRilevato" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LavoroEseguito" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="InterventoChiuso" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Osservazioni" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DataIntervento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DataIns" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EditUser" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreatedOn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UpdatedOn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="User" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ore" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="StatusRpt" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="IncaricatoCli" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImmagineTxt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PercorsoImmagine" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TCK_TipoRichiesta" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TCK_AreaCompetenza" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TCK_TipoEsecuzionePresunta" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TCK_TipoEsecuzione" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TCK_StatusChiamata" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TCK_StatusChiamataChiusura" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TCK_PrioritaRichiesta" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TCK_TipoChiusuraChiamataFattura" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="OraInzioIntervento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OraFineIntervento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NomePersonaRiferimento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TelPersonaRiferimento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MailPersonaRiferimento" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DirittoFisso" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="TariffaOraria" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="SpeseViaggioKm" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SpeseViaggioEuro" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotaleEuroForfait" type="s:float" />
+          <s:element minOccurs="0" maxOccurs="1" name="TCK_StatusChiamata_etichetta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TCK_TipoRichiesta_etichetta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TCK_AreaCompetenza_etichetta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TCK_TipoEsecuzionePresunta_etichetta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TCK_TipoEsecuzione_etichetta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TCK_PrioritaRichiesta_etichetta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImgFirmaCliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImgFirmaTecnico" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirmaCliente" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TicketFirmato" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="InterventoPresso" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirmaTecnico" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NoteAnnullamentoTck" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NoteTecnico" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LinkTckPdf" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TckInviatoA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TCK_StatusChiamataChiusura_Etichetta" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotTecnici_TCK" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TempoInterventoTotale" type="s:float" />
+          <s:element minOccurs="0" maxOccurs="1" name="UM_Tempo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="StatusControlloFatt" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ApprovatoDa" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="StatusControlloRegistrazione" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumeroRegistrazione" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NoteFatturazioneFinale" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="StatusControlloFatturazioneFinale" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="societa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Denom" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ind" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Prov" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Loc" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tel" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Riferim" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EMail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodCli" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodArt_King" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdIntervento_King" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="OggettoTCK" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tecnici" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AssegnatoCalendTecnico" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="InizioIntervento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FineIntervento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecurrenceInfo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResourceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IDExchange" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tecnico" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecurrenceEvent" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TicketPadre" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="IDRecurrence" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Impianto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodiceImpianto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DataFineIntervento" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrioritaCalendario" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ValoreColonna" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Customer" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Allegati" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="addTckCustomerArrayResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="addTckCustomerArrayResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendTicketMailAim">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TicketId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="TicketStatus" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserCrud" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rapportini" type="tns:TCK_Ticket_WS" />
+            <s:element minOccurs="0" maxOccurs="1" name="MailTecnico" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NomeTecnico" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Responsabili" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="TipoAllegato" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IdAllegato" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendTicketMailAimResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+    <s:schema targetNamespace="http://tempuri.org/AbstractTypes">
+      <s:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <s:complexType name="StringArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="unbounded" name="String" type="s:string" />
+            </s:sequence>
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SendMailAimCore1SoapIn">
+    <wsdl:part name="parameters" element="tns:SendMailAimCore1" />
+  </wsdl:message>
+  <wsdl:message name="SendMailAimCore1SoapOut">
+    <wsdl:part name="parameters" element="tns:SendMailAimCore1Response" />
+  </wsdl:message>
+  <wsdl:message name="SendMailNoTemplateAttachByDbSoapIn">
+    <wsdl:part name="parameters" element="tns:SendMailNoTemplateAttachByDb" />
+  </wsdl:message>
+  <wsdl:message name="SendMailNoTemplateAttachByDbSoapOut">
+    <wsdl:part name="parameters" element="tns:SendMailNoTemplateAttachByDbResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckHostStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckHostStatus" />
+  </wsdl:message>
+  <wsdl:message name="CheckHostStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckHostStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestSendEmaiSoapIn">
+    <wsdl:part name="parameters" element="tns:TestSendEmai" />
+  </wsdl:message>
+  <wsdl:message name="TestSendEmaiSoapOut">
+    <wsdl:part name="parameters" element="tns:TestSendEmaiResponse" />
+  </wsdl:message>
+  <wsdl:message name="addTckCustomerArraySoapIn">
+    <wsdl:part name="parameters" element="tns:addTckCustomerArray" />
+  </wsdl:message>
+  <wsdl:message name="addTckCustomerArraySoapOut">
+    <wsdl:part name="parameters" element="tns:addTckCustomerArrayResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendTicketMailAimSoapIn">
+    <wsdl:part name="parameters" element="tns:SendTicketMailAim" />
+  </wsdl:message>
+  <wsdl:message name="SendTicketMailAimSoapOut">
+    <wsdl:part name="parameters" element="tns:SendTicketMailAimResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendMailAimCore1HttpGetIn">
+    <wsdl:part name="fromAddress" type="s:string" />
+    <wsdl:part name="toAddress" type="s:string" />
+    <wsdl:part name="subject" type="s:string" />
+    <wsdl:part name="body" type="s:string" />
+    <wsdl:part name="TipoAllegato" type="s:string" />
+    <wsdl:part name="IdAllegato" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMailAimCore1HttpGetOut" />
+  <wsdl:message name="SendMailNoTemplateAttachByDbHttpGetIn">
+    <wsdl:part name="From" type="s:string" />
+    <wsdl:part name="Destinatari" type="s:string" />
+    <wsdl:part name="CopiaConoscenza" type="s:string" />
+    <wsdl:part name="CopiaConoscenzaNascosta" type="s:string" />
+    <wsdl:part name="Oggetto" type="s:string" />
+    <wsdl:part name="Messaggio" type="s:string" />
+    <wsdl:part name="IdDocAllegati" type="s1:StringArray" />
+    <wsdl:part name="ATT" type="s1:StringArray" />
+    <wsdl:part name="Filename" type="s:string" />
+    <wsdl:part name="UtenteSMTP" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMailNoTemplateAttachByDbHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckHostStatusHttpGetIn">
+    <wsdl:part name="hostCodParam" type="s:string" />
+    <wsdl:part name="userNameCodParam" type="s:string" />
+    <wsdl:part name="passwordCodParam" type="s:string" />
+    <wsdl:part name="portCodParam" type="s:string" />
+    <wsdl:part name="SslModeCodParam" type="s:string" />
+    <wsdl:part name="EnableImplicitSslCodParam" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckHostStatusHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="TestSendEmaiHttpGetIn">
+    <wsdl:part name="from" type="s:string" />
+    <wsdl:part name="to" type="s:string" />
+    <wsdl:part name="msg" type="s:string" />
+    <wsdl:part name="msgObject" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TestSendEmaiHttpGetOut" />
+  <wsdl:message name="SendMailAimCore1HttpPostIn">
+    <wsdl:part name="fromAddress" type="s:string" />
+    <wsdl:part name="toAddress" type="s:string" />
+    <wsdl:part name="subject" type="s:string" />
+    <wsdl:part name="body" type="s:string" />
+    <wsdl:part name="TipoAllegato" type="s:string" />
+    <wsdl:part name="IdAllegato" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMailAimCore1HttpPostOut" />
+  <wsdl:message name="SendMailNoTemplateAttachByDbHttpPostIn">
+    <wsdl:part name="From" type="s:string" />
+    <wsdl:part name="Destinatari" type="s:string" />
+    <wsdl:part name="CopiaConoscenza" type="s:string" />
+    <wsdl:part name="CopiaConoscenzaNascosta" type="s:string" />
+    <wsdl:part name="Oggetto" type="s:string" />
+    <wsdl:part name="Messaggio" type="s:string" />
+    <wsdl:part name="IdDocAllegati" type="s1:StringArray" />
+    <wsdl:part name="ATT" type="s1:StringArray" />
+    <wsdl:part name="Filename" type="s:string" />
+    <wsdl:part name="UtenteSMTP" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMailNoTemplateAttachByDbHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckHostStatusHttpPostIn">
+    <wsdl:part name="hostCodParam" type="s:string" />
+    <wsdl:part name="userNameCodParam" type="s:string" />
+    <wsdl:part name="passwordCodParam" type="s:string" />
+    <wsdl:part name="portCodParam" type="s:string" />
+    <wsdl:part name="SslModeCodParam" type="s:string" />
+    <wsdl:part name="EnableImplicitSslCodParam" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckHostStatusHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="TestSendEmaiHttpPostIn">
+    <wsdl:part name="from" type="s:string" />
+    <wsdl:part name="to" type="s:string" />
+    <wsdl:part name="msg" type="s:string" />
+    <wsdl:part name="msgObject" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TestSendEmaiHttpPostOut" />
+  <wsdl:portType name="WebService_primoSoap">
+    <wsdl:operation name="SendMailAimCore1">
+      <wsdl:input message="tns:SendMailAimCore1SoapIn" />
+      <wsdl:output message="tns:SendMailAimCore1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMailNoTemplateAttachByDb">
+      <wsdl:input message="tns:SendMailNoTemplateAttachByDbSoapIn" />
+      <wsdl:output message="tns:SendMailNoTemplateAttachByDbSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckHostStatus">
+      <wsdl:input message="tns:CheckHostStatusSoapIn" />
+      <wsdl:output message="tns:CheckHostStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestSendEmai">
+      <wsdl:input message="tns:TestSendEmaiSoapIn" />
+      <wsdl:output message="tns:TestSendEmaiSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="addTckCustomerArray">
+      <wsdl:input message="tns:addTckCustomerArraySoapIn" />
+      <wsdl:output message="tns:addTckCustomerArraySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendTicketMailAim">
+      <wsdl:input message="tns:SendTicketMailAimSoapIn" />
+      <wsdl:output message="tns:SendTicketMailAimSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WebService_primoHttpGet">
+    <wsdl:operation name="SendMailAimCore1">
+      <wsdl:input message="tns:SendMailAimCore1HttpGetIn" />
+      <wsdl:output message="tns:SendMailAimCore1HttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMailNoTemplateAttachByDb">
+      <wsdl:input message="tns:SendMailNoTemplateAttachByDbHttpGetIn" />
+      <wsdl:output message="tns:SendMailNoTemplateAttachByDbHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckHostStatus">
+      <wsdl:input message="tns:CheckHostStatusHttpGetIn" />
+      <wsdl:output message="tns:CheckHostStatusHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestSendEmai">
+      <wsdl:input message="tns:TestSendEmaiHttpGetIn" />
+      <wsdl:output message="tns:TestSendEmaiHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WebService_primoHttpPost">
+    <wsdl:operation name="SendMailAimCore1">
+      <wsdl:input message="tns:SendMailAimCore1HttpPostIn" />
+      <wsdl:output message="tns:SendMailAimCore1HttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMailNoTemplateAttachByDb">
+      <wsdl:input message="tns:SendMailNoTemplateAttachByDbHttpPostIn" />
+      <wsdl:output message="tns:SendMailNoTemplateAttachByDbHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckHostStatus">
+      <wsdl:input message="tns:CheckHostStatusHttpPostIn" />
+      <wsdl:output message="tns:CheckHostStatusHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestSendEmai">
+      <wsdl:input message="tns:TestSendEmaiHttpPostIn" />
+      <wsdl:output message="tns:TestSendEmaiHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebService_primoSoap" type="tns:WebService_primoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SendMailAimCore1">
+      <soap:operation soapAction="http://tempuri.org/SendMailAimCore1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMailNoTemplateAttachByDb">
+      <soap:operation soapAction="http://tempuri.org/SendMailNoTemplateAttachByDb" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckHostStatus">
+      <soap:operation soapAction="http://tempuri.org/CheckHostStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestSendEmai">
+      <soap:operation soapAction="http://tempuri.org/TestSendEmai" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addTckCustomerArray">
+      <soap:operation soapAction="http://tempuri.org/addTckCustomerArray" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendTicketMailAim">
+      <soap:operation soapAction="http://tempuri.org/SendTicketMailAim" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebService_primoSoap12" type="tns:WebService_primoSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SendMailAimCore1">
+      <soap12:operation soapAction="http://tempuri.org/SendMailAimCore1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMailNoTemplateAttachByDb">
+      <soap12:operation soapAction="http://tempuri.org/SendMailNoTemplateAttachByDb" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckHostStatus">
+      <soap12:operation soapAction="http://tempuri.org/CheckHostStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestSendEmai">
+      <soap12:operation soapAction="http://tempuri.org/TestSendEmai" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addTckCustomerArray">
+      <soap12:operation soapAction="http://tempuri.org/addTckCustomerArray" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendTicketMailAim">
+      <soap12:operation soapAction="http://tempuri.org/SendTicketMailAim" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebService_primoHttpGet" type="tns:WebService_primoHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="SendMailAimCore1">
+      <http:operation location="/SendMailAimCore1" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="SendMailNoTemplateAttachByDb">
+      <http:operation location="/SendMailNoTemplateAttachByDb" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckHostStatus">
+      <http:operation location="/CheckHostStatus" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestSendEmai">
+      <http:operation location="/TestSendEmai" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebService_primoHttpPost" type="tns:WebService_primoHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="SendMailAimCore1">
+      <http:operation location="/SendMailAimCore1" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="SendMailNoTemplateAttachByDb">
+      <http:operation location="/SendMailNoTemplateAttachByDb" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckHostStatus">
+      <http:operation location="/CheckHostStatus" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestSendEmai">
+      <http:operation location="/TestSendEmai" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebService_primo">
+    <wsdl:port name="WebService_primoSoap" binding="tns:WebService_primoSoap">
+      <soap:address location="http://localhost:9177/WebService_primo.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebService_primoSoap12" binding="tns:WebService_primoSoap12">
+      <soap12:address location="http://localhost:9177/WebService_primo.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebService_primoHttpGet" binding="tns:WebService_primoHttpGet">
+      <http:address location="http://localhost:9177/WebService_primo.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebService_primoHttpPost" binding="tns:WebService_primoHttpPost">
+      <http:address location="http://localhost:9177/WebService_primo.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

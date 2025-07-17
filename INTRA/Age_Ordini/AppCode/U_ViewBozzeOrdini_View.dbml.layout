@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="U_ViewBozzeOrdini_View">
+  <DataContextMoniker Name="/U_ViewBozzeOrdini_ViewDataContext" />
+  <nestedChildShapes>
+    <classShape Id="4cfe6e1e-6692-4b50-aebf-95ecff3198bd" absoluteBounds="5.125, 2.375, 2, 2.9247054036458326">
+      <DataClassMoniker Name="/U_ViewBozzeOrdini_ViewDataContext/U_ViewBozzeOrdini_View" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9c0c0bef-0c67-4c58-a3ac-0b9218c0047e" absoluteBounds="5.14, 2.835, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

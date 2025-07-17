@@ -1,0 +1,1386 @@
+﻿@import url('RootColor.css');
+
+/*Personalizzazione pulsanti TaskView*/
+.btn.btn-TckInfo, .navbar .navbar-nav > li > a.btn.btn-TckInfo {
+    background-color: #4caf50;
+    color: #fff;
+    box-shadow: 0 2px 2px 0 rgba(53, 70, 92, 0.14), 0 3px 1px -2px rgba(53, 70, 92, 0.2), 0 1px 5px 0 rgba(53, 70, 92, 0.12);
+}
+
+.btn.btn-TckTecniciArea, .navbar .navbar-nav > li > a.btn.btn-TckTecniciArea {
+    background-color: #5db2ff;
+    color: #fff;
+    box-shadow: 0 2px 2px 0 rgba(53, 70, 92, 0.14), 0 3px 1px -2px rgba(53, 70, 92, 0.2), 0 1px 5px 0 rgba(53, 70, 92, 0.12);
+}
+
+.btn.btn-TckSpeseArea, .navbar .navbar-nav > li > a.btn.btn-TckSpeseArea {
+    background-color: #6a5acd;
+    color: #fff;
+    box-shadow: 0 2px 2px 0 rgba(53, 70, 92, 0.14), 0 3px 1px -2px rgba(53, 70, 92, 0.2), 0 1px 5px 0 rgba(53, 70, 92, 0.12);
+}
+
+.btn.btn-TckMaterialeArea, .navbar .navbar-nav > li > a.btn.btn-TckMaterialeArea {
+    background-color: #ff5722;
+    color: #fff;
+    box-shadow: 0 2px 2px 0 rgba(53, 70, 92, 0.14), 0 3px 1px -2px rgba(53, 70, 92, 0.2), 0 1px 5px 0 rgba(53, 70, 92, 0.12);
+}
+
+.btn.btn-TckAllegatiArea, .navbar .navbar-nav > li > a.btn.btn-TckAllegatiArea {
+    background-color: #ffa500;
+    color: #fff;
+    box-shadow: 0 2px 2px 0 rgba(53, 70, 92, 0.14), 0 3px 1px -2px rgba(53, 70, 92, 0.2), 0 1px 5px 0 rgba(53, 70, 92, 0.12);
+}
+
+.btn.btn-TckChiusuraArea, .navbar .navbar-nav > li > a.btn.btn-TckAChiusuraArea {
+    background-color: #0385d3;
+    color: #fff;
+    box-shadow: 0 2px 2px 0 rgba(53, 70, 92, 0.14), 0 3px 1px -2px rgba(53, 70, 92, 0.2), 0 1px 5px 0 rgba(53, 70, 92, 0.12);
+}
+
+.nav-pills.nav-pills-green > li.active > a,
+.nav-pills.nav-pills-green > li.active > a:focus,
+.nav-pills.nav-pills-green > li.active > a:hover {
+    background-color: yellowgreen;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(233, 30, 99, 0.4);
+}
+
+.nav-pills.nav-pills-grey > li.active > a,
+.nav-pills.nav-pills-grey > li.active > a:focus,
+.nav-pills.nav-pills-grey > li.active > a:hover {
+    background-color: #4f4f51;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(233, 30, 99, 0.4);
+}
+
+.card [data-background-color="azure"] {
+    background: linear-gradient(60deg, #00bcd4,#00bcd4);
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(244, 67, 54, 0.4);
+}
+/*Fine Personalizzazione pulsanti TaskView*/
+.ContenitoreStile {
+    position: absolute;
+    float: right;
+    z-index: 20;
+    right: 5px;
+    padding-top: 10px;
+}
+
+.StileInfo {
+    font-weight: 700;
+    font-size: 20px;
+    z-index: 9999999999;
+    color: var(--main-primary-color);
+}
+
+    .StileInfo span a {
+        font-weight: 500;
+        font-size: 15px;
+        font-family: Arial, sans-serif;
+        padding-left: 5px;
+        color: var(--main-primary-color);
+    }
+
+.ContenitoreStileLeft {
+    position: absolute;
+    float: left;
+    z-index: 20;
+    left: 20px;
+    padding-top: 10px;
+}
+
+.padding_right_zero {
+    padding-right: 0px !important;
+}
+
+.padding_left_right_min {
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+}
+
+.LblSiglaComm {
+    color: white !important;
+    padding: 0 !important;
+    width: 30px !important;
+    text-align: center;
+}
+
+/*customizzazione bottoni*/
+.btn:not(.btn-just-icon):not(.btn-fab) .fa, .navbar .navbar-nav > li > a.btn:not(.btn-just-icon):not(.btn-fab) .fa {
+    /*    font-size: 28px !important;*/
+}
+
+.btn-custom-padding {
+    padding: 5px 10px !important;
+}
+
+.BadgeBtn {
+    background: transparent !important;
+    color: #fff !important;
+    font-size: medium !important;
+    padding: 3px !important;
+    margin: 0px !important;
+    top: 0 !important;
+}
+
+.BadgeBtn-just-icon {
+    background: transparent !important;
+    color: #fff !important;
+    font-size: small !important;
+    padding: 3px !important;
+    margin: 0px !important;
+    /*font-size: x-large !important;*/
+    top: 0 !important;
+}
+
+.btn-just-icon-padding {
+    padding: 3px 8px !important;
+}
+
+.action {
+    font-size: xx-large !important;
+}
+
+.go {
+    color: dodgerblue;
+}
+
+.edit {
+    color: #fd8204;
+}
+
+.delete {
+    color: #f44336;
+}
+
+.new {
+    color: #4cae4c;
+}
+
+.Commessa_Bg {
+    background: #f44336;
+}
+
+.Posizione_Bg {
+    background: #fd8204;
+}
+
+.Matricola_Bg {
+    background: #4cae4c;
+}
+/*Csutomizzazione bottoni FINE*/
+.table-commesse .thead-commesse > tr > th {
+    color: #FD8204;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+}
+
+.table-commesse > thead > tr > th, .table-commesse > tbody > tr > th, .table-commesse > tfoot > tr > th, .table-commesse > thead > tr > td, .table-commesse > tbody > tr > td, .table-commesse > tfoot > tr > td {
+    padding: 5px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.sidebar .logo {
+    padding: 0 !important;
+}
+
+.sidebar .nav {
+    margin-top: 0px !important;
+}
+
+.sidebar .logo a.logo-mini {
+    margin-left: 10px !important;
+    margin-right: 5px !important;
+}
+
+.StausLblGrid {
+    border-radius: 7px;
+    padding: 5px;
+    color: white !important;
+    text-transform: uppercase;
+    font-size: small !important;
+    font-weight: bolder !important;
+}
+
+.inattesa {
+    background-color: lightslategray !important;
+}
+
+.inproduzione {
+    background-color: #00bcd4 !important;
+}
+
+.incollaudo {
+    background-color: #43a047 !important;
+}
+
+.completata {
+    background-color: #8e24aa !important;
+}
+
+.ufftecnico {
+    background-color: #fb8c00 !important;
+}
+
+.produzione {
+    background-color: #00bcd4 !important;
+}
+
+.aperto {
+    background-color: #fd8204 !important;
+}
+
+.chiuso {
+    background-color: #4caf50 !important;
+}
+
+.lbl-bg-inproduzione {
+    background-color: #00bcd4 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lbl-bg-produzione {
+    background-color: #00bcd4 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lbl-bg-carpenteria {
+    background-color: #309FD0 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lbl-bg-ufficioteccarpenteria {
+    background-color: #203850 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lbl-bg-ufftecnico {
+    background-color: #fd8204 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lbl-bg-incollaudo {
+    background-color: #43a047 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lbl-bg-inattesa {
+    background-color: #f44336 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lbl-bg-completata {
+    background-color: #8e24aa !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lbl-bg-status-chiuso {
+    background-color: #00b300 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lbl-bg-status-chiusoconriserva {
+    background-color: #ff8c00 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lbl-bg-status-aperto {
+    background-color: #f44336 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lbl-bg-inscadenza {
+    background-color: #00bcd4 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+
+
+.icon4u::before {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+.icon-inproduzione::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f013";
+}
+
+.icon-incollaudo::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f559";
+}
+
+.icon-inattesa::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f252";
+}
+
+.icon-completata::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f164";
+}
+
+
+.icon-area-collaudo::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f4fc";
+}
+
+
+.icon-area-produzione::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f013";
+}
+
+.icon-area-carpenteria::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f013";
+}
+
+
+.icon-area-ufftecnico::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f108";
+}
+
+.icon-area-ufficioteccarpenteria::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f108";
+}
+
+.icon-status-aperto::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f4fd";
+}
+
+.icon-status-chiuso::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f164";
+}
+
+.icon-status-chiusoconriserva::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f164";
+}
+
+
+.icon-scadenza::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f071";
+}
+
+.icon-scaduta::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f071";
+}
+
+.icon-utentiattivi::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f509";
+}
+
+.icon-esaurite::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f071";
+}
+
+.icon-tecEsaurite::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f071";
+}
+
+.icon-disdetta::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f165";
+}
+
+.icon-collaudonegativo::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f0e2";
+}
+
+.lbl-bg-scadenza {
+    background-color: #f48f36 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lbl-bg-esaurite {
+    background-color: #f44336 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+
+.lbl-bg-oretecnicheesaurite {
+    background-color: #f48f36 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lbl-bg-oretecnicheesaurite {
+    background-color: #f44336 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lbl-bg-oreproduzioneesaurite {
+    background-color: #f44336 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lbl-bg-oretecnicheinesaurimento {
+    background-color: #f48f36 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lbl-bg-oreproduzioneinesaurimento {
+    background-color: #f48f36 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lbl-bg-scaduta {
+    background-color: #f44336 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lbl-bg-prevconsegnainscadenza, .lbl-bg-previstaconsegnainscadenza {
+    background-color: #f48f36 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lbl-bg-prevconsegnascaduta, .lbl-bg-avvioproduzionescaduto {
+    background-color: #f44336 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lbl-bg-utentiattivi {
+    background-color: #56a9a9 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+
+
+.lbl-bg-tecEsaurite {
+    background-color: #f44336 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lbl-bg-disdetta {
+    background-color: #474747 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lbl-bg-collaudonegativo {
+    background-color: #fb8c00 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lbl-bg-inrevisione {
+    background-color: #fb8c00 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.icon-inrevisione::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f0e2";
+}
+
+.lbl-bg-offerta {
+    background-color: darkgreen !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lbl-bg-ordini {
+    background-color: #1179cb !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lbl-bg-commessa {
+    background-color: #03A9F4 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.icon-offerta::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f153";
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.icon-ordini::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f49e";
+}
+
+.icon-stampa::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f1c3";
+    color: white;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.icon-commessa::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f542";
+}
+
+.dxgvControl_Office365 .dxgvTable_Office365 .dxgvFocusedRow_Office365, .dxgvControl_Office365 .dxgvTable_Office365 .dxgvFocusedRow_Office365.dxgvDataRowHover_Office365 {
+    background-color: #2358c0 !important;
+    color: white !important;
+}
+
+.dx-acc:before, .dx-acc-s > img, .dx-acc-bi > img:first-child {
+    position: relative !important;
+}
+
+Forza il link con colore bianco
+.dxgvCommandColumn_Office365 a {
+    color: #fff !important;
+}
+
+.lbl-bg-excel {
+    background-color: green !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lbl-bg- {
+    background-color: #f44336 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+
+/*
+    Modifiche V2_3_5
+    Author : Andrea
+    Data : 16/01/2023
+*/
+
+.icon-go::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f542";
+}
+.icon-book::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\e865";
+}
+
+.no-margin {
+    margin: 0 !important
+}
+
+.no-padding {
+    padding: 0 !important
+}
+
+.progress {
+    height: 20px !important;
+    border-radius: 0;
+    box-shadow: none;
+    background: #DDDDDD;
+}
+
+.progress {
+    margin-bottom: 0px !important;
+}
+.icon-king::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f43f";
+}
+.lbl-bg-king {
+    background-color: #03A9F4 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+/*CUSTOM template */
+.dxgvPopupEditForm_Office365 {
+    overflow: initial !important;
+}
+
+.adaptiveHiddenCaption {
+    display: none !important
+}
+
+.CheckboxTitle {
+    font-size: 14px !important;
+}
+
+@media screen and (min-width: 880px) {
+    .hidden-large {
+        display: none !important;
+        width: 0px !important;
+    }
+}
+
+/*questo css serve per non far apparire label barra di scorrimento laterale in fondo nel menù*/
+.perfect-scrollbar-off .sidebar .sidebar-wrapper, .perfect-scrollbar-off .main-panel {
+    overflow: hidden;
+}
+
+.myEditForm {
+    z-index: 17000 !important;
+}
+
+.HideColumn {
+    display: none !important;
+}
+
+.alert.alert-with-icon {
+    z-index: 99999999 !important;
+    width: 500px !important;
+}
+
+.PhotoHeader {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    float: left;
+    z-index: 5;
+    margin-right: 11px;
+    border-radius: 20%;
+    background-color: white;
+    /*margin-left: 23px;*/
+    box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.auto-style1 {
+    width: 176px;
+    height: 38px;
+}
+
+.swal2-container {
+    z-index: 9999999999;
+}
+
+.LabelClass {
+    padding: 4px;
+    border-radius: 7px;
+}
+
+.imagelightbox-arrow {
+    width: 3.75em !important;
+    height: 3.75em !important;
+}
+
+.hideHeader {
+    display: none !important;
+}
+
+@media screen and (max-width: 880px) {
+    .hidden-small {
+        display: none !important;
+    }
+
+    /*.dxgvADCC {
+                display: none !important;
+            }*/
+}
+
+@media screen and (min-width: 880px) {
+    .hidden-large {
+        display: none !important;
+        width: 3px !important;
+    }
+    /*.dxgvADCC {
+                 display: none !important;
+            }*/
+}
+
+@media only screen and (max-width: 530px) {
+    .navbar {
+        height: 45px !important;
+    }
+}
+
+@media only screen and (max-width: 530px) {
+    .navbar .navbar-inner .navbar-container {
+        padding-left: 0;
+        height: 45px;
+    }
+}
+
+@media only screen and (max-width: 530px) {
+    .navbar-fixed-top + .main-container {
+        margin-top: 45px !important;
+    }
+}
+
+@media only screen and (max-width: 530px) {
+    .navbar .navbar-inner .navbar-header .navbar-account .account-area {
+        padding-left: 10px;
+        top: 0px !important;
+    }
+}
+
+.dx-fab-position-container.dx-fab-js-position {
+    position: fixed;
+}
+
+.dxgvSearchPanel_Office365 .dxeButtonEdit_Office365 td.dxic {
+    padding: 0px 0px 0px 10px !important;
+}
+
+.dxgvSearchPanel_Office365 {
+    padding: 0;
+    padding-bottom: 6px;
+}
+
+.dx-fab-position-container.dx-fab-js-position {
+    z-index: 9999 !important;
+}
+
+#imagelightbox {
+    -ms-touch-action: none;
+    touch-action: none;
+    cursor: pointer;
+    position: fixed;
+    z-index: 10000;
+    -ms-touch-action: none;
+    touch-action: none;
+    -webkit-box-shadow: 0 0 3.125em rgba( 0, 0, 0, .75 );
+    box-shadow: 0 0 3.125em rgba( 0, 0, 0, .75 );
+}
+
+.GreyPerModal {
+    position: fixed; /* Stay in place */
+    z-index: 999; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.customFAB .dx-fab-main-button {
+    background-color: #c8b452 !important;
+}
+
+
+.btn.btn-just-icon, .navbar .navbar-nav > li > a.btn.btn-just-icon {
+    padding: 10px 11px;
+}
+
+.navbar .navbar-minimize {
+    padding: 0px 0 0 15px;
+}
+
+.main-panel > .content {
+    margin-top: 47px;
+}
+
+footer {
+    padding: 2px 8px;
+}
+
+@media only screen and (max-width:1199px) {
+    .navbar .navbar-brand {
+        height: 50px;
+        padding: 0px 15px;
+    }
+
+    .navbar .navbar-nav > li > a {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+}
+
+
+.navbar .navbar-nav > li > a {
+    padding-top: 0px;
+    padding-bottom: 0;
+}
+
+
+/*FINE CUSTROM template*/
+/*Correzioni CUSTROM template 2022*/
+.main-panel > .content {
+    margin-top: 75px !important;
+    padding: 0px !important;
+    min-height: calc(100vh - 123px);
+}
+
+.btn.btn-round, .navbar .navbar-nav > li > a.btn.btn-round {
+    border-radius: 5px;
+}
+/*FINE Correzioni CUSTROM template 2022*/
+
+.checkbox input[type=checkbox][disabled] ~ .checkbox-material .check {
+    border-color: #000000;
+    opacity: inherit;
+}
+
+.checkbox label {
+    color: black !important;
+}
+
+.dxbs-cbl > div > .column-element > div {
+    overflow: inherit !important; /*corregge problema effetto cerchio sulle ChkBox*/
+}
+
+.sidebar .logo {
+    padding: 0px 0px;
+    padding-bottom: 5px;
+}
+
+.card .card-image {
+    padding-right: 2px;
+    padding-bottom: 2px;
+}
+/*devexpress*/
+
+.OptionsTable {
+    margin-bottom: 5px;
+}
+/* ASPxImagreSlider styles */
+.dxisControl .dxis-nbItem {
+    width: 130px;
+    height: 150px;
+    background-color: transparent;
+}
+
+    .dxisControl .dxis-nbSelectedItem,
+    .dxisControl .dxis-nbSelectedItem > div,
+    .dxisControl .dxis-nbItem .dxis-nbHoverItem {
+        display: none !important; /* Hide Selection Frame */
+    }
+/* Template styles */
+.url {
+    display: block;
+    color: #bb0000;
+    line-height: 1.2;
+    padding: 20px 25px 25px 25px;
+    text-align: center;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 129px;
+    height: 120px;
+}
+
+    .url:hover {
+        color: #dd0000;
+        border: 1px solid #dddddd;
+        background-color: #f8f8f8;
+    }
+
+.immagineSelezionata {
+    display: block;
+    color: #bb0000;
+    line-height: 1.2;
+    padding: 20px 25px 25px 25px;
+    text-align: center;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 129px;
+    height: 120px;
+    background-color: rgba(157, 112, 198, 0.51);
+}
+
+    .immagineSelezionata:hover {
+        color: #dd0000;
+        border: 1px solid #dddddd;
+        background-color: rgba(157, 112, 198, 0.70);
+    }
+
+
+/* evita lo zoom in fase di inserimento dati*/
+@media only screen and (max-width: 800px) {
+    /*Serve per evitare blockquote zoom sugli smartphone*/
+    input[type="text"].dxeEditArea_Office365, input[type="password"].dxeEditArea_Office365 {
+        font-size: 16px !important;
+    }
+
+    input[type='text'],
+    input[type='number'],
+    textarea {
+        font-size: 16px; /*misura minima per evitare lo zoom in fase di scrittura*/
+    }
+}
+/*Fine Sezione Responsive smartphone tablet */
+.card .card-image {
+    margin-top: 0px !important;
+}
+
+.dxeDisabled_Office365 .dxeToken_Office365 {
+    background: rgba(157, 112, 198, 0.4);
+    color: black;
+}
+/*!devexpress*/
+.checkbox input[type=checkbox]:checked + .checkbox-material .check {
+    background: var(--main-primary-hover-color);
+}
+
+.TitleCell {
+    font-weight: bold !important;
+    font-size: large !important;
+    color: #bb2e2e !important;
+}
+
+.dxWeb_edtCheckBoxUnchecked_Office365 {
+    background-color: #5c6666 !important;
+}
+/*pulsante add*/
+.dxfabControl_Office365 .dx-fab-main-button {
+    background-color: var(--main-primary-button-background-color) !important;
+}
+
+.dxcvControl_Office365 a {
+    color: var(--main-primary-color) !important;
+}
+
+
+/*#5eb5ff*/
+.navbar.navbar-Violet {
+    background-color: var(--main-navbar-background-color) !important;
+    color: #ffffff;
+    /*border-bottom:solid 5px #5eb5ff;*/
+    border-bottom: var(--main-navbar-border-bottom) !important;
+}
+
+.sidebar[data-active-color="purple"] li.active > a {
+    background-color: var(--main-menu-active-background-color) !important;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(206, 206, 206, 0.33);
+    margin-right: 0px !important;
+}
+
+.sidebar .nav li.active > a, .sidebar .nav li.active > a i {
+    color: #808080;
+}
+
+.dxpLite_Office365 .dxp-current {
+    background-color: #808080;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.login-page .card-login [data-background-color="purple"] {
+    background: var(--main-Login-header-background-color) !important;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(142, 138, 130, 0.5) !important;
+}
+
+.card [data-background-color="purple"] {
+    background: var(--main-card-header-background-color) !important;
+    /*background: linear-gradient(60deg, #5c6666, #827e77) !important;*/
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(142, 138, 130, 0.5) !important;
+}
+
+
+
+
+.dxbButton_Office365 {
+    color: var(--main-primary-button-color) !important;
+    /*background-color: var(--main-primary-button-background-color) !important;*/
+}
+
+    .dxbButton_Office365:hover {
+        background-color: var(--main-primary-button-hover-background-color) !important;
+    }
+
+
+.TitleCell {
+    font-weight: bold !important;
+    font-size: large !important;
+    color: #808080 !important;
+}
+
+
+
+.dxgvHeader_Office365 a, .dxgvHeader_Office365 a.dxgvCommandColumnItem_Office365, .dxgvHeader_Office365 a.dxgvCommandColumnItem_Office365.dxbDisabled_Office365, .dxgvCommandColumn_Office365 a, .dxgvCommandColumn_Office365 a.dxgvCommandColumnItem_Office365.dxbDisabled_Office365 {
+    color: #808080;
+}
+
+a {
+    color: #808080;
+}
+
+
+ul.dropdown-menu.dropdown-with-icons li a:hover {
+    background-color: var(--main-dropdown-menu-hover-background-color) !important;
+    color: var(--main-dropdown-menu-hover-color) !important;
+}
+
+.dxeDisabled_Office365 .dxeToken_Office365 {
+    background: grey;
+    color: white;
+}
+
+#ContentPlaceHolder1_btnLogin {
+    background-color: var(--main-Login-button-background-color) !important;
+}
+
+.sidebar {
+    background-color: var(--main-menu-background-color) !important;
+}
+
+@media (max-width: 991px) {
+    .sidebar::before, .off-canvas-sidebar nav .navbar-collapse::before {
+        background-color: var(--main-menu-background-color) !important;
+    }
+}
+
+.navbar .dropdown-menu .active > a, .navbar.navbar-default .dropdown-menu .active > a {
+    background-color: var(--main-dropdown-menu-active-background-color) !important;
+    color: var(--main-dropdown-menu-active-color) !important;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(255, 255, 255, 0.4);
+}
+
+.card [data-background-color="purple"] {
+    background: var(--main-card-header-background-color) !important;
+    /*background: linear-gradient(60deg, #5c6666, #827e77) !important;*/
+    box-shadow: 0 4px 20px 0px rgba(3, 3, 3, 0.14), 0 7px 10px -5px rgba(0, 0, 0, 0.50) !important;
+}
+
+.sidebar .nav li.active > a, .sidebar .nav li.active > a i {
+    color: var(--main-menu-active-color) !important;
+}
+
+.dxgvControl_Office365 .dxgvTable_Office365 .dxgvFocusedRow_Office365, .dxgvControl_Office365 .dxgvTable_Office365 .dxgvFocusedRow_Office365.dxgvDataRowHover_Office365 {
+    background-color: var(--main-devx-row-active-background-color) !important;
+    color: var(--main-devx-row-active-color) !important;
+}
+/*.sidebar .nav li > a:hover{
+
+    background-color: var(--main-dropdown-menu-hover-background-color) !important;
+    color: var(--main-dropdown-menu-hover-color) !important;
+}*/
+.form-control, .form-group .form-control {
+    background-image: linear-gradient(var(--main-primary-hover-color), var(--main-primary-hover-color)), linear-gradient(#D2D2D2, #D2D2D2) !important;
+}
+
+.dxeFocused_Office365 {
+    border-color: var(--main-primary-hover-color) !important;
+}
+
+.sidebar .nav li:hover > a, .sidebar .nav li.active > [data-toggle="collapse"] {
+    background-color: var(--main-primary-hover-color) !important;
+}
+
+.dxeToken_Office365 {
+    background: var(--main-primary-color) !important;
+    color: white !important;
+}
+
+label.control-label.dxbs-fl-cpt {
+    color: var(--main-primary-color) !important;
+}
+
+.sidebar .logo a.logo-mini {
+    margin-left: 10px !important;
+    margin-right: 5px !important;
+}
+
+
+/*Rugby Milano Custom */
+
+.dxflGroupBoxCaption_Office365 {
+    color: var(--main-primary-color) !important;
+    font-weight: 500 !important;
+}
+
+.form-group label.control-label {
+    color: var(--main-primary-color) !important;
+    font-weight: bold !important;
+}
+
+.dxcvCard_Office365, .dxcvBreakpointsCard_Office365, .dxcvFlowCard_Office365, .dxcvEmptyCard_Office365 {
+    border: 0px !important;
+}
+
+/*DevExpress Custom GridView*/
+
+.hide-grid-col {
+    /*utile per nascondere una colonna */
+    display: none !important;
+    width: 0px !important;
+}
+
+/*modifiche stile menu*/
+.sidebar .nav i {
+    font-size: 18px !important;
+}
+
+.nav > li > a {
+    padding-top: 5px !important;
+    padding-bottom: 2px !important;
+}
+/*Fine modifiche stile menu*/
+
+.btn.btn-sm, .btn-group-sm .btn, .navbar .navbar-nav > li > a.btn.btn-sm, .btn-group-sm .navbar .navbar-nav > li > a.btn {
+    padding: 2px 6px !important;
+    font-size: 11px;
+}
+
+.small, small {
+    font-size: 75%;
+}
+
+.nav-tabs {
+    background-color: var(--main-menu-active-background-color);
+    border: 0;
+    border-radius: 3px;
+    padding: 0 15px;
+}
+
+
+/*Aggiunte Custom in data 16/12/2022*/
+
+
+.right {
+    text-align: right;
+}
+
+.center {
+    text-align: center;
+}
+
+.margin-center {
+    margin: 0 auto !important;
+}
+
+.normal {
+    font-weight: 400;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.accent {
+    color: var(--primary);
+}
+
+.medium {
+    font-size: 16px !important;
+}
+
+.large {
+    font-size: 20px !important;
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+.block {
+    display: block !important;
+}
+
+.flex {
+    display: flex;
+}
+
+.between {
+    justify-content: space-between;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+}
+
+.vertically {
+    align-items: center;
+}
+
+.two-column {
+    display: grid !important;
+    grid-template-columns: 75% 25%;
+    gap: 12px;
+}
+
+.vertical {
+    writing-mode: vertical-rl;
+    transform: rotate(-180deg);
+    margin: 0;
+}
+
+.monospace {
+    font-family: Courier New, Courier, monospace !important;
+}
+
+.full-height {
+    height: 100% !important;
+}
+
+.white {
+    color: white !important;
+}
+
+.uppercase {
+    text-transform: uppercase !important;
+}
+
+.dxeCaptionHALSys {
+    padding: 0 !important;
+}
+
+.dx-caption, .dx-caption label, .dx-caption td {
+    color: black !important;
+    padding: 0px;
+}
+
+.dxflGroupBox_Office365 {
+    border-width: 0px !important;
+}
+
+.dxmLite_Office365 .dxctToolbar_Office365.dxm-main.dxmtb {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+
+/*
+* Modificato in data 20/12/2023
+* Da Andrea
+* Allineamento report margini Emanuele
+*/
+
+.icon-stats::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f080";
+}
+
+.lbl-bg-stats {
+    background-color: #03A9F4 !important;
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+}

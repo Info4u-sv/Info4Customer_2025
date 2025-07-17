@@ -1,0 +1,433 @@
+/****************************
+Catalogo
+****************************/
+
+#menu_catalogo_container
+{
+}
+
+.menu_catalogo
+{
+    width: 100%;
+    background-color: #475662;
+    height: 38px;
+    margin: 0;
+}
+.menu_catalogo div
+{
+    font-size: 13px;
+    text-transform: uppercase;
+    padding-top: 15px;
+    float: left;
+    margin: 0px 5px 0px 20px;
+    height: 23px;
+}
+
+.menu_catalogo div.first
+{
+    margin-left: 55px;
+}
+
+.menu_catalogo div.actived
+{
+    background: url('../images/catalogo/triangolo_menu.png') top left no-repeat;
+}
+
+.menu_catalogo div.hover
+{
+    background: url('../images/catalogo/triangolo_menu.png') top left no-repeat;
+}
+
+
+
+.menu_catalogo div.actived a
+{
+    color: White;
+    border-bottom: 7px solid #EC2024;
+}
+.menu_catalogo div.hover a
+{
+    color: White;
+    border-bottom: 7px solid #EC2024;
+}
+
+.sub_menu_catalogo
+{
+    width: 100%;
+    height: 26px;
+    background: #ec2024;
+    display: none;
+    overflow: hidden;
+}
+.sub_menu_catalogo.actived
+{
+    display: block;
+}
+.sub_menu_catalogo div
+{
+    float: left;
+    padding-top: 5px;
+    font-size: 13px;
+    text-transform: uppercase;
+    margin: 0px 20px 0px 20px;
+    min-width: 10px;
+}
+.sub_menu_catalogo div.actived
+{
+    font-family: MavenBold, sans-serif;
+    color:Black;
+    border-bottom: 7px solid #475662;
+}
+.sub_menu_catalogo a
+{
+    font-family: MavenBold, sans-serif;
+}
+.sub_menu_catalogo a:hover
+{
+    font-family: MavenBold, sans-serif;
+    border-bottom: 7px solid #475662;
+}
+.sub_menu_catalogo div.primo
+{
+    margin-left: 55px;
+}
+/*
+.sub_menu_catalogo div.secondo {margin-left:190px;}
+.sub_menu_catalogo div.terzo{margin-left:330px;}
+.sub_menu_catalogo div.quarto {margin-left:430px;}
+.sub_menu_catalogo div.quinto {margin-left:510px;}
+.sub_menu_catalogo div.sesto{margin-left:620px;}
+.sub_menu_catalogo div.settimo{margin-left:641px;}
+.sub_menu_catalogo div.ottavo{margin-left:1055px;}
+.sub_menu_catalogo div.nono {margin-left:1055px;}
+*/
+
+.banner-catalogo
+{
+    width: 100%;
+    padding: 0;
+    margin: 9px 0 0 0;
+}
+
+.banner-catalogo-contenuto_sx {
+float: left;
+height: 230px;
+width: 915px;
+overflow: hidden;
+}
+.banner-title {
+width: 100%;
+height: 63px;
+position: absolute;
+bottom: 0px;
+background: #f0eeee;
+opacity: .50;
+-moz-opacity: .50;
+filter: alpha(opacity=50);
+}
+.banner-catalogo-contenuto_sx h1
+{
+    color: #313131;
+    position: absolute;
+    left: 50px;
+    bottom: 10px;
+    font-size: 40px;
+    margin: 0px;
+    padding: 0px;
+    font-family: Maven Pro, sans-serif;
+}
+.banner-catalogo-contenuto_dx
+{
+    float: right;
+    height: 230px;
+    width: 365px;
+    padding: 0;
+    margin: 0;
+    background-color: #450A0A;
+    overflow:hidden;
+    padding: 0;
+    margin: 0;
+    background-color: #450A0A;
+    overflow: hidden;
+}
+.banner-catalogo-contenuto_dx img
+{
+    display: block;
+    padding-top: 40px;
+    max-height: 50px;
+    margin: 0 auto;
+}
+.banner-catalogo-contenuto_dx p
+{
+    text-align: center;
+    color: #fff;
+    padding: 30px 25px 10px 25px;
+}
+.contenuto .product
+{
+    overflow: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #aaa;
+    width: 100%;
+}
+
+.contenuto .product .image
+{
+    width: 150px;
+    max-height: 150px;
+    float: left;
+}
+.contenuto .product .model
+{
+    width: 152px;
+    float: left;
+    margin-left: 10px;
+}
+.contenuto .product .model h3
+{
+    color: #ed1c24;
+    font-size: 16px;
+    background: none;
+    padding: 0px;
+    margin: 0px;
+}
+.contenuto .product .model h4
+{
+    margin: 0px;
+    font-weight: bold;
+    font-size: 11px;
+    color: #666;
+    margin-bottom: 10px;
+    line-height: 18px;
+}
+
+.contenuto .product .model .models
+{
+    font-size: 12px;
+}
+.contenuto .product .model ul
+{
+    color: #666;
+    padding: 0px;
+    padding-left: 12px;
+    margin-top: 10px;
+}
+/*.contenuto .product .model ul.models
+{
+    color: #666;
+    padding: 0px;
+    padding-left: 12px;
+}*/
+.contenuto .product .model ul li
+{
+    list-style-image: url(../img/red-dot.gif);
+    padding-left: 12px;
+}
+.contenuto .product .description
+{
+    float: left;
+    margin-left: 10px;
+    width: 370px;
+}
+.contenuto .product .description .text
+{
+    font-size: 12px;
+    line-height: 18px;
+}
+.contenuto .product .buying-details
+{
+    overflow: hidden;
+    width: 780px;
+    float: right;
+}
+.contenuto .product .buying-details .add-to-cart
+{
+    border: 0px;
+    width: 152px;
+    height: 21px;
+    background-image: url(../img/btn-aggiungi-al-carrello.png);
+    float: left;
+    vertical-align: bottom;
+    cursor: pointer;
+}
+.contenuto .product .buying-details .price
+{
+    font-size: 12px;
+    line-height: 18px;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    overflow: auto;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    float: right;
+    width: 455px;
+    vertical-align: bottom;
+}
+.contenuto .product .buying-details .price .sum
+{
+    float: right;
+    color: #ed1c24;
+    font-weight: bold;
+    font-size: 14px;
+}
+.contenuto .product .buying-details .price .label
+{
+    float: left;
+    font-size: 10px;
+    font-weight: bold;
+}
+.float-left
+{
+    float: left;
+}
+#preview
+{
+    position: absolute;
+    border: 1px solid #ED1C24;
+    background: #ffffff;
+    padding: 5px;
+    display: none;
+    color: #fff;
+}
+.contenuto .cart
+{
+    font-size: 12px;
+    line-height: 18px;
+    min-width: 720px; /*width:100%;*/
+}
+.contenuto .cart .title
+{
+    font-size: 12px;
+    line-height: 18px;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    overflow: auto;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    float: left;
+    min-width: 720px;
+    width: 100%;
+    vertical-align: bottom;
+    background-color: #EFEFEF;
+}
+
+.contenuto .cart .product-line
+{
+    font-size: 12px;
+    line-height: 18px;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    overflow: auto;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    float: left;
+    min-width: 720px;
+    vertical-align: bottom;
+    width: 100%;
+    text-align: left;
+}
+
+.contenuto .cart .product-line .product-descr, .contenuto .cart .title .product-descr
+{
+    font-size: 12px;
+    line-height: 18px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    min-width: 300px;
+    width: 300px;
+    vertical-align: bottom;
+    text-align: left;
+    white-space: normal;
+}
+.contenuto .cart th, .cart td
+{
+    font-size: 12px;
+    line-height: 18px;
+    padding-bottom: 3px;
+    float: left;
+    min-width: 100px;
+    vertical-align: bottom;
+    text-align: left;
+    white-space: normal;
+}
+
+.contenuto .cart input[type="submit"]
+{
+    border: 0px;
+    background-image: url(../images/icons/btn_background.gif);
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 27px;
+    vertical-align: middle;
+    cursor: pointer;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 12px;
+}
+.paging
+{
+    clear: both;
+    overflow: hidden;
+    padding: 1.25em;
+    text-align: right;
+}
+.paging strong
+{
+    left: -9999em;
+    position: absolute;
+    top: -9999em;
+    z-index: -1;
+}
+.paging a
+{
+    display: inline-block;
+    padding: .5em .625em;
+}
+.paging
+{
+    /*border-bottom: 1px solid #949494;*/
+    font-weight: bold;
+    padding: .5em .625em;
+    font-size: 12px;
+    line-height: 20px;
+}
+.paging span
+{
+    border: 1px solid #ddd;
+    color: #4c4c4c;
+    padding: .5em .625em;
+    background: #FAFAFA;
+}
+.paging a
+{
+    border: 1px solid #ddd;
+    color: #4c4c4c;
+    padding: .5em .625em;
+}
+.paging a:hover
+{
+    background: #f1f1f1;
+    color: #666;
+}
+.paging a.previous, .paging a.next
+{
+    border: 0;
+}
+.paging a.previous:hover, .paging a.next:hover
+{
+    background: none;
+}
+.paging a.current
+{
+    background-position: #1791C7;
+    background: #1791C7;
+    border: 1px solid #F0781E;
+    color: #fff;
+}
+.paging a.current:hover
+{
+    background-position: #1791C7;
+    background: #1791C7;
+    color: #fff;
+}

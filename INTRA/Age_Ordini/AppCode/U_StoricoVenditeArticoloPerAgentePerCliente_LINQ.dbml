@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CAGLIANA" Class="U_StoricoVenditeArticoloPerAgentePerCliente_LINQDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=192.168.156.71;Initial Catalog=CAGLIANA;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="GestionaleConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.U_StoricoVenditeArticoloPerAgentePerCliente_VIew" Member="U_StoricoVenditeArticoloPerAgentePerCliente_VIew">
+    <Type Name="U_StoricoVenditeArticoloPerAgentePerCliente_VIew">
+      <Column Name="Prezzo" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Sconto" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="Sconto2" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="DataOrdCli" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="QtaOrd" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CodArt" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Descrizione" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="Agente" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Column Name="CodCli" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="IdRow" Type="System.Int64" DbType="BigInt" IsPrimaryKey="true" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

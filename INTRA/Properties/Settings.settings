@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="INTRA.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="INTRA_WebReference4u_WebService_primo" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://192.168.156.78:9989/WebService_primo.asmx</Value>
+    </Setting>
+    <Setting Name="INTRA_WebReference4u1_WebService_primo" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://192.168.156.78:9989/WebService_primo.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

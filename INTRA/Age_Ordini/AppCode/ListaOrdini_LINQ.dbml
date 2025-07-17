@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CAGLIANA" Class="ListaOrdini_LINQDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=192.168.156.71;Initial Catalog=CAGLIANA;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="GestionaleConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.View_LINQDataSourceOrdini" Member="View_LINQDataSourceOrdini">
+    <Type Name="View_LINQDataSourceOrdini">
+      <Column Name="Denom" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="OrdNum" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="OrdDat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CodCli" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="U_User_Web" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FlagEvaso" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="Descrizione" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Url" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="U_Portale" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="DescrAgente" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="FlagStampa" Type="System.Boolean" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

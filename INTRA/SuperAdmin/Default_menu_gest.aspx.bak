@@ -1,0 +1,71 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default_menu_gest.aspx.cs" Inherits="INTRA.SuperAdmin.Default_menu_gest" %>
+
+<%@ Register Assembly="DevExpress.Web.ASPxTreeList.v17.1, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxTreeList" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v17.1, Version=17.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header card-header-icon" data-background-color="purple">
+                    <i class="material-icons">assignment</i>
+                </div>
+                <div class="card-content">
+                    <h4 class="card-title">Gestione menu</h4>
+                    <div class="table-responsive">
+                        <dx:ASPxTreeList ID="ASPxTreeList1" runat="server" AutoGenerateColumns="False" DataSourceID="Menu_SqlDataSource" KeyFieldName="MenuId" ParentFieldName="ParentMenuId" Theme="MaterialCompact" style="margin-top: 0px">
+                         
+                            <Columns>
+                                <dx:TreeListTextColumn FieldName="Title" VisibleIndex="0">
+                                </dx:TreeListTextColumn>
+                                <dx:TreeListTextColumn FieldName="Description" VisibleIndex="1">
+                                </dx:TreeListTextColumn>
+                                <dx:TreeListTextColumn FieldName="Url" VisibleIndex="2">
+                                </dx:TreeListTextColumn>
+                                <dx:TreeListCommandColumn VisibleIndex="4" ShowNewButtonInHeader="True">
+                                    <EditButton Visible="True">
+                                    </EditButton>
+                                    <NewButton Visible="True">
+                                    </NewButton>
+                                    <DeleteButton Visible="True">
+                                    </DeleteButton>
+                                </dx:TreeListCommandColumn>
+                                <dx:TreeListCheckColumn FieldName="IsVisible" VisibleIndex="3">
+                                </dx:TreeListCheckColumn>
+                            </Columns>
+                            <SettingsBehavior AllowFocusedNode="True" AutoExpandAllNodes="True" />
+                            <SettingsSelection Enabled="True" />
+                            <SettingsEditing AllowNodeDragDrop="True" />
+                        </dx:ASPxTreeList>
+                        <asp:SqlDataSource ID="Menu_SqlDataSource" runat="server" ConflictDetection="CompareAllValues" ConnectionString="<%$ ConnectionStrings:info4portaleConnectionString %>" DeleteCommand="DELETE FROM [PRT_Menus] WHERE [MenuId] = @original_MenuId " InsertCommand="INSERT INTO PRT_Menus(ParentMenuId, Title, Description, Url, IsVisible) VALUES (@ParentMenuId, @Title, @Description, @Url, @IsVisible)" OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT * FROM [PRT_Menus]" UpdateCommand="UPDATE PRT_Menus SET ParentMenuId = @ParentMenuId, Title = @Title, Description = @Description, Url = @Url, IsVisible = @IsVisible WHERE (MenuId = @original_MenuId) AND (ParentMenuId = @original_ParentMenuId) AND (Title = @original_Title) AND (Description = @original_Description) AND (Url = @original_Url) OR (MenuId = @original_MenuId) AND (ParentMenuId = @original_ParentMenuId) AND (Title IS NULL) AND (Description = @original_Description) AND (Url = @original_Url) AND (@original_Title IS NULL) OR (MenuId = @original_MenuId) AND (ParentMenuId = @original_ParentMenuId) AND (Title = @original_Title) AND (Description IS NULL) AND (Url = @original_Url) AND (@original_Description IS NULL) OR (MenuId = @original_MenuId) AND (ParentMenuId = @original_ParentMenuId) AND (Title IS NULL) AND (Description IS NULL) AND (Url = @original_Url) AND (@original_Title IS NULL) AND (@original_Description IS NULL) OR (ParentMenuId IS NULL)">
+                            <DeleteParameters>
+                                <asp:Parameter Name="original_MenuId" Type="Int32" />
+                            </DeleteParameters>
+                            <InsertParameters>
+                                <asp:Parameter Name="ParentMenuId" Type="Int32" />
+                                <asp:Parameter Name="Title" Type="String" />
+                                <asp:Parameter Name="Description" Type="String" />
+                                <asp:Parameter Name="Url" Type="String" />
+                                <asp:Parameter Name="IsVisible" Type="Boolean" />
+                            </InsertParameters>
+                            <UpdateParameters>
+                                <asp:Parameter Name="ParentMenuId" Type="Int32" DefaultValue="0" />
+                                <asp:Parameter Name="Title" Type="String" />
+                                <asp:Parameter Name="Description" Type="String" />
+                                <asp:Parameter Name="Url" Type="String" />
+                                <asp:Parameter Name="IsVisible" Type="Boolean" />
+                                <asp:Parameter Name="original_MenuId" Type="Int32" />
+                                <asp:Parameter Name="original_ParentMenuId" Type="Int32" />
+                                <asp:Parameter Name="original_Title" Type="String" />
+                                <asp:Parameter Name="original_Description" Type="String" />
+                                <asp:Parameter Name="original_Url" Type="String" />
+                            </UpdateParameters>
+                        </asp:SqlDataSource>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="FooterScriptArea" runat="server">
+</asp:Content>

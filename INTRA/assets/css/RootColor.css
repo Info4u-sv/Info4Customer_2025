@@ -1,0 +1,18 @@
+:root {
+--main-primary-color : #0055A6 ;
+--main-primary-hover-color : #0055A6 ;
+--main-navbar-background-color : #0055A6 !important;
+--main-menu-background-color : #191919 ;
+--main-menu-active-background-color : #0055A6 ;
+--main-menu-active-color : #FFFFFF ;
+--main-dropdown-menu-active-background-color : #0055A6 ;
+--main-dropdown-menu-active-color : #FFFFFF ;
+--main-dropdown-menu-hover-color : #FFFFFF ;
+--main-dropdown-menu-hover-background-color : #0055A6 ;
+--main-devx-row-active-color : #FFFFFF ;
+--main-devx-row-active-background-color : #0055A6 ;
+--main-Login-button-background-color : #808080 ;
+--main-primary-button-background-color : #0055A6 ;
+--main-primary-button-color : #FFFFFF ;
+--main-primary-button-hover-background-color : #99CCFF ;
+}

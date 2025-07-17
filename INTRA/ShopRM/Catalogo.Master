@@ -1,0 +1,631 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Catalogo.master.cs" Inherits="INTRA.ShopRM.Catalogo" %>
+
+<%@ Register Src="~/ShopRM/Controls/16SearchPopUp.ascx" TagPrefix="uc1" TagName="SearchPopUp" %>
+<%@ Register Src="~/ShopRM/controls/21Plusheader.ascx" TagPrefix="uc1" TagName="Plusheader" %>
+<%@ Register Src="~/ShopRM/controls/17Cookie.ascx" TagPrefix="uc1" TagName="Cookie" %>
+<%@ Register Src="~/ShopRM/controls/21PlusFooterArea.ascx" TagPrefix="uc1" TagName="PlusFooterArea" %>
+
+<!DOCTYPE html>
+
+<html lang="it" xml:lang="it" xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+    <style>
+        .fixed-header-margin {
+            padding-top: 80px !important;
+        }
+
+        @media (max-width: 1279px) {
+            .fixed-header-margin {
+                padding-top: 35px !important;
+            }
+        }
+
+        .imagelightbox-arrow {
+            width: 3.75em !important;
+            height: 3.75em !important;
+        }
+
+        .hideHeader {
+            display: none !important;
+        }
+
+        @media screen and (max-width: 880px) {
+            .hidden-small {
+                display: none !important;
+            }
+
+            /*.dxgvADCC {
+    display: none !important;
+}*/
+        }
+
+        @media screen and (min-width: 880px) {
+            .hidden-large {
+                display: none !important;
+                width: 3px !important;
+            }
+            /*.dxgvADCC {
+     display: none !important;
+}*/
+        }
+
+        @media only screen and (max-width: 530px) {
+            .navbar {
+                height: 45px !important;
+            }
+        }
+
+        @media only screen and (max-width: 530px) {
+            .navbar .navbar-inner .navbar-container {
+                padding-left: 0;
+                height: 45px;
+            }
+        }
+
+        @media only screen and (max-width: 530px) {
+            .navbar-fixed-top + .main-container {
+                margin-top: 45px !important;
+            }
+        }
+
+        @media only screen and (max-width: 530px) {
+            .navbar .navbar-inner .navbar-header .navbar-account .account-area {
+                padding-left: 10px;
+                top: 0px !important;
+            }
+        }
+
+        .dxgvAdaptiveHeaderPanel {
+            display: none !important;
+        }
+
+        .dxgvAdaptiveHeaderPanel_Office365, .dxgvAdaptiveFooterPanel_Office365 {
+            display: none !important;
+        }
+
+        .cc-color-override-103792073.cc-window {
+            background-color: #005a87 !important;
+        }
+
+        .mozaic-banners-wrapper.type-2 a.mozaic-banner-entry:before {
+            background: #005a8770;
+        }
+
+        .card-content {
+            min-height: 600px !important;
+        }
+        /*.information-blocks{
+             min-height: 500px!important;
+        }*/
+        .input-group-addon {
+            font-size: 18px !important;
+        }
+
+        @media (min-width: 768px) and (max-width: 1366px) {
+            .mozaic-banner-content .subtitle,
+            .mozaic-banner-content .title {
+                color: white !important;
+                margin-left: 30px;
+            }
+
+            .mozaic-banner-content {
+                background-image: linear-gradient(to right, black, Grey);
+                margin-left: 60px;
+            }
+        }
+    </style>
+
+    <link rel="shortcut icon" href="~/assets/img_customer/favicon.png" />
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="~/ShopRM/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/ShopRM/css/idangerous.swiper.css" rel="stylesheet" type="text/css" />
+    <link href="~/ShopRM/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href='https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700%7CDancing+Script%7CMontserrat:400,700%7CMerriweather:400,300italic%7CLato:400,700,900' rel='stylesheet' type='text/css' />
+    <link href="~/ShopRM/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="~/ShopRM/css/16_Custom_4u.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body class="style-3">
+    <link href="<%= ResolveUrl("~/ShopRM/Assets/toastr/toastr.css") %>" rel="stylesheet" type="text/css" />
+
+    <dx:ASPxGlobalEvents ID="ASPxGlobalEvents1" runat="server" Enabled="true">
+        <ClientSideEvents EndCallback="function(s,e){InitJavascript();}" />
+        <ClientSideEvents ControlsInitialized="function(s,e){InitJavascript();}" />
+
+        <%--<ClientSideEvents BeginCallback="function(s,e){Destroy();}" />--%>
+    </dx:ASPxGlobalEvents>
+
+    <form id="form1" runat="server">
+        <!-- LOADER -->
+        <div id="loader-wrapper">
+            <div class="bubbles">
+                <div class="title">Caricamento</div>
+                <span></span>
+                <span id="bubble2"></span>
+                <span id="bubble3"></span>
+            </div>
+        </div>
+
+        <div id="content-block">
+            <div class="content-center fixed-header-margin">
+                <!-- HEADER -->
+                <uc1:Plusheader runat="server" ID="Plusheader" />
+                <!-- Contenuto -->
+
+                <div class="content-push" style="height: 100%">
+                    <asp:ContentPlaceHolder ID="ContenutoPaginaContentPH" runat="server"></asp:ContentPlaceHolder>
+                    <uc1:Cookie runat="server" ID="Cookie" />
+                </div>
+
+
+            </div>
+            <div class="clear"></div>
+            <uc1:PlusFooterArea runat="server" ID="PlusFooterArea" />
+        </div>
+
+        <dx:ASPxLoadingPanel ID="LoadingPanel" ClientInstanceName="LoadingPanel" runat="server" Text="Caricamento in corso..." Modal="true"></dx:ASPxLoadingPanel>
+
+        <!--  Notifications Plugin, full documentation here: http://bootstrap-notify.remabledesigns.com/    -->
+
+
+        <script src="<%= ResolveUrl("~/ShopRM/js/jquery-2.1.3.min.js") %>"></script>
+        <script src="<%= ResolveUrl("~/ShopRM/js/idangerous.swiper.min.js") %>"></script>
+        <script src="<%= ResolveUrl("~/ShopRM/js/global.js") %>"></script>
+        <script src="<%= ResolveUrl("~/ShopRM/carhartl-jquery-cookie-92b7715/jquery.cookie.js") %>"></script>
+
+        <%--        <script src="carhartl-jquery-cookie-92b7715/jquery.cookie.js"></script>--%>
+        <!-- custom scrollbar -->
+        <script src="<%= ResolveUrl("~/ShopRM/js/jquery.mousewheel.js") %>"></script>
+        <script src="<%= ResolveUrl("~/ShopRM/js/jquery.jscrollpane.min.js") %>"></script>
+        <script src="<%= ResolveUrl("~/assets/js/bootstrap-notify.js") %>"></script>
+        <script src="<%= ResolveUrl("~/ShopRM/Assets/toastr/toastr.js") %>"></script>
+
+        <%-- <script src="../assets/js/bootstrap-notify.js"></script>--%>
+        <!-- map -->
+        <%--        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3Hli4_DoL0bXYnEnXlVwJgztFoGgThZE&sensor=false"></script>--%>
+        <%-- <script src="<%= ResolveUrl("~/ShopRM/js/map.js") %>"></script>
+        <div>--%>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+        <uc1:SearchPopUp runat="server" ID="SearchPopUp" />
+
+        <%-- PopUP per la privacy --%>
+        <style>
+            /* Stile per il modale */
+            .modal {
+                display: none; /* Nascosto di default */
+                position: fixed; /* Posizione fissa */
+                z-index: 9999; /* Sopra a tutti gli altri elementi */
+                padding-top: 100px; /* Spazio in alto */
+                left: 0;
+                top: 0;
+                width: 100%; /* Larghezza completa della pagina */
+                height: 100%; /* Altezza completa della pagina */
+                background-color: rgba(0,0,0,0.4); /* Sfondo trasparente */
+            }
+
+            /* Stile per il contenuto del modale */
+            .modal-content {
+                background-color: #fefefe;
+                margin: 0 auto;
+                padding: 20px;
+                border: 1px solid #888;
+                max-width: 90%;
+                /*overflow: auto;*/ /* Scrollbar solo quando necessario */
+                min-height: 70px;
+                /* max-height: 70%;*/
+            }
+
+            /* Stile per la X chiusura */
+            .close {
+                display: none;
+                color: #aaaaaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+                .close:hover,
+                .close:focus {
+                    color: #000;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+
+            .header {
+                /*  background-color: red !important;*/
+
+                padding: 0px !important;
+                margin: 10px;
+            }
+
+            .main {
+                overflow: auto !important;
+                max-height: 500px;
+                padding: 10px;
+                margin: 10px 0 10px 0;
+            }
+
+            .footer {
+                height: 50px;
+                line-height: 50px;
+                /*background-color:red;*/
+            }
+        </style>
+        <script>
+            function showNotificationtoastr() {
+                toastr.options.positionClass = "toast-bottom-full-width";
+                toastr.options = {
+                    tapToDismiss: true,
+                    toastClass: 'toast',
+                    containerId: 'toast-container',
+                    debug: false,
+                    fadeIn: 300,
+                    fadeOut: 1000,
+                    extendedTimeOut: 1000,
+                    iconClass: 'toast-info',
+                    positionClass: 'toast-bottom-full-width',
+                    timeOut: 5000, // Set timeOut to 0 to make it sticky
+                    titleClass: 'toast-title',
+                    messageClass: 'toast-message'
+                }
+                //toastr.options.positionClass = "toast-top-right";
+                //toastr.options.timeOut = 1500;
+                toastr.success("Operazione eseguita!");
+                console.log("showNotificationtoastr");
+            }
+
+        </script>
+
+        <div id="myModal" class="modal">
+            <!-- Contenuto del modale -->
+            <div class="modal-content">
+                <div class="header">
+                    <div>Conferma Privacy</div>
+                </div>
+                <div class="main">
+                    <dx:ASPxLabel runat="server" ID="PrivacyText_lbl" ClientInstanceName="PrivacyText_lbl" EncodeHtml="false"></dx:ASPxLabel>
+                </div>
+                <div class="footer">
+                    <div class="col-md-12" style="text-align: right;">
+                        <dx:BootstrapButton ID="AccettaPrivacy_btn" ClientInstanceName="AccettaPrivacy_btn" runat="server" AutoPostBack="false" ClientVisible="true" ValidationGroup="NuovoProspectValidator"
+                            rel="tooltip" data-placement="top" data-original-title="Salva" Text="Accetta Privacy" UseSubmitBehavior="false" CssClasses-Control="button style-12">
+                            <ClientSideEvents
+                                Click="function(s,e){
+                                AccettaPrivacy_Callback.PerformCallback();
+                                            } " />
+                        </dx:BootstrapButton>
+                        <dx:ASPxCallback runat="server" ID="AccettaPrivacy_Callback" ClientInstanceName="AccettaPrivacy_Callback" OnCallback="AccettaPrivacy_Callback_Callback">
+                            <ClientSideEvents EndCallback="function(s,e){
+                                var modal = document.getElementById('myModal');
+
+                                modal.style.display = 'none';
+                                }" />
+                        </dx:ASPxCallback>
+                    </div>
+                </div>
+                <span class="close">&times;</span>
+            </div>
+        </div>
+    </form>
+
+
+
+</body>
+<script>
+
+    $(function () {
+        var url = window.location.pathname,
+            urlRegExp = new RegExp(url.replace(/\/$/, '') + "$"); // create regexp to match current url pathname and remove trailing slash if present as it could collide with the link in navigation in case trailing slash wasn't present there
+        // now grab every link from the navigation
+        //alert(urlRegExp)
+        $('.Nav4u li a').each(function () {
+            // and test its normalized href against the url pathname regexp
+            if (urlRegExp.test(this.href.replace(/\/$/, ''))) {
+                //                $(this).children().addClass('selected');
+                $(this).addClass(' active');
+                $(this).parent().addClass(' active');
+                // faccio così per salire di livello ma ci deve essere un modo migliore
+                // $(this).parent().closest("ul").css("display", "block");
+                $(this).parent().closest("ul").parent().addClass('open');
+                $(this).parent().closest("ul").parent().closest("ul").addClass('open');
+                $(this).parent().closest("ul").parent().closest("ul").parent().addClass('open');
+                //$(this).parent('submenu').addClass('open');
+                $(this).addClass(' active');
+            }
+        });
+    });
+
+</script>
+
+<script>
+    //ScriptEngine per la gestione dell'incremneto confezioni 
+    //Simone 27-05-2022
+    //$('.number-plus-custom').on('click', function () {
+    //    var first = $(this).parent().find('input').val();
+    //    var QtaPerConf = $(this).parent().find('input').attr('qtaperconf');
+    //    alert(first);
+    //    alert(QtaPerConf);
+
+    //    var newVal = parseFloat(first.replace(',', '.').replace(' ', '')) + parseFloat(QtaPerConf.replace(',', '.').replace(' ', ''));
+    //    alert(newVal);
+    //    $(this).parent().find('input').val(newVal);
+    //});
+
+    //$('.number-minus-custom').on('click', function () {
+    //    var first = $(this).parent().find('input').val();
+    //    var QtaPerConf = $(this).parent().find('input').attr('qtaperconf');
+    //    var newVal = parseFloat(first.replace(',', '.').replace(' ', '')) - parseFloat(QtaPerConf.replace(',', '.').replace(' ', ''));
+    //    if (newVal > 0) $(this).parent().find('input').val(newVal);
+    //});
+
+
+    var isControlsInitialized = false;
+    function InitJavascript() {
+        /* alert(isControlsInitialized);*/
+        if (isControlsInitialized == false) {
+            /* alert("InitJavascript");*/
+            $(document).on('click', '.number-plus-custom', function () {
+                var first = $(this).parent().find('input').val() == "" ? "0" : $(this).parent().find('input').val();
+                var QtaPerConf = $(this).parent().find('input').attr('qtaperconf');
+                /*alert(QtaPerConf);*/
+                /* alert("sono qui");*/
+                var newVal = parseFloat(first.replace(',', '.').replace(' ', '')) + 1;//parseFloat(QtaPerConf.replace(',', '.').replace(' ', ''));
+                var newValDef;
+                //if (ControllaMultiplo(first, QtaPerConf) && Math.sign(newVal)) { newValDef = newVal; }
+                //else { newValDef = QtaPerConf; }
+
+                $(this).parent().find('input').val(newVal);
+            });
+
+            $(document).on('click', '.number-minus-custom', function () {
+                var first = $(this).parent().find('input').val() == "" ? "0" : $(this).parent().find('input').val();
+                var QtaPerConf = $(this).parent().find('input').attr('qtaperconf');
+                var newVal = parseFloat(first.replace(',', '.').replace(' ', '')) - 1 < 0 ? first : parseFloat(first.replace(',', '.').replace(' ', '')) - 1;// parseFloat(QtaPerConf.replace(',', '.').replace(' ', ''));
+                //var newValDef;
+                //if (ControllaMultiplo(first, QtaPerConf) && Math.sign(newVal)) { newValDef = newVal; }
+                //else { newValDef = QtaPerConf; }
+                $(this).parent().find('input').val(newVal);
+            });
+            isControlsInitialized = true;
+        }
+    }
+
+
+
+    function ControllaMultiplo(QtaInserita, incrementovar) {
+        var _QtaInserita = parseFloat(QtaInserita.replace(',', '.').replace(' ', ''));
+        var _Incremento = parseFloat(incrementovar.replace(',', '.').replace(' ', ''));
+        var _Divisione = _QtaInserita / _Incremento;
+        if (_Divisione === parseInt(_Divisione, 10)) {
+            return true;
+        }
+        else {
+            LoadingPanel.Hide();
+            /*showNotificationError("Il dato non è corretto");*/
+            return false;
+        }
+
+    }
+
+    function showNotificationErrortoastr(Testo) {
+        toastr.options.positionClass = "toast-top-right";
+        options = {
+            tapToDismiss: true,
+            toastClass: 'toast',
+            containerId: 'toast-container',
+            debug: false,
+            fadeIn: 300,
+            fadeOut: 1000,
+            extendedTimeOut: 1000,
+            iconClass: 'toast-info',
+            positionClass: 'toast-top-right',
+            timeOut: 5000, // Set timeOut to 0 to make it sticky
+            titleClass: 'toast-title',
+            messageClass: 'toast-message'
+        }
+        toastr.options.positionClass = "toast-top-right";
+        toastr.options.timeOut = 1500;
+        toastr.error(Testo);
+
+    }
+
+    function showNotificationErrortoastrDataCens(Testo) {
+        toastr.options.positionClass = "toast-bottom-full-width";
+        options = {
+            tapToDismiss: true,
+            toastClass: 'toast',
+            containerId: 'toast-container',
+            debug: false,
+            fadeIn: 300,
+            fadeOut: 1000,
+            extendedTimeOut: 1000,
+            iconClass: 'toast-info',
+            positionClass: 'toast-bottom-full-width',
+            timeOut: 0, // Set timeOut to 0 to make it sticky
+            titleClass: 'toast-title',
+            messageClass: 'toast-message'
+        }
+        toastr.error(Testo, null, {
+            onclick: function () {
+                window.location.href = '/ShopRM/Inventario.aspx';
+                toastr.clear();
+            }
+        });
+
+    }
+
+    function showNotificationOrdineCliente(Testo, Deposito) {
+        toastr.options.positionClass = "toast-bottom-full-width";
+        toastr.options = {
+            tapToDismiss: false,
+            toastClass: 'toast',
+            containerId: 'toast-container',
+            debug: false,
+            fadeIn: 300,
+            fadeOut: 1000,
+            extendedTimeOut: 0,
+            iconClass: 'toast-info',
+            positionClass: 'toast-bottom-full-width',
+            timeOut: 0, // Set timeOut to 0 to make it sticky
+            titleClass: 'toast-title',
+            messageClass: 'toast-message'
+        }
+        toastr.info(Testo, null, {
+            onclick: function () {
+                //window.location.href = '/ShopRM/Deposito/Deposito_Dett.aspx?CodDep=' + Deposito;
+                toastr.clear();
+            }
+        });
+    }
+
+
+</script>
+
+<script>
+    //function showNotification() {
+    //    type = ['success'];
+    //    $.notify({
+    //        icon: "notifications",
+    //        message: "PROCEDURA ESEGUITA CON SUCCESSO!"
+    //    }, {
+    //        type: type,
+    //        timer: 30000,
+    //        placement: {
+    //            from: 'top',
+    //            align: 'right'
+    //        }
+    //    });
+    //}
+
+    function showNotificationtoastrWithText(text) {
+        toastr.options.positionClass = "toast-top-right";
+        toastr.options = {
+            tapToDismiss: true,
+            toastClass: 'toast',
+            containerId: 'toast-container',
+            debug: false,
+            fadeIn: 300,
+            fadeOut: 1000,
+            extendedTimeOut: 1000,
+            iconClass: 'toast-info',
+            positionClass: 'toast-top-right',
+            timeOut: 5000, // Set timeOut to 0 to make it sticky
+            titleClass: 'toast-title',
+            messageClass: 'toast-message'
+        }
+        //toastr.options.positionClass = "toast-top-right";
+        //toastr.options.timeOut = 1500;
+        toastr.success(text);
+
+    }
+
+    function Notify(msg, title, type, clear, pos, sticky) {
+        toastr.options.positionClass = "toast-bottom-right";
+        toastr.options.positionClass = "toast-bottom-left";
+        toastr.options.positionClass = "toast-top-right";
+        toastr.options.positionClass = "toast-top-left";
+        toastr.options.positionClass = "toast-bottom-full-width";
+        toastr.options.positionClass = "toast-top-full-width";
+        options = {
+            tapToDismiss: true,
+            toastClass: 'toast',
+            containerId: 'toast-container',
+            debug: false,
+            fadeIn: 300,
+            fadeOut: 1000,
+            extendedTimeOut: 1000,
+            iconClass: 'toast-info',
+            positionClass: 'toast-top-right',
+            timeOut: 5000, // Set timeOut to 0 to make it sticky
+            titleClass: 'toast-title',
+            messageClass: 'toast-message'
+        }
+
+
+        if (clear == true) {
+            toastr.clear();
+        }
+        if (sticky == true) {
+            toastr.tapToDismiss = true;
+            toastr.timeOut = 5000;
+        }
+
+        toastr.options.onclick = function () {
+            //alert('You can perform some custom action after a toast goes away');
+        }
+        //"toast-top-left";
+        toastr.options.positionClass = pos;
+        if (type.toLowerCase() == 'info') {
+            toastr.options.timeOut = 1000;
+            toastr.tapToDismiss = true;
+            toastr.info(msg, title);
+        }
+        if (type.toLowerCase() == 'success') {
+            toastr.options.timeOut = 1500;
+            toastr.success(msg, title);
+        }
+        if (type.toLowerCase() == 'warning') {
+            toastr.options.timeOut = 3000;
+            toastr.warning(msg, title);
+        }
+        if (type.toLowerCase() == 'error') {
+            toastr.options.timeOut = 10000;
+            toastr.error(msg, title);
+        }
+    }
+
+
+</script>
+
+
+<script src="<%= ResolveUrl("~/assets/js/FunzioniGenerali_23.js") %>"></script>
+
+
+<script>
+    $(document).ready(function () {
+        /* showNotificationtoastr();*/
+        //var cookie = getCookie('CodCli');
+        //var cookieDenom = getCookie('Denom');
+        //var IsCliente = getCookie('IsCliente') === 'true';
+        //var ShowPopUpPrivacy = getCookie('ShowPrivacyPopUp') === "true";
+        //var modal = document.getElementById("myModal");
+        ///*alert(cookie);*/
+        //if (IsCliente) { }
+        //else {
+        //    if (cookie != null && cookie != '') { showNotificationOrdineCliente('Ordine per il cliente, ' + cookie.replace('=', ' ') + ' ' + cookieDenom.replace('Denom=', '')); }
+        //}/*     showNotificationtoastr();*/
+        var cookie_token = getCookie('U_Token');
+        var cookie_giornata = getCookie('CodDep');
+        var cookie_giornataDenom = getCookie('Dep_Denom');
+        if (cookie_giornata != null && cookie_giornata != '') { showNotificationOrdineCliente('Ordine per il deposito, ' + cookie_giornata.replace('=', ' ') + ' ' + cookie_giornataDenom.replace('Dep_Denom=', ''), cookie_token.replace('U_Token=', '')); }
+
+        var cookieDataCens = getCookie('DataCensimento');
+        var partiData = cookieDataCens.replace('DataCensimento=', '').split(/[\s/:\-]+/);
+        var dataDalCookie = new Date(partiData[2], partiData[1] - 1, partiData[0], partiData[3], partiData[4], partiData[5]);
+
+        var data = dataDalCookie;
+        var dataCorrente = new Date();
+        var differenzaInMillisecondi = dataCorrente - data;
+        var millisecondiInDueSettimane = 1000 * 60 * 60 * 24 * <%= NumGiorni%>;
+        if (cookieDataCens != null && cookieDataCens != '' && differenzaInMillisecondi > millisecondiInDueSettimane) {
+            if (data.toLocaleDateString() == '01/01/1901') {
+                showNotificationErrortoastrDataCens('Nessun censimento degli articoli presenti effettuato. Richiesto aggiornamento inventario.');
+            }
+            else {
+                showNotificationErrortoastrDataCens('Ultimo censimento in data ' + data.toLocaleDateString() + '. Richiesto aggiornamento inventario.');
+            }
+        }
+        //if (ShowPopUpPrivacy) {
+        //    modal.style.display = "block";
+        //}
+    });
+</script>
+</html>

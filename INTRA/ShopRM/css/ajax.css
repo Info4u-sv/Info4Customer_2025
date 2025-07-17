@@ -1,0 +1,179 @@
+﻿/*Header*/
+.Tab .ajax__tab_header
+{
+    color: #4682b4;
+    font-family: Calibri;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #ffffff;
+    margin-left: 0px;
+}
+/*Body*/
+.Tab .ajax__tab_body
+{
+    border: 1px solid #b4cbdf;
+    padding-top: 0px;
+}
+/*Tab Active*/
+.Tab .ajax__tab_active .ajax__tab_tab
+{
+    color: #ffffff;
+    background: url("../img/tab_active.gif") repeat-x;
+    height: 20px;
+}
+.Tab .ajax__tab_active .ajax__tab_inner
+{
+    color: #ffffff;
+    background: url("../img/tab_left_active.gif") no-repeat left;
+    padding-left: 10px;
+}
+.Tab .ajax__tab_active .ajax__tab_outer
+{
+    color: #ffffff;
+    background: url("../img/tab_right_active.gif") no-repeat right;
+    padding-right: 6px;
+}
+/*Tab Hover*/
+.Tab .ajax__tab_hover .ajax__tab_tab
+{
+    color: #000000;
+    background: url("../img/tab_hover.gif") repeat-x;
+    height: 20px;
+}
+.Tab .ajax__tab_hover .ajax__tab_inner
+{
+    color: #000000;
+    background: url("../img/tab_left_hover.gif") no-repeat left;
+    padding-left: 10px;
+}
+.Tab .ajax__tab_hover .ajax__tab_outer
+{
+    color: #000000;
+    background: url("../img/tab_right_hover.gif") no-repeat right;
+    padding-right: 6px;
+}
+/*Tab Inactive*/
+.Tab .ajax__tab_tab
+{
+    color: #EFEFEF;
+    background: url("../img/tab_Inactive.gif") repeat-x;
+    height: 20px;
+}
+.Tab .ajax__tab_inner
+{
+    color: #EFEFEF;
+    background: url("../img/tab_left_inactive.gif") no-repeat left;
+    padding-left: 10px;
+}
+.Tab .ajax__tab_outer
+{
+    color: #EFEFEF;
+    background: url("../img/tab_right_inactive.gif") no-repeat right;
+    padding-right: 6px;
+    margin-right: 2px;
+}
+
+.KimsCustomCalloutStyle div, .KimsCustomCalloutStyle td
+{
+    border: solid 1px #ED1C24;
+    background-color: #EFEFEF;
+    color: Black;
+}
+.KimsCustomCalloutStyle .ajax__validatorcallout_popup_table
+{
+    display: none;
+    border: none;
+    background-color: transparent;
+    padding: 0px;
+}
+.KimsCustomCalloutStyle .ajax__validatorcallout_popup_table_row
+{
+    vertical-align: top;
+    height: 100%;
+    background-color: transparent;
+    padding: 0px;
+}
+.KimsCustomCalloutStyle .ajax__validatorcallout_callout_cell
+{
+    width: 20px;
+    height: 100%;
+    text-align: right;
+    vertical-align: top;
+    border: none;
+    background-color: transparent;
+    padding: 0px;
+}
+.KimsCustomCalloutStyle .ajax__validatorcallout_callout_table
+{
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    padding: 0px;
+}
+.KimsCustomCalloutStyle .ajax__validatorcallout_callout_table_row
+{
+    background-color: transparent;
+    padding: 0px;
+}
+.KimsCustomCalloutStyle .ajax__validatorcallout_callout_arrow_cell
+{
+    padding: 8px 0px 0px 0px;
+    text-align: right;
+    vertical-align: top;
+    font-size: 1px;
+    border: none;
+    background-color: transparent;
+}
+.KimsCustomCalloutStyle .ajax__validatorcallout_callout_arrow_cell .ajax__validatorcallout_innerdiv
+{
+    font-size: 1px;
+    position: relative;
+    left: 1px;
+    border-bottom: none;
+    border-right: none;
+    border-left: none;
+    width: 15px;
+    background-color: transparent;
+    padding: 0px;
+}
+.KimsCustomCalloutStyle .ajax__validatorcallout_callout_arrow_cell .ajax__validatorcallout_innerdiv div
+{
+    height: 1px;
+    overflow: hidden;
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+    padding: 0px;
+    margin-left: auto;
+}
+.KimsCustomCalloutStyle .ajax__validatorcallout_error_message_cell
+{
+    font-family: Tahoma;
+    font-size: 11px;
+    padding: 5px;
+    border-right: none;
+    border-left: none;
+    width: 100%;
+}
+.KimsCustomCalloutStyle .ajax__validatorcallout_icon_cell
+{
+    width: 20px;
+    padding: 5px;
+    border-right: none;
+}
+.KimsCustomCalloutStyle .ajax__validatorcallout_close_button_cell
+{
+    vertical-align: top;
+    padding: 0px;
+    text-align: right;
+    border-left: none;
+}
+.KimsCustomCalloutStyle .ajax__validatorcallout_close_button_cell .ajax__validatorcallout_innerdiv
+{
+    border: none;
+    text-align: center;
+    width: 10px;
+    padding: 1px;
+    cursor: pointer;
+}
+

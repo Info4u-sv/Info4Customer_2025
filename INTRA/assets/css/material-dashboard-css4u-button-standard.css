@@ -1,0 +1,352 @@
+﻿
+/*customizzazione bottoni*/
+.dxbButton_hidebtn > div > span {
+    display: none !important; /* aggiungere Styles-CssPostfix="hidebtn" a livello di definizione del bottone devexpress */
+}
+
+.dx-acc:before, .dx-acc-s > img, .dx-acc-bi > img:first-child {
+    position: relative !important;
+}
+
+/*Modificato il 16/12/2022*/
+.btn:not(.btn-just-icon):not(.btn-fab) .fa, .navbar .navbar-nav > li > a.btn:not(.btn-just-icon):not(.btn-fab) .fa {
+/*    font-size: 28px !important;*/
+}
+
+.btn-custom-padding {
+    padding: 5px 10px !important;
+}
+
+/*.BadgeBtn {
+    background: transparent !important;
+    color: #fff !important;
+    font-size: medium !important;
+    padding: 3px !important;
+    margin: 0px !important;
+    top: 0 !important;
+}*/
+
+/*Modificato in data 16/12/2022*/
+.BadgeBtn {
+    background: transparent !important;
+    color: #fff !important;
+    padding: 3px !important;
+    margin: 0px !important;
+    /*font-size: medium !important;
+    padding: 3px !important;
+    margin: 0px !important;
+    top: 0 !important;*/
+}
+
+
+
+.BadgeBtn-just-icon {
+    background: transparent !important;
+    color: #fff !important;
+    font-size: medium !important;
+    padding: 4px !important;
+    margin: 0px !important;
+    font-size: large !important;
+    top: 0 !important;
+}
+
+.btn-just-icon-padding {
+    padding: 3px 8px !important;
+}
+
+.action-btn {
+    font-size: large !important;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+    padding: 2px 6px 2px 6px !important;
+    /* max-width: 40px;*/
+    margin: 0 3px 0 3px;
+    box-shadow: none;
+}
+
+.icon4u::before {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+
+.go {
+    background-color: dodgerblue !important;
+    /*width:20px !important;*/
+}
+
+.icon-go::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f35d";
+    padding-bottom: 4px;
+    /* margin-left: 5px;
+    margin-right: 5px;*/
+}
+
+.action-btn.go > div > div > span {
+    display: none !important; /* aggiungere per nascondere testo devexpress */
+}
+
+.edit {
+    background-color: #fd8204 !important;
+    /* color: #fd8204;*/
+}
+
+.icon-edit::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f303";
+    /* margin-left: 5px;
+    margin-right: 5px;*/
+}
+
+
+.delete {
+    /* color: #f44336;*/
+    background-color: #f44336 !important;
+    padding-left: 7px !important;
+    padding-right: 7px !important;
+}
+
+.icon-delete::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f1f8";
+    /* margin-left: 5px;
+    margin-right: 5px;*/
+}
+
+.update {
+    /* color: #f44336;*/
+    background-color: #4caf50 !important;
+}
+
+.icon-update::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f0c7";
+    /* margin-left: 5px;
+    margin-right: 5px;*/
+}
+
+.cancel {
+    /* color: #f44336;*/
+    background-color: #696e72 !important;
+}
+
+.icon-cancel::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f057";
+    /* margin-left: 5px;
+    margin-right: 5px;*/
+}
+
+.selectbtn {
+    /* color: #f44336;*/
+    background-color: #8bc34a !important;
+}
+
+.icon-selectbtn::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f00c";
+    /* margin-left: 5px;
+    margin-right: 5px;*/
+}
+
+
+.new {
+    /*color: #4cae4c;*/
+    background-color: #0076a3 !important;
+}
+
+.icon-new::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f477";
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+.ClearFilter {
+    /*color: #4cae4c;*/
+    background-color: #f44336 !important;
+}
+
+.icon-ClearFilter::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f12d";
+    /*  margin-left: 4px;
+    margin-right: 4px;*/
+}
+
+.Commessa_Bg {
+    background: #f44336;
+}
+
+.Posizione_Bg {
+    background: #fd8204;
+}
+
+.Matricola_Bg {
+    background: #4cae4c;
+}
+
+.check {
+    /* color: #f44336;*/
+    background-color: #183153 !important;
+    padding-left: 7px !important;
+    padding-right: 7px !important;
+}
+
+.icon-check::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f002";
+    /* margin-left: 5px;
+    margin-right: 5px;*/
+}
+
+/*Aggiunti in data 17/01/2024*/
+
+.icon-print::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f02f";
+    /* margin-left: 5px;
+    margin-right: 5px;*/
+}
+
+.print {
+    /* color: #f44336;*/
+    background-color: #183153 !important;
+    padding-left: 7px !important;
+    padding-right: 7px !important;
+}
+
+/*Aggiunti in data 21/02/2024*/
+.icon-plus::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f0fe";
+    /* margin-left: 5px;
+    margin-right: 5px;*/
+}
+.plus {
+    /* color: #f44336;*/
+    background-color: #1e90ff !important;
+    padding-left: 7px !important;
+    padding-right: 7px !important;
+}
+
+/*Csutomizzazione bottoni FINE*/
+/*Aggiunti in data 16/12/2022*/
+.btn .badge {
+    font-weight: inherit !important;
+    padding: 0 !important;
+    top: 0px;
+}
+
+.btn-xs > span > span {
+    font-size: x-small !important;
+}
+
+.btn-sm > span > span {
+    font-size: small !important;
+}
+
+.btn-md > span > span {
+    font-size: medium !important;
+}
+
+.btn-lg > span > span {
+    font-size: large !important;
+}
+
+.btn-xs {
+    padding: 5px !important;
+}
+
+.btn-sm {
+    padding: 5px !important;
+}
+
+.btn-md {
+    padding: 8px !important;
+}
+
+.btn-lg {
+    padding: 10px !important;
+}
+
+    .btn-lg > span > span {
+        font-size: large;
+    }
+
+.btn-xm > span .fas, .fa {
+    font-size: small !important;
+    padding: 3px !important;
+}
+
+.btn-sm > span .fas, .fa {
+    font-size: medium !important;
+    padding: 3px !important;
+}
+
+.btn-md > span .fas, .fa {
+    font-size: large !important;
+    padding: 1px !important;
+}
+
+.btn-lg > span .fas, .fa {
+    font-size: x-large !important;
+    padding: 3px !important;
+}
+/* Aggiunto in data 26/03/2024 */
+.reset {
+    /* color: #f44336;*/
+    background-color: #ffd43b !important;
+    /*padding-left: 7px !important;
+    padding-right: 7px !important; */
+}
+
+.icon-reset::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f074";
+    margin-left: 1px;
+    /* margin-left: 5px;
+    margin-right: 5px;*/
+}
+
+.evadi {
+    /* color: #f44336;*/
+    background-color: #0055A6 !important;
+    /*padding-left: 7px !important;
+    padding-right: 7px !important; */
+}
+
+.icon-evadi::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f574";
+    margin-left: 1px;
+    /* margin-left: 5px;
+    margin-right: 5px;*/
+}
+
+.icon-check-square::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f14a";
+    padding: 0px !important;
+    /* margin-left: 5px;
+    margin-right: 5px;*/
+}

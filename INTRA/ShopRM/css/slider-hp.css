@@ -1,0 +1,76 @@
+﻿.slider-hp{margin:10px 0;}
+
+
+/* UNLESS YOU KNOW WHAT YOU'RE DOING, DO NOT CHANGE THE FOLLOWING RULES */
+
+.easy-accordion{display:block;position:relative;overflow:hidden;padding:0;margin:0}
+.easy-accordion dt,.easy-accordion dd{margin:0;padding:0}
+.easy-accordion dt,.easy-accordion dd{position:absolute}
+.easy-accordion dt{margin-bottom:0;margin-left:0;z-index:5;cursor:pointer;
+/* fix chrome bug */-webkit-backface-visibility: hidden;
+/* CSS3 */ transform: rotate(-90deg); 
+/* Opera */ -o-transform: rotate(-90deg); 
+/* Webkit */ -webkit-transform: rotate(-90deg); 
+/* Firefox */ -moz-transform: rotate(-90deg); 
+/* Internet Explorer 9 */ -ms-transform: rotate(-90deg);
+}
+.lteIE8 .easy-accordion dt {/* Internet Explorer <9 */ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);cursor:pointer; }
+
+.easy-accordion dd{z-index:1;opacity:0;overflow:hidden}
+.easy-accordion dd.active{opacity:1;}
+.easy-accordion dd.no-more-active{z-index:2;opacity:1}
+.easy-accordion dd.active{z-index:3}
+.easy-accordion dd.plus{z-index:4}
+.easy-accordion .slide-number{position:absolute;bottom:0;font-weight:normal;font-size:1.1em;
+/* fix chrome bug */-webkit-backface-visibility: hidden;
+/* CSS3 */ transform: rotate(90deg);
+/* Opera */ -o-transform: rotate(90deg);
+/* Webkit */ -webkit-transform: rotate(90deg); 
+/* Firefox */ -moz-transform: rotate(90deg);  
+/* Internet Explorer 9 */ -ms-transform: rotate(90deg);
+}
+.lteIE8 .easy-accordion .slide-number{ /* Internet Explorer <9*/ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1); }
+
+
+
+
+dd p{line-height:120%; font-size: 15px;}
+		
+#accordion-1{width:1280px;height:445px;padding:0px;background:#A21919;}
+#accordion-1 dl{
+	width: 1280px;
+	height: 445px;
+	background: #143E78;
+}	
+#accordion-1 dt{
+	height: 43px;
+	line-height: 42px;
+	padding: 0 0 0 70px;
+	font-size: 1.1em;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	background: #143E78 url(../images/hp/slide-title.jpg) no-repeat 0
+0;
+	color: #fff;
+}
+
+/*#accordion-1 dt.active{cursor:pointer;color:#fff;background:#fff url(../images/hp/slide-title.jpg) 0 0 no-repeat}
+#accordion-1 dt.hover{color:#68889b;}
+#accordion-1 dt.active.hover{color:#fff}*/
+#accordion-1 dd{
+	background: #143E78;
+	border: 0px solid #dbe9ea;
+	margin-right: 0px;
+}
+/*#accordion-1 dd{padding:25px;background:url(../images/hp/slide.jpg) bottom left repeat-x;border:1px solid #dbe9ea;border-left:0;margin-right:3px}*/
+
+#accordion-1 .slide-number{color:#68889b;left:10px;font-weight:bold}
+#accordion-1 .active .slide-number{color:#fff;}
+#accordion-1 a{color:#68889b}
+#accordion-1 dd img{float:right;margin:0 0 0 30px;}
+#accordion-1 h2{font-size:22px;margin-top:10px; color:#EC2024;}
+#accordion-1 .more{padding-top:10px;display:block}
+
+.slider-hp .text{position:absolute;width:330px;height:170px;padding:30px 40px 0 40px;text-align:center; bottom: 0px;right: 10px;background:transparent url(../images/hp/foglietto.png) 0 0 no-repeat;}
+

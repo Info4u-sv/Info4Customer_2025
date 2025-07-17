@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive email</title>
+    <style type="text/css">
+        body {
+            margin: 10px 0;
+            padding: 0 10px;
+            background: #eee;
+            font-size: 13px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            font-family: arial, sans-serif;
+            color: #333333;
+        }
+
+        @media only screen and (max-width: 480px) {
+            body, table, td, p, a, li, blockquote {
+                -webkit-text-size-adjust: none !important;
+            }
+
+            table {
+                width: 100% !important;
+            }
+
+            .responsive-image img {
+                height: auto !important;
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+        }
+
+        .myButton {
+            background-color: #00a6ff;
+            -moz-border-radius: 7px;
+            -webkit-border-radius: 7px;
+            border-radius: 7px;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 12px 76px;
+            text-decoration: none;
+            WIDTH: 126PX;
+            margin: 10px 0 10px 0;
+        }
+
+        .myLabel {
+            background-color: #00a6ff;
+            -moz-border-radius: 7px;
+            -webkit-border-radius: 7px;
+            border-radius: 7px;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 4px 8px;
+            text-decoration: none;
+            margin: 10px 0 10px 0;
+        }
+
+        .label-grey {
+            background-color: #777;
+        }
+
+        .label-blue {
+            background-color: #337ab7;
+        }
+
+        .label-green {
+            background-color: #5cb85c;
+        }
+
+        .label-azure {
+            background-color: #5bc0de;
+        }
+
+        .label-yellow {
+            background-color: #f0ad4e;
+        }
+
+        .label-red {
+            background-color: #d9534f;
+        }
+
+        .label-orange {
+            background-color: #fb6e52;
+        }
+
+        .label-sky {
+            background-color: #11a9cc;
+        }
+
+        .label-blueberry {
+            background-color: #6f85bf;
+        }
+
+        .label-darkorange {
+            background-color: #ed4e2a;
+        }
+
+        .label-magenta {
+            background-color: #bc5679;
+        }
+
+        .label-purple {
+            background-color: #7e3794;
+        }
+
+        .label-maroon {
+            background-color: #981b48;
+        }
+
+        .label-darkpink {
+            background-color: #cc324b;
+        }
+
+        .label-pink {
+            background-color: #e75b8d;
+        }
+
+
+        .Fontcolor-1 {
+            color: rgb(253, 102, 0);
+        }
+    </style>
+</head>
+<body>
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td>
+
+                <table border="0" cellpadding="0" cellspacing="0" align="center" width="640" bgcolor="#FFFFFF">
+                    <tr>
+                        <td bgcolor="#0385D3" style="font-size: 0; line-height: 0; padding: 0 10px;" height="140" align="center" class="responsive-image">
+                            <img src="http://intra.info4lab.it/assets/img/custom/mail/logo_header_email.png" alt="" width="440" />
+                        </td>
+                    </tr>
+                    <tr><td style="font-size: 0; line-height: 0;" height="30">&nbsp;</td></tr>
+                    <tr>
+                        <td style="padding: 10px 10px 20px 10px;">
+                            <div style="font-size: 20px;" class="">2M S.r.l.</div>
+                            <div style="font-size: 15px;">Status: <Label class="label-green myLabel">STANDARD</Label></div>
+                            <div style="font-size: 15px;">Richiesta: <Label class="label-green myLabel">Intervento</Label></div>
+                            <div style="font-size: 15px;">Area: <Label class="label-azure myLabel">Sviluppo</Label></div>
+                            <div style="font-size: 15px;" class="">Tipo: Non Definito</div>
+                            <br />
+                            <div><strong>Motivo della chiamata:</strong> <!--<%=Richiesta%>--></div>
+                            <br />
+                            <div><strong>Note:</strong> <!--<%=Note%>--></div>
+                            <div><strong>Richiedente:</strong> <!--<%=Richiedente%>--></div>
+                            <div>2M S.r.l </div>
+                            <br />
+                            <div>02/66710327</div>
+                            <br />
+                            <div>Via Donatello, 22, MILANO, 20131</div>
+                            <div style="font-weight: bold; font-size: 16px;">Lorem ipsum</div>
+                            <div><a href="#" class="myButton label-orange">Mail: SCRIVI MAIL<!--Mail:<%=MailRef%>--> </a> </div>
+                            <div><a href="#" class="myButton label-azure">Tel.: CHIAMA <!--Tel. <%=TelRef%>--></a>  </div>
+                            <div><a href="#" class="myButton label-azure"> Gestisci Richiesta</a> </div>
+                        </td>
+                    </tr>
+                    <tr><td style="font-size: 0; line-height: 0;" height="1" bgcolor="#F9F9F9">&nbsp;</td></tr>
+
+                    <tr>
+                        <td bgcolor="#485465">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr><td style="font-size: 0; line-height: 0;" height="15">&nbsp;</td></tr>
+                                <tr>
+                                    <td style="padding: 0 10px; color: #FFFFFF;">Info4u Srl - Viale Lunigiana 24 - Milano (MI)</td>
+                                </tr>
+                                <tr><td style="font-size: 0; line-height: 0;" height="15">&nbsp;</td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

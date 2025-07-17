@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="ListaOrdini_LINQ">
+  <DataContextMoniker Name="/ListaOrdini_LINQDataContext" />
+  <nestedChildShapes>
+    <classShape Id="20b49646-6c3a-4960-baf7-4add487c31f6" absoluteBounds="5.5, 5, 2, 3.1170068359375005">
+      <DataClassMoniker Name="/ListaOrdini_LINQDataContext/View_LINQDataSourceOrdini" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ea229236-6d09-41cf-af9f-ce9704d08ae0" absoluteBounds="5.515, 5.46, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

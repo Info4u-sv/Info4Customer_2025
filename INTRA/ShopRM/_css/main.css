@@ -1,0 +1,217 @@
+﻿.contenuto .product
+{
+    overflow: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #aaa;
+    width: 700px;
+}
+.contenuto .last
+{
+    border-bottom: 0px;
+}
+.contenuto .product .image
+{
+    width: 152px;
+    float: left;
+}
+.contenuto .product .model
+{
+    width: 152px;
+    float: left;
+    margin-left: 10px;
+}
+.contenuto .product .model h3
+{
+    color: #ed1c24;
+    font-size: 16px;
+    background: none;
+    padding: 0px;
+    margin: 0px;
+}
+.contenuto .product .model h4
+{
+    margin: 0px;
+    font-weight: bold;
+    font-size: 11px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.contenuto .product .model .models
+{
+    font-size: 12px;
+}
+.contenuto .product .model ul
+{
+    color: #666;
+    padding: 0px;
+    padding-left: 12px;
+    margin-top:10px;
+}
+/*.contenuto .product .model ul.models
+{
+    color: #666;
+    padding: 0px;
+    padding-left: 12px;
+}*/
+.contenuto .product .model ul li
+{
+    list-style-image: url(../img/red-dot.gif);
+    padding-left: 12px;
+}
+.contenuto .product .description
+{
+    float: left;
+    margin-left: 10px;
+    width: 370px;
+}
+.contenuto .product .description .text
+{
+    font-size: 12px;
+    line-height: 18px;
+}
+.contenuto .product .buying-details
+{
+    overflow: auto;
+    width: 700px;
+}
+.contenuto .product .buying-details .add-to-cart
+{
+    border: 0px;
+    width: 152px;
+    height: 21px;
+    background-image: url(../img/btn-aggiungi-al-carrello.png);
+    float: left;
+    vertical-align: bottom;
+    cursor: pointer;
+}
+.contenuto .product .buying-details .price
+{
+    font-size: 12px;
+    line-height: 18px;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    overflow: auto;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    float: right;
+    width: 370px;
+    vertical-align: bottom;
+}
+.contenuto .product .buying-details .price .sum
+{
+    float: right;
+    color: #ed1c24;
+    font-weight: bold;
+    font-size: 14px;
+}
+.contenuto .product .buying-details .price .label
+{
+    float: left;
+    font-size: 10px;
+    font-weight: bold;
+}
+.float-left
+{
+    float: left;
+}
+#preview
+{
+    position: absolute;
+    border: 1px solid #ED1C24;
+    background: #ffffff;
+    padding: 5px;
+    display: none;
+    color: #fff;
+}
+.contenuto .cart
+{
+    font-size: 12px;
+    line-height: 18px;
+    min-width: 720px;
+    width:100%;
+}
+.contenuto .cart .title
+{
+    font-size: 12px;
+    line-height: 18px;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    overflow: auto;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    float: left;
+    min-width: 720px;
+    width:100%;
+    vertical-align: bottom;
+    background-color: #EFEFEF;
+}
+
+.contenuto .cart .product-line
+{
+    font-size: 12px;
+    line-height: 18px;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    overflow: auto;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    float: left;
+    min-width: 720px;
+    vertical-align: bottom;
+    width:100%;
+    text-align:left;
+}
+
+.contenuto .cart .product-line .product-descr, .contenuto .cart .title .product-descr
+{
+    font-size: 12px;
+    line-height: 18px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    
+    min-width: 300px;
+    width:300px;
+    vertical-align: bottom;
+    text-align:left;
+    white-space: normal;
+}
+.contenuto .cart th, .cart td
+{
+    font-size: 12px;
+    line-height: 18px;
+    padding-bottom: 3px;
+    float: left;
+    min-width: 100px;
+    vertical-align: bottom;
+    text-align:left;
+    white-space: normal;
+    
+}
+
+.contenuto .cart input[type="submit"]
+{
+    border: 0px;
+    background-image: url(../images/icons/btn_background.gif);
+    background-repeat: no-repeat;
+    width:150px;
+    height: 27px;
+    vertical-align: middle;
+    cursor: pointer;
+    color:#ffffff;
+    font-weight:bold;
+    font-size: 12px;
+    
+}
+
+/* validation */
+.validation {
+    color: #D8000C;
+    background-color: #FFBABA;
+    background-image: url('images/error.png');
+}
+.validation ul
+{
+	padding: 0px 30px;
+}

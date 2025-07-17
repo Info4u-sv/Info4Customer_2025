@@ -1,0 +1,27 @@
+{
+  "CacheSourceKey": "1oz3yov",
+  "CachePdfKey": "1oz3yov/1oz3yov-1k3kk2s.pdf",
+  "CacheXpzKey": "1oz3yov/1oz3yov-1anag1e.xpz",
+  "CacheInfoKey": "1oz3yov/1oz3yov-1anag1e.json",
+  "CacheCopyKey": null,
+  "Document": "~/Public/Documentale/31/OFFCLI/1105/ViewDoc_Empty_Etichetta_Macchinari.aspx.pdf",
+  "DocumentHandlerType": null,
+  "DocumentHandlerParameters": null,
+  "DocumentLocation": null,
+  "DocumentFileName": "ViewDoc_Empty_Etichetta_Macchinari.aspx.pdf",
+  "InputOptions": {
+    "Format": "Pdf",
+    "Password": null
+  },
+  "PdfOutputOptions": {
+    "Watermarks": [],
+    "FastWebViewEnabled": false,
+    "Password": null,
+    "Format": "Pdf"
+  },
+  "XpzOutputOptions": {
+    "Password": "1oz3yov",
+    "HighQualityEnabled": false,
+    "Format": "Xpz"
+  }
+}
