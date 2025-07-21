@@ -376,7 +376,7 @@
                         <Templates>
                             <Card>
                                 <div class="col-lg-12 non-controllato" id="<%# Eval("ID") + "_Riga" %>" style="padding-top: 10px !important; margin: 0px !important; padding-left: 10px !important; padding-right: 10px !important;" 
-                                    data-step="7" data-title="Controlla Articolo." data-intro="Inserendo una quantità e salvando, l'articolo verrà contrassegnato come controllato e lo sfondo diventerà verde. Bisogna controllare tutti gli articoli per poter confermare l'inventario. Il numero di articoli ancora da controlla è segnato in alto a destra.">
+                                    data-step="7" data-title="Controlla Articolo." data-intro="Inserendo una quantità e salvando, l'articolo verrà contrassegnato come controllato e lo sfondo diventerà verde. Bisogna controllare tutti gli articoli per poter confermare l'inventario. Il numero di articoli ancora da controllare è segnato in alto a destra.">
                                     <div class="col-lg-8" style="padding-left: 10px !important;">
                                         <div class="inline">
                                             <dx:ASPxLabel ID="CodArt" Font-Size="Large" runat="server" Text='<%# Eval("CodArt") %>' Font-Bold="true"></dx:ASPxLabel>
