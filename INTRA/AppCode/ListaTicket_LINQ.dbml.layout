@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 13.5" name="ListaTicket_LINQ">
+  <DataContextMoniker Name="/ListaTicket_LINQDataContext" />
+  <nestedChildShapes>
+    <classShape Id="6d37c3db-8a3c-406e-aecf-aa1476a0374f" absoluteBounds="5.875, 6.5, 2, 6.7707340494791648">
+      <DataClassMoniker Name="/ListaTicket_LINQDataContext/ListaTicket_View" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0d1e5e92-477d-46a2-a743-136f36a59dbf" absoluteBounds="5.89, 6.96, 1.9700000000000002, 6.2107340494791661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

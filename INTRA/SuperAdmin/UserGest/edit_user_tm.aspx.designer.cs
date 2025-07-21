@@ -39,7 +39,7 @@ namespace INTRA.SuperAdmin.UserGest
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btnModificaUtente;
+        protected global::DevExpress.Web.Bootstrap.BootstrapButton btnModificaUtente;
 
         /// <summary>
         /// Controllo GestioneUtente_SuperAdmin.
@@ -84,7 +84,7 @@ namespace INTRA.SuperAdmin.UserGest
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxButton BtnSalvaRuoli;
+        protected global::DevExpress.Web.Bootstrap.BootstrapButton BtnSalvaRuoli;
 
         /// <summary>
         /// Controllo UserTxt.
@@ -120,7 +120,7 @@ namespace INTRA.SuperAdmin.UserGest
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Button3;
+        protected global::DevExpress.Web.Bootstrap.BootstrapButton Button3;
 
         /// <summary>
         /// Controllo AnagraficaUser.
@@ -246,7 +246,7 @@ namespace INTRA.SuperAdmin.UserGest
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton FirmaTecnico_LinkB;
+        protected global::DevExpress.Web.Bootstrap.BootstrapButton FirmaTecnico_LinkB;
 
         /// <summary>
         /// Controllo btnSaveRegister.
@@ -255,7 +255,7 @@ namespace INTRA.SuperAdmin.UserGest
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btnSaveRegister;
+        protected global::DevExpress.Web.Bootstrap.BootstrapButton btnSaveRegister;
 
         /// <summary>
         /// Controllo firmaTecnico.
@@ -318,6 +318,6 @@ namespace INTRA.SuperAdmin.UserGest
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button UpdatePermessi_Btn;
+        protected global::DevExpress.Web.Bootstrap.BootstrapButton UpdatePermessi_Btn;
     }
 }

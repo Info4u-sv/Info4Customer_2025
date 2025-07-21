@@ -1,9 +1,9 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="GestioneUtente_SuperAdmin.ascx.cs" Inherits="INTRA.Controls.GestioneUtente_SuperAdmin" %>
 
 <div style="width: 100%; margin: 20px 0px; display: inline-flex;">
-    <dx:BootstrapButton runat="server" Text="SBLOCCA UTENTE" ID="SbloccaUtente_btn" ClientInstanceName="SbloccaUtente_btn" AutoPostBack="false" Badge-CssClass="BadgeBtn-just-icon" CssClasses-Control="btn btn-just-icon btn-just-icon-padding ">
+    <dx:BootstrapButton runat="server" Text="SBLOCCA UTENTE" ID="SbloccaUtente_btn"  ClientInstanceName="SbloccaUtente_btn" AutoPostBack="false" Badge-CssClass="BadgeBtn-just-icon" CssClasses-Control="btn btn-just-icon btn-just-icon-padding ">
         <Badge IconCssClass="fa fa-lock" />
-        <SettingsBootstrap RenderOption="Default" />
+        <SettingsBootstrap RenderOption="Default" Sizing="Small"/>
     <ClientSideEvents Click="function(s,e){
         ConfermaOperazione(
             'Sei sicuro di voler sbloccare questo utente?', 
@@ -15,7 +15,7 @@
     </dx:BootstrapButton>
     <dx:BootstrapButton runat="server" Text="ELIMINA UTENTE" ID="EliminaUtente_btn" ClientInstanceName="EliminaUtente_btn" AutoPostBack="false" Badge-CssClass="BadgeBtn-just-icon" CssClasses-Control="btn btn-just-icon btn-just-icon-padding ">
         <Badge IconCssClass="fa fa-trash" />
-        <SettingsBootstrap RenderOption="Danger" />
+        <SettingsBootstrap RenderOption="Danger" Sizing="Small" />
     <ClientSideEvents Click="function(s,e){
         ConfermaOperazione(
             'Sei sicuro di voler sbloccare questo utente?', 
@@ -26,12 +26,12 @@
     </dx:BootstrapButton>
     <dx:BootstrapButton runat="server" Text="GENERA UTENTE VIO" ID="GeneraUtenteVIO_btn" ClientInstanceName="GeneraUtenteVIO_btn" AutoPostBack="false" Badge-CssClass="BadgeBtn-just-icon" CssClasses-Control="btn btn-just-icon btn-just-icon-padding">
         <Badge IconCssClass="fa fa-plus" />
-        <SettingsBootstrap RenderOption="Success" />
+        <SettingsBootstrap RenderOption="Success" Sizing="Small" />
         <ClientSideEvents Click="function(s,e){UtenteGest('GENERAVIO');}" />
     </dx:BootstrapButton>
     <dx:BootstrapButton runat="server" Text="RESETTA TEMPLATE PERMESSI" ID="Reset_Btn" ClientInstanceName="Reset_Btn" AutoPostBack="false" Badge-CssClass="BadgeBtn-just-icon" CssClasses-Control="btn btn-just-icon btn-just-icon-padding">
         <Badge IconCssClass="fa fa-random" />
-        <SettingsBootstrap RenderOption="Warning" />
+        <SettingsBootstrap RenderOption="Warning" Sizing="Small" />
         <ClientSideEvents Click="function(s,e){Reset_User_Popup.Show();}" />
     </dx:BootstrapButton>
 
@@ -202,3 +202,9 @@
         }
     }
 </script>
+<style>
+    .btn.btn-sm {
+  padding: 9px 6px !important;
+  font-size: 11px;
+}
+</style>

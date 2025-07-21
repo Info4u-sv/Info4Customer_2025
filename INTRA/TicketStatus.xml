@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Ticket>
+  <status Name="NONASSEGNATI" Text="NON ASSEGNATI" ID="1" TabIndex="0" />
+  <status Name="APERTI" Text="APERTI" ID="2" TabIndex="1"  />
+  <status Name="INLAVORAZIONE" Text="IN LAVORAZIONE" ID="3" TabIndex="2"  />
+  <status Name="CHIUSI" Text="CHIUSI" ID="4" TabIndex="3"  />
+  <status Name="TUTTI" Text="TUTTI" ID="5" TabIndex="4"  />
+</Ticket>
+
+
