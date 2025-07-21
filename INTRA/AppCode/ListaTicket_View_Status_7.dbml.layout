@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="ListaTicket_View_Status_7">
+  <DataContextMoniker Name="/ListaTicket_View_Status_7DataContext" />
+  <nestedChildShapes>
+    <classShape Id="1ccfd96f-812f-4b90-94a1-94ee4e29880c" absoluteBounds="5.5, 0.5, 2, 6.7707340494791657">
+      <DataClassMoniker Name="/ListaTicket_View_Status_7DataContext/ListaTicket_View_Status_7" />
+      <nestedChildShapes>
+        <elementListCompartment Id="93dc09d2-8c57-4dd7-97a4-329197f44386" absoluteBounds="5.515, 0.96, 1.9700000000000002, 6.2107340494791661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

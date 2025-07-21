@@ -93,7 +93,7 @@ namespace IntranetTemplate2017.SuperAdmin.UserGest
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxButton submit;
+        protected global::DevExpress.Web.Bootstrap.BootstrapButton submit;
 
         /// <summary>
         /// Controllo reset.
@@ -102,6 +102,6 @@ namespace IntranetTemplate2017.SuperAdmin.UserGest
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxButton reset;
+        protected global::DevExpress.Web.Bootstrap.BootstrapButton reset;
     }
 }

@@ -59,7 +59,18 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Include="AppCode\BeyondFunzioniGenerali.cs" />
     <Compile Include="AppCode\Istanze_Generiche.cs" />
+    <Compile Include="AppCode\ListaTicket_LINQ.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListaTicket_LINQ.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="AppCode\ListaTicket_View_Status_7.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListaTicket_View_Status_7.dbml</DependentUpon>
+    </Compile>
     <Compile Include="AppCode\PRT_Documenti.cs" />
     <Compile Include="AppCode\PRT_EmailUtility.cs" />
     <Compile Include="AppCode\PRT_FunzioniGenerali_23.cs" />
@@ -68,10 +79,13 @@
     <Compile Include="AppCode\PRT_Utenti_SA.cs" />
     <Compile Include="AppCode\SHP_OrderBodyMail.cs" />
     <Compile Include="AppCode\SHP_PRT_Setting.cs" />
+    <Compile Include="AppCode\STD_Email.cs" />
+    <Compile Include="AppCode\TCK_EmailInvioStatusAreaTicket.cs" />
     <Compile Include="AppCode\TCK_Ticket.cs" />
     <Compile Include="AppCode\Utenti_CRUD_Class.cs" />
     <Compile Include="AppCode\VIO_Parametri.cs" />
     <Compile Include="AppCode\VIO_Utenti_CRUD_23.cs" />
+    <Compile Include="AppCode\WEB_Domini.cs" />
     <Compile Include="Bolle\DettaglioBolla.aspx.cs">
       <DependentUpon>DettaglioBolla.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -92,6 +106,27 @@
     </Compile>
     <Compile Include="Depositi\Inventario_Controllo_Articoli.aspx.designer.cs">
       <DependentUpon>Inventario_Controllo_Articoli.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Domini\anagrafica_domini.aspx.cs">
+      <DependentUpon>anagrafica_domini.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Domini\anagrafica_domini.aspx.designer.cs">
+      <DependentUpon>anagrafica_domini.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Domini\anagrafica_email_dom.aspx.cs">
+      <DependentUpon>anagrafica_email_dom.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Domini\anagrafica_email_dom.aspx.designer.cs">
+      <DependentUpon>anagrafica_email_dom.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Domini\domini_gest.aspx.cs">
+      <DependentUpon>domini_gest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Domini\domini_gest.aspx.designer.cs">
+      <DependentUpon>domini_gest.aspx</DependentUpon>
     </Compile>
     <Compile Include="EmptyPublic.Master.cs">
       <DependentUpon>EmptyPublic.Master</DependentUpon>
@@ -827,6 +862,13 @@
     <Compile Include="SuperAdmin\RulesGest\users_by_role.aspx.designer.cs">
       <DependentUpon>users_by_role.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SuperAdmin\Ticket_Workflow_Status.aspx.cs">
+      <DependentUpon>Ticket_Workflow_Status.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuperAdmin\Ticket_Workflow_Status.aspx.designer.cs">
+      <DependentUpon>Ticket_Workflow_Status.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SuperAdmin\UserGest\GrigliaClientiNonAbilitati.aspx.cs">
       <DependentUpon>GrigliaClientiNonAbilitati.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -860,6 +902,13 @@
     </Compile>
     <Compile Include="Ticket\TCK_List.aspx.designer.cs">
       <DependentUpon>TCK_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ticket\Ticket_List.aspx.cs">
+      <DependentUpon>Ticket_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ticket\Ticket_List.aspx.designer.cs">
+      <DependentUpon>Ticket_List.aspx</DependentUpon>
     </Compile>
     <Compile Include="Users\Invio_Email_RecuperoDati.aspx.cs">
       <DependentUpon>Invio_Email_RecuperoDati.aspx</DependentUpon>
@@ -921,6 +970,45 @@
     <Content Include="assets\css\perfect-scrollbar.min.css" />
     <Content Include="assets\css\RM_Custom.css" />
     <Content Include="assets\css\_material-dashboard-Intranet-Custom.css" />
+    <Content Include="assets\js\beyond.js" />
+    <Content Include="assets\js\bootbox\bootbox.js" />
+    <Content Include="assets\js\bootbox\bootbox.min.js" />
+    <Content Include="assets\js\bootstrap.js" />
+    <Content Include="assets\js\datatable\buttons.colVis.js" />
+    <Content Include="assets\js\datatable\buttons.html5.js" />
+    <Content Include="assets\js\datatable\clipboard.js" />
+    <Content Include="assets\js\datatable\clipboard.min.js" />
+    <Content Include="assets\js\datatable\datatables-init.js" />
+    <Content Include="assets\js\datatable\dataTables.bootstrap.js" />
+    <Content Include="assets\js\datatable\dataTables.bootstrap.min.js" />
+    <Content Include="assets\js\datatable\dataTables.bootstrap.min_Info4u.js" />
+    <Content Include="assets\js\datatable\dataTables.bootstrap4.js" />
+    <Content Include="assets\js\datatable\dataTables.bootstrap4.min.js" />
+    <Content Include="assets\js\datatable\dataTables.buttons.js" />
+    <Content Include="assets\js\datatable\dataTables.date-eu.js" />
+    <Content Include="assets\js\datatable\dataTables.foundation.js" />
+    <Content Include="assets\js\datatable\dataTables.foundation.min.js" />
+    <Content Include="assets\js\datatable\dataTables.jqueryui.js" />
+    <Content Include="assets\js\datatable\dataTables.jqueryui.min.js" />
+    <Content Include="assets\js\datatable\dataTables.material.js" />
+    <Content Include="assets\js\datatable\dataTables.material.min.js" />
+    <Content Include="assets\js\datatable\dataTables.semanticui.js" />
+    <Content Include="assets\js\datatable\dataTables.semanticui.min.js" />
+    <Content Include="assets\js\datatable\dataTables.tableTools.js" />
+    <Content Include="assets\js\datatable\dataTables.tableTools.min.js" />
+    <Content Include="assets\js\datatable\dataTables.uikit.js" />
+    <Content Include="assets\js\datatable\dataTables.uikit.min.js" />
+    <Content Include="assets\js\datatable\jquery.dataTables.js" />
+    <Content Include="assets\js\datatable\jquery.dataTables.min.js" />
+    <Content Include="assets\js\datatable\jszip.min.js" />
+    <Content Include="assets\js\datatable\pdfmake.min.js" />
+    <Content Include="assets\js\datatable\vfs_fonts.js" />
+    <Content Include="assets\js\datatable\ZeroClipboard.js" />
+    <Content Include="assets\js\datatable\__datatables-init.js" />
+    <Content Include="assets\js\datatable\______dataTables.tableTools.js" />
+    <Content Include="assets\js\Info4u-Custom-Beyond.js" />
+    <Content Include="assets\js\Info4u-Custom-Jquery.js" />
+    <Content Include="assets\js\Info4u-Toastr-init.js" />
     <Content Include="assets\js\IntroJS\intro.js" />
     <Content Include="assets\js\IntroJS\introjs-rtl.css" />
     <Content Include="assets\js\IntroJS\introjs.css" />
@@ -933,10 +1021,100 @@
     <Content Include="assets\js\IntroJS\themes\introjs-nassim.css" />
     <Content Include="assets\js\IntroJS\themes\introjs-nazanin.css" />
     <Content Include="assets\js\IntroJS\themes\introjs-royal.css" />
+    <Content Include="AppCode\ListaTicket_LINQ.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ListaTicket_LINQ.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="AppCode\ListaTicket_LINQ.dbml.layout">
+      <DependentUpon>ListaTicket_LINQ.dbml</DependentUpon>
+    </None>
+    <Content Include="AppCode\ListaTicket_View_Status_7.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ListaTicket_View_Status_7.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="AppCode\ListaTicket_View_Status_7.dbml.layout">
+      <DependentUpon>ListaTicket_View_Status_7.dbml</DependentUpon>
+    </None>
+    <Content Include="assets\js\jquery-ui-1.10.4.custom.js" />
+    <Content Include="assets\js\jquery-ui-1.10.4.custom.min.js" />
+    <Content Include="assets\js\jquery.uploadify-3.1.min.js" />
+    <Content Include="assets\js\skins.js" />
+    <Content Include="assets\js\skins.min.js" />
+    <Content Include="assets\js\skins.min.js.map" />
+    <Content Include="assets\js\beyond.min.js.map" />
+    <Content Include="assets\js\toastr\toastr.js" />
+    <Content Include="assets\js\toastr\toastr.min.js" />
+    <Content Include="assets\js\validation\bootstrapValidator.min.js.map" />
+    <Content Include="assets\js\toastr\toastr.min.js.map" />
+    <Content Include="assets\js\datatable\dataTables.bootstrap.min.js.map" />
+    <Content Include="assets\js\datatable\dataTables.tableTools.min.js.map" />
+    <Content Include="assets\js\datatable\jquery.dataTables.min.js.map" />
+    <Content Include="assets\js\bootbox\bootbox.min.js.map" />
     <None Include="Connected Services\Webservice_primo_online\WebService_primo1.disco" />
+    <Content Include="assets\js\validation\bootstrapValidator.js" />
+    <Content Include="assets\js\validation\bootstrapValidator.min.js" />
+    <Content Include="assets\js\validation\formValidation.js" />
+    <Content Include="assets\js\validation\formValidation.min.js" />
+    <Content Include="assets\js\validation\framework\bootstrap.js" />
+    <Content Include="assets\js\validation\framework\bootstrap.min.js" />
+    <Content Include="assets\js\validation\framework\foundation.js" />
+    <Content Include="assets\js\validation\framework\foundation.min.js" />
+    <Content Include="assets\js\validation\framework\pure.js" />
+    <Content Include="assets\js\validation\framework\pure.min.js" />
+    <Content Include="assets\js\validation\framework\semantic.js" />
+    <Content Include="assets\js\validation\framework\semantic.min.js" />
+    <Content Include="assets\js\validation\framework\uikit.js" />
+    <Content Include="assets\js\validation\framework\uikit.min.js" />
+    <Content Include="assets\js\validation\language\ar_MA.js" />
+    <Content Include="assets\js\validation\language\be_FR.js" />
+    <Content Include="assets\js\validation\language\be_NL.js" />
+    <Content Include="assets\js\validation\language\bg_BG.js" />
+    <Content Include="assets\js\validation\language\ca_ES.js" />
+    <Content Include="assets\js\validation\language\cs_CZ.js" />
+    <Content Include="assets\js\validation\language\da_DK.js" />
+    <Content Include="assets\js\validation\language\de_DE.js" />
+    <Content Include="assets\js\validation\language\en_US.js" />
+    <Content Include="assets\js\validation\language\es_CL.js" />
+    <Content Include="assets\js\validation\language\es_ES.js" />
+    <Content Include="assets\js\validation\language\eu_ES.js" />
+    <Content Include="assets\js\validation\language\fa_IR.js" />
+    <Content Include="assets\js\validation\language\fi_FI.js" />
+    <Content Include="assets\js\validation\language\fr_FR.js" />
+    <Content Include="assets\js\validation\language\gr_EL.js" />
+    <Content Include="assets\js\validation\language\he_IL.js" />
+    <Content Include="assets\js\validation\language\hi_IN.js" />
+    <Content Include="assets\js\validation\language\hu_HU.js" />
+    <Content Include="assets\js\validation\language\id_ID.js" />
+    <Content Include="assets\js\validation\language\it_IT.js" />
+    <Content Include="assets\js\validation\language\ja_JP.js" />
+    <Content Include="assets\js\validation\language\nl_NL.js" />
+    <Content Include="assets\js\validation\language\no_NO.js" />
+    <Content Include="assets\js\validation\language\pl_PL.js" />
+    <Content Include="assets\js\validation\language\pt_BR.js" />
+    <Content Include="assets\js\validation\language\pt_PT.js" />
+    <Content Include="assets\js\validation\language\ro_RO.js" />
+    <Content Include="assets\js\validation\language\ru_RU.js" />
+    <Content Include="assets\js\validation\language\sk_SK.js" />
+    <Content Include="assets\js\validation\language\sq_AL.js" />
+    <Content Include="assets\js\validation\language\sr_RS.js" />
+    <Content Include="assets\js\validation\language\sv_SE.js" />
+    <Content Include="assets\js\validation\language\th_TH.js" />
+    <Content Include="assets\js\validation\language\tr_TR.js" />
+    <Content Include="assets\js\validation\language\ua_UA.js" />
+    <Content Include="assets\js\validation\language\vi_VN.js" />
+    <Content Include="assets\js\validation\language\zh_CN.js" />
+    <Content Include="assets\js\validation\language\zh_TW.js" />
+    <Content Include="assets\js\webkit.js" />
+    <Content Include="assets\js\_select2\select2.js" />
+    <Content Include="assets\js\_select2\select2.min.js" />
     <Content Include="Bolle\DettaglioBolla.aspx" />
     <Content Include="Bolle\Lista_Bolle.aspx" />
     <Content Include="Depositi\Inventario_Controllo_Articoli.aspx" />
+    <Content Include="Domini\anagrafica_domini.aspx" />
+    <Content Include="Domini\anagrafica_email_dom.aspx" />
+    <Content Include="Domini\domini_gest.aspx" />
     <Content Include="ImageCropper_4U\dist\index.html" />
     <Content Include="ImageCropper_4U\dist\script.js" />
     <Content Include="ImageCropper_4U\dist\style.css" />
@@ -1413,6 +1591,336 @@
     <Content Include="RM_Privacy.aspx" />
     <Content Include="RM_TerminiServizio.aspx" />
     <Content Include="SampleHTML.html" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Accordion.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\AjaxFileUpload.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\AlwaysVisibleControl.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Animation.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\AnimationScripts.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\AreaChart.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\AsyncFileUpload.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\AutoComplete.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\BalloonPopup.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\BarChart.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\BaseScripts.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\BubbleChart.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Calendar.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\CascadingDropDown.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\CollapsiblePanel.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\ColorPicker.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\ComboBox.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Common.DateTime.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Common.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Common.Threading.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Compat.DragDrop.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Compat.Timer.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\ComponentSet.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\ConfirmButton.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\DraggableListItem.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\DropDown.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\DropShadow.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\DropWatcher.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\DynamicPopulate.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\FilteredTextBox.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\FloatingBehavior.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Hover.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HoverMenu.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.DesignPanel.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.DesignPanelEventHandler.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.Editor.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.EditPanel.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.Enums.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.Events.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ExecCommandEmulation.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.HtmlEditor.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.HtmlPanel.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ModePanel.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.Popups.AttachedPopup.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.Popups.AttachedTemplatePopup.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.Popups.BaseColorsPopup.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.Popups.LinkProperties.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.Popups.OkCancelAttachedTemplatePopup.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.Popups.Popup.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.Popups.PopupBGIButton.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.Popups.PopupBoxButton.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.Popups.PopupCommonButton.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.PreviewPanel.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.Toolbar.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.BackColorClear.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.BackColorSelector.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.Bold.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.BoxButton.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.BulletedList.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.ColorButton.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.ColorSelector.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.CommonButton.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.Copy.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.Cut.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.DecreaseIndent.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.DesignMode.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.DesignModeBoxButton.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.DesignModeImageButton.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.DesignModePopupImageButton.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.DesignModeSelectButton.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.EditorToggleButton.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.FixedBackColor.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.FixedColorButton.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.FixedForeColor.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.FontName.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.FontSize.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.ForeColor.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.ForeColorClear.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.ForeColorSelector.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.HorizontalSeparator.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.HtmlMode.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.ImageButton.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.IncreaseIndent.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.InsertHR.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.InsertLink.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.Italic.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.JustifyCenter.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.JustifyFull.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.JustifyLeft.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.JustifyRight.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.Ltr.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.MethodButton.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.ModeButton.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.OkCancelPopupButton.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.OrderedList.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.Paragraph.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.Paste.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.PasteText.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.PasteWord.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.PreviewMode.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.Redo.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.RemoveAlignment.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.RemoveLink.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.RemoveStyles.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.Rtl.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.SelectButton.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.Selector.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.StrikeThrough.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.SubScript.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.SuperScript.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.Underline.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditor.ToolbarButtons.Undo.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\HtmlEditorExtender.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\LineChart.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\ListSearch.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.ar.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.cs.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.de.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.es.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.fr.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.he.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.hi.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.it.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.ja.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.ko.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.nl.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.pl.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.pt.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.ru.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.tr.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.zh-CHS.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.zh-CHT.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\MaskedEdit.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\MaskedEditValidator.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\ModalPopup.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\MultiHandleSlider.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\MutuallyExclusiveCheckBox.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\NoBot.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\NumericUpDown.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\PagingBulletedList.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\PasswordStrength.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\PieChart.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Popup.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\PopupControl.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Rating.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\ResizableControl.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\RoundedCorners.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Seadragon.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Slider.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\SlideShow.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Tabs.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\TextBoxWatermark.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\ToggleButton.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\UpdatePanelAnimation.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\ValidatorCallout.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Accordion.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\AjaxFileUpload.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\AlwaysVisibleControl.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Animation.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\AnimationScripts.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\AreaChart.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\AsyncFileUpload.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\AutoComplete.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\BalloonPopup.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\BarChart.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\BaseScripts.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\BubbleChart.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Calendar.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\CascadingDropDown.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\CollapsiblePanel.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\ColorPicker.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\ComboBox.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Common.DateTime.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Common.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Common.Threading.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Compat.DragDrop.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Compat.Timer.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\ComponentSet.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\ConfirmButton.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\DraggableListItem.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\DropDown.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\DropShadow.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\DropWatcher.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\DynamicPopulate.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\FilteredTextBox.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\FloatingBehavior.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Hover.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HoverMenu.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.DesignPanel.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.DesignPanelEventHandler.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.Editor.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.EditPanel.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.Enums.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.Events.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ExecCommandEmulation.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.HtmlEditor.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.HtmlPanel.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ModePanel.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.Popups.AttachedPopup.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.Popups.AttachedTemplatePopup.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.Popups.BaseColorsPopup.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.Popups.LinkProperties.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.Popups.OkCancelAttachedTemplatePopup.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.Popups.Popup.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.Popups.PopupBGIButton.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.Popups.PopupBoxButton.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.Popups.PopupCommonButton.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.PreviewPanel.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.Toolbar.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.BackColorClear.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.BackColorSelector.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.Bold.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.BoxButton.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.BulletedList.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.ColorButton.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.ColorSelector.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.CommonButton.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.Copy.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.Cut.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.DecreaseIndent.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.DesignMode.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.DesignModeBoxButton.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.DesignModeImageButton.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.DesignModePopupImageButton.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.DesignModeSelectButton.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.EditorToggleButton.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.FixedBackColor.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.FixedColorButton.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.FixedForeColor.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.FontName.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.FontSize.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.ForeColor.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.ForeColorClear.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.ForeColorSelector.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.HorizontalSeparator.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.HtmlMode.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.ImageButton.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.IncreaseIndent.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.InsertHR.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.InsertLink.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.Italic.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.JustifyCenter.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.JustifyFull.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.JustifyLeft.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.JustifyRight.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.Ltr.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.MethodButton.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.ModeButton.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.OkCancelPopupButton.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.OrderedList.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.Paragraph.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.Paste.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.PasteText.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.PasteWord.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.PreviewMode.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.Redo.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.RemoveAlignment.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.RemoveLink.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.RemoveStyles.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.Rtl.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.SelectButton.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.Selector.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.StrikeThrough.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.SubScript.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.SuperScript.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.Underline.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditor.ToolbarButtons.Undo.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\HtmlEditorExtender.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\LineChart.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\ListSearch.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Localization.Resources.ar.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Localization.Resources.cs.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Localization.Resources.de.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Localization.Resources.es.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Localization.Resources.fr.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Localization.Resources.he.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Localization.Resources.hi.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Localization.Resources.it.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Localization.Resources.ja.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Localization.Resources.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Localization.Resources.ko.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Localization.Resources.nl.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Localization.Resources.pl.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Localization.Resources.pt.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Localization.Resources.ru.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Localization.Resources.tr.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Localization.Resources.zh-CHS.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Localization.Resources.zh-CHT.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\MaskedEdit.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\MaskedEditValidator.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\ModalPopup.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\MultiHandleSlider.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\MutuallyExclusiveCheckBox.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\NoBot.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\NumericUpDown.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\PagingBulletedList.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\PasswordStrength.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\PieChart.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Popup.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\PopupControl.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Rating.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\ResizableControl.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\RoundedCorners.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Seadragon.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Slider.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\SlideShow.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Tabs.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\TextBoxWatermark.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\ToggleButton.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\UpdatePanelAnimation.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\ValidatorCallout.js" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <None Include="Scripts\jquery-3.3.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjax.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxApplicationServices.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxComponentModel.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxCore.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxGlobalization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxHistory.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxNetwork.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxSerialization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxTimer.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebServices.js" />
     <Content Include="serviceWorker.js" />
     <Content Include="ShopRM\Assets\toastr\toastr.js" />
     <Content Include="ShopRM\Assets\toastr\toastr.min.js" />
@@ -2707,11 +3215,14 @@
     <Content Include="SuperAdmin\RulesGest\Ruoli_DefaultPage_Crud.aspx" />
     <Content Include="SuperAdmin\RulesGest\RuoloAbilitaGeneraUtente.aspx" />
     <Content Include="SuperAdmin\RulesGest\users_by_role.aspx" />
+    <Content Include="SuperAdmin\Ticket_Workflow_Status.aspx" />
     <Content Include="SuperAdmin\UserGest\GrigliaClientiNonAbilitati.aspx" />
     <Content Include="TestInvioEmail.aspx" />
+    <Content Include="TicketStatus.xml" />
     <Content Include="Ticket\TCK_Insert.aspx" />
     <Content Include="Ticket\TaskView_Custom.aspx" />
     <Content Include="Ticket\TCK_List.aspx" />
+    <Content Include="Ticket\Ticket_List.aspx" />
     <Content Include="Users\Invio_Email_RecuperoDati.aspx" />
     <Content Include="Users\Recupero_Dati.aspx" />
     <Content Include="VIO_Utenti\Gruppo_Utenti_Crud.aspx" />
@@ -2852,6 +3363,10 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.1.1-vsdoc.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -3223,6 +3738,8 @@
     <Content Include="ShopRM\swipebox-master\grunt\README.md" />
     <Content Include="ShopRM\swipebox-master\README.md" />
     <Content Include="ShopRM\swipebox-master\scss\swipebox.scss" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <None Include="Web References\WebReference4u\WebService_primo.disco" />
     <None Include="Web References\WebReference4u\WebService_primo.wsdl" />
     <None Include="Web.Debug.config">
@@ -3264,8 +3781,8 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="AjaxControlToolkit">
-      <HintPath>bin\AjaxControlToolkit.dll</HintPath>
+    <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AjaxControlToolkit.20.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Antlr3.Runtime">
       <HintPath>bin\Antlr3.Runtime.dll</HintPath>
@@ -3404,6 +3921,9 @@
     </Reference>
     <Reference Include="Microsoft.Owin, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.4.2.2\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.MSAjax, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.MSAjax.5.0.0\lib\net45\Microsoft.ScriptManager.MSAjax.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>

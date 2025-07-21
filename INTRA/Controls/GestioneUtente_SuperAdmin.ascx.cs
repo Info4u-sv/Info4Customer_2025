@@ -26,8 +26,7 @@ namespace INTRA.Controls
             {
                 user = Membership.GetUser(Guid.Parse(userId));
             }
-            //GeneraUtenteVIO_btn.ClientEnabled = GenerVIO_ClienEnabled;
-            GeneraUtenteVIO_btn.ClientEnabled = true;
+            GeneraUtenteVIO_btn.ClientEnabled = GenerVIO_ClienEnabled;
         }
         public void UnlockUser()
         {
@@ -105,7 +104,7 @@ namespace INTRA.Controls
                         UtenteVIO.FirmaEmail = string.IsNullOrEmpty(FirmaUtente.Html) ? null : FirmaUtente.Html;
                         UtenteVIO.DataBlocco = DateTime.Now.AddYears(100);
                         UtenteVIO.UtenteSMTP = UtenteSMTP.Text;
-                        //UtenteVIO.PasswordSMTP = DataControl.Encrypt(PasswordSMTP.Text);
+                        UtenteVIO.PasswordSMTP = DataControl.Encrypt(PasswordSMTP.Text);
 
                         int resultIns = UtenteVIO.VIO_Utenti_INSERT(UtenteVIO);
                     }

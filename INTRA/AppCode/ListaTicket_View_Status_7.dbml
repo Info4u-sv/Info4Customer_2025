@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="info4u_V2.0.2_" Class="ListaTicket_View_Status_7DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=192.168.156.76;Initial Catalog=info4u_V2.0.2_;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="info4portaleConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.ListaTicket_View_Status_7" Member="ListaTicket_View_Status_7">
+    <Type Name="ListaTicket_View_Status_7">
+      <Column Name="idStatus" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Indirizzo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DataIns" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Cap" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Località" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Provincia" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TipoChiamata" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Colore" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CodRapportino" Type="System.Int32" DbType="Int" IsPrimaryKey="true" CanBeNull="true" />
+      <Column Name="Società" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="IdAreaAss" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AreaAss" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ColoreArea" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PrioritaDescr" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="PrioritaColore" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TipoEsecDescr" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="TipoEsecColore" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MotivoChiamata" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Tecnico" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="StatusControlloRegistrazione" Type="System.String" DbType="NChar(40)" CanBeNull="true" />
+      <Column Name="StatusControlloFatturazioneFinale" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="TCK_StatusChiamata" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LabelClass" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Descrizione" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="TCK_AreaCompetenza" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TCK_TipoRichiesta" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TCK_PrioritaRichiesta" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="nvarchar(MAX)" CanBeNull="false" />
+      <Column Name="NoteTecnico" Type="System.String" DbType="nvarchar(MAX)" CanBeNull="false" />
+      <Column Name="InsertUser" Type="System.String" DbType="nvarchar(200)" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

@@ -52,46 +52,46 @@
         }
         function findUnselectedCheckboxes(inputHeaderChkBoxId, permissionType) {
             var grid = document.getElementById('<%=grdPrivileges.ClientID %>');
-    var list = grid.getElementsByTagName("input");
-    var rowIndex;
-    var objTotalCheckBoxQty = 0; //----------------------- Total number of checkboxes in the gridview.
-    var objSelectedCheckBoxQty = 0; //-------------------- Total number of selected checkboxes in the gridview.
-    var objColumnSelectedChkBoxCount = 0; //-------------- Total number of selected checkboxes in each column (Add, Delete, Modify, Read) respectively.
-    var objColumnTotalChkBoxCount = 0; //----------------- Total number of checkboxes in each column.
-    for (var i = 1; i < grid.rows.length; i++) {
-        rowIndex = grid.rows[i].rowIndex;
-        var list = grid.rows[rowIndex].getElementsByTagName("input");
-        for (j = 0; j < list.length; j++) {
-            if (list[j].type == "checkbox" && list[j].checked == true) {
-                objSelectedCheckBoxQty = objSelectedCheckBoxQty + 1;
-                list[j].setAttribute("class", "inputCheckboxChecked");
-            } else
-                list[j].setAttribute("class", "inputCheckboxUnchecked");
-            if (list[j].type == "checkbox") {
-                objTotalCheckBoxQty = objTotalCheckBoxQty + 1;
+            var list = grid.getElementsByTagName("input");
+            var rowIndex;
+            var objTotalCheckBoxQty = 0; //----------------------- Total number of checkboxes in the gridview.
+            var objSelectedCheckBoxQty = 0; //-------------------- Total number of selected checkboxes in the gridview.
+            var objColumnSelectedChkBoxCount = 0; //-------------- Total number of selected checkboxes in each column (Add, Delete, Modify, Read) respectively.
+            var objColumnTotalChkBoxCount = 0; //----------------- Total number of checkboxes in each column.
+            for (var i = 1; i < grid.rows.length; i++) {
+                rowIndex = grid.rows[i].rowIndex;
+                var list = grid.rows[rowIndex].getElementsByTagName("input");
+                for (j = 0; j < list.length; j++) {
+                    if (list[j].type == "checkbox" && list[j].checked == true) {
+                        objSelectedCheckBoxQty = objSelectedCheckBoxQty + 1;
+                        list[j].setAttribute("class", "inputCheckboxChecked");
+                    } else
+                        list[j].setAttribute("class", "inputCheckboxUnchecked");
+                    if (list[j].type == "checkbox") {
+                        objTotalCheckBoxQty = objTotalCheckBoxQty + 1;
+                    }
+                    if (list[j].type == "checkbox" && list[j].id == grid.id + "_chkBox" + permissionType + "_" + (i - 1).toString() && list[j].checked == true) {
+                        if (grid.id + "_chkBox" + permissionType + "_" + (i - 1).toString().checked)
+                            objColumnSelectedChkBoxCount = objColumnSelectedChkBoxCount + 1;
+                    }
+                    if (list[j].type == "checkbox" && list[j].id == grid.id + "_chkBox" + permissionType + "_" + (i - 1).toString())
+                        objColumnTotalChkBoxCount = objColumnTotalChkBoxCount + 1;
+                }
             }
-            if (list[j].type == "checkbox" && list[j].id == grid.id + "_chkBox" + permissionType + "_" + (i - 1).toString() && list[j].checked == true) {
-                if (grid.id + "_chkBox" + permissionType + "_" + (i - 1).toString().checked)
-                    objColumnSelectedChkBoxCount = objColumnSelectedChkBoxCount + 1;
+            if (objColumnTotalChkBoxCount == objColumnSelectedChkBoxCount) {
+                document.getElementById('MainContent_grdPrivileges_' + inputHeaderChkBoxId).checked = true;
+                document.getElementById('MainContent_grdPrivileges_' + inputHeaderChkBoxId).setAttribute("class", "inputCheckboxChecked");
+            } else {
+                document.getElementById('MainContent_grdPrivileges_' + inputHeaderChkBoxId).checked = false;
+                document.getElementById('MainContent_grdPrivileges_' + inputHeaderChkBoxId).setAttribute("class", "inputCheckboxUnchecked");
             }
-            if (list[j].type == "checkbox" && list[j].id == grid.id + "_chkBox" + permissionType + "_" + (i - 1).toString())
-                objColumnTotalChkBoxCount = objColumnTotalChkBoxCount + 1;
+            if (objTotalCheckBoxQty > objSelectedCheckBoxQty)
+                document.getElementById('ddlUserRole').selectedIndex = "2"; // User
+            else if (objTotalCheckBoxQty == objSelectedCheckBoxQty)
+                document.getElementById('ddlUserRole').selectedIndex = "1"; // Admin
+            if (objSelectedCheckBoxQty == "0")
+                document.getElementById('ddlUserRole').selectedIndex = "0";
         }
-    }
-    if (objColumnTotalChkBoxCount == objColumnSelectedChkBoxCount) {
-        document.getElementById('MainContent_grdPrivileges_' + inputHeaderChkBoxId).checked = true;
-        document.getElementById('MainContent_grdPrivileges_' + inputHeaderChkBoxId).setAttribute("class", "inputCheckboxChecked");
-    } else {
-        document.getElementById('MainContent_grdPrivileges_' + inputHeaderChkBoxId).checked = false;
-        document.getElementById('MainContent_grdPrivileges_' + inputHeaderChkBoxId).setAttribute("class", "inputCheckboxUnchecked");
-    }
-    if (objTotalCheckBoxQty > objSelectedCheckBoxQty)
-        document.getElementById('ddlUserRole').selectedIndex = "2"; // User
-    else if (objTotalCheckBoxQty == objSelectedCheckBoxQty)
-        document.getElementById('ddlUserRole').selectedIndex = "1"; // Admin
-    if (objSelectedCheckBoxQty == "0")
-        document.getElementById('ddlUserRole').selectedIndex = "0";
-}
     </script>
 </asp:Content>
 
@@ -127,7 +127,7 @@
                                             <div class="card-header bg-primary text-white">
                                                 <h6>Dettagli Utente</h6>
                                             </div>
-                                            <div class="card-body">
+                                            <div class="card-body" style="padding: 15px 20px;">
                                                 <asp:DetailsView runat="server" ID="InfoUser" AutoGenerateRows="false">
                                                     <Fields>
                                                         <asp:BoundField DataField="UserName" HeaderText="User Name" ReadOnly="True" />
@@ -145,30 +145,42 @@
                                                 </asp:DetailsView>
                                                 <br />
                                                 <div>
-                                                    <dx:ASPxButton runat="server" Text="Modifica Utente" ID="btnModificaUtente" AutoPostBack="False">
-                                                        <ClientSideEvents Click="function(s,e){
-                                                            AnagraficaUserPanel.PerformCallback('ABILITA');
-                                                            EditAndRolesPanel.PerformCallback('LOAD');
-                                                            showNotification();
-                                                                }" />
-                                                    </dx:ASPxButton>
-
-                                                    <dx:ASPxButton
-                                                        runat="server"
+                                                    <dx:BootstrapButton runat="server"
+                                                        Text='Modifica Utente'
+                                                        ID="btnModificaUtente"
                                                         AutoPostBack="False"
-                                                        Text="Cancella"
-                                                        ButtonStyle-CssClass="btn btn-secondary">
-                                                        <ClientSideEvents Click="function(s,e){ showNotification();nascondiEditAndRolesPanel(); }" />
-                                                    </dx:ASPxButton>
+                                                        Badge-CssClass="BadgeBtn-just-icon"
+                                                        CssClasses-Control="btn btn-primary">
+                                                        <ClientSideEvents Click="function(s,e){
+                                                        AnagraficaUserPanel.PerformCallback('ABILITA');
+                                                        EditAndRolesPanel.PerformCallback('LOAD');
+                                                         showNotification();
+                                                    }" />
+                                                        <Badge IconCssClass="fa fa-user-edit" />
+                                                        <SettingsBootstrap Sizing="Large" />
+                                                    </dx:BootstrapButton>
+
+                                                    <dx:BootstrapButton runat="server"
+                                                        AutoPostBack="False"
+                                                        Text='Cancella'
+                                                        Badge-CssClass="BadgeBtn-just-icon"
+                                                        CssClasses-Control="btn btn-secondary">
+                                                        <ClientSideEvents Click="function(s,e){
+                                                        showNotification();
+                                                        nascondiEditAndRolesPanel();
+                                                    }" />
+                                                        <Badge IconCssClass="fa fa-times" />
+                                                        <SettingsBootstrap Sizing="Large" />
+                                                    </dx:BootstrapButton>
                                                 </div>
                                             </div>
                                         </div>
                                         <div style="margin-left: 15px;">
-                                        <dx:GestioneUtente_SuperAdmin runat="server" id="GestioneUtente_SuperAdmin" RefreshPanel="Refresh_pnl" />
-                                    </div>
+                                            <dx:GestioneUtente_SuperAdmin runat="server" id="GestioneUtente_SuperAdmin" RefreshPanel="Refresh_pnl" />
+                                        </div>
                                     </div>
 
-                                    <dx:ASPxCallbackPanel ID="EditAndRolesPanel" runat="server" ClientInstanceName="EditAndRolesPanel" OnCallback="EditAndRolesPanel_Callback">
+                                    <dx:ASPxCallbackPanel ID="EditAndRolesPanel" runat="server" ClientInstanceName="EditAndRolesPanel" OnCallback="EditAndRolesPanel_Callback" ClientVisible="false">
                                         <ClientSideEvents EndCallback="function(s,e){
         if(s.cpShowPanel){
             s.SetVisible(true);
@@ -180,7 +192,7 @@
                                                 <div class="container-fluid">
                                                     <div class="row">
 
-                                                        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 text-center">
+                                                        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 text-start">
                                                             <h5>Roles</h5>
 
                                                             <asp:CheckBoxList
@@ -188,18 +200,22 @@
                                                                 runat="server"
                                                                 RepeatLayout="Flow"
                                                                 RepeatDirection="Vertical"
-                                                                CssClass="mx-auto d-block text-start"
+                                                                CssClass="text-start"
                                                                 AutoPostBack="false">
                                                             </asp:CheckBoxList>
                                                             <br />
-                                                            <dx:ASPxButton ID="BtnSalvaRuoli" runat="server" AutoPostBack="False"
-                                                                Text="Salva Ruoli" CssClass="btn btn-success mt-2">
+                                                            <dx:BootstrapButton ID="BtnSalvaRuoli" runat="server"
+                                                                AutoPostBack="False"
+                                                                CssClasses-Control="btn btn-success mt-2"
+                                                                Text='Salva Ruoli' Badge-CssClass="BadgeBtn-just-icon">
                                                                 <ClientSideEvents Click="function(s,e){
-                                                                e.processOnServer = false;
-                                                                SalvaSelezioneRuoliECallback();
-                                                                showNotification();
-                                                                }" />
-                                                            </dx:ASPxButton>
+            e.processOnServer = false;
+            SalvaSelezioneRuoliECallback();
+            showNotification();
+        }" />
+                                                                <Badge IconCssClass="fa fa-save" />
+                                                                <SettingsBootstrap Sizing="Large" />
+                                                            </dx:BootstrapButton>
                                                         </div>
 
                                                         <div class="col-lg-4 col-md-4 col-sm-12 mb-4">
@@ -227,8 +243,17 @@
                                                                     <strong>Inserisci Nuova Password:</strong><br />
                                                                     <dx:ASPxTextBox ID="NewPassword_Txt" runat="server" Width="100%" Password="true" Theme="Office365"></dx:ASPxTextBox>
                                                                     <br />
-                                                                    <asp:LinkButton ID="Button3" runat="server" OnClick="Button3_Click" OnClientClick="showNotification();" class="btn-labeled btn shiny btn-warning"><i class="btn-label glyphicon glyphicon-pencil"></i> Modifica Password</asp:LinkButton>
+                                                                    <dx:BootstrapButton ID="Button3" runat="server"
+                                                                        AutoPostBack="True"
+                                                                        CssClasses-Control="btn btn-warning shiny"
+                                                                        Text='Modifica Password'
+                                                                        Badge-CssClass="BadgeBtn-just-icon"
+                                                                        OnClick="Button3_Click">
+                                                                        <ClientSideEvents Click="function(s, e) { showNotification(); }" />
+                                                                        <Badge IconCssClass="fa fa-key" />
+                                                                        <SettingsBootstrap Sizing="Large" />
 
+                                                                    </dx:BootstrapButton>
                                                                 </div>
                                                                 <!--fine horizontal-->
                                                             </div>
@@ -433,16 +458,32 @@
                                         <div class="col-xs-12 col-md-6 col-sm-12 col-lg-12" style="padding-top: 10px;">
 
                                             <div class="col-xs-12 col-md-6 col-sm-12 col-lg-2">
-                                                <asp:LinkButton ID="FirmaTecnico_LinkB" runat="server" CssClass="btn btn-labeled btn-azure"
-                                        data-toggle="tooltip" title="Aggiorna i dati" OnClick="FirmaTecnico_LinkB_Click">
-                                <i class="btn-label fa fa-upload"></i> Carica Firma</asp:LinkButton>
+                                                <dx:BootstrapButton ID="FirmaTecnico_LinkB" runat="server"
+                                                    AutoPostBack="True"
+                                                    OnClick="FirmaTecnico_LinkB_Click"
+                                                    CssClasses-Control="btn btn-azure btn-labeled"
+                                                    Text='Carica Firma'
+                                                    Badge-CssClass="BadgeBtn-just-icon"
+                                                    ToolTip="Aggiorna i dati">
+                                                    <Badge IconCssClass="fa fa-upload" />
+                                                    <SettingsBootstrap Sizing="Large" />
+
+                                                </dx:BootstrapButton>
                                             </div>
                                             <div class="col-xs-12 col-md-6 col-sm-12 col-lg-2">
-                                                <dx:ASPxButton ID="btnSaveRegister" runat="server" CssClass="btn btn-labeled btn-success" Text="Aggiorna i dati" CausesValidation="true" OnClick="BtnSaveRegister_Click">
+                                                <dx:BootstrapButton ID="btnSaveRegister" runat="server"
+                                                    AutoPostBack="True"
+                                                    CssClasses-Control="btn btn-success btn-labeled"
+                                                    Text='Aggiorna i dati'
+                                                    Badge-CssClass="BadgeBtn-just-icon"
+                                                    CausesValidation="true"
+                                                    OnClick="BtnSaveRegister_Click">
                                                     <ClientSideEvents Click="function(s, e) {
-       showNotification();
-    }" />
-                                                </dx:ASPxButton>
+                                                    showNotification();
+                                                }" />
+                                                    <Badge IconCssClass="fa fa-save" />
+                                                    <SettingsBootstrap Sizing="Large" />
+                                                </dx:BootstrapButton>
                                             </div>
 
                                         </div>
@@ -582,8 +623,18 @@
                                 </asp:GridView>
 
                                 <div style="float: right; padding-top: 20px">
-                                    <asp:Button ID="UpdatePermessi_Btn" runat="server" Text="Aggiorna Permessi"
-                                        OnClientClick="showNotification(); PrivilegesPanel.PerformCallback('save'); return false;" />
+                                    <dx:BootstrapButton ID="UpdatePermessi_Btn" runat="server"
+                                        AutoPostBack="False"
+                                        CssClasses-Control="btn btn-info"
+                                        Badge-CssClass="BadgeBtn-just-icon"
+                                        Text='Aggiorna Permessi'>
+                                        <ClientSideEvents Click="function(s, e) {
+                                        showNotification();
+                                        PrivilegesPanel.PerformCallback('save');
+                                    }" />
+                                        <Badge IconCssClass="fa fa-shield-alt" />
+                                        <SettingsBootstrap Sizing="Large" />
+                                    </dx:BootstrapButton>
                                 </div>
                             </dx:PanelContent>
                         </PanelCollection>
@@ -596,4 +647,20 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="PageScriptContent" runat="server">
+    <style>
+        .btn.btn-primary, .btn.btn-secondary {
+            background-color: #0055A6;
+            color: #ffffff;
+        }
+
+            .btn.btn-primary:hover, .btn.btn:hover, .btn.btn-secondary:hover {
+                background-color: #0055A6;
+                color: #ffffff;
+            }
+
+            .btn.btn-primary:focus {
+                background-color: #0055A6;
+                color: #ffffff;
+            }
+    </style>
 </asp:Content>
