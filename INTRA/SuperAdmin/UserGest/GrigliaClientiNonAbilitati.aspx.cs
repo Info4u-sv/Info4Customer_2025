@@ -31,6 +31,8 @@ namespace INTRA.SuperAdmin.UserGest
                 Utente.Tipologia = ruoloDaAssegnare;
                 Utente.Azienda = Societa_txt.Text;
                 Utente.CodCli = CodCli_Value.Text;
+                Utente.Nome = Nome_txt.Text;
+                Utente.Cognome = Cognome_Txt.Text;
 
                 Utente.InsertUtente(Utente);
 

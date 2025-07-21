@@ -124,6 +124,7 @@
             LoadingPanel.Hide();
             showNotification();
             Lista_Articoli_Cv.Refresh();
+            Articoli_Cv.Refresh();
             UltimoControllo_lbl.SetText("ULTIMO CONTROLLO: " + Invio_Email_Callback.cpDataControllo);
             Lista_Articoli_Cv.EndCallback.AddHandler(function () {
                 var Collection = document.getElementsByClassName("non-controllato");

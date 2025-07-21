@@ -85,6 +85,8 @@ namespace INTRA.VIO.Utenti
             Utente.Tipologia = "Cliente";
             Utente.Azienda = Societa_TokenBox.Text;
             Utente.CodCli = Societa_TokenBox.Value.ToString();
+            Utente.Nome = Nome_txt.Text;
+            Utente.Cognome = Cognome_Txt.Text;
             Utente.InsertUtente(Utente);
 
             dynamic MyProfile = ProfileBase.Create(NomeUtenteIntranet_Txt.Text, true);
@@ -297,7 +299,8 @@ namespace INTRA.VIO.Utenti
 
                 // Recupera il profilo personalizzato dell'utente
                 dynamic MyProfile = ProfileBase.Create(username);
-                Societa_TokenBox.Value = MyProfile.Societa;
+                //Societa_TokenBox.Value = MyProfile.Societa;
+                Societa_TokenBox.Text = Session["CodCliSession"] + " - " + MyProfile.Societa;
                 Codicefiscale_Txt.Text = MyProfile.CodiceFiscale;
                 Indirizzo_Txt.Text = MyProfile.Indirizzo;
                 Cap_Txt.Text = MyProfile.Cap;

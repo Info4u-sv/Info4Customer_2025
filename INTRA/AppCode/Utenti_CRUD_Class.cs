@@ -15,16 +15,20 @@ namespace INTRA.AppCode
         public string Tipologia { get; set; }
         public string Azienda { get; set; }
         public string CodCli { get; set; }
+        public string Nome { get; set; }
+        public string Cognome { get; set; }
 
         public int InsertUtente(Utenti_CRUD_Class settings)
         {
             Sql4Helper helper = new Sql4Helper();
-            SqlParameter[] parameters = new SqlParameter[5];
+            SqlParameter[] parameters = new SqlParameter[7];
             parameters[0] = new SqlParameter("@UtenteIntranet", settings.NomeUtente);
             parameters[1] = new SqlParameter("@EmailContatto", settings.Email);
             parameters[2] = new SqlParameter("@Tipologia", settings.Tipologia);
             parameters[3] = new SqlParameter("@Azienda", settings.Azienda);
             parameters[4] = new SqlParameter("@CodCli", settings.CodCli);
+            parameters[5] = new SqlParameter("@Nome", settings.Nome);
+            parameters[6] = new SqlParameter("@Cognome", settings.Cognome);
 
             return helper.ExecuteNonQuery("VIO_Utenti_Insert", parameters);
         }

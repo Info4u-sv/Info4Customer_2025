@@ -126,7 +126,7 @@
 
                         <SettingsExport EnableClientSideExportAPI="true" ExcelExportMode="DataAware" Landscape="true" LeftMargin="30" FileName="Lista" />
                         <ClientSideEvents CustomButtonClick="OnCustomButtonClick" />
-                        <ClientSideEvents EndCallback="function(s, e) { ASPxClientHint.Update(); }" />
+                        <ClientSideEvents EndCallback="function(s, e) {if(e.command === 'UPDATEEDIT'){showNotification();} ASPxClientHint.Update(); }" />
                         <SettingsCommandButton>
                             <ClearFilterButton RenderMode="Button" Image-ToolTip="ClearFilterButton" Text="ClearFilterButton" Styles-CssPostfix="hidebtn">
                                 <Styles Style-CssClass="btn btn-sm btn-custom-padding action-btn ClearFilter icon4u icon-ClearFilter image"></Styles>
