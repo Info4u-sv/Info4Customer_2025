@@ -576,7 +576,9 @@ var ImgID;
             m = "virtualTouchID";
         b = "vmouseover vmousedown vmousemove vmouseup vclick vmouseout vmousecancel".split(" ");
         var r = "clientX clientY pageX pageY screenX screenY".split(" "),
-            t = a.event.props.concat(a.event.mouseHooks ? a.event.mouseHooks.props : []),
+		// Se props non esiste, uso un array vuoto per evitare crash quando faccio concat
+		// così non si rompe se a.event.props è undefined o null
+            t = (a.event.props || []).concat(a.event.mouseHooks ? a.event.mouseHooks.props : []),
             w = {},
             J = 0,
             G = 0,

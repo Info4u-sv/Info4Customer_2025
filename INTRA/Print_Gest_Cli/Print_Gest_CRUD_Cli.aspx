@@ -39,7 +39,7 @@
                 Generic_gridview.StartEditRow(e.visibleIndex);
             }
             if (e.buttonID == "Delete") {
-                ConfermaGridViewDeleteRowNoCallback('Cancella il dato!', 'Generic_gridview', e.visibleIndex);
+                ConfermaGridViewDeleteRowNoCallback('Confermi di voler eliminare il printer gestionale selezionato?', 'Generic_gridview', e.visibleIndex);
             }
             if (e.buttonID == "Stampa") {
                 s.GetRowValues(e.visibleIndex, 'ID', function (value) {
@@ -86,7 +86,7 @@
                     var ClientInstanceNameVar = eval(ClientInstanceName);
 
                     ClientInstanceNameVar.DeleteRow(visibleIndex);
-
+                    showNotification();
 
 
                 }
@@ -160,7 +160,7 @@
 
                         <SettingsExport EnableClientSideExportAPI="true" ExcelExportMode="DataAware" Landscape="true" LeftMargin="30" FileName="Lista" />
                         <ClientSideEvents CustomButtonClick="OnCustomButtonClick" />
-                        <ClientSideEvents EndCallback="function(s, e) { if(e.command == 'UPDATEEDIT') {ASPxClientHint.Update();} console.log(s)}" />
+                        <ClientSideEvents EndCallback="function(s, e) { if(e.command === 'UPDATEEDIT'){showNotification();} {ASPxClientHint.Update();} console.log(s)}" />
                         <SettingsCommandButton>
                             <ClearFilterButton RenderMode="Button" Image-ToolTip="ClearFilterButton" Text="ClearFilterButton" Styles-CssPostfix="hidebtn">
                                 <Styles Style-CssClass="btn btn-sm btn-custom-padding action-btn ClearFilter icon4u icon-ClearFilter image"></Styles>

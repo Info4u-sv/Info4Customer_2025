@@ -54,7 +54,7 @@
                     var ClientInstanceNameVar = eval(ClientInstanceName);
 
                     ClientInstanceNameVar.DeleteRow(visibleIndex);
-
+                    showNotification();
 
 
                 }

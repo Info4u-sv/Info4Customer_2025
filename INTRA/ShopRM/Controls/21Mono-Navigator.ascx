@@ -30,6 +30,7 @@
             width: 80px;
         }
     }
+
     .link-hover-effect {
         color: white !important;
         background-color: transparent !important;
@@ -37,52 +38,57 @@
         transition: all 0.2s ease;
     }
 
-    .link-hover-effect:hover {
-        background-color: transparent !important;
-        text-decoration: underline;
-    }
+        .link-hover-effect:hover {
+            background-color: transparent !important;
+            text-decoration: underline;
+        }
+
     @media (max-width: 991px) {
         .submenu .col-lg-12 {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding-left: 20px; 
-}
-  .submenu a {
-    display: block !important;
-    width: 100% !important;
-    padding: 10px 0;
-    padding-left: 20px;
-  }
-}
-    @media (max-width: 1199px) {
-  nav > ul > li {
-    float: none;
-    border-bottom: 1px white solid;
-    padding: 0;
-    position: relative;
-  }
-}
-    @media screen and (min-width: 992px) {
-  .submenu .col-lg-12 {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding-left: 20px; 
-  }
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-left: 20px;
+        }
 
-  .submenu a {
-    display: block;
-    padding: 8px 0;
-    width: 100%;
-    padding-left: 20px; 
-  }
-}
+        .submenu a {
+            display: block !important;
+            width: 100% !important;
+            padding: 10px 0;
+            padding-left: 20px;
+        }
+    }
+
+    @media (max-width: 1199px) {
+        nav > ul > li {
+            float: none;
+            border-bottom: 1px white solid;
+            padding: 0;
+            position: relative;
+        }
+    }
+
+    @media screen and (min-width: 992px) {
+        .submenu .col-lg-12 {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-left: 20px;
+        }
+
+        .submenu a {
+            display: block;
+            padding: 8px 0;
+            width: 100%;
+            padding-left: 20px;
+        }
+    }
+
     @media (max-width: 767px) {
-  li.liborder {
-    border-top: 1px solid white;
-  }
-}
+        li.liborder {
+            border-top: 1px solid white;
+        }
+    }
 </style>
 <script>
     function logoutNow() {
@@ -141,6 +147,9 @@
         </li>
         <li class="full-width">
             <a runat="server" href="~/ShopRM/Macchinari_Cliente.aspx" class="link-hover-effect">Le mie macchine</a>
+        </li>
+        <li class="full-width">
+            <a runat="server" href="/VIO_Utenti/Gruppo_Utenti_Crud.aspx" class="link-hover-effect">Gruppo gestione utenti</a>
         </li>
     </ul>
 

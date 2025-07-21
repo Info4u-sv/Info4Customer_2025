@@ -86,7 +86,7 @@
                     <i class="material-icons">people_alt</i>
                 </div>
                 <div class="card-content">
-                    <h4 class="card-title">Tipologia_Printer</h4>
+                    <h4 class="card-title">Tipologia Printer</h4>
                     <dx:ASPxHint ID="ASPxHint1" runat="server" TargetSelector=".dx-vam">
                         <%--  <ClientSideEvents Showing="ShowHint" />--%>
                     </dx:ASPxHint>
@@ -121,7 +121,7 @@
 
                         <SettingsExport EnableClientSideExportAPI="true" ExcelExportMode="DataAware" Landscape="true" LeftMargin="30" FileName="Lista" />
                         <ClientSideEvents CustomButtonClick="OnCustomButtonClick" />
-                        <ClientSideEvents EndCallback="function(s, e) { ASPxClientHint.Update();}" />
+                        <ClientSideEvents EndCallback="function(s, e) { if(e.command === 'UPDATEEDIT'){showNotification();} ASPxClientHint.Update();}" />
                         <SettingsCommandButton>
                             <ClearFilterButton RenderMode="Button" Image-ToolTip="ClearFilterButton" Text="ClearFilterButton" Styles-CssPostfix="hidebtn">
                                 <Styles Style-CssClass="btn btn-sm btn-custom-padding action-btn ClearFilter icon4u icon-ClearFilter image"></Styles>

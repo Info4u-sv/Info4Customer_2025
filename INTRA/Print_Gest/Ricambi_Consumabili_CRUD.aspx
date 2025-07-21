@@ -158,57 +158,6 @@
             max-width: 1200px !important;
         }
     </style>
-    <style>
-        .custom-toast {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: #4CAF50;
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 1rem;
-            display: flex;
-            align-items: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            z-index: 9999;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        .hidden {
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(-20px);
-        }
-
-        .toast-icon {
-            background-color: white;
-            color: #4CAF50;
-            border-radius: 50%;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .toast-message {
-            flex: 1;
-            font-weight: 500;
-        }
-
-        .toast-close {
-            cursor: pointer;
-            margin-left: 1rem;
-            font-size: 1.2rem;
-        }
-    </style>
-    <div id="custom-toast" class="custom-toast hidden">
-        <div class="toast-icon">🔔</div>
-        <div class="toast-message">PROCEDURA ESEGUITA CON SUCCESSO!</div>
-        <div class="toast-close" onclick="hideToast()">✕</div>
-    </div>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -222,7 +171,7 @@
 
                         <Styles Header-Wrap="True" Cell-Paddings-Padding="3" Header-Paddings-Padding="3" FilterBar-Paddings-Padding="3" CommandColumn-Paddings-Padding="3" FilterBarImageCell-Paddings-Padding="3" FilterCell-Paddings-Padding="3"></Styles>
                         <Settings AutoFilterCondition="Contains" ShowFilterRowMenu="true" />
-                        <ClientSideEvents EndCallback="function(s,e){if(e.command == 'UPDATEEDIT' || e.command == 'DELETEROW'){Generic_Gridview.Refresh(); showSuccessNotification();}}"
+                        <ClientSideEvents EndCallback="function(s,e){if(e.command == 'UPDATEEDIT' || e.command == 'DELETEROW'){Generic_Gridview.Refresh(); showNotification();}}"
                             CustomButtonClick="function(s,e){if(e.buttonID == 'Elimina'){OnGetRowValuesElimina(e.visibleIndex);}}" />
                         <Toolbars>
                             <dx:GridViewToolbar>
@@ -605,33 +554,12 @@
 
         }
     </script>
-    <script src='https://jasonlau.biz/cropper-dev/jquery-1.12.4.js'></script>
 
     <script src="../ImageCropper_4U/dist/script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-
-    <script>
-        function showSuccessNotification(message = "PROCEDURA ESEGUITA CON SUCCESSO!") {
-            const toast = document.getElementById("custom-toast");
-            toast.querySelector(".toast-message").textContent = message;
-            toast.classList.remove("hidden");
-
-            setTimeout(() => {
-                hideToast();
-            }, 4000);
-        }
-
-        function hideToast() {
-            document.getElementById("custom-toast").classList.add("hidden");
-        }
-    </script>
     <script>
         function EndCallback() {
-            showSuccessNotification();
+            showNotification();
         }
     </script>
 

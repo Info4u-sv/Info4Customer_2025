@@ -213,57 +213,6 @@
             max-width: 1200px !important;
         }
     </style>
-    <style>
-        .custom-toast {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: #4CAF50;
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 1rem;
-            display: flex;
-            align-items: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            z-index: 9999;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        .hidden {
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(-20px);
-        }
-
-        .toast-icon {
-            background-color: white;
-            color: #4CAF50;
-            border-radius: 50%;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .toast-message {
-            flex: 1;
-            font-weight: 500;
-        }
-
-        .toast-close {
-            cursor: pointer;
-            margin-left: 1rem;
-            font-size: 1.2rem;
-        }
-    </style>
-    <div id="custom-toast" class="custom-toast hidden">
-        <div class="toast-icon">🔔</div>
-        <div class="toast-message">PROCEDURA ESEGUITA CON SUCCESSO!</div>
-        <div class="toast-close" onclick="hideToast()">✕</div>
-    </div>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -288,13 +237,13 @@
     const cmd = e.command?.toUpperCase();
 
     if (cmd === 'UPDATEEDIT' || cmd === 'INSERT' || cmd === 'DELETEROW') {
-        showSuccessNotification();
-        Generic_Gridview.Refresh(); // opzionale, se ti serve aggiornare la griglia
+        showNotification();
+        Generic_gridview.Refresh(); // opzionale, se ti serve aggiornare la griglia
     }
 
     if (cmd === 'EDIT') {
         ASPxClientHint.Update();
-        Generic_Gridview.Refresh();
+        Generic_gridview.Refresh();
     }
 
     console.log('Command:', cmd);
@@ -685,30 +634,10 @@
 
         }
     </script>
-    <script src='https://jasonlau.biz/cropper-dev/jquery-1.12.4.js'></script>
 
-    <script src="../ImageCropper_4U/dist/script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script src="../ImageCropper_4U/dist/script.js"></script>
 
 
-    <script>
-        function showSuccessNotification(message = "PROCEDURA ESEGUITA CON SUCCESSO!") {
-            const toast = document.getElementById("custom-toast");
-            toast.querySelector(".toast-message").textContent = message;
-            toast.classList.remove("hidden");
-
-            setTimeout(() => {
-                hideToast();
-            }, 4000);
-        }
-
-        function hideToast() {
-            document.getElementById("custom-toast").classList.add("hidden");
-        }
-    </script>
     <script>
         function EndCallback() {
             showSuccessNotification();
