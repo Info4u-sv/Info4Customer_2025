@@ -60,6 +60,7 @@
       <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="AppCode\BeyondFunzioniGenerali.cs" />
+    <Compile Include="AppCode\DomVsService.cs" />
     <Compile Include="AppCode\Istanze_Generiche.cs" />
     <Compile Include="AppCode\ListaTicket_LINQ.designer.cs">
       <AutoGen>True</AutoGen>
@@ -99,6 +100,13 @@
     </Compile>
     <Compile Include="Bolle\Lista_Bolle.aspx.designer.cs">
       <DependentUpon>Lista_Bolle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Clienti\anagrafica_clienti_new.aspx.cs">
+      <DependentUpon>anagrafica_clienti_new.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clienti\anagrafica_clienti_new.aspx.designer.cs">
+      <DependentUpon>anagrafica_clienti_new.aspx</DependentUpon>
     </Compile>
     <Compile Include="Depositi\Inventario_Controllo_Articoli.aspx.cs">
       <DependentUpon>Inventario_Controllo_Articoli.aspx</DependentUpon>
@@ -1111,6 +1119,7 @@
     <Content Include="assets\js\_select2\select2.min.js" />
     <Content Include="Bolle\DettaglioBolla.aspx" />
     <Content Include="Bolle\Lista_Bolle.aspx" />
+    <Content Include="Clienti\anagrafica_clienti_new.aspx" />
     <Content Include="Depositi\Inventario_Controllo_Articoli.aspx" />
     <Content Include="Domini\anagrafica_domini.aspx" />
     <Content Include="Domini\anagrafica_email_dom.aspx" />
