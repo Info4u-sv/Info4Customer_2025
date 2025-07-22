@@ -40,5 +40,95 @@ namespace INTRA.Domini
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
         protected global::DevExpress.Web.ASPxGridView EmailAssociate_Gridview;
+
+        /// <summary>
+        /// Controllo EliminaEmail.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::DevExpress.Web.Bootstrap.BootstrapGridViewCommandColumnCustomButton EliminaEmail;
+
+        /// <summary>
+        /// Controllo EliminaMail_Callback.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxCallback EliminaMail_Callback;
+
+        /// <summary>
+        /// Controllo DtsReferenti.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource DtsReferenti;
+
+        /// <summary>
+        /// Controllo ServiziAssociati_Gridview.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxGridView ServiziAssociati_Gridview;
+
+        /// <summary>
+        /// Controllo EliminaServizi.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::DevExpress.Web.Bootstrap.BootstrapGridViewCommandColumnCustomButton EliminaServizi;
+
+        /// <summary>
+        /// Controllo FormViewDomini.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FormView FormViewDomini;
+
+        /// <summary>
+        /// Controllo EliminaServizi_Callback.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxCallback EliminaServizi_Callback;
+
+        /// <summary>
+        /// Controllo DtsDomini.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource DtsDomini;
+
+        /// <summary>
+        /// Controllo DtsDelete.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource DtsDelete;
+
+        /// <summary>
+        /// Controllo DtsServiziAss.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource DtsServiziAss;
     }
 }
