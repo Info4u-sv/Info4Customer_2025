@@ -296,11 +296,18 @@ namespace INTRA.VIO.Utenti
                 //Societa_TokenBox.DataBind();
 
                 //Societa_TokenBox.Value = firstPart;
-
+                string soc = string.Empty;
+                SqlDataReader reader = new Sql4Gestionale().ExecuteReader("SELECT Denom FROM Clienti WHERE CodCli = @CodCli", new SqlParameter("@CodCli", Session["CodCliSession"]));
+                if(reader.Read())
+                {
+                    soc = reader["Denom"].ToString();
+                }
+                
                 // Recupera il profilo personalizzato dell'utente
                 dynamic MyProfile = ProfileBase.Create(username);
+                soc = string.IsNullOrEmpty(MyProfile.Societa) ? Session["CodCliSession"] + " - " + soc : Session["CodCliSession"] + " - " + MyProfile.Societa;
                 //Societa_TokenBox.Value = MyProfile.Societa;
-                Societa_TokenBox.Text = Session["CodCliSession"] + " - " + MyProfile.Societa;
+                Societa_TokenBox.Text = soc;
                 Codicefiscale_Txt.Text = MyProfile.CodiceFiscale;
                 Indirizzo_Txt.Text = MyProfile.Indirizzo;
                 Cap_Txt.Text = MyProfile.Cap;

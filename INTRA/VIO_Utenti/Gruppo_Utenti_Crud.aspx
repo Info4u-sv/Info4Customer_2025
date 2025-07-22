@@ -3,6 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContenutoPaginaContentPH" runat="server">
+    <link href="../../assets/css/material-icons.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <script>
         var passwordMinLength = 6;
         function GetPasswordRating(password) {
@@ -113,15 +115,60 @@
         .EditCaption {
             display: none !important;
         }
+
+        @media screen and (max-width: 1024px) {
+            .card-content {
+                min-height: unset !important; /* oppure min-height: auto; */
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .dxpc-contentWrapper,
+            .dxpcLite .dxpc-contentWrapper {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 10px;
+                box-sizing: border-box;
+            }
+
+            .dxpcLite,
+            .dxpc {
+                width: 100% !important;
+                left: 0 !important;
+                right: 0 !important;
+                margin: 0 auto;
+            }
+
+            .form-control.maxWidth {
+                width: 100% !important;
+            }
+
+            .input-group {
+                flex-direction: column;
+            }
+
+            .input-group-addon {
+                margin-bottom: 5px;
+            }
+        }
+
+        .input-group-addon {
+            background-color: transparent;
+            border: transparent;
+        }
+
+        .dxflRequired_Office365 {
+            display: none !important;
+        }
     </style>
-    <div class="col-lg-2 col-md-3 col-sm-3">
+    <div class="col-lg-2 col-md-3 col-sm-12">
         <div class="card">
             <div class="card-header card-header-text" data-background-color="">
                 <h4 class="card-title">Tipologia utente</h4>
             </div>
             <div class="card-content">
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12 col-sm-12">
                         <dx:ASPxGridView ID="grid" runat="server" KeyFieldName="RoleName" DataSourceID="Utenti_Dts" Width="100%" EnableRowsCache="false" AutoGenerateColumns="False" SettingsBehavior-AllowFocusedRow="true" OnFocusedRowChanged="grid_FocusedRowChanged">
                             <ClientSideEvents FocusedRowChanged="function(s,e){Cards_CallbackPnl.PerformCallback();}" />
                             <Settings ShowColumnHeaders="false" />
@@ -137,7 +184,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-10 col-md-9 col-sm-9">
+    <div class="col-lg-10 col-md-9 col-sm-12">
         <div class="card">
             <div class="card-content">
                 <script>
@@ -168,6 +215,7 @@
                     <PanelCollection>
                         <dx:PanelContent>
                             <dx:ASPxGridView SettingsBehavior-ConfirmDelete="true" SettingsText-ConfirmDelete="Confermi l'eliminazione dell'utente?" SettingsText-PopupEditFormCaption="Modifica/Inserisci utente" Styles-AlternatingRow-Enabled="True" ID="Generic_Gridview" ClientInstanceName="Generic_Gridview" DataSourceID="EditCardView_Dts" runat="server" Width="100%" AutoGenerateColumns="False" OnRowInserting="Generic_Gridview_RowInserting" OnRowUpdating="Generic_Gridview_RowUpdating" KeyFieldName="ID" OnRowDeleted="Generic_Gridview_RowDeleted" OnCustomButtonInitialize="Generic_Gridview_CustomButtonInitialize" OnCustomButtonCallback="Generic_Gridview_CustomButtonCallback" OnRowDeleting="Generic_Gridview_RowDeleting">
+                                <SettingsAdaptivity AdaptivityMode="HideDataCells"></SettingsAdaptivity>
                                 <ClientSideEvents CustomButtonClick="
                            function(s,e){
                            if(e.buttonID == 'Riattiva')
@@ -204,15 +252,11 @@
                                 <ClientSideEvents BeginCallback="BeginCallbackGrid" EndCallback="EndCallbackGrid" />
                                 <Styles Header-Wrap="True" Cell-Paddings-Padding="3" Header-Paddings-Padding="3" FilterBar-Paddings-Padding="3" CommandColumn-Paddings-Padding="3" FilterBarImageCell-Paddings-Padding="3" FilterCell-Paddings-Padding="3"></Styles>
 
-                                <SettingsPopup>
-                                    <EditForm Modal="true" Width="1000px" HorizontalAlign="WindowCenter" VerticalAlign="WindowCenter">
-                                    </EditForm>
-                                </SettingsPopup>
                                 <Styles>
                                     <AlternatingRow Enabled="True"></AlternatingRow>
                                 </Styles>
                                 <SettingsAdaptivity>
-                                    <AdaptiveDetailLayoutProperties ColCount="2">
+                                    <AdaptiveDetailLayoutProperties ColCount="1">
                                         <SettingsAdaptivity AdaptivityMode="SingleColumnWindowLimit" />
                                     </AdaptiveDetailLayoutProperties>
                                 </SettingsAdaptivity>
@@ -220,8 +264,8 @@
                                 <SettingsEditing EditFormColumnCount="2" Mode="PopupEditForm" />
                                 <Settings ShowFilterRow="True"></Settings>
 
-                                <SettingsPopup EditForm-Modal="true" EditForm-VerticalAlign="WindowCenter" EditForm-HorizontalAlign="WindowCenter">
-                                    <EditForm HorizontalAlign="WindowCenter" VerticalAlign="WindowCenter" AllowResize="True" Modal="True"></EditForm>
+                                <SettingsPopup>
+                                    <EditForm HorizontalAlign="WindowCenter" VerticalAlign="WindowCenter" Width="320px" Height="600px" Modal="True"></EditForm>
                                 </SettingsPopup>
                                 <SettingsCommandButton>
                                     <NewButton ButtonType="Image" RenderMode="Image">
@@ -242,7 +286,7 @@
                                 </SettingsCommandButton>
                                 <SettingsDataSecurity AllowEdit="true" AllowInsert="true" AllowDelete="true"></SettingsDataSecurity>
                                 <SettingsSearchPanel Visible="True" />
-                                <EditFormLayoutProperties ColCount="2">
+                                <EditFormLayoutProperties ColCount="1">
                                     <SettingsAdaptivity AdaptivityMode="SingleColumnWindowLimit" />
                                 </EditFormLayoutProperties>
                                 <Styles AlternatingRow-Enabled="True"></Styles>
@@ -293,10 +337,9 @@
                                 </Columns>
                                 <Templates>
                                     <EditForm>
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <dx:ASPxCallbackPanel runat="server" ID="EditForm_CallbackPanel" ClientInstanceName="EditForm_CallbackPanel" Width="100%" OnCallback="EditForm_CallbackPanel_Callback">
-                                                    <ClientSideEvents EndCallback="function(s,e){ 
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="max-height: 550px; overflow-y: auto; padding:0px !important;">
+                                            <dx:ASPxCallbackPanel runat="server" ID="EditForm_CallbackPanel" ClientInstanceName="EditForm_CallbackPanel" Width="100%" OnCallback="EditForm_CallbackPanel_Callback">
+                                                <ClientSideEvents EndCallback="function(s,e){ 
         if(ASPxClientEdit.ValidateGroup('NuovoUtenteValid')){
             if(EditForm_CallbackPanel.cpDatiValidi == 1){
                 Cards_CallbackPnl.PerformCallback();
@@ -314,106 +357,85 @@
             delete EditForm_CallbackPanel.cpUpdate;
         }
     }" />
-                                                    <PanelCollection>
-                                                        <dx:PanelContent>
-                                                            <dx:ASPxFormLayout ID="Edit_FormLayout" ClientInstanceName="Edit_FormLayout" runat="server" Width="100%">
-                                                                <Items>
+                                                <PanelCollection>
+                                                    <dx:PanelContent>
+                                                        <dx:ASPxFormLayout ID="Edit_FormLayout" ClientInstanceName="Edit_FormLayout" runat="server" Width="100%">
 
-                                                                    <dx:LayoutGroup ColumnCount="12" Caption="Anagrafica azienda" Paddings-Padding="0">
-                                                                        <Items>
-                                                                            <dx:LayoutItem ColumnSpan="6" Caption="Società">
-                                                                                <LayoutItemNestedControlCollection>
-                                                                                    <dx:LayoutItemNestedControlContainer>
-                                                                                        <dx:ASPxTokenBox ID="Societa_TokenBox" AllowCustomTokens="false" runat="server" ClientInstanceName="Societa_TokenBox" ItemValueType="System.String" TextField="Denom" ValueField="CodCli" DataSourceID="Clienti_Dts" Width="100%">
-                                                                                            <ClientSideEvents LostFocus="function(s,e){AggiornamentoTextbox_Callback.PerformCallback(s.GetValue());}" ValueChanged="ControlloNumeroTocken" />
-                                                                                            <ValidationSettings ValidationGroup="NuovoUtenteValid" ErrorDisplayMode="None">
-                                                                                                <RequiredField IsRequired="true" />
-                                                                                            </ValidationSettings>
-                                                                                        </dx:ASPxTokenBox>
-                                                                                        <dx:ASPxTextBox runat="server" ID="CodLis_Llb" ClientInstanceName="CodLis_Llb" ClientVisible="false"></dx:ASPxTextBox>
-                                                                                    </dx:LayoutItemNestedControlContainer>
-                                                                                </LayoutItemNestedControlCollection>
-                                                                                <CaptionSettings VerticalAlign="Top" Location="Top" />
-                                                                            </dx:LayoutItem>
+                                                            <Items>
 
-                                                                            <%--  <dx:LayoutItem ColumnSpan="2" Caption="Fax">
-                                                                        <LayoutItemNestedControlCollection>
-                                                                            <dx:LayoutItemNestedControlContainer>
-                                                                                <dx:BootstrapTextBox runat="server" ID="Fax_Txt" ClientInstanceName="Fax_Txt" Width="100%" ClientEnabled="false"></dx:BootstrapTextBox>
-                                                                            </dx:LayoutItemNestedControlContainer>
-                                                                        </LayoutItemNestedControlCollection>
-                                                                        <CaptionSettings VerticalAlign="Top" Location="Top" />
-                                                                    </dx:LayoutItem>--%>
-
-                                                                            <dx:LayoutItem ColumnSpan="2" Caption="C.F./P.Iva">
-                                                                                <LayoutItemNestedControlCollection>
-                                                                                    <dx:LayoutItemNestedControlContainer>
-                                                                                        <dx:BootstrapTextBox runat="server" ID="Codicefiscale_Txt" ClientInstanceName="Codicefiscale_Txt" Width="100%" ClientEnabled="false"></dx:BootstrapTextBox>
-                                                                                    </dx:LayoutItemNestedControlContainer>
-                                                                                </LayoutItemNestedControlCollection>
-                                                                                <CaptionSettings VerticalAlign="Top" Location="Top" />
-                                                                            </dx:LayoutItem>
-                                                                            <dx:LayoutItem ColumnSpan="2" Caption="Email Azienda">
-                                                                                <LayoutItemNestedControlCollection>
-                                                                                    <dx:LayoutItemNestedControlContainer>
-                                                                                        <dx:BootstrapTextBox runat="server" ID="EmailAzienda_Txt" ClientInstanceName="EmailAzienda_Txt" Width="100%" ClientEnabled="false"></dx:BootstrapTextBox>
-                                                                                    </dx:LayoutItemNestedControlContainer>
-                                                                                </LayoutItemNestedControlCollection>
-                                                                                <CaptionSettings VerticalAlign="Top" Location="Top" />
-                                                                            </dx:LayoutItem>
-                                                                            <dx:LayoutItem ColumnSpan="5" Caption="Indirizzo">
-                                                                                <LayoutItemNestedControlCollection>
-                                                                                    <dx:LayoutItemNestedControlContainer>
-                                                                                        <dx:BootstrapTextBox runat="server" ID="Indirizzo_Txt" ClientInstanceName="Indirizzo_Txt" Width="100%" ClientEnabled="false"></dx:BootstrapTextBox>
-                                                                                    </dx:LayoutItemNestedControlContainer>
-                                                                                </LayoutItemNestedControlCollection>
-                                                                                <CaptionSettings VerticalAlign="Top" Location="Top" />
-                                                                            </dx:LayoutItem>
-                                                                            <dx:LayoutItem ColumnSpan="1" Caption="Cap">
-                                                                                <LayoutItemNestedControlCollection>
-                                                                                    <dx:LayoutItemNestedControlContainer>
-                                                                                        <dx:BootstrapTextBox runat="server" ID="Cap_Txt" MaxLength="5" ClientInstanceName="Cap_Txt" Width="100%" ClientEnabled="false"></dx:BootstrapTextBox>
-                                                                                    </dx:LayoutItemNestedControlContainer>
-                                                                                </LayoutItemNestedControlCollection>
-                                                                                <CaptionSettings VerticalAlign="Top" Location="Top" />
-                                                                            </dx:LayoutItem>
-                                                                            <dx:LayoutItem ColumnSpan="2" Caption="Città">
-                                                                                <LayoutItemNestedControlCollection>
-                                                                                    <dx:LayoutItemNestedControlContainer>
-                                                                                        <dx:BootstrapTextBox runat="server" ID="Citta_Txt" ClientInstanceName="Citta_Txt" Width="100%" ClientEnabled="false"></dx:BootstrapTextBox>
-                                                                                    </dx:LayoutItemNestedControlContainer>
-                                                                                </LayoutItemNestedControlCollection>
-                                                                                <CaptionSettings VerticalAlign="Top" Location="Top" />
-                                                                            </dx:LayoutItem>
-                                                                            <dx:LayoutItem ColumnSpan="1" Caption="Provincia">
-                                                                                <LayoutItemNestedControlCollection>
-                                                                                    <dx:LayoutItemNestedControlContainer>
-                                                                                        <dx:BootstrapTextBox runat="server" ID="Provincia_Txt" ClientInstanceName="Provincia_Txt" Width="100%" ClientEnabled="false"></dx:BootstrapTextBox>
-                                                                                    </dx:LayoutItemNestedControlContainer>
-                                                                                </LayoutItemNestedControlCollection>
-                                                                                <CaptionSettings VerticalAlign="Top" Location="Top" />
-                                                                            </dx:LayoutItem>
-                                                                            <%--  <dx:LayoutItem ColumnSpan="2" Caption="Email Ticket">
-                                                                        <LayoutItemNestedControlCollection>
-                                                                            <dx:LayoutItemNestedControlContainer>
-                                                                                <dx:BootstrapTextBox runat="server" ID="EmailTicket_Txt" ClientInstanceName="EmailTicket_Txt" Width="100%">
-                                                                                    <ValidationSettings ValidationGroup="NuovoUtenteValid">
-                                                                                        <RequiredField IsRequired="true" />
-                                                                                    </ValidationSettings>
-                                                                                </dx:BootstrapTextBox>
-                                                                            </dx:LayoutItemNestedControlContainer>
-                                                                        </LayoutItemNestedControlCollection>
-                                                                        <CaptionSettings VerticalAlign="Top" Location="Top" />
-                                                                    </dx:LayoutItem>--%>
-                                                                        </Items>
-                                                                    </dx:LayoutGroup>
-                                                                    <dx:LayoutGroup ColumnCount="12" Caption="Utente intranet" Paddings-Padding="0">
-                                                                        <Items>
-                                                                            <dx:LayoutItem Caption="Nome utente" ColumnSpan="2">
-                                                                                <LayoutItemNestedControlCollection>
-                                                                                    <dx:LayoutItemNestedControlContainer>
-                                                                                        <dx:BootstrapTextBox runat="server" ID="NomeUtenteIntranet_Txt" EnableClientSideAPI="True" ClientInstanceName="NomeUtenteIntranet_Txt" Width="100%" Text='<%# Bind("UtenteIntranet") %>' ValidationSettings-ValidationGroup="NuovoUtenteValid" ClientEnabled="false">
-                                                                                            <ClientSideEvents Validation="function(s,e){
+                                                                <dx:LayoutGroup ColumnCount="2" Caption="Anagrafica azienda" Paddings-Padding="0">
+                                                                    <Items>
+                                                                        <dx:LayoutItem ColumnSpan="2" Caption="Società">
+                                                                            <LayoutItemNestedControlCollection>
+                                                                                <dx:LayoutItemNestedControlContainer>
+                                                                                    <dx:ASPxTokenBox ID="Societa_TokenBox" AllowCustomTokens="false" runat="server" ClientInstanceName="Societa_TokenBox" ItemValueType="System.String" TextField="Denom" ValueField="CodCli" DataSourceID="Clienti_Dts" Width="100%">
+                                                                                        <ClientSideEvents LostFocus="function(s,e){AggiornamentoTextbox_Callback.PerformCallback(s.GetValue());}" ValueChanged="ControlloNumeroTocken" />
+                                                                                        <ValidationSettings ValidationGroup="NuovoUtenteValid" ErrorDisplayMode="None">
+                                                                                            <RequiredField IsRequired="true" />
+                                                                                        </ValidationSettings>
+                                                                                    </dx:ASPxTokenBox>
+                                                                                    <dx:ASPxTextBox runat="server" ID="CodLis_Llb" ClientInstanceName="CodLis_Llb" ClientVisible="false"></dx:ASPxTextBox>
+                                                                                </dx:LayoutItemNestedControlContainer>
+                                                                            </LayoutItemNestedControlCollection>
+                                                                            <CaptionSettings VerticalAlign="Top" Location="Top" />
+                                                                        </dx:LayoutItem>
+                                                                        <dx:LayoutItem ColumnSpan="2" Caption="C.F./P.Iva">
+                                                                            <LayoutItemNestedControlCollection>
+                                                                                <dx:LayoutItemNestedControlContainer>
+                                                                                    <dx:BootstrapTextBox runat="server" ID="Codicefiscale_Txt" ClientInstanceName="Codicefiscale_Txt" Width="100%" ClientEnabled="false"></dx:BootstrapTextBox>
+                                                                                </dx:LayoutItemNestedControlContainer>
+                                                                            </LayoutItemNestedControlCollection>
+                                                                            <CaptionSettings VerticalAlign="Top" Location="Top" />
+                                                                        </dx:LayoutItem>
+                                                                        <dx:LayoutItem ColumnSpan="2" Caption="Email Azienda">
+                                                                            <LayoutItemNestedControlCollection>
+                                                                                <dx:LayoutItemNestedControlContainer>
+                                                                                    <dx:BootstrapTextBox runat="server" ID="EmailAzienda_Txt" ClientInstanceName="EmailAzienda_Txt" Width="100%" ClientEnabled="false"></dx:BootstrapTextBox>
+                                                                                </dx:LayoutItemNestedControlContainer>
+                                                                            </LayoutItemNestedControlCollection>
+                                                                            <CaptionSettings VerticalAlign="Top" Location="Top" />
+                                                                        </dx:LayoutItem>
+                                                                        <dx:LayoutItem ColumnSpan="2" Caption="Indirizzo">
+                                                                            <LayoutItemNestedControlCollection>
+                                                                                <dx:LayoutItemNestedControlContainer>
+                                                                                    <dx:BootstrapTextBox runat="server" ID="Indirizzo_Txt" ClientInstanceName="Indirizzo_Txt" Width="100%" ClientEnabled="false"></dx:BootstrapTextBox>
+                                                                                </dx:LayoutItemNestedControlContainer>
+                                                                            </LayoutItemNestedControlCollection>
+                                                                            <CaptionSettings VerticalAlign="Top" Location="Top" />
+                                                                        </dx:LayoutItem>
+                                                                        <dx:LayoutItem ColumnSpan="1" Caption="Provincia">
+                                                                            <LayoutItemNestedControlCollection>
+                                                                                <dx:LayoutItemNestedControlContainer>
+                                                                                    <dx:BootstrapTextBox runat="server" ID="Provincia_Txt" ClientInstanceName="Provincia_Txt" Width="100%" ClientEnabled="false"></dx:BootstrapTextBox>
+                                                                                </dx:LayoutItemNestedControlContainer>
+                                                                            </LayoutItemNestedControlCollection>
+                                                                            <CaptionSettings VerticalAlign="Top" Location="Top" />
+                                                                        </dx:LayoutItem>
+                                                                        <dx:LayoutItem ColumnSpan="1" Caption="Cap">
+                                                                            <LayoutItemNestedControlCollection>
+                                                                                <dx:LayoutItemNestedControlContainer>
+                                                                                    <dx:BootstrapTextBox runat="server" ID="Cap_Txt" MaxLength="5" ClientInstanceName="Cap_Txt" Width="100%" ClientEnabled="false"></dx:BootstrapTextBox>
+                                                                                </dx:LayoutItemNestedControlContainer>
+                                                                            </LayoutItemNestedControlCollection>
+                                                                            <CaptionSettings VerticalAlign="Top" Location="Top" />
+                                                                        </dx:LayoutItem>
+                                                                        <dx:LayoutItem ColumnSpan="2" Caption="Città">
+                                                                            <LayoutItemNestedControlCollection>
+                                                                                <dx:LayoutItemNestedControlContainer>
+                                                                                    <dx:BootstrapTextBox runat="server" ID="Citta_Txt" ClientInstanceName="Citta_Txt" Width="100%" ClientEnabled="false"></dx:BootstrapTextBox>
+                                                                                </dx:LayoutItemNestedControlContainer>
+                                                                            </LayoutItemNestedControlCollection>
+                                                                            <CaptionSettings VerticalAlign="Top" Location="Top" />
+                                                                        </dx:LayoutItem>
+                                                                    </Items>
+                                                                </dx:LayoutGroup>
+                                                                <dx:LayoutGroup ColumnCount="1" Caption="Utente intranet" Paddings-Padding="0">
+                                                                    <Items>
+                                                                        <dx:LayoutItem Caption="Nome utente" ColumnSpan="1">
+                                                                            <LayoutItemNestedControlCollection>
+                                                                                <dx:LayoutItemNestedControlContainer>
+                                                                                    <dx:BootstrapTextBox runat="server" ID="NomeUtenteIntranet_Txt" EnableClientSideAPI="True" ClientInstanceName="NomeUtenteIntranet_Txt" Width="100%" Text='<%# Bind("UtenteIntranet") %>' ValidationSettings-ValidationGroup="NuovoUtenteValid" ClientEnabled="false">
+                                                                                        <ClientSideEvents Validation="function(s,e){
                                                                                         if(EditForm_CallbackPanel.cpNomeUtenteValido != null)
                                                                                         {     
                                                                                                if(EditForm_CallbackPanel.cpNomeUtenteValido == 1 )
@@ -437,49 +459,19 @@
                                                                                              }
                                                                                         }
                                                                                                }" />
-                                                                                            <ValidationSettings ValidateOnLeave="false">
-                                                                                                <RequiredField IsRequired="true" />
-                                                                                            </ValidationSettings>
-                                                                                        </dx:BootstrapTextBox>
-                                                                                    </dx:LayoutItemNestedControlContainer>
-                                                                                </LayoutItemNestedControlCollection>
-                                                                                <CaptionSettings VerticalAlign="Top" Location="Top" />
-                                                                            </dx:LayoutItem>
-                                                                            <%--                                                                    <dx:LayoutItem Caption="Password" ColumnSpan="2">
-                                                                        <LayoutItemNestedControlCollection>
-                                                                            <dx:LayoutItemNestedControlContainer>
-                                                                                <dx:BootstrapTextBox runat="server" ID="Password_Txt" EnableClientSideAPI="True" ClientInstanceName="Password_Txt" Width="100%" ValidationSettings-ValidationGroup="NuovoUtenteValid">
-                                                                                    <ValidationSettings>
-                                                                                        <RequiredField IsRequired="true" />
-                                                                                    </ValidationSettings>
-                                                                                </dx:BootstrapTextBox>
-
-                                                                            </dx:LayoutItemNestedControlContainer>
-                                                                        </LayoutItemNestedControlCollection>
-                                                                        <CaptionSettings VerticalAlign="Top" Location="Top" />
-                                                                    </dx:LayoutItem>
-                                                                    <dx:LayoutItem Caption="Conferma password" ColumnSpan="2">
-                                                                        <LayoutItemNestedControlCollection>
-                                                                            <dx:LayoutItemNestedControlContainer>
-                                                                                <dx:BootstrapTextBox runat="server" ID="CheckPassword_Txt" EnableClientSideAPI="True" ClientInstanceName="CheckPassword_Txt" Width="100%" ValidationSettings-ValidationGroup="NuovoUtenteValid">
-                                                                                    <ClientSideEvents Validation="function(s, e) {
-	                                                                                                    var originalPasswd = Password_Txt.GetText();
-                                                                                                        var currentPasswd = s.GetText();
-                                                                                                        e.isValid = (originalPasswd  == currentPasswd );
-                                                                                                    }" />
-                                                                                    <ValidationSettings>
-                                                                                        <RequiredField IsRequired="true" />
-                                                                                    </ValidationSettings>
-                                                                                </dx:BootstrapTextBox>
-                                                                            </dx:LayoutItemNestedControlContainer>
-                                                                        </LayoutItemNestedControlCollection>
-                                                                        <CaptionSettings VerticalAlign="Top" Location="Top" />
-                                                                    </dx:LayoutItem>--%>
-                                                                            <dx:LayoutItem Caption="Email" ColumnSpan="10">
-                                                                                <LayoutItemNestedControlCollection>
-                                                                                    <dx:LayoutItemNestedControlContainer>
-                                                                                        <dx:BootstrapTextBox AutoCompleteType="Email" EnableClientSideAPI="True" runat="server" ID="Email_Txt" ClientInstanceName="Email_Txt" Width="100%" Text='<%# Bind("EmailContatto") %>' ValidationSettings-ValidationGroup="NuovoUtenteValid">
-                                                                                            <ClientSideEvents Validation="
+                                                                                        <ValidationSettings ValidateOnLeave="false">
+                                                                                            <RequiredField IsRequired="true" />
+                                                                                        </ValidationSettings>
+                                                                                    </dx:BootstrapTextBox>
+                                                                                </dx:LayoutItemNestedControlContainer>
+                                                                            </LayoutItemNestedControlCollection>
+                                                                            <CaptionSettings VerticalAlign="Top" Location="Top" />
+                                                                        </dx:LayoutItem>
+                                                                        <dx:LayoutItem Caption="Email" ColumnSpan="1">
+                                                                            <LayoutItemNestedControlCollection>
+                                                                                <dx:LayoutItemNestedControlContainer>
+                                                                                    <dx:BootstrapTextBox AutoCompleteType="Email" EnableClientSideAPI="True" runat="server" ID="Email_Txt" ClientInstanceName="Email_Txt" Width="100%" Text='<%# Bind("EmailContatto") %>' ValidationSettings-ValidationGroup="NuovoUtenteValid">
+                                                                                        <ClientSideEvents Validation="
                                                                                         function(s,e)
                                                                                         {
                                                                                             if(EditForm_CallbackPanel.cpEmailValido != null)
@@ -506,82 +498,70 @@
                                                                                                      }
                                                                                              }
                                                                                         }" />
-                                                                                            <ValidationSettings ValidateOnLeave="true" ErrorDisplayMode="Text" ErrorText="Email già presente nel database.">
-                                                                                                <RegularExpression ValidationExpression="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" ErrorText="Email non valida" />
-                                                                                                <RequiredField IsRequired="True" ErrorText="Obbligatoria" />
-                                                                                            </ValidationSettings>
+                                                                                        <ValidationSettings ValidateOnLeave="true" ErrorDisplayMode="Text" ErrorText="Email già presente nel database.">
+                                                                                            <RegularExpression ValidationExpression="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" ErrorText="Email non valida" />
+                                                                                            <RequiredField IsRequired="True" ErrorText="Obbligatoria" />
+                                                                                        </ValidationSettings>
 
-                                                                                        </dx:BootstrapTextBox>
-                                                                                    </dx:LayoutItemNestedControlContainer>
-                                                                                </LayoutItemNestedControlCollection>
-                                                                                <CaptionSettings VerticalAlign="Top" Location="Top" />
-                                                                            </dx:LayoutItem>
-                                                                            <%-- <dx:LayoutItem Caption="Data scadenza account" ColumnSpan="2">
-                                                                        <LayoutItemNestedControlCollection>
-                                                                            <dx:LayoutItemNestedControlContainer>
-                                                                                <dx:ASPxDateEdit ID="DataBlocco_DateEdit" EnableClientSideAPI="True" ClientInstanceName="DataBlocco_DateEdit" Width="100%" runat="server" Value='<%# Bind("DataBlocco") %>' ValidationSettings-ValidationGroup="NuovoUtenteValid" OnDataBinding="DataBlocco_DateEdit_DataBinding">
-                                                                                </dx:ASPxDateEdit>
-                                                                            </dx:LayoutItemNestedControlContainer>
-                                                                        </LayoutItemNestedControlCollection>
-                                                                        <CaptionSettings VerticalAlign="Top" Location="Top" />
-                                                                    </dx:LayoutItem>--%>
-                                                                            <dx:LayoutItem ColumnSpan="2" Caption="Nome">
-                                                                                <LayoutItemNestedControlCollection>
-                                                                                    <dx:LayoutItemNestedControlContainer>
-                                                                                        <dx:BootstrapTextBox runat="server" ID="Nome_txt" ClientInstanceName="Nome_txt" Width="100%">
-                                                                                            <ValidationSettings ValidationGroup="NuovoUtenteValid">
-                                                                                                <RequiredField IsRequired="true" />
-                                                                                            </ValidationSettings>
-                                                                                        </dx:BootstrapTextBox>
-                                                                                    </dx:LayoutItemNestedControlContainer>
-                                                                                </LayoutItemNestedControlCollection>
-                                                                                <CaptionSettings VerticalAlign="Top" Location="Top" />
-                                                                            </dx:LayoutItem>
-                                                                            <dx:LayoutItem ColumnSpan="2" Caption="Cognome">
-                                                                                <LayoutItemNestedControlCollection>
-                                                                                    <dx:LayoutItemNestedControlContainer>
-                                                                                        <dx:BootstrapTextBox runat="server" ID="Cognome_Txt" ClientInstanceName="Cognome_Txt" Width="100%">
-                                                                                            <ValidationSettings ValidationGroup="NuovoUtenteValid">
-                                                                                                <RequiredField IsRequired="true" />
-                                                                                            </ValidationSettings>
-                                                                                        </dx:BootstrapTextBox>
-                                                                                    </dx:LayoutItemNestedControlContainer>
-                                                                                </LayoutItemNestedControlCollection>
-                                                                                <CaptionSettings VerticalAlign="Top" Location="Top" />
-                                                                            </dx:LayoutItem>
-                                                                            <dx:LayoutItem ColumnSpan="2" Caption="Telefono">
-                                                                                <LayoutItemNestedControlCollection>
-                                                                                    <dx:LayoutItemNestedControlContainer>
-                                                                                        <dx:BootstrapTextBox runat="server" ID="Telefono_txt" ClientInstanceName="Telefono_txt" Width="100%"></dx:BootstrapTextBox>
-                                                                                    </dx:LayoutItemNestedControlContainer>
-                                                                                </LayoutItemNestedControlCollection>
-                                                                                <CaptionSettings VerticalAlign="Top" Location="Top" />
-                                                                            </dx:LayoutItem>
+                                                                                    </dx:BootstrapTextBox>
+                                                                                </dx:LayoutItemNestedControlContainer>
+                                                                            </LayoutItemNestedControlCollection>
+                                                                            <CaptionSettings VerticalAlign="Top" Location="Top" />
+                                                                        </dx:LayoutItem>
+                                                                        <dx:LayoutItem ColumnSpan="1" Caption="Nome">
+                                                                            <LayoutItemNestedControlCollection>
+                                                                                <dx:LayoutItemNestedControlContainer>
+                                                                                    <dx:BootstrapTextBox runat="server" ID="Nome_txt" ClientInstanceName="Nome_txt" Width="100%">
+                                                                                        <ValidationSettings ValidationGroup="NuovoUtenteValid">
+                                                                                            <RequiredField IsRequired="true" />
+                                                                                        </ValidationSettings>
+                                                                                    </dx:BootstrapTextBox>
+                                                                                </dx:LayoutItemNestedControlContainer>
+                                                                            </LayoutItemNestedControlCollection>
+                                                                            <CaptionSettings VerticalAlign="Top" Location="Top" />
+                                                                        </dx:LayoutItem>
+                                                                        <dx:LayoutItem ColumnSpan="1" Caption="Cognome">
+                                                                            <LayoutItemNestedControlCollection>
+                                                                                <dx:LayoutItemNestedControlContainer>
+                                                                                    <dx:BootstrapTextBox runat="server" ID="Cognome_Txt" ClientInstanceName="Cognome_Txt" Width="100%">
+                                                                                        <ValidationSettings ValidationGroup="NuovoUtenteValid">
+                                                                                            <RequiredField IsRequired="true" />
+                                                                                        </ValidationSettings>
+                                                                                    </dx:BootstrapTextBox>
+                                                                                </dx:LayoutItemNestedControlContainer>
+                                                                            </LayoutItemNestedControlCollection>
+                                                                            <CaptionSettings VerticalAlign="Top" Location="Top" />
+                                                                        </dx:LayoutItem>
+                                                                        <dx:LayoutItem ColumnSpan="1" Caption="Telefono">
+                                                                            <LayoutItemNestedControlCollection>
+                                                                                <dx:LayoutItemNestedControlContainer>
+                                                                                    <dx:BootstrapTextBox runat="server" ID="Telefono_txt" ClientInstanceName="Telefono_txt" Width="100%"></dx:BootstrapTextBox>
+                                                                                </dx:LayoutItemNestedControlContainer>
+                                                                            </LayoutItemNestedControlCollection>
+                                                                            <CaptionSettings VerticalAlign="Top" Location="Top" />
+                                                                        </dx:LayoutItem>
+                                                                    </Items>
+                                                                </dx:LayoutGroup>
+                                                            </Items>
+                                                        </dx:ASPxFormLayout>
 
-                                                                        </Items>
-
-                                                                    </dx:LayoutGroup>
-                                                                </Items>
-                                                            </dx:ASPxFormLayout>
-
-                                                            <dx:BootstrapButton runat="server" Text="" ClientInstanceName="Salva_Btn" ID="Salva_Btn" AutoPostBack="false" ValidationGroup="NuovoUtenteValid" Badge-CssClass="BadgeBtn"
-                                                                CssClasses-Control="btn btn-sm btn-custom-padding" Badge-IconCssClass="fa fa-save">
-                                                                <ClientSideEvents Click="function(s,e){ 
+                                                        <dx:BootstrapButton runat="server" Text="" ClientInstanceName="Salva_Btn" ID="Salva_Btn" AutoPostBack="false" ValidationGroup="NuovoUtenteValid" Badge-CssClass="BadgeBtn-just-icon"
+                                                            CssClasses-Control="btn btn-sm" Badge-IconCssClass="fa fa-save">
+                                                            <ClientSideEvents Click="function(s,e){ 
                                                             if(ASPxClientEdit.ValidateGroup('NuovoUtenteValid')){EditForm_CallbackPanel.PerformCallback(1);}}" />
-                                                                <Badge Text="SALVA" />
-                                                                <SettingsBootstrap RenderOption="Success" />
-                                                            </dx:BootstrapButton>
-                                                            <dx:BootstrapButton runat="server" Text="" ClientInstanceName="SalvaEdit_Btn" ID="SalvaEdit_Btn" ClientVisible="false" AutoPostBack="false" ValidationGroup="NuovoUtenteValid" Badge-CssClass="BadgeBtn"
-                                                                CssClasses-Control="btn btn-sm btn-custom-padding" Badge-IconCssClass="fa fa-save">
-                                                                <ClientSideEvents Click="function(s,e){ 
+                                                            <Badge Text="SALVA" />
+                                                            <SettingsBootstrap RenderOption="Success" />
+                                                        </dx:BootstrapButton>
+                                                        <dx:BootstrapButton runat="server" Text="" ClientInstanceName="SalvaEdit_Btn" ID="SalvaEdit_Btn" ClientVisible="false" AutoPostBack="false" ValidationGroup="NuovoUtenteValid" Badge-CssClass="BadgeBtn-just-icon"
+                                                            CssClasses-Control="btn btn-sm" Badge-IconCssClass="fa fa-save">
+                                                            <ClientSideEvents Click="function(s,e){ 
                                                              EditForm_CallbackPanel.PerformCallback(2);}" />
-                                                                <Badge Text="SALVA MODIFICHE" IconCssClass="fa fa-save" />
-                                                                <SettingsBootstrap RenderOption="Success" />
-                                                            </dx:BootstrapButton>
-                                                        </dx:PanelContent>
-                                                    </PanelCollection>
-                                                </dx:ASPxCallbackPanel>
-                                            </div>
+                                                            <Badge Text="SALVA MODIFICHE" IconCssClass="fa fa-save" />
+                                                            <SettingsBootstrap RenderOption="Success" />
+                                                        </dx:BootstrapButton>
+                                                    </dx:PanelContent>
+                                                </PanelCollection>
+                                            </dx:ASPxCallbackPanel>
                                         </div>
                                     </EditForm>
                                 </Templates>
@@ -605,7 +585,7 @@
                 </dx:ASPxCallback>
 
 
-                <dx:ASPxPopupControl ID="CambiaPassword_Popup" HeaderText="Modifica password" ClientInstanceName="CambiaPassword_Popup" runat="server" Width="700px" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="TopSides" AutoUpdatePosition="true">
+                <dx:ASPxPopupControl ID="CambiaPassword_Popup" HeaderText="Modifica password" ClientInstanceName="CambiaPassword_Popup" runat="server" Width="90%" MinWidth="300px" MaxWidth="700px" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="TopSides" AutoUpdatePosition="true">
                     <ContentCollection>
                         <dx:PopupControlContentControl>
 
@@ -630,7 +610,8 @@
                                 <SettingsAdaptivity>
                                     <GridSettings>
                                         <Breakpoints>
-                                            <dx:LayoutBreakpoint ColumnCount="1" MaxWidth="790" Name="S" />
+                                            <dx:LayoutBreakpoint ColumnCount="2" MaxWidth="1024" Name="Tablet" />
+                                            <dx:LayoutBreakpoint ColumnCount="1" MaxWidth="600" Name="Mobile" />
                                         </Breakpoints>
                                     </GridSettings>
                                 </SettingsAdaptivity>
@@ -638,7 +619,8 @@
                                     <dx:LayoutGroup Caption="Cambio password" GroupBoxDecoration="Box">
                                         <GridSettings></GridSettings>
                                         <SpanRules>
-                                            <dx:SpanRule BreakpointName="S" ColumnSpan="1" RowSpan="1" />
+                                            <dx:SpanRule BreakpointName="Tablet" ColumnSpan="1" RowSpan="1" />
+                                            <dx:SpanRule BreakpointName="Mobile" ColumnSpan="1" RowSpan="1" />
                                         </SpanRules>
                                         <Items>
                                             <dx:LayoutItem Caption="Password">
