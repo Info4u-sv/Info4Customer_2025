@@ -136,13 +136,14 @@
                                             <Items>
                                                 <dx:GridViewToolbarItem Alignment="left">
                                                     <Template>
-                                                        <dx:ASPxButtonEdit ID="tbToolbarSearch" runat="server" NullText="Cerca..." Height="100%" ClearButton-DisplayMode="Always" ClientInstanceName="tbToolbarSearch" >
+                                                        <dx:ASPxButtonEdit ID="tbToolbarSearch" runat="server" NullText="Cerca..." Height="100%" ClearButton-DisplayMode="Always" ClientInstanceName="tbToolbarSearch">
                                                             <Buttons>
                                                                 <dx:SpinButtonExtended Image-IconID="find_find_16x16gray" />
                                                             </Buttons>
                                                         </dx:ASPxButtonEdit>
                                                     </Template>
                                                 </dx:GridViewToolbarItem>
+                                                <dx:GridViewToolbarItem Command="ClearFilter" Text="Cancella Flitro" />
                                                 <dx:GridViewToolbarItem Command="ExportToXlsx" Text="Esporta" />
                                             </Items>
                                         </dx:GridViewToolbar>
@@ -204,7 +205,7 @@
                                          </DataItemTemplate>
                                      </dx:GridViewDataTextColumn>--%>
 
-                                        <dx:GridViewCommandColumn Caption="Azioni" VisibleIndex="0" ShowClearFilterButton="true" Name="------">
+                                        <dx:GridViewCommandColumn Caption="Azioni" VisibleIndex="0" ShowClearFilterButton="false" Name="------">
 
                                             <CustomButtons>
                                                 <dx:BootstrapGridViewCommandColumnCustomButton ID="GoTo" IconCssClass="icon4u icon-edit image" CssClass="btn btn-sm btn-custom-padding action-btn edit" />

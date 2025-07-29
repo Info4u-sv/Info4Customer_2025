@@ -1,5 +1,6 @@
 ﻿using DevExpress.Web;
 using Info4U.Models;
+using INTRA.AppCode;
 using System;
 using System.Data.SqlClient;
 using System.Web.Security;
@@ -91,11 +92,99 @@ namespace INTRA.SuperAdmin.UserGest
         {
             string username = e.Parameter;
             string ruolo = Ruolo_cb.Text;
-            Sql4Helper objSqlHelper = new Sql4Helper();
+            INTRA.AppCode.Sql4Helper objSqlHelper = new INTRA.AppCode.Sql4Helper();
             SqlParameter[] objParams = new SqlParameter[2];
             objParams[0] = new SqlParameter("@Rules_id_fk", ruolo);
             objParams[1] = new SqlParameter("@UserName", username);
             objSqlHelper.ExecuteNonQueryForNews("PRT_Privilege_Reset_Users", objParams);
         }
+        protected void User_Grdw_CustomButtonInitialize(object sender, ASPxGridViewCustomButtonEventArgs e)
+        {
+            if (e.VisibleIndex > -1)
+            {
+                bool Scaduto = Convert.ToBoolean(User_Grdw.GetRowValues(e.VisibleIndex, "IsLockedOut"));
+                if (Scaduto)
+                {
+                    if (e.ButtonID == "Sospendi")
+                    {
+                        e.Visible = DevExpress.Utils.DefaultBoolean.False;
+                    }
+
+
+                }
+                else
+                {
+                    if (e.ButtonID == "Riattiva")
+                    {
+                        e.Visible = DevExpress.Utils.DefaultBoolean.False;
+                    }
+                }
+            }
+        }
+        protected void User_Grdw_CustomCallback(object sender, ASPxGridViewCustomCallbackEventArgs e)
+        {
+            string[] parts = e.Parameters.Split('|');
+            if (parts.Length == 2 && parts[0] == "Sospendi")
+            {
+                int visibleIndex = int.Parse(parts[1]);
+                User_Grdw_CustomButtonCallback(sender, new ASPxGridViewCustomButtonCallbackEventArgs("Sospendi", visibleIndex));
+            }
+            if (parts.Length == 2 && parts[0] == "Riattiva")
+            {
+                int visibleIndex = int.Parse(parts[1]);
+                User_Grdw_CustomButtonCallback(sender, new ASPxGridViewCustomButtonCallbackEventArgs("Riattiva", visibleIndex));
+            }
+        }
+        protected void User_Grdw_CustomButtonCallback(object sender, ASPxGridViewCustomButtonCallbackEventArgs e)
+        {
+            string username = User_Grdw.GetRowValues(e.VisibleIndex, "UserName")?.ToString();
+
+            if (!string.IsNullOrEmpty(username))
+            {
+                MembershipUser user = Membership.GetUser(username);
+                Guid userId = (Guid)user.ProviderUserKey;
+
+                string query = string.Empty;
+                switch (e.ButtonID)
+                {
+                    case "Riattiva":
+                        query = @"UPDATE aspnet_Membership 
+              SET IsLockedOut = 0
+              WHERE UserId = @UserId";
+                        break;
+
+                    case "Sospendi":
+                        query = @"UPDATE aspnet_Membership 
+                          SET IsLockedOut = 1, LastLockoutDate = GETDATE() 
+                          WHERE UserId = @UserId";
+                        break;
+
+                    case "Password":
+                        Session["UsernameModPsw"] = username;
+                        User_Grdw.JSProperties["cpCambiaPassword"] = 1;
+                        return;
+                }
+
+                if (!string.IsNullOrEmpty(query))
+                {
+                    using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["info4portaleConnectionString"].ConnectionString))
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@UserId", userId);
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+
+                    User_Grdw.JSProperties["cpCambiaPassword"] = 0;
+                    User_Grdw.JSProperties["cpRefreshGrid"] = true;
+                }
+            }
+
+            User_Grdw.DataBind();
+        }
+
+
+
     }
 }

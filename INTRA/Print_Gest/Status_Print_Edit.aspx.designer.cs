@@ -66,7 +66,7 @@ namespace INTRA.Print_Gest
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxButton Update_Btn;
+        protected global::DevExpress.Web.Bootstrap.BootstrapButton Update_Btn;
 
         /// <summary>
         /// Controllo Update_Callback.

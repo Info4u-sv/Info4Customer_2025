@@ -60,6 +60,12 @@
       <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="AppCode\BeyondFunzioniGenerali.cs" />
+    <Compile Include="AppCode\Contratto_Riepilogo_Det_Rpt.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppCode\Contratto_Riepilogo_Rpt.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="AppCode\DomVsService.cs" />
     <Compile Include="AppCode\Istanze_Generiche.cs" />
     <Compile Include="AppCode\ListaTicket_LINQ.designer.cs">
@@ -87,6 +93,16 @@
     <Compile Include="AppCode\VIO_Parametri.cs" />
     <Compile Include="AppCode\VIO_Utenti_CRUD_23.cs" />
     <Compile Include="AppCode\WEB_Domini.cs" />
+    <Compile Include="App_GlobalResources\Contratto_Riepilogo_Det_Rpt.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Contratto_Riepilogo_Det_Rpt.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Contratto_Riepilogo_Rpt.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Contratto_Riepilogo_Rpt.resx</DependentUpon>
+    </Compile>
     <Compile Include="Bolle\DettaglioBolla.aspx.cs">
       <DependentUpon>DettaglioBolla.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -149,6 +165,20 @@
     </Compile>
     <Compile Include="EmptyRegister.Master.designer.cs">
       <DependentUpon>EmptyRegister.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Gestionale\Carnet_Contratti_CRUD.aspx.cs">
+      <DependentUpon>Carnet_Contratti_CRUD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gestionale\Carnet_Contratti_CRUD.aspx.designer.cs">
+      <DependentUpon>Carnet_Contratti_CRUD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gestionale\Clienti_CRUD.aspx.cs">
+      <DependentUpon>Clienti_CRUD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gestionale\Clienti_CRUD.aspx.designer.cs">
+      <DependentUpon>Clienti_CRUD.aspx</DependentUpon>
     </Compile>
     <Compile Include="Magazzino\Articoli_DaFatt_Gest.aspx.cs">
       <DependentUpon>Articoli_DaFatt_Gest.aspx</DependentUpon>
@@ -833,6 +863,48 @@
     <Compile Include="ShopRM\TecZone\DashBoardTec.aspx.designer.cs">
       <DependentUpon>DashBoardTec.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Stats\Carnet.aspx.cs">
+      <DependentUpon>Carnet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Stats\Carnet.aspx.designer.cs">
+      <DependentUpon>Carnet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Stats\Clienti.aspx.cs">
+      <DependentUpon>Clienti.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Stats\Clienti.aspx.designer.cs">
+      <DependentUpon>Clienti.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Stats\Contratto_Report.aspx.cs">
+      <DependentUpon>Contratto_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Stats\Contratto_Report.aspx.designer.cs">
+      <DependentUpon>Contratto_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Stats\Contratto_Report_Preview.aspx.cs">
+      <DependentUpon>Contratto_Report_Preview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Stats\Contratto_Report_Preview.aspx.designer.cs">
+      <DependentUpon>Contratto_Report_Preview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Stats\Tck_Tot_Ore_tecnici_Dett_View.aspx.cs">
+      <DependentUpon>Tck_Tot_Ore_tecnici_Dett_View.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Stats\Tck_Tot_Ore_tecnici_Dett_View.aspx.designer.cs">
+      <DependentUpon>Tck_Tot_Ore_tecnici_Dett_View.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Stats\Tot_Ore_tecnici.aspx.cs">
+      <DependentUpon>Tot_Ore_tecnici.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Stats\Tot_Ore_tecnici.aspx.designer.cs">
+      <DependentUpon>Tot_Ore_tecnici.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SuperAdmin\AppCode\PRT_DefaultPage_SA.cs" />
     <Compile Include="SuperAdmin\AppCode\PRT_Settings_SA.cs" />
     <Compile Include="SuperAdmin\Configurazione_Intranet.aspx.cs">
@@ -849,12 +921,26 @@
     <Compile Include="SuperAdmin\PRT_Parameter_CRUD.aspx.designer.cs">
       <DependentUpon>PRT_Parameter_CRUD.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SuperAdmin\RulesGest\roles.aspx.cs">
+      <DependentUpon>roles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuperAdmin\RulesGest\roles.aspx.designer.cs">
+      <DependentUpon>roles.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SuperAdmin\RulesGest\Ruoli_DefaultPage_Crud.aspx.cs">
       <DependentUpon>Ruoli_DefaultPage_Crud.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SuperAdmin\RulesGest\Ruoli_DefaultPage_Crud.aspx.designer.cs">
       <DependentUpon>Ruoli_DefaultPage_Crud.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SuperAdmin\RulesGest\Ruoli_Gestione.aspx.cs">
+      <DependentUpon>Ruoli_Gestione.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuperAdmin\RulesGest\Ruoli_Gestione.aspx.designer.cs">
+      <DependentUpon>Ruoli_Gestione.aspx</DependentUpon>
     </Compile>
     <Compile Include="SuperAdmin\RulesGest\RuoloAbilitaGeneraUtente.aspx.cs">
       <DependentUpon>RuoloAbilitaGeneraUtente.aspx</DependentUpon>
@@ -1124,6 +1210,8 @@
     <Content Include="Domini\anagrafica_domini.aspx" />
     <Content Include="Domini\anagrafica_email_dom.aspx" />
     <Content Include="Domini\domini_gest.aspx" />
+    <Content Include="Gestionale\Carnet_Contratti_CRUD.aspx" />
+    <Content Include="Gestionale\Clienti_CRUD.aspx" />
     <Content Include="ImageCropper_4U\dist\index.html" />
     <Content Include="ImageCropper_4U\dist\script.js" />
     <Content Include="ImageCropper_4U\dist\style.css" />
@@ -3219,9 +3307,17 @@
     <Content Include="static\img\logo-esteso-login.png" />
     <Content Include="static\img\logo.png" />
     <Content Include="static\Sfondo-offerta-siate.jpg" />
+    <Content Include="Stats\Carnet.aspx" />
+    <Content Include="Stats\Clienti.aspx" />
+    <Content Include="Stats\Contratto_Report.aspx" />
+    <Content Include="Stats\Contratto_Report_Preview.aspx" />
+    <Content Include="Stats\Tck_Tot_Ore_tecnici_Dett_View.aspx" />
+    <Content Include="Stats\Tot_Ore_tecnici.aspx" />
     <Content Include="SuperAdmin\Configurazione_Intranet.aspx" />
     <Content Include="SuperAdmin\PRT_Parameter_CRUD.aspx" />
+    <Content Include="SuperAdmin\RulesGest\roles.aspx" />
     <Content Include="SuperAdmin\RulesGest\Ruoli_DefaultPage_Crud.aspx" />
+    <Content Include="SuperAdmin\RulesGest\Ruoli_Gestione.aspx" />
     <Content Include="SuperAdmin\RulesGest\RuoloAbilitaGeneraUtente.aspx" />
     <Content Include="SuperAdmin\RulesGest\users_by_role.aspx" />
     <Content Include="SuperAdmin\Ticket_Workflow_Status.aspx" />
@@ -3343,8 +3439,7 @@
     <Content Include="SuperAdmin\PRT_CRUD\PRT_DropDown_Famglia.aspx" />
     <Content Include="SuperAdmin\RulesGest\access_rules.aspx" />
     <Content Include="SuperAdmin\RulesGest\access_rule_summary.aspx" />
-    <Content Include="SuperAdmin\RulesGest\roles.aspx" />
-    <Content Include="SuperAdmin\RulesGest\Ruoli_Gestione.aspx" />
+    <Content Include="SuperAdmin\RulesGest\roles_OLD.aspx" />
     <Content Include="SuperAdmin\UserGest\add_user.aspx" />
     <Content Include="SuperAdmin\UserGest\edit_user_tm.aspx" />
     <Content Include="SuperAdmin\UserGest\Firma_Tecnico.aspx" />
@@ -3553,19 +3648,12 @@
     <Compile Include="SuperAdmin\RulesGest\access_rule_summary.aspx.designer.cs">
       <DependentUpon>access_rule_summary.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SuperAdmin\RulesGest\roles.aspx.cs">
-      <DependentUpon>roles.aspx</DependentUpon>
+    <Compile Include="SuperAdmin\RulesGest\roles_OLD.aspx.cs">
+      <DependentUpon>roles_OLD.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SuperAdmin\RulesGest\roles.aspx.designer.cs">
-      <DependentUpon>roles.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SuperAdmin\RulesGest\Ruoli_Gestione.aspx.cs">
-      <DependentUpon>Ruoli_Gestione.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SuperAdmin\RulesGest\Ruoli_Gestione.aspx.designer.cs">
-      <DependentUpon>Ruoli_Gestione.aspx</DependentUpon>
+    <Compile Include="SuperAdmin\RulesGest\roles_OLD.aspx.designer.cs">
+      <DependentUpon>roles_OLD.aspx</DependentUpon>
     </Compile>
     <Compile Include="SuperAdmin\UserGest\add_user.aspx.cs">
       <DependentUpon>add_user.aspx</DependentUpon>
@@ -3644,7 +3732,6 @@
   <ItemGroup>
     <Folder Include="App_Data\DocumentCache\" />
     <Folder Include="App_Data\UploadTemp\" />
-    <Folder Include="App_GlobalResources\" />
     <Folder Include="Public\CategoCatalogo\" />
     <Folder Include="ShopRM\images\template\" />
     <Folder Include="SuperAdmin\Parametri\" />
@@ -3759,6 +3846,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_GlobalResources\Contratto_Riepilogo_Det_Rpt.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Contratto_Riepilogo_Det_Rpt.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Contratto_Riepilogo_Rpt.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Contratto_Riepilogo_Rpt.designer.cs</LastGenOutput>
+    </Content>
     <EmbeddedResource Include="Depositi\AppCode\Deposito_Cliente_Rpt.resx">
       <DependentUpon>Deposito_Cliente_Rpt.cs</DependentUpon>
     </EmbeddedResource>

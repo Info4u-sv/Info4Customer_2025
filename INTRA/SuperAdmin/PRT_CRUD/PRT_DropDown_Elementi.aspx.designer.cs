@@ -51,6 +51,15 @@ namespace INTRA.SuperAdmin.PRT_CRUD
         protected global::DevExpress.Web.ASPxGridView Generic_Gridview;
 
         /// <summary>
+        /// Controllo Elimina.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::DevExpress.Web.Bootstrap.BootstrapGridViewCommandColumnCustomButton Elimina;
+
+        /// <summary>
         /// Controllo Generic_Dts.
         /// </summary>
         /// <remarks>

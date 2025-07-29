@@ -2,13 +2,14 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <%--<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>--%>
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <%-- <link href='//fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,700' rel='stylesheet' type='text/css' />
     <link href="/assets/css/Croppie-master/prism.css" rel="stylesheet" />
     <link rel="Stylesheet" type="text/css" href="bower_components/sweetalert/dist/sweetalert.css" />
     <link href="/assets/css/Croppie-master/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" />
     <link href="/assets/css/Croppie-master/croppie.css" rel="stylesheet" />
     <link href="/assets/css/Croppie-master/demo.css" rel="stylesheet" />--%>
+
     <script type="text/javascript">
         function changeUserType(userType) {
             var grid = document.getElementById('<%=grdPrivileges.ClientID %>');
@@ -158,170 +159,147 @@
             width: 100% !important;
         }
     </style>
+    <asp:UpdatePanel runat="server">
+        <ContentTemplate>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-icon" data-background-color="blue">
+                        <i class="material-icons">assignment</i>
+                    </div>
+                    <div class="card-content">
+                        <div style="float: right; padding-right: 20px; display: inherit">
+                            <dx:BootstrapButton runat="server" ID="Aggiorna_btn" ClientInstanceName="Aggiorna_btn" ClientVisible="true" AutoPostBack="false" Badge-CssClass="BadgeBtn" CssClasses-Control="btn btn-md position" UseSubmitBehavior="false" ClientEnabled="false">
+                                <Badge IconCssClass="fa fa-sync" Text="Aggiorna Utenti" />
+                                <SettingsBootstrap RenderOption="Success" Sizing="small" />
+                                <ClientSideEvents Click="function(s,e){Aggiorna_Utenti_Callback.PerformCallback(Ruoli_Combobox.GetText());}" Init="Aggiorna_btn_Init" />
+                            </dx:BootstrapButton>
+                        </div>
+                        <h4 class="card-title">Ruolo</h4>
 
-    <%-- sostituisco l'update panel con il callback panel --%>
+                        <dx:ASPxComboBox ID="Ruoli_Combobox" ClientInstanceName="Ruoli_Combobox" DataSourceID="Ruoli_Sql" runat="server" ValueType="System.String" ValueField="RoleId" TextField="RoleName" AutoPostBack="true" OnSelectedIndexChanged="Ruoli_Combobox_SelectedIndexChanged"></dx:ASPxComboBox>
+                    </div>
+                </div>
+            </div>
 
-
-    <dx:ASPxCallbackPanel ID="Ruoli_CallbackPnl" runat="server"
-        ClientInstanceName="Ruoli_CallbackPnl"
-        Width="100%" OnCallback="Ruoli_CallbackPnl_Callback">
-        <ClientSideEvents EndCallback="function(s,e){ showNotification(); }" />
+            <%--    <dx:ASPxCallbackPanel runat="server" ID="Ruoli_CallbackPnl" ClientInstanceName="Ruoli_CallbackPnl" Width="100%" OnCallback="Ruoli_CallbackPnl_Callback">
         <PanelCollection>
-            <dx:PanelContent>
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="version-text" style="position: absolute; top: 1px; right: 45px; font-size: 13px; color: #999; font-family: 'Helvetica Neue', Arial, sans-serif; font-style: italic; z-index: 999;">
-                            Versione 7/2025
-                        </div>
-                        <div class="card-header card-header-icon" data-background-color="blue">
-                            <i class="material-icons">assignment</i>
-                        </div>
-
-                        <div class="card-content">
-                            <%-- Inserire l impostazione del bottone --%>
-                            <div style="float: right; padding-right: 20px; display: inherit">
-                                <dx:BootstrapButton runat="server" ID="Aggiorna_btn" ClientInstanceName="Aggiorna_btn" ClientVisible="true" AutoPostBack="false" Badge-CssClass="BadgeBtn" CssClasses-Control="btn btn-md position" UseSubmitBehavior="false" ClientEnabled="true">
-                                    <Badge IconCssClass="fa fa-sync" Text="Aggiorna Utenti" />
-                                    <SettingsBootstrap RenderOption="Success" Sizing="Normal" />
-                                    <ClientSideEvents Click="function(s,e){Aggiorna_Utenti_Callback.PerformCallback(Ruoli_Combobox.GetText());}" Init="Aggiorna_btn_Init" />
-                                </dx:BootstrapButton>
-                            </div>
-
-                            <h4 class="card-title">Ruolo</h4>
-
-
-                            <!-- ComboBox -->
-                            <dx:ASPxComboBox ID="Ruoli_Combobox" runat="server"
-                                ClientInstanceName="Ruoli_Combobox"
-                                DataSourceID="Ruoli_Sql"
-                                ValueField="RoleId"
-                                TextField="RoleName"
-                                AutoPostBack="false">
-                                <ClientSideEvents SelectedIndexChanged="function(s,e){ Ruoli_CallbackPnl.PerformCallback(); }" />
-                            </dx:ASPxComboBox>
-
-
-                            <%-- db  --%>
-
-
-                            <asp:SqlDataSource ID="Generic_Sql" runat="server" ConnectionString='<%$ ConnectionStrings:info4portaleConnectionString %>' DeleteCommand="select 1 where 1 = 2 " InsertCommand="select 1 where 1 = 2 " SelectCommand="PRT_Privilege_Rules_getRolePrivileges" SelectCommandType="StoredProcedure">
-                                <SelectParameters>
-                                    <asp:ControlParameter ControlID="Ruoli_Combobox" PropertyName="Text" Name="Rules_id_fk" Type="String"></asp:ControlParameter>
-                                </SelectParameters>
-                            </asp:SqlDataSource>
-                        </div>
+            <dx:PanelContent>--%>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-icon" data-background-color="blue">
+                        <i class="material-icons">assignment</i>
                     </div>
-                </div>
-
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-content">
-
-                            <%-- qui un div --%>
-
-                            <h4 class="card-title">Gestione permessi ruolo</h4>
-
-                            <!-- GridView -->
-                            <asp:GridView ID="grdPrivileges" runat="server" Width="100%" AutoGenerateColumns="False" ClientIDMode="Predictable"
-                                DataKeyNames="MenuId" GridLines="None" DataSourceID="Generic_Sql" OnDataBinding="grdPrivileges_DataBinding1">
-                                <AlternatingRowStyle BackColor="#99CCFF" />
-                                <Columns>
-                                    <asp:TemplateField>
-                                        <HeaderTemplate>
-                                            <table class="bordered" width="100%">
-                                                <thead>
-                                                    <tr style="height: 20px" valign="middle">
-                                                        <th style="width: 60%" rowspan="2">
-                                                            <span>Web Page</span>
-                                                        </th>
-                                                        <th style="width: 60%" align="center" colspan="4">
-                                                            <span style="font-size: 13px;">Permission</span><br />
-                                                        </th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th style="width: 10%; height: 20px; text-align: center;">
-                                                            <span style="font-size: 13px;">Add</span><br />
-                                                            <asp:CheckBox ID="chkBoxAddPermission" runat="server" onClick="checkAll(this, 'chkBoxAdd', 'Add');" />
-                                                        </th>
-                                                        <th style="width: 10%; height: 20px; text-align: center;">
-                                                            <span style="font-size: 13px;">Delete</span><br />
-                                                            <asp:CheckBox ID="chkBoxDeletePermission" runat="server" onClick="checkAll(this, 'chkBoxDelete', 'Delete');" />
-                                                        </th>
-                                                        <th style="width: 10%; height: 20px; text-align: center;">
-                                                            <span style="font-size: 13px;">Modify</span><br />
-                                                            <asp:CheckBox ID="chkBoxModifyPermission" runat="server" onClick="checkAll(this, 'chkBoxModify', 'Modify');" />
-                                                        </th>
-                                                        <th style="width: 10%; height: 20px; text-align: center;">
-                                                            <span style="font-size: 13px;">Read</span><br />
-                                                            <asp:CheckBox ID="chkBoxReadPermission" runat="server" onClick="checkAll(this, 'chkBoxRead', 'Read');" />
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                        </HeaderTemplate>
-                                        <ItemTemplate>
-                                            <table class="bordered" width="100%">
-                                                <tr name="<%# Eval("Title") %>">
-                                                    <td style="width: 60%">
-                                                        <input type="checkbox" onclick='selezione("<%# Eval("Title") %>");' id="<%# Eval("Title") %>" />
-                                                        <asp:Label ID="lblDisplayRoles" runat="server" Text='<%# Bind("Title") %>'
-                                                            CssClass="inputLabel" Style="color: #000000; font-weight: bold;"></asp:Label>
-                                                        <asp:HiddenField ID="hdnFormId" runat="server" Value='<%# Bind("MenuId") %>' />
-                                                        <asp:HiddenField ID="hdnRolesId" runat="server" Value='<%# Bind("Title") %>' />
-                                                        <%--  <asp:HiddenField ID="hdnFormId" runat="server" Value='<%# Bind("FormId") %>' />
-                            <asp:HiddenField ID="hdnRolesId" runat="server" Value='<%# Bind("Title") %>' />--%>
-                                                        <%--  <%# "FormId: " + Eval("Title") %>--%>
-                                                    </td>
-                                                    <td style="width: 10%" align="center">
-                                                        <asp:CheckBox ID="chkBoxAdd" runat="server" Checked='<%# Bind("add_permission") %>'
-                                                            onClick="findUnselectedCheckboxes('chkBoxAddPermission', 'Add');" CssClass="checkBox" />
-                                                    </td>
-                                                    <td style="width: 10%" align="center">
-                                                        <asp:CheckBox ID="chkBoxDelete" runat="server" BorderStyle="Solid" BorderColor="Transparent"
-                                                            CssClass="inputCheckBox" BorderWidth="1px" Checked='<%# Bind("delete_permission") %>'
-                                                            onClick="findUnselectedCheckboxes('chkBoxDeletePermission', 'Delete');" />
-                                                    </td>
-                                                    <td style="width: 10%" align="center">
-                                                        <asp:CheckBox ID="chkBoxModify" runat="server" BorderStyle="Solid" BorderColor="Transparent"
-                                                            CssClass="inputCheckBox" BorderWidth="1px" Checked='<%# Bind("modify_permission") %>'
-                                                            onClick="findUnselectedCheckboxes('chkBoxModifyPermission', 'Modify');" />
-                                                    </td>
-                                                    <td style="width: 10%" align="center">
-                                                        <asp:CheckBox ID="chkBoxRead" runat="server" Checked='<%# Bind("read_permission") %>'
-                                                            CssClass="inputCheckBox" BorderStyle="Solid" BorderColor="Transparent" BorderWidth="1px"
-                                                            onClick="findUnselectedCheckboxes('chkBoxReadPermission', 'Read');" />
-                                                    </td>
+                    <div class="card-content">
+                        <h4 class="card-title">Gestione permessi ruolo</h4>
+                        <asp:GridView ID="grdPrivileges" runat="server" Width="100%" AutoGenerateColumns="False" ClientIDMode="Predictable"
+                            DataKeyNames="MenuId" GridLines="None" DataSourceID="Generic_Sql" OnDataBinding="grdPrivileges_DataBinding1">
+                            <AlternatingRowStyle BackColor="#99CCFF" />
+                            <Columns>
+                                <asp:TemplateField>
+                                    <HeaderTemplate>
+                                        <table class="bordered" width="100%">
+                                            <thead>
+                                                <tr style="height: 20px" valign="middle">
+                                                    <th style="width: 60%" rowspan="2">
+                                                        <span>Web Page</span>
+                                                    </th>
+                                                    <th style="width: 60%" align="center" colspan="4">
+                                                        <span style="font-size: 13px;">Permission</span><br />
+                                                    </th>
                                                 </tr>
-                                            </table>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                </Columns>
-                            </asp:GridView>
+                                                <tr>
+                                                    <th style="width: 10%; height: 20px; text-align: center;">
+                                                        <span style="font-size: 13px;">Add</span><br />
+                                                        <asp:CheckBox ID="chkBoxAddPermission" runat="server" onClick="checkAll(this, 'chkBoxAdd', 'Add');" />
+                                                    </th>
+                                                    <th style="width: 10%; height: 20px; text-align: center;">
+                                                        <span style="font-size: 13px;">Delete</span><br />
+                                                        <asp:CheckBox ID="chkBoxDeletePermission" runat="server" onClick="checkAll(this, 'chkBoxDelete', 'Delete');" />
+                                                    </th>
+                                                    <th style="width: 10%; height: 20px; text-align: center;">
+                                                        <span style="font-size: 13px;">Modify</span><br />
+                                                        <asp:CheckBox ID="chkBoxModifyPermission" runat="server" onClick="checkAll(this, 'chkBoxModify', 'Modify');" />
+                                                    </th>
+                                                    <th style="width: 10%; height: 20px; text-align: center;">
+                                                        <span style="font-size: 13px;">Read</span><br />
+                                                        <asp:CheckBox ID="chkBoxReadPermission" runat="server" onClick="checkAll(this, 'chkBoxRead', 'Read');" />
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <table class="bordered" width="100%">
+                                            <tr name="<%# Eval("Title") %>">
+                                                <td style="width: 60%">
+                                                    <input type="checkbox" onclick='selezione("<%# Eval("Title") %>");' id="<%# Eval("Title") %>" />
+                                                    <asp:Label ID="lblDisplayRoles" runat="server" Text='<%# Bind("Title") %>'
+                                                        CssClass="inputLabel" Style="color: #000000; font-weight: bold;"></asp:Label>
+                                                    <asp:HiddenField ID="hdnFormId" runat="server" Value='<%# Bind("MenuId") %>' />
+                                                    <asp:HiddenField ID="hdnRolesId" runat="server" Value='<%# Bind("Title") %>' />
+                                                    <%--  <asp:HiddenField ID="hdnFormId" runat="server" Value='<%# Bind("FormId") %>' />
+                                                    <asp:HiddenField ID="hdnRolesId" runat="server" Value='<%# Bind("Title") %>' />--%>
+                                                    <%--  <%# "FormId: " + Eval("Title") %>--%>
+                                                </td>
+                                                <td style="width: 10%" align="center">
+                                                    <asp:CheckBox ID="chkBoxAdd" runat="server" Checked='<%# Bind("add_permission") %>'
+                                                        onClick="findUnselectedCheckboxes('chkBoxAddPermission', 'Add');" CssClass="checkBox" />
+                                                </td>
+                                                <td style="width: 10%" align="center">
+                                                    <asp:CheckBox ID="chkBoxDelete" runat="server" BorderStyle="Solid" BorderColor="Transparent"
+                                                        CssClass="inputCheckBox" BorderWidth="1px" Checked='<%# Bind("delete_permission") %>'
+                                                        onClick="findUnselectedCheckboxes('chkBoxDeletePermission', 'Delete');" />
+                                                </td>
+                                                <td style="width: 10%" align="center">
+                                                    <asp:CheckBox ID="chkBoxModify" runat="server" BorderStyle="Solid" BorderColor="Transparent"
+                                                        CssClass="inputCheckBox" BorderWidth="1px" Checked='<%# Bind("modify_permission") %>'
+                                                        onClick="findUnselectedCheckboxes('chkBoxModifyPermission', 'Modify');" />
+                                                </td>
+                                                <td style="width: 10%" align="center">
+                                                    <asp:CheckBox ID="chkBoxRead" runat="server" Checked='<%# Bind("read_permission") %>'
+                                                        CssClass="inputCheckBox" BorderStyle="Solid" BorderColor="Transparent" BorderWidth="1px"
+                                                        onClick="findUnselectedCheckboxes('chkBoxReadPermission', 'Read');" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
+                        <div style="float: right; padding-top: 20px">
 
-                            <div style="float: right; padding-top: 20px">
-                                <dx:ASPxButton Text="Aggiorna Permessi" runat="server"
-                                    ID="salva_btn" OnClick="salva_btn_Click">
-                                </dx:ASPxButton>
-                            </div>
-
-
-
+                            <dx:BootstrapButton runat="server"
+                                ID="salva_btn"
+                                ClientInstanceName="salva_btn"
+                                AutoPostBack="true"
+                                Badge-CssClass="BadgeBtn"
+                                CssClasses-Control="btn btn-success">
+                                <Badge IconCssClass="fas fa-save" Text="Aggiorna Permessi" />
+                                <SettingsBootstrap RenderOption="Success" Sizing="small" />
+                            </dx:BootstrapButton>
                         </div>
                     </div>
                 </div>
-            </dx:PanelContent>
+            </div>
+            <%--   </dx:PanelContent>
         </PanelCollection>
-    </dx:ASPxCallbackPanel>
+    </dx:ASPxCallbackPanel>--%>
 
-
-
-
+            <%--    <dx:ASPxCallback runat="server" ID="AggiornaPermessi_Callback" ClientInstanceName="AggiornaPermessi_Callback" OnCallback="AggiornaPermessi_Callback_Callback">
+        <ClientSideEvents EndCallback="function(s,e){Ruoli_CallbackPnl.PerformCallback();}" />
+    </dx:ASPxCallback>--%>
+        </ContentTemplate>
+    </asp:UpdatePanel>
     <dx:ASPxCallback runat="server" ID="Aggiorna_Utenti_Callback" ClientInstanceName="Aggiorna_Utenti_Callback" OnCallback="Aggiorna_Utenti_Callback_Callback">
         <ClientSideEvents EndCallback="function(s,e){showNotification();}" />
     </dx:ASPxCallback>
     <asp:SqlDataSource ID="Ruoli_Sql" runat="server" ConnectionString='<%$ ConnectionStrings:info4portaleConnectionString %>' DeleteCommand="select 1 where 1 = 2 " InsertCommand="select 1 where 1 = 2 " SelectCommand="SELECT aspnet_Roles.RoleName, aspnet_Roles.RoleId, CASE WHEN derivedtbl_1.TotaleUtentiPerRuolo IS NULL THEN 0 ELSE derivedtbl_1.TotaleUtentiPerRuolo END AS TotaleUtentiPerRuolo FROM aspnet_Roles LEFT OUTER JOIN (SELECT aspnet_UsersInRoles.RoleId, COUNT(aspnet_Users.UserName) AS TotaleUtentiPerRuolo FROM aspnet_UsersInRoles INNER JOIN aspnet_Users ON aspnet_UsersInRoles.UserId = aspnet_Users.UserId AND aspnet_UsersInRoles.UserId = aspnet_Users.UserId AND aspnet_UsersInRoles.UserId = aspnet_Users.UserId AND aspnet_UsersInRoles.UserId = aspnet_Users.UserId GROUP BY aspnet_UsersInRoles.RoleId) AS derivedtbl_1 ON aspnet_Roles.RoleId = derivedtbl_1.RoleId"></asp:SqlDataSource>
 
-
+    <asp:SqlDataSource ID="Generic_Sql" runat="server" ConnectionString='<%$ ConnectionStrings:info4portaleConnectionString %>' DeleteCommand="select 1 where 1 = 2 " InsertCommand="select 1 where 1 = 2 " SelectCommand="PRT_Privilege_Rules_getRolePrivileges" SelectCommandType="StoredProcedure">
+        <SelectParameters>
+            <asp:ControlParameter ControlID="Ruoli_Combobox" PropertyName="Text" Name="Rules_id_fk" Type="String"></asp:ControlParameter>
+        </SelectParameters>
+    </asp:SqlDataSource>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="PageScriptContent" runat="server">
     <script>
@@ -343,5 +321,20 @@
             }
         };
     </script>
+    <style>
+        .btn-green-icon {
+            background-color: #4CAF50 !important;
+            color: white !important;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 4px;
+            font-size: 13px;
+            text-transform: uppercase;
+        }
+
+            .btn-green-icon i {
+                margin-right: 6px;
+            }
+    </style>
 </asp:Content>
 

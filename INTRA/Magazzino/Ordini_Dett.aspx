@@ -12,13 +12,13 @@
             line-height: 20px;
         }
 
-        div#MainContent_Contratto_Layout_Ord_Dett_Contratto_DXPEForm_PW-1 {
+        /* div#MainContent_Contratto_Layout_Ord_Dett_Contratto_DXPEForm_PW-1 {
             top: -75px !important;
         }
 
         div#MainContent_DaFatturare_Layout_Ord_Dett_Gridview_DXPEForm_PW-1 {
             top: -75px !important;
-        }
+        }*/
 
         .dxtcLite_Office365 > .dxtc-content {
             padding: 0px !important;
@@ -196,6 +196,10 @@
                                                             <Styles Header-Wrap="True" Cell-Paddings-Padding="3" Header-Paddings-Padding="3" FilterBar-Paddings-Padding="3" CommandColumn-Paddings-Padding="3" FilterBarImageCell-Paddings-Padding="3" FilterCell-Paddings-Padding="3"></Styles>
                                                             <Settings AutoFilterCondition="Contains" ShowFilterRowMenu="true" />
                                                             <SettingsPager PageSizeItemSettings-Items="10,20,50,100" PageSizeItemSettings-Visible="true" PageSizeItemSettings-AllItemText="All" PageSizeItemSettings-ShowAllItem="true" Position="TopAndBottom"></SettingsPager>
+                                                            <SettingsPopup EditForm-VerticalAlign="WindowCenter" EditForm-HorizontalAlign="Center" EditForm-Modal="true"></SettingsPopup>
+                                                            <SettingsPopup>
+                                                                <EditForm AllowResize="True" AutoUpdatePosition="True"></EditForm>
+                                                            </SettingsPopup>
                                                             <Toolbars>
                                                                 <dx:GridViewToolbar>
                                                                     <Items>
@@ -257,9 +261,9 @@
                                                                         <dx:BootstrapGridViewCommandColumnCustomButton ID="EvadiParziale" IconCssClass="icon4u icon-evadi image" CssClass="btn btn-sm btn-custom-padding action-btn evadi" />
                                                                     </CustomButtons>
                                                                 </dx:GridViewCommandColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="CodArt" VisibleIndex="1" Width="150px" ReadOnly="true" EditFormSettings-ColumnSpan="2"></dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="UM" VisibleIndex="3" Width="50px" CellStyle-HorizontalAlign="Center" ReadOnly="true"></dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataSpinEditColumn FieldName="QtaOrd" VisibleIndex="3" Caption="Qta" Width="60px" CellStyle-HorizontalAlign="Center">
+                                                                <dx:GridViewDataTextColumn FieldName="CodArt" VisibleIndex="1" Width="150px" ReadOnly="true" EditFormSettings-ColumnSpan="2" EditFormSettings-CaptionLocation="Top"></dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="UM" VisibleIndex="3" Width="50px" CellStyle-HorizontalAlign="Center" ReadOnly="true" EditFormSettings-CaptionLocation="Top"></dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataSpinEditColumn FieldName="QtaOrd" VisibleIndex="3" Caption="Qta" Width="60px" CellStyle-HorizontalAlign="Center" EditFormSettings-CaptionLocation="Top">
                                                                     <EditItemTemplate>
                                                                         <dx:ASPxSpinEdit runat="server" ID="QtaOrd_Contr" ClientInstanceName="QtaOrd_Contr" Width="100%" Value='<%# Bind("QtaOrd") %>' MinValue='<%# Convert.ToInt32(Eval("QtaEva")) %>' MaxValue="10000">
                                                                             <ValidationSettings ValidateOnLeave="false" ErrorDisplayMode="None" ValidationGroup="InsertValid">
@@ -269,12 +273,12 @@
                                                                         </dx:ASPxSpinEdit>
                                                                     </EditItemTemplate>
                                                                 </dx:GridViewDataSpinEditColumn>
-                                                                <dx:GridViewDataSpinEditColumn FieldName="QtaEva" VisibleIndex="4" EditFormSettings-Visible="False" Width="60px" CellStyle-HorizontalAlign="Center" Caption="Evaso"></dx:GridViewDataSpinEditColumn>
+                                                                <dx:GridViewDataSpinEditColumn FieldName="QtaEva" VisibleIndex="4" EditFormSettings-Visible="False" Width="60px" CellStyle-HorizontalAlign="Center" Caption="Evaso" EditFormSettings-CaptionLocation="Top"></dx:GridViewDataSpinEditColumn>
                                                                 <dx:GridViewDataSpinEditColumn FieldName="QtaDaEvadere" VisibleIndex="4" EditFormSettings-Visible="False" Width="60px" CellStyle-HorizontalAlign="Center" Caption="Da Evadere" Visible="false"></dx:GridViewDataSpinEditColumn>
-                                                                <dx:GridViewDataSpinEditColumn FieldName="U_DaEvadere" VisibleIndex="4" EditFormSettings-Visible="False" Width="60px" CellStyle-HorizontalAlign="Center" Caption="Da Evadere"></dx:GridViewDataSpinEditColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="Note" VisibleIndex="5" EditFormSettings-ColumnSpan="2"></dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="Descrizione" VisibleIndex="2" ReadOnly="true" EditFormSettings-ColumnSpan="2"></dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataCheckColumn FieldName="U_DaFatturare" VisibleIndex="6" Caption="Da Fatturare" Width="100px" ReadOnly="true"></dx:GridViewDataCheckColumn>
+                                                                <dx:GridViewDataSpinEditColumn FieldName="U_DaEvadere" VisibleIndex="4" EditFormSettings-Visible="False" Width="60px" CellStyle-HorizontalAlign="Center" Caption="Da Evadere" EditFormSettings-CaptionLocation="Top"></dx:GridViewDataSpinEditColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="Note" VisibleIndex="5" EditFormSettings-ColumnSpan="2" EditFormSettings-CaptionLocation="Top"></dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="Descrizione" VisibleIndex="2" ReadOnly="true" EditFormSettings-ColumnSpan="2" EditFormSettings-CaptionLocation="Top"></dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataCheckColumn FieldName="U_DaFatturare" VisibleIndex="6" Caption="Da Fatturare" Width="100px" ReadOnly="true" EditFormSettings-CaptionLocation="Top"></dx:GridViewDataCheckColumn>
                                                                 <dx:GridViewDataCheckColumn FieldName="NRiga" VisibleIndex="6" Visible="false"></dx:GridViewDataCheckColumn>
                                                             </Columns>
                                                             <FormatConditions>
@@ -306,6 +310,10 @@
                                                             <Styles Header-Wrap="True" Cell-Paddings-Padding="3" Header-Paddings-Padding="3" FilterBar-Paddings-Padding="3" CommandColumn-Paddings-Padding="3" FilterBarImageCell-Paddings-Padding="3" FilterCell-Paddings-Padding="3"></Styles>
                                                             <Settings AutoFilterCondition="Contains" ShowFilterRowMenu="true" />
                                                             <SettingsPager PageSizeItemSettings-Items="10,20,50,100" PageSizeItemSettings-Visible="true" PageSizeItemSettings-AllItemText="All" PageSizeItemSettings-ShowAllItem="true" Position="TopAndBottom"></SettingsPager>
+                                                            <SettingsPopup EditForm-VerticalAlign="WindowCenter" EditForm-HorizontalAlign="Center" EditForm-Modal="true"></SettingsPopup>
+                                                            <SettingsPopup>
+                                                                <EditForm AllowResize="True" AutoUpdatePosition="True"></EditForm>
+                                                            </SettingsPopup>
                                                             <Toolbars>
                                                                 <dx:GridViewToolbar>
                                                                     <Items>
@@ -368,9 +376,9 @@
                                                                         <dx:BootstrapGridViewCommandColumnCustomButton ID="EvadiParzialeFatt" IconCssClass="icon4u icon-evadi image" CssClass="btn btn-sm btn-custom-padding action-btn evadi" />
                                                                     </CustomButtons>
                                                                 </dx:GridViewCommandColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="CodArt" VisibleIndex="1" Width="150px" ReadOnly="true" EditFormSettings-ColumnSpan="2"></dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="UM" VisibleIndex="3" Width="50px" CellStyle-HorizontalAlign="Center" ReadOnly="true"></dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataSpinEditColumn FieldName="QtaOrd" VisibleIndex="3" Caption="Qta" Width="60px" CellStyle-HorizontalAlign="Center">
+                                                                <dx:GridViewDataTextColumn FieldName="CodArt" VisibleIndex="1" Width="150px" ReadOnly="true" EditFormSettings-ColumnSpan="2" EditFormSettings-CaptionLocation="Top"></dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="UM" VisibleIndex="3" Width="50px" CellStyle-HorizontalAlign="Center" ReadOnly="true" EditFormSettings-CaptionLocation="Top"></dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataSpinEditColumn FieldName="QtaOrd" VisibleIndex="3" Caption="Qta" Width="60px" CellStyle-HorizontalAlign="Center" EditFormSettings-CaptionLocation="Top">
                                                                     <EditItemTemplate>
                                                                         <dx:ASPxSpinEdit runat="server" ID="QtaOrd_Fatt" ClientInstanceName="QtaOrd_Fatt" Value='<%# Bind("QtaOrd") %>' MinValue='<%# Convert.ToInt32(Eval("QtaEva")) %>'>
                                                                             <ValidationSettings ValidateOnLeave="false" ErrorDisplayMode="None" ValidationGroup="InsertValid">
@@ -380,13 +388,13 @@
                                                                         </dx:ASPxSpinEdit>
                                                                     </EditItemTemplate>
                                                                 </dx:GridViewDataSpinEditColumn>
-                                                                <dx:GridViewDataSpinEditColumn FieldName="QtaEva" VisibleIndex="4" EditFormSettings-Visible="False" Width="60px" CellStyle-HorizontalAlign="Center" Caption="Evaso"></dx:GridViewDataSpinEditColumn>
+                                                                <dx:GridViewDataSpinEditColumn FieldName="QtaEva" VisibleIndex="4" EditFormSettings-Visible="False" Width="60px" CellStyle-HorizontalAlign="Center" Caption="Evaso" EditFormSettings-CaptionLocation="Top"></dx:GridViewDataSpinEditColumn>
                                                                 <dx:GridViewDataSpinEditColumn FieldName="QtaDaEvadere" VisibleIndex="4" EditFormSettings-Visible="False" Width="60px" CellStyle-HorizontalAlign="Center" Caption="Da Evadere" Visible="false"></dx:GridViewDataSpinEditColumn>
-                                                                <dx:GridViewDataSpinEditColumn FieldName="U_DaEvadere" VisibleIndex="4" EditFormSettings-Visible="False" Width="60px" CellStyle-HorizontalAlign="Center" Caption="Da Evadere"></dx:GridViewDataSpinEditColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="Note" VisibleIndex="5" EditFormSettings-ColumnSpan="2"></dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn FieldName="Descrizione" VisibleIndex="2" ReadOnly="true" EditFormSettings-ColumnSpan="2"></dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataCheckColumn FieldName="U_DaFatturare" VisibleIndex="6" Caption="Da Fatturare" Width="100px" ReadOnly="true"></dx:GridViewDataCheckColumn>
-                                                                <dx:GridViewDataCheckColumn FieldName="NRiga" VisibleIndex="6" Visible="false"></dx:GridViewDataCheckColumn>
+                                                                <dx:GridViewDataSpinEditColumn FieldName="U_DaEvadere" VisibleIndex="4" EditFormSettings-Visible="False" Width="60px" CellStyle-HorizontalAlign="Center" Caption="Da Evadere" EditFormSettings-CaptionLocation="Top"></dx:GridViewDataSpinEditColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="Note" VisibleIndex="5" EditFormSettings-ColumnSpan="2" EditFormSettings-CaptionLocation="Top"></dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="Descrizione" VisibleIndex="2" ReadOnly="true" EditFormSettings-ColumnSpan="2" EditFormSettings-CaptionLocation="Top"></dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataCheckColumn FieldName="U_DaFatturare" VisibleIndex="6" Caption="Da Fatturare" Width="100px" ReadOnly="true" EditFormSettings-CaptionLocation="Top"></dx:GridViewDataCheckColumn>
+                                                                <dx:GridViewDataCheckColumn FieldName="NRiga" VisibleIndex="6" Visible="false" EditFormSettings-CaptionLocation="Top"></dx:GridViewDataCheckColumn>
                                                             </Columns>
                                                             <FormatConditions>
                                                                 <dx:GridViewFormatConditionHighlight FieldName="QtaEva" Format="LightRedFillWithDarkRedText" Expression="[QtaEva] = 0"></dx:GridViewFormatConditionHighlight>
@@ -412,31 +420,34 @@
         </div>
     </div>
 
-    <dx:ASPxPopupControl runat="server" ID="Evadi_Popup" ClientInstanceName="Evadi_Popup" Width="800px" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="TopSides" HeaderText="Evadi Parzialmente">
+    <dx:ASPxPopupControl runat="server" ID="Evadi_Popup" ClientInstanceName="Evadi_Popup"
+        Width="800px" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter"
+        AllowResize="true" Modal="true" CloseAction="CloseButton"
+        HeaderText="Evadi Parzialmente">
         <ClientSideEvents Shown="Evadi_Popup_Shown" />
-        <ContentCollection>
-            <dx:PopupControlContentControl>
-                <dx:ASPxCallbackPanel runat="server" ID="QtaDaEvadere_CallbackPnl" ClientInstanceName="QtaDaEvadere_CallbackPnl" OnCallback="QtaDaEvadere_CallbackPnl_Callback">
-                    <PanelCollection>
-                        <dx:PanelContent>
-                            <dx:ASPxSpinEdit runat="server" ID="QtaDaEvadere_Spin" ClientInstanceName="QtaDaEvadere_Spin" MinValue="1" MaxValue="10000" Width="100%" Caption="Quantità Da Evadere" CaptionSettings-Position="Top" CaptionStyle-ForeColor="Black">
-                                <ValidationSettings ValidateOnLeave="false" ErrorDisplayMode="None" ValidationGroup="InsertQtaValid">
-                                    <RequiredField IsRequired="true" />
-                                </ValidationSettings>
-                                <InvalidStyle BackColor="LightPink" />
-                            </dx:ASPxSpinEdit>
-                        </dx:PanelContent>
-                    </PanelCollection>
-                </dx:ASPxCallbackPanel>
-                <div style="float: right">
-                    <dx:BootstrapButton runat="server" Text="" ID="Evadi_Btn" ClientInstanceName="Evadi_Btn" AutoPostBack="false" Badge-CssClass="BadgeBtn-just-icon" CssClasses-Control="btn btn-just-icon btn-just-icon-padding ">
-                        <Badge IconCssClass="fa fa-save" />
-                        <SettingsBootstrap RenderOption="Success" />
-                        <ClientSideEvents Click='function(s,e){if(ASPxClientEdit.ValidateGroup("InsertQtaValid")){Evadi_Callback.PerformCallback(sessionStorage.getItem("griglia")+"|"+sessionStorage.getItem("index")+"|"+QtaDaEvadere_Spin.GetText());}}' />
-                    </dx:BootstrapButton>
-                </div>
-            </dx:PopupControlContentControl>
-        </ContentCollection>
+    <contentcollection>
+        <dx:PopupControlContentControl>
+            <dx:ASPxCallbackPanel runat="server" ID="QtaDaEvadere_CallbackPnl" ClientInstanceName="QtaDaEvadere_CallbackPnl" OnCallback="QtaDaEvadere_CallbackPnl_Callback">
+                <panelcollection>
+                    <dx:PanelContent>
+                        <dx:ASPxSpinEdit runat="server" ID="QtaDaEvadere_Spin" ClientInstanceName="QtaDaEvadere_Spin" MinValue="1" MaxValue="10000" Width="100%" Caption="Quantità Da Evadere" CaptionSettings-Position="Top" CaptionStyle-ForeColor="Black">
+                            <validationsettings validateonleave="false" errordisplaymode="None" validationgroup="InsertQtaValid">
+                                <requiredfield isrequired="true" />
+                            </validationsettings>
+                            <invalidstyle backcolor="LightPink" />
+                        </dx:ASPxSpinEdit>
+                    </dx:PanelContent>
+                </panelcollection>
+            </dx:ASPxCallbackPanel>
+            <div style="float: right">
+                <dx:BootstrapButton runat="server" Text="" ID="Evadi_Btn" ClientInstanceName="Evadi_Btn" AutoPostBack="false" Badge-CssClass="BadgeBtn-just-icon" CssClasses-Control="btn btn-just-icon btn-just-icon-padding ">
+                    <Badge IconCssClass="fa fa-save" />
+                    <SettingsBootstrap RenderOption="Success" />
+                    <ClientSideEvents Click='function(s,e){if(ASPxClientEdit.ValidateGroup("InsertQtaValid")){Evadi_Callback.PerformCallback(sessionStorage.getItem("griglia")+"|"+sessionStorage.getItem("index")+"|"+QtaDaEvadere_Spin.GetText());}}' />
+                </dx:BootstrapButton>
+            </div>
+        </dx:PopupControlContentControl>
+    </contentcollection>
     </dx:ASPxPopupControl>
 
     <dx:ASPxCallback runat="server" ID="Evadi_Callback" ClientInstanceName="Evadi_Callback" OnCallback="Evadi_Callback_Callback">

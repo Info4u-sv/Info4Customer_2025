@@ -15,7 +15,7 @@
                 Generic_gridview.StartEditRow(e.visibleIndex);
             }
             if (e.buttonID == "Delete") {
-                ConfermaGridViewDeleteRowNoCallback('Cancella il dato!', 'Generic_gridview', e.visibleIndex);
+                ConfermaGridViewDeleteRowNoCallback('Confermi di voler eliminare la tipologia di printer selezionato?', 'Generic_gridview', e.visibleIndex);
             }
         }
         function GotoNewPage(value) {
@@ -109,6 +109,7 @@
                                             </dx:ASPxButtonEdit>
                                         </Template>
                                     </dx:GridViewToolbarItem>
+                                    <dx:GridViewToolbarItem Command="ClearFilter" Text="Cancella Flitro" />
                                     <dx:GridViewToolbarItem Command="ExportToXlsx" Text="Esporta" />
                                 </Items>
                             </dx:GridViewToolbar>
@@ -162,7 +163,7 @@
 
                         <SettingsEditing EditFormColumnCount="1" Mode="PopupEditForm" />
 
-                        <SettingsPopup EditForm-VerticalAlign="Middle" EditForm-HorizontalAlign="Center" EditForm-Modal="true"></SettingsPopup>
+                        <SettingsPopup EditForm-VerticalAlign="WindowCenter" EditForm-HorizontalAlign="WindowCenter" EditForm-Modal="true"></SettingsPopup>
 
                         <SettingsPopup>
 
@@ -174,7 +175,7 @@
                         <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
                         <Columns>
 
-                            <dx:GridViewCommandColumn ShowClearFilterButton="true" ShowRecoverButton="true" VisibleIndex="0" ButtonRenderMode="Image" ShowNewButtonInHeader="true" ShowEditButton="True" ShowDeleteButton="true" Width="80px">
+                            <dx:GridViewCommandColumn ShowClearFilterButton="false" ShowRecoverButton="true" VisibleIndex="0" ButtonRenderMode="Image" ShowNewButtonInHeader="true" ShowEditButton="True" ShowDeleteButton="true" Width="80px">
                                 <CustomButtons>
                                     <dx:BootstrapGridViewCommandColumnCustomButton ID="Edit" Text="Modifica" IconCssClass="icon4u icon-edit image" CssClass="btn btn-sm btn-custom-padding action-btn edit" />
                                     <dx:BootstrapGridViewCommandColumnCustomButton ID="Delete" Text="Elimina" IconCssClass="icon4u icon-delete image" CssClass="btn btn-sm btn-custom-padding action-btn delete" />

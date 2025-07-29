@@ -15,13 +15,13 @@ namespace INTRA.SuperAdmin.RulesGest
     {
 
         /// <summary>
-        /// Controllo Ruoli_CallbackPnl.
+        /// Controllo ScriptManager1.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxCallbackPanel Ruoli_CallbackPnl;
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
         /// Controllo Aggiorna_btn.
@@ -42,15 +42,6 @@ namespace INTRA.SuperAdmin.RulesGest
         protected global::DevExpress.Web.ASPxComboBox Ruoli_Combobox;
 
         /// <summary>
-        /// Controllo Generic_Sql.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource Generic_Sql;
-
-        /// <summary>
         /// Controllo grdPrivileges.
         /// </summary>
         /// <remarks>
@@ -66,7 +57,7 @@ namespace INTRA.SuperAdmin.RulesGest
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxButton salva_btn;
+        protected global::DevExpress.Web.Bootstrap.BootstrapButton salva_btn;
 
         /// <summary>
         /// Controllo Aggiorna_Utenti_Callback.
@@ -85,5 +76,14 @@ namespace INTRA.SuperAdmin.RulesGest
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Ruoli_Sql;
+
+        /// <summary>
+        /// Controllo Generic_Sql.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource Generic_Sql;
     }
 }

@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="add_user.aspx.cs" Inherits="IntranetTemplate2017.SuperAdmin.UserGest.add_user" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <style>
+        .btn-utente {
+            margin: 0px !important;
+        }
+    </style>
     <dx:ASPxCallbackPanel ID="UserCallbackPanel" runat="server" ClientInstanceName="UserCallbackPanel" OnCallback="UserCallbackPanel_Callback">
         <PanelCollection>
             <dx:PanelContent>
@@ -58,9 +63,10 @@
                                     <dx:BootstrapButton ID="submit" runat="server"
                                         AutoPostBack="false"
                                         Badge-CssClass="BadgeBtn-just-icon"
-                                        CssClasses-Control="btn btn-success btn-md shiny"
-                                        Text=" Aggiungi Utente">
-                                        <Badge IconCssClass="fa fa-user-plus" />
+                                        CssClasses-Control="btn btn-just-icon btn-just-icon-padding btn-utente"
+                                        Text="">
+                                        <Badge IconCssClass="fa fa-user-plus" Text="Aggiungi Utente" />
+                                        <SettingsBootstrap RenderOption="Success" Sizing="Small" />
                                     </dx:BootstrapButton>
 
                                     <dx:BootstrapButton ID="reset" runat="server"
@@ -68,9 +74,10 @@
                                         CausesValidation="false"
                                         OnClick="reset_Click"
                                         Badge-CssClass="BadgeBtn-just-icon"
-                                        CssClasses-Control="btn btn-warning btn-md shiny"
-                                        Text=" Annulla Operazione">
-                                        <Badge IconCssClass="fa fa-trash" />
+                                        CssClasses-Control="btn btn-just-icon btn-just-icon-padding btn-utente btn-warning"
+                                        Text="">
+                                        <Badge IconCssClass="fa fa-trash" Text="Annulla Operazione" />
+                                        <SettingsBootstrap RenderOption="Success" Sizing="Small" />
                                     </dx:BootstrapButton>
                                 </div>
                             </div>

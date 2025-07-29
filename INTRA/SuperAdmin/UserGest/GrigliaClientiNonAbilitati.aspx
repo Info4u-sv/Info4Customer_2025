@@ -41,7 +41,7 @@
                         <SettingsAdaptivity AdaptivityMode="SingleColumnWindowLimit" />
                     </AdaptiveDetailLayoutProperties>
                 </SettingsAdaptivity>
-                <SettingsPager PageSize="20"></SettingsPager>
+                <SettingsPager PageSizeItemSettings-Items="10,20,50,100" PageSizeItemSettings-Visible="true" PageSizeItemSettings-AllItemText="All" PageSizeItemSettings-ShowAllItem="true" Position="TopAndBottom"></SettingsPager>
                 <SettingsEditing EditFormColumnCount="2" Mode="PopupEditForm" />
                 <Settings ShowFilterRow="True" ShowFilterRowMenu="true" ShowHeaderFilterButton="true"></Settings>
 
@@ -86,6 +86,7 @@
                                     </dx:ASPxButtonEdit>
                                 </Template>
                             </dx:GridViewToolbarItem>
+                            <dx:GridViewToolbarItem Command="ClearFilter" Text="Cancella Flitro" />
                             <dx:GridViewToolbarItem Command="ExportToXlsx" Text="Esporta" />
 
                         </Items>
@@ -95,12 +96,9 @@
                 <SettingsSearchPanel Visible="True" CustomEditorID="tbToolbarSearch"></SettingsSearchPanel>
                 <SettingsExport EnableClientSideExportAPI="true" ExcelExportMode="DataAware" Landscape="true" LeftMargin="30" FileName="Lista" />
                 <Columns>
-                    <dx:GridViewCommandColumn ShowNewButtonInHeader="false" ShowEditButton="false" ShowDeleteButton="false" VisibleIndex="0" ButtonRenderMode="Image" ShowClearFilterButton="true">
+                    <dx:GridViewCommandColumn ShowNewButtonInHeader="false" ShowEditButton="false" ShowDeleteButton="false" VisibleIndex="0" Width="60px" ButtonRenderMode="Image" ShowClearFilterButton="false">
                         <CustomButtons>
-                            <dx:GridViewCommandColumnCustomButton ID="Attiva">
-                                <Image Url="~/img/DevExButton/Start-on-go.png" Width="30px">
-                                </Image>
-                            </dx:GridViewCommandColumnCustomButton>
+                                    <dx:BootstrapGridViewCommandColumnCustomButton ID="Attiva" IconCssClass="icon-attiva" CssClass="btn btn-success btn-sm me-1" />
                             <%--                            <dx:GridViewCommandColumnCustomButton ID="Sospendi">
                                 <Image Url="~/img/DevExButton/stop.png" Width="30px">
                                 </Image>
@@ -112,9 +110,9 @@
                         </CustomButtons>
                     </dx:GridViewCommandColumn>
 
-                    <dx:GridViewDataTextColumn FieldName="CodCli" VisibleIndex="1"></dx:GridViewDataTextColumn>
+                    <dx:GridViewDataTextColumn FieldName="CodCli" VisibleIndex="1" Width="7%"></dx:GridViewDataTextColumn>
                     <dx:GridViewDataTextColumn FieldName="Denom" Caption="Azienda" VisibleIndex="2"></dx:GridViewDataTextColumn>
-                    <dx:GridViewDataTextColumn FieldName="CodAge" VisibleIndex="3"></dx:GridViewDataTextColumn>
+                    <dx:GridViewDataTextColumn FieldName="CodAge" VisibleIndex="3" Width="7%"></dx:GridViewDataTextColumn>
                     <dx:GridViewDataTextColumn FieldName="Descrizione" Caption="Agente" VisibleIndex="4"></dx:GridViewDataTextColumn>
                 </Columns>
             </dx:ASPxGridView>
@@ -290,4 +288,17 @@ WHERE        (VIO_Utenti.UtenteIntranet IS NULL) AND (SHP_AgeForClient.CodAge IS
     </dx:ASPxPopupControl>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="PageScriptContent" runat="server">
+    <style>
+ .icon-attiva::before {
+     content: "";
+     display: inline-block;
+     background-image: url('/img/DevExButton/Start-on-go.png');
+     background-size: contain;
+     background-repeat: no-repeat;
+     width: 20px;
+     height: 20px;
+     vertical-align: middle;
+ }
+
+    </style>
 </asp:Content>

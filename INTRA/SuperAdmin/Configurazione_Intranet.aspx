@@ -293,7 +293,7 @@
 
                                 <dx:BootstrapButton runat="server" Text="" ID="SalvaImmagini" AutoPostBack="false" Badge-CssClass="BadgeBtn-just-icon" CssClasses-Control="btn btn-just-icon btn-just-icon-padding">
                                     <Badge IconCssClass="fa fa-check" Text="Salva" />
-                                    <SettingsBootstrap RenderOption="Success" />
+                                    <SettingsBootstrap RenderOption="Success" Sizing="Small" />
                                     <ClientSideEvents Click="function(s,e){uploadCallBackPanel.PerformCallback();}" />
                                 </dx:BootstrapButton>
                             </div>
@@ -341,7 +341,7 @@
                             </dx:ASPxCallbackPanel>
                             <dx:BootstrapButton runat="server" Text="" ID="NewColorBtn" AutoPostBack="false" Badge-CssClass="BadgeBtn-just-icon" CssClasses-Control="btn btn-just-icon btn-just-icon-padding">
                                 <Badge IconCssClass="fa fa-check" Text="Salva" />
-                                <SettingsBootstrap RenderOption="Success" />
+                                <SettingsBootstrap RenderOption="Success" Sizing="Small" />
                                 <ClientSideEvents Click="function(s,e){ColorContainer_Pnl.PerformCallback();}" />
                             </dx:BootstrapButton>
                         </div>

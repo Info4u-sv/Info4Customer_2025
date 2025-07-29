@@ -13,7 +13,7 @@
                 </div>
                 <dx:ASPxGridView Styles-AlternatingRow-Enabled="True" ID="Generic_Gridview" ClientInstanceName="Generic_Gridview" SettingsText-ConfirmDelete="true" DataSourceID="Generic_Dts" KeyFieldName="ID" runat="server" Width="100%" AutoGenerateColumns="False" OnRowInserting="Generic_Gridview_RowInserting" OnRowUpdating="Generic_Gridview_RowUpdating">
                     <Styles AlternatingRow-Enabled="True" Header-Wrap="True" Cell-Paddings-Padding="3" Header-Paddings-Padding="3" FilterBar-Paddings-Padding="3" CommandColumn-Paddings-Padding="3" FilterBarImageCell-Paddings-Padding="3" FilterCell-Paddings-Padding="3"></Styles>
-
+                     <ClientSideEvents EndCallback="function(s,e){if(e.command == 'UPDATEEDIT'){Generic_Gridview.Refresh(); showNotification();}}" />
                     <SettingsPopup>
                         <EditForm AllowResize="True" Modal="True" VerticalAlign="WindowCenter">
                         </EditForm>
@@ -60,11 +60,16 @@
                                         </dx:ASPxButtonEdit>
                                     </Template>
                                 </dx:GridViewToolbarItem>
+                                <dx:GridViewToolbarItem Command="ClearFilter" Text="Cancella Flitro" />
+                                <dx:GridViewToolbarItem Command="ExportToXlsx" Text="Esporta" />
 
                             </Items>
                         </dx:GridViewToolbar>
                     </Toolbars>
 
+                    <SettingsSearchPanel CustomEditorID="tbToolbarSearch" />
+                    <SettingsExport EnableClientSideExportAPI="true" ExcelExportMode="DataAware" Landscape="true" LeftMargin="30" FileName="Lista_Parametri" />
+                    <SettingsCustomizationDialog Enabled="true" />
                     <SettingsEditing Mode="PopupEditForm"></SettingsEditing>
                     <SettingsPopup EditForm-Modal="true" EditForm-VerticalAlign="WindowCenter" EditForm-HorizontalAlign="WindowCenter"></SettingsPopup>
                     <SettingsSearchPanel Visible="True" CustomEditorID="tbToolbarSearch"></SettingsSearchPanel>
@@ -77,23 +82,60 @@
                     <Columns>
                         <dx:GridViewCommandColumn ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="0">
                         </dx:GridViewCommandColumn>
-                        <dx:GridViewDataTextColumn FieldName="ID" VisibleIndex="1" ReadOnly="True">
+                        <dx:GridViewDataTextColumn FieldName="ID" VisibleIndex="1" Visible="false" ReadOnly="True">
                             <EditFormSettings Visible="False" />
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="CodParam" VisibleIndex="2"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="CodParam" VisibleIndex="2">
+                            <PropertiesTextEdit>
+                                <InvalidStyle BackColor="LightPink"></InvalidStyle>
+                                <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="testValidation">
+                                    <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
+                                    <RequiredField IsRequired="True"></RequiredField>
+                                </ValidationSettings>
+                            </PropertiesTextEdit>
+                        </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn FieldName="Value" VisibleIndex="3" EditFormSettings-ColumnSpan="2">
+                            <PropertiesTextEdit>
+                                <InvalidStyle BackColor="LightPink"></InvalidStyle>
+                                <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="testValidation">
+                                    <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
+                                    <RequiredField IsRequired="True"></RequiredField>
+                                </ValidationSettings>
+                            </PropertiesTextEdit>
                             <EditItemTemplate>
                                 <dx:BootstrapTextBox runat="server" ID="Generic_textbox" Text='<%# Bind("Value") %>' Visible='<%# Eval("Type") != null ? Eval("Type").ToString() == "HTML"  ? false : true : true%>'></dx:BootstrapTextBox>
                                 <dx:ASPxHtmlEditor ID="Generic_HtmlEditor" Settings-AllowHtmlView="true" Settings-AllowPreview="false" ClientInstanceName="Generic_HtmlEditor" runat="server" Html='<%# Bind("Value") %>' Visible='<%# Eval("Type") != null ? Eval("Type").ToString() == "HTML"  ? true : false : true%>' EncodeHtml="false">
                                 </dx:ASPxHtmlEditor>
                             </EditItemTemplate>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataCheckColumn FieldName="IsFrontEnd" VisibleIndex="6" EditFormSettings-ColumnSpan="1" EditFormSettings-VisibleIndex="3"></dx:GridViewDataCheckColumn>
+                        <dx:GridViewDataCheckColumn FieldName="IsFrontEnd" VisibleIndex="6" EditFormSettings-ColumnSpan="1" EditFormSettings-VisibleIndex="3" Width="7%">
+                            <PropertiesCheckEdit>
+                                <InvalidStyle BackColor="LightPink"></InvalidStyle>
+                                <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="testValidation">
+                                    <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
+                                    <RequiredField IsRequired="True"></RequiredField>
+                                </ValidationSettings>
+                            </PropertiesCheckEdit>
+                        </dx:GridViewDataCheckColumn>
 
-                        <dx:GridViewDataTextColumn FieldName="Type" VisibleIndex="4">
+                        <dx:GridViewDataTextColumn FieldName="Type" VisibleIndex="4" EditFormSettings-CaptionLocation="Top" Width="6%">
+                            <PropertiesTextEdit>
+                                <InvalidStyle BackColor="LightPink"></InvalidStyle>
+                                <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="testValidation">
+                                    <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
+                                    <RequiredField IsRequired="True"></RequiredField>
+                                </ValidationSettings>
+                            </PropertiesTextEdit>
                         </dx:GridViewDataTextColumn>
 
-                        <dx:GridViewDataMemoColumn FieldName="Descrizione" VisibleIndex="5" EditFormSettings-ColumnSpan="2" PropertiesMemoEdit-Height="150px">
+                        <dx:GridViewDataMemoColumn FieldName="Descrizione" VisibleIndex="5" EditFormSettings-ColumnSpan="2" PropertiesMemoEdit-Height="60px" EditFormSettings-CaptionLocation="Top">
+                            <PropertiesMemoEdit>
+                                <InvalidStyle BackColor="LightPink"></InvalidStyle>
+                                <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="testValidation">
+                                    <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
+                                    <RequiredField IsRequired="True"></RequiredField>
+                                </ValidationSettings>
+                            </PropertiesMemoEdit>
                         </dx:GridViewDataMemoColumn>
 
                     </Columns>

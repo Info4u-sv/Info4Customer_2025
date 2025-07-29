@@ -1,9 +1,10 @@
-﻿using System;
+﻿using DevExpress.Web;
+using System;
 using System.Data;
 using System.Web.Security;
 using System.Web.UI.WebControls;
 
-namespace IntranetTemplate2017.SuperAdmin.RulesGest
+namespace INTRA.SuperAdmin.RulesGest
 {
 
 
@@ -15,112 +16,86 @@ namespace IntranetTemplate2017.SuperAdmin.RulesGest
         {
 
         }
-        public void Page_PreRender()
+        protected void cpRolePanel_Callback(object sender, CallbackEventArgsBase e)
         {
-            DataTable RoleList = new DataTable();
-            RoleList.Columns.Add("Role Name");
-            RoleList.Columns.Add("User Count");
-            string[] allRoles = Roles.GetAllRoles();
-            foreach (string roleName in allRoles)
+            if (e.Parameter == "add")
             {
-                int numberOfUsersInRole = Roles.GetUsersInRole(roleName).Length;
-                string[] roleRow = { roleName, numberOfUsersInRole.ToString() };
-                RoleList.Rows.Add(roleRow);
-            }
-            UserRoles.DataSource = RoleList;
-            UserRoles.DataBind();
-
-            if (createRoleSuccess)
-            {
-                NewRole.Text = string.Empty;
-            }
-        }
-
-        public void AddRole(object sender, EventArgs e)
-        {
-            try
-            {
-                Roles.CreateRole(NewRole.Text);
-                ControlRolePrivileges();
-                ConfirmationMessage.InnerText = "The new role was added.";
-                createRoleSuccess = true;
-            }
-            catch (Exception ex)
-            {
-                ConfirmationMessage.InnerText = ex.Message;
-                createRoleSuccess = false;
-            }
-        }
-
-        public void DeleteRole(object sender, CommandEventArgs e)
-        {
-            try
-            {
-                Roles.DeleteRole(e.CommandArgument.ToString());
-                ConfirmationMessage.InnerText = "Role '" + e.CommandArgument.ToString() + "' was deleted.";
-            }
-            catch (Exception ex)
-            {
-                ConfirmationMessage.InnerText = ex.Message;
-            }
-        }
-
-        protected void DisableRoleManager(object sender, EventArgs e)
-        {
-        }
-
-        private void ControlRolePrivileges()
-        {
-            try
-            {
-                string strQuery = string.Empty;
-
-                strQuery = "SELECT [MenuId],";
-                strQuery += " [Title] ,";
-                strQuery += " [Description],";
-                strQuery += " CAST('False' AS bit) AS add_permission,";
-                strQuery += " CAST('False' AS bit) AS delete_permission,";
-                strQuery += " CAST('False' AS bit) AS modify_permission,";
-                strQuery += " CAST('False' AS bit) AS read_permission";
-                strQuery += " FROM [PRT_Menus] ORDER BY [MenuId] ASC";
-                DataSet ds = DataControl.GetDataSet(strQuery);
-                if (ds.Tables[0].Rows.Count > 0)
+                string roleName = NewRole.Text.Trim();
+                if (!string.IsNullOrEmpty(roleName) && !Roles.RoleExists(roleName))
                 {
-                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                    {
-                        int intFormId = int.Parse(ds.Tables[0].Rows[i]["MenuId"].ToString());
-                        bool isAdd = false, isDelete = false, isModify = false, isRead = false;
-
-                        // Label lblFormName = (Label)grdPrivileges.Rows[i].FindControl("lblDisplayFormName");               
-
-                        if (string.IsNullOrEmpty(ds.Tables[0].Rows[i]["add_permission"].ToString())) isAdd = false;
-                        if (string.IsNullOrEmpty(ds.Tables[0].Rows[i]["delete_permission"].ToString())) isDelete = false;
-                        if (string.IsNullOrEmpty(ds.Tables[0].Rows[i]["modify_permission"].ToString())) isModify = false;
-                        if (string.IsNullOrEmpty(ds.Tables[0].Rows[i]["read_permission"].ToString())) isRead = false;
-
-                        string strSQLQuery = String.Empty;
-
-                        strSQLQuery = "EXEC PRT_Privilege_Rules_addRolePrivileges";
-                        strSQLQuery += " '" + intFormId + "',";
-                        strSQLQuery += " '" + NewRole.Text + "',";
-                        strSQLQuery += " '" + isAdd + "',";
-                        strSQLQuery += " '" + isDelete + "',";
-                        strSQLQuery += " '" + isModify + "',";
-                        strSQLQuery += " '" + isRead + "'";
-
-
-                    }
+                    Roles.CreateRole(roleName);
+                    ControlRolePrivileges(roleName);
+                    cpRolePanel.JSProperties["cp_showNotification"] = true;
                 }
             }
 
+            Generic_Gridview.DataBind();
+        }
+
+        protected void Generic_Gridview_RowDeleting(object sender, DevExpress.Web.Data.ASPxDataDeletingEventArgs e)
+        {
+            string roleName = e.Values["RoleName"].ToString();
+
+            try
+            {
+                // cancello il ruolo e tutti i riferimenti
+                Roles.DeleteRole(roleName, throwOnPopulatedRole: false);            }
             catch (Exception ex)
             {
-                string PathIntranetAssoluto = Server.MapPath("~/").ToString();
-                LogFile Errore = new LogFile();
-                System.Web.Security.MembershipUser edtUsr = Membership.GetUser();
-                Errore.ErrorLog(PathIntranetAssoluto + "\\Error_LogFile\\LogFile", "Errore: " + "  -  " + edtUsr.UserName + "  -  " + ex);
+            }
 
+            e.Cancel = true;
+            Generic_Gridview.CancelEdit();
+            Generic_Gridview.DataBind();
+        }
+        protected void Generic_Gridview_CustomButtonInitialize(object sender, DevExpress.Web.ASPxGridViewCustomButtonEventArgs e)
+        {
+            if (e.ButtonID == "DeleteConfirmButton")
+            {
+                if (e.VisibleIndex < 0) // Rimuovo anche dalla riga filtro/header
+                {
+                    e.Visible = DevExpress.Utils.DefaultBoolean.False;
+                    return;
+                }
+
+                int userCount = Convert.ToInt32(Generic_Gridview.GetRowValues(e.VisibleIndex, "NumeroUtenti"));
+
+                e.Visible = (userCount > 0)
+                    ? DevExpress.Utils.DefaultBoolean.False
+                    : DevExpress.Utils.DefaultBoolean.True;
             }
         }
+        private void ControlRolePrivileges(string roleName)
+        {
+            try
+            {
+                string query = @"
+                    SELECT MenuId, Title, Description,
+                           CAST('False' AS bit) AS add_permission,
+                           CAST('False' AS bit) AS delete_permission,
+                           CAST('False' AS bit) AS modify_permission,
+                           CAST('False' AS bit) AS read_permission
+                    FROM PRT_Menus
+                    ORDER BY MenuId ASC";
+
+                DataSet ds = DataControl.GetDataSet(query);
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    int formId = Convert.ToInt32(row["MenuId"]);
+                    bool isAdd = false, isDelete = false, isModify = false, isRead = false;
+
+                    string sql = $"EXEC PRT_Privilege_Rules_addRolePrivileges '{formId}', '{roleName}', '{isAdd}', '{isDelete}', '{isModify}', '{isRead}'";
+                    DataControl.ExecuteNonQuery(sql);
+                }
+            }
+            catch (Exception ex)
+            {
+                string logPath = Server.MapPath("~/Error_LogFile/LogFile");
+                var log = new LogFile();
+                var user = Membership.GetUser();
+                log.ErrorLog(logPath, $"Errore: - {user?.UserName} - {ex}");
+            }
+        }
+
     }
 }

@@ -2,14 +2,14 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="RootHolder" runat="server">
     <style>
-        div#MainContent_Articoli_DaFatt_Grw_DXPEForm_PW-1 {
+   /*     div#MainContent_Articoli_DaFatt_Grw_DXPEForm_PW-1 {
             top: -75px !important;
-        }
+        }*/
     </style>
     <script>
         function Articoli_DaFatt_Grw_CustomButtonClick(s, e) {
             if (e.buttonID === "Elimina") {
-                ConfermaOperazioneWithClientFunction("Conferma Cancellazione", "Confermi di voler cancellare?", "Conferma", "Annulla", function () {
+                ConfermaOperazioneWithClientFunction("Conferma Cancellazione", "Confermi di voler cancellare l\'articolo selezionato?", "Conferma", "Annulla", function () {
                     s.DeleteRow(e.visibleIndex);
                     showNotification();
                 }, null, 0, null);
@@ -30,7 +30,12 @@
                         <ClientSideEvents CustomButtonClick='Articoli_DaFatt_Grw_CustomButtonClick' />
                         <Styles Header-Wrap="True" Cell-Paddings-Padding="3" Header-Paddings-Padding="3" FilterBar-Paddings-Padding="3" CommandColumn-Paddings-Padding="3" FilterBarImageCell-Paddings-Padding="3" FilterCell-Paddings-Padding="3"></Styles>
                         <SettingsPager PageSizeItemSettings-Items="10,20,50,100" PageSizeItemSettings-Visible="true" PageSizeItemSettings-AllItemText="All" PageSizeItemSettings-ShowAllItem="true" Position="TopAndBottom"></SettingsPager>
-
+                        <SettingsPopup>
+                            <EditForm Modal="true" AllowResize="True"
+                                AutoUpdatePosition="True"
+                                VerticalAlign="WindowCenter"
+                                HorizontalAlign="WindowCenter" />
+                        </SettingsPopup>
                         <Settings AutoFilterCondition="Contains" ShowFilterRowMenu="true" />
                         <Toolbars>
                             <dx:GridViewToolbar>
@@ -44,6 +49,7 @@
                                             </dx:ASPxButtonEdit>
                                         </Template>
                                     </dx:GridViewToolbarItem>
+                                    <dx:GridViewToolbarItem Command="ClearFilter" Text="Cancella Flitro" />
                                     <dx:GridViewToolbarItem Command="ExportToXlsx" Text="Esporta" />
                                 </Items>
                             </dx:GridViewToolbar>
@@ -85,7 +91,7 @@
                                     <dx:BootstrapGridViewCommandColumnCustomButton ID="Elimina" CssClass="btn btn-sm btn-custom-padding action-btn delete" IconCssClass="icon4u icon-delete image" />
                                 </CustomButtons>
                             </dx:GridViewCommandColumn>
-                            <dx:GridViewDataTextColumn FieldName="ID" ReadOnly="True" VisibleIndex="1" Width="60px">
+                            <dx:GridViewDataTextColumn FieldName="ID" ReadOnly="True" Visible="false" VisibleIndex="1" Width="60px">
                                 <EditFormSettings Visible="False"></EditFormSettings>
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataComboBoxColumn FieldName="Settore" VisibleIndex="2">

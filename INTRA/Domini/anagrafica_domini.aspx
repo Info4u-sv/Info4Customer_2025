@@ -27,7 +27,7 @@
                 </div>
                 <div class="card-content">
                     <h4 class="card-title">Anagrafica Domini</h4>
-                    <dx:ASPxGridView runat="server" ID="Generic_Gridview" ClientInstanceName="Generic_Gridview" AutoGenerateColumns="False" DataSourceID="Generic_Linq" KeyFieldName="IdDominio" Width="100%" Styles-AlternatingRow-Enabled="True" SettingsPopup-EditForm-HorizontalAlign="WindowCenter" SettingsPopup-EditForm-VerticalAlign="WindowCenter" OnRowInserting="Generic_Gridview_RowInserting" OnRowUpdating="Generic_Gridview_RowUpdating">
+                    <dx:ASPxGridView runat="server" ID="Generic_Gridview" ClientInstanceName="Generic_Gridview" AutoGenerateColumns="False" DataSourceID="Generic_Linq" KeyFieldName="IdDominio" Width="100%" Styles-AlternatingRow-Enabled="True" SettingsPopup-EditForm-HorizontalAlign="WindowCenter" SettingsPopup-EditForm-VerticalAlign="WindowCenter" OnRowInserting="Generic_Gridview_RowInserting" OnRowUpdating="Generic_Gridview_RowUpdating" OnCellEditorInitialize="Generic_Gridview_CellEditorInitialize">
                         <Styles Header-Wrap="True" Cell-Paddings-Padding="3" Header-Paddings-Padding="3" FilterBar-Paddings-Padding="3" CommandColumn-Paddings-Padding="3" FilterBarImageCell-Paddings-Padding="3" FilterCell-Paddings-Padding="3"></Styles>
                         <ClientSideEvents EndCallback="function(s,e){if(e.command == 'UPDATEEDIT' || e.command == 'DELETEROW'){Generic_Gridview.Refresh(); showNotification();}}" />
                         <ClientSideEvents
@@ -60,20 +60,15 @@
                                             </dx:ASPxButtonEdit>
                                         </Template>
                                     </dx:GridViewToolbarItem>
+                                    <dx:GridViewToolbarItem Command="ClearFilter" Text="Cancella Flitro" />
                                     <dx:GridViewToolbarItem Command="ExportToXlsx" Text="Esporta" />
-                                    <dx:GridViewToolbarItem Alignment="left">
-                                        <Template>
-                                            <dx:ASPxButton ID="btnClearFilters" runat="server" Text="❌ Cancella Filtro" AutoPostBack="false">
-                                                <ClientSideEvents Click="function(s, e) {
-                                                Generic_Gridview.ClearFilter(); 
-                                                tbToolbarSearch.SetText('');
-                                            }" />
-                                            </dx:ASPxButton>
-                                        </Template>
-                                    </dx:GridViewToolbarItem>
                                 </Items>
                             </dx:GridViewToolbar>
                         </Toolbars>
+                        <SettingsPopup EditForm-VerticalAlign="WindowCenter" EditForm-HorizontalAlign="Center" EditForm-Modal="true"></SettingsPopup>
+                        <SettingsPopup>
+                            <EditForm AllowResize="True" AutoUpdatePosition="True"></EditForm>
+                        </SettingsPopup>
                         <SettingsSearchPanel CustomEditorID="tbToolbarSearch" />
                         <SettingsExport EnableClientSideExportAPI="true" ExcelExportMode="DataAware" Landscape="true" LeftMargin="30" FileName="Lista_Anagrafica_Domini" />
                         <SettingsCustomizationDialog Enabled="true" />
@@ -138,13 +133,17 @@
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn FieldName="URL" VisibleIndex="2">
                                 <PropertiesTextEdit>
-                                    <ValidationSettings RequiredField-IsRequired="true" RequiredField-ErrorText="Il campo URL è obbligatorio." />
+                                    <InvalidStyle BackColor="LightPink"></InvalidStyle>
+                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="testValidation">
+                                        <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
+                                        <RequiredField IsRequired="True"></RequiredField>
+                                    </ValidationSettings>
                                 </PropertiesTextEdit>
                                 <DataItemTemplate>
                                     <a href="domini_gest.aspx?idDom=<%# Eval("IdDominio") %>&keyName=dominio"><%# Eval("URL")%></a>
                                 </DataItemTemplate>
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataDateColumn FieldName="DataAttivazione" VisibleIndex="3">
+                            <dx:GridViewDataDateColumn FieldName="DataAttivazione" VisibleIndex="3" Width="5%">
                                 <PropertiesDateEdit>
                                     <ValidationSettings RequiredField-IsRequired="true" RequiredField-ErrorText="La Data di Attivazione è obbligatoria." />
                                 </PropertiesDateEdit>
@@ -155,7 +154,7 @@
                                 </DataItemTemplate>
                                 <PropertiesDateEdit DisplayFormatString="dd/MM/yyyy" EditFormatString="dd/MM/yyyy" EditFormat="Custom" />
                             </dx:GridViewDataDateColumn>
-                            <dx:GridViewDataDateColumn FieldName="DataScadenza" VisibleIndex="4">
+                            <dx:GridViewDataDateColumn FieldName="DataScadenza" VisibleIndex="4" Width="5%">
                                 <PropertiesDateEdit>
                                     <ValidationSettings RequiredField-IsRequired="true" RequiredField-ErrorText="La Data di Scadenza è obbligatoria." />
                                 </PropertiesDateEdit>
@@ -168,7 +167,11 @@
                             </dx:GridViewDataDateColumn>
                             <dx:GridViewDataTextColumn FieldName="Provider" VisibleIndex="5">
                                 <PropertiesTextEdit>
-                                    <ValidationSettings RequiredField-IsRequired="true" RequiredField-ErrorText="Il campo Provider è obbligatorio." />
+                                    <InvalidStyle BackColor="LightPink"></InvalidStyle>
+                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="testValidation">
+                                        <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
+                                        <RequiredField IsRequired="True"></RequiredField>
+                                    </ValidationSettings>
                                 </PropertiesTextEdit>
                                 <DataItemTemplate>
                                     <a href="domini_gest.aspx?idDom=<%# Eval("IdDominio") %>&keyName=dominio"><%# Eval("Provider")%></a>

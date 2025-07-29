@@ -302,6 +302,7 @@
                                                     </dx:ASPxButtonEdit>
                                                 </Template>
                                             </dx:GridViewToolbarItem>
+                                            <dx:GridViewToolbarItem Command="ClearFilter" Text="Cancella Flitro" />
                                             <dx:GridViewToolbarItem Command="ExportToXlsx" Text="Esporta" />
 
                                         </Items>
@@ -311,22 +312,16 @@
                                 <SettingsSearchPanel Visible="True" CustomEditorID="tbToolbarSearch"></SettingsSearchPanel>
                                 <SettingsExport EnableClientSideExportAPI="true" ExcelExportMode="DataAware" Landscape="true" LeftMargin="30" FileName="Lista" />
                                 <Columns>
-                                    <dx:GridViewCommandColumn ShowNewButtonInHeader="true" ShowEditButton="true" ShowDeleteButton="true" VisibleIndex="0" ButtonRenderMode="Image">
+                                    <dx:GridViewCommandColumn Caption="Azioni" ShowEditButton="true" ShowDeleteButton="true" VisibleIndex="0">
                                         <CustomButtons>
-                                            <dx:GridViewCommandColumnCustomButton ID="Riattiva">
-                                                <Image Url="~/img/DevExButton/Start-on-go.png" Width="30px">
-                                                </Image>
-                                            </dx:GridViewCommandColumnCustomButton>
-                                            <dx:GridViewCommandColumnCustomButton ID="Sospendi">
-                                                <Image Url="~/img/DevExButton/stop.png" Width="30px">
-                                                </Image>
-                                            </dx:GridViewCommandColumnCustomButton>
-                                            <dx:GridViewCommandColumnCustomButton ID="Password" Image-ToolTip="Modifica password">
-                                                <Image Url="~/img/DevExButton/Password-change.png" Width="30px">
-                                                </Image>
-                                            </dx:GridViewCommandColumnCustomButton>
+                                            <dx:BootstrapGridViewCommandColumnCustomButton ID="Riattiva" CssClass="btn btn-success btn-sm me-1 icon-btn icon-riattiva" />
+
+                                            <dx:BootstrapGridViewCommandColumnCustomButton ID="Sospendi" CssClass="btn btn-danger btn-sm icon-btn icon-sospendi" />
+
+                                            <dx:BootstrapGridViewCommandColumnCustomButton ID="Password" CssClass="btn btn-primary btn-sm ms-2 icon-btn icon-password" />
                                         </CustomButtons>
                                     </dx:GridViewCommandColumn>
+
                                     <dx:GridViewDataTextColumn FieldName="UtenteIntranet" VisibleIndex="1"></dx:GridViewDataTextColumn>
                                     <dx:GridViewDataTextColumn FieldName="CodCli" VisibleIndex="2"></dx:GridViewDataTextColumn>
                                     <dx:GridViewDataTextColumn FieldName="Azienda" VisibleIndex="3"></dx:GridViewDataTextColumn>
@@ -337,7 +332,7 @@
                                 </Columns>
                                 <Templates>
                                     <EditForm>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="max-height: 550px; overflow-y: auto; padding:0px !important;">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="max-height: 550px; overflow-y: auto; padding: 0px !important;">
                                             <dx:ASPxCallbackPanel runat="server" ID="EditForm_CallbackPanel" ClientInstanceName="EditForm_CallbackPanel" Width="100%" OnCallback="EditForm_CallbackPanel_Callback">
                                                 <ClientSideEvents EndCallback="function(s,e){ 
         if(ASPxClientEdit.ValidateGroup('NuovoUtenteValid')){
@@ -759,5 +754,28 @@
 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <style>
+        .icon-btn::before {
+            content: "";
+            display: inline-block;
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 30px;
+            height: 30px;
+            vertical-align: middle;
+        }
+
+        .icon-riattiva::before {
+            background-image: url('/img/DevExButton/Start-on-go.png');
+        }
+
+        .icon-sospendi::before {
+            background-image: url('/img/DevExButton/stop.png');
+        }
+
+        .icon-password::before {
+            background-image: url('/img/DevExButton/Password-change.png');
+        }
+    </style>
 </asp:Content>
 

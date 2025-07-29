@@ -80,20 +80,15 @@
                                                                                     </dx:ASPxButtonEdit>
                                                                                 </Template>
                                                                             </dx:GridViewToolbarItem>
+                                                                            <dx:GridViewToolbarItem Command="ClearFilter" Text="Cancella Flitro" />
                                                                             <dx:GridViewToolbarItem Command="ExportToXlsx" Text="Esporta" />
-                                                                            <dx:GridViewToolbarItem Alignment="left">
-                                                                                <Template>
-                                                                                    <dx:ASPxButton ID="btnClearFilters" runat="server" Text="❌ Cancella Filtro" AutoPostBack="false">
-                                                                                        <ClientSideEvents Click="function(s, e) {
-                                                                                        EmailAssociate_Gridview.ClearFilter(); 
-                                                                                        tbToolbarSearch.SetText('');
-                                                                                    }" />
-                                                                                    </dx:ASPxButton>
-                                                                                </Template>
-                                                                            </dx:GridViewToolbarItem>
                                                                         </Items>
                                                                     </dx:GridViewToolbar>
                                                                 </Toolbars>
+                                                                <SettingsPopup EditForm-VerticalAlign="WindowCenter" EditForm-HorizontalAlign="Center" EditForm-Modal="true"></SettingsPopup>
+                                                                <SettingsPopup>
+                                                                    <EditForm AllowResize="True" AutoUpdatePosition="True"></EditForm>
+                                                                </SettingsPopup>
                                                                 <SettingsSearchPanel CustomEditorID="tbToolbarSearch" />
                                                                 <SettingsExport EnableClientSideExportAPI="true" ExcelExportMode="DataAware" Landscape="true" LeftMargin="30" FileName="Lista_Email_Associate" />
                                                                 <SettingsCustomizationDialog Enabled="true" />
@@ -156,46 +151,34 @@
                                                                     </dx:GridViewDataTextColumn>
                                                                     <dx:GridViewDataTextColumn FieldName="Email" VisibleIndex="2">
                                                                         <PropertiesTextEdit>
-                                                                            <ValidationSettings
-                                                                                RequiredField-IsRequired="true"
-                                                                                RequiredField-ErrorText="Il campo Email è obbligatorio."
-                                                                                RegularExpression-ValidationExpression="^[\w\.\-]+@([\w\-]+\.)+[a-zA-Z]{2,7}$"
-                                                                                RegularExpression-ErrorText="Inserisci un indirizzo email valido." />
+                                                                            <InvalidStyle BackColor="LightPink" />
+                                                                            <ValidationSettings ErrorDisplayMode="ImageWithTooltip"
+                                                                                CausesValidation="True"
+                                                                                ValidationGroup="testValidation">
+                                                                                <RequiredField IsRequired="True" />
+                                                                                <RegularExpression
+                                                                                    ValidationExpression="^[\w\.\-]+@([\w\-]+\.)+[a-zA-Z]{2,7}$" />
+                                                                            </ValidationSettings>
                                                                         </PropertiesTextEdit>
                                                                     </dx:GridViewDataTextColumn>
                                                                     <dx:GridViewDataTextColumn FieldName="Telefono" VisibleIndex="3">
-                                                                        <PropertiesTextEdit>
-                                                                            <ValidationSettings
-                                                                                RequiredField-IsRequired="true"
-                                                                                RequiredField-ErrorText="Il campo Telefono è obbligatorio."
-                                                                                RegularExpression-ValidationExpression="^\+?[0-9\s\-]{6,20}$"
-                                                                                RegularExpression-ErrorText="Inserisci un numero di telefono valido." />
-                                                                        </PropertiesTextEdit>
                                                                     </dx:GridViewDataTextColumn>
                                                                     <dx:GridViewDataTextColumn FieldName="Password" VisibleIndex="4">
                                                                         <PropertiesTextEdit>
-                                                                            <ValidationSettings RequiredField-IsRequired="true" RequiredField-ErrorText="Il campo Password è obbligatorio." />
+                                                                            <InvalidStyle BackColor="LightPink"></InvalidStyle>
+                                                                            <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="testValidation">
+                                                                                <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
+                                                                                <RequiredField IsRequired="True"></RequiredField>
+                                                                            </ValidationSettings>
                                                                         </PropertiesTextEdit>
                                                                     </dx:GridViewDataTextColumn>
                                                                     <dx:GridViewDataTextColumn FieldName="Nome" VisibleIndex="5">
-                                                                        <PropertiesTextEdit>
-                                                                            <ValidationSettings RequiredField-IsRequired="true" RequiredField-ErrorText="Il campo Nome è obbligatorio." />
-                                                                        </PropertiesTextEdit>
                                                                     </dx:GridViewDataTextColumn>
                                                                     <dx:GridViewDataTextColumn FieldName="Cognome" VisibleIndex="6">
-                                                                        <PropertiesTextEdit>
-                                                                            <ValidationSettings RequiredField-IsRequired="true" RequiredField-ErrorText="Il campo Cognome è obbligatorio." />
-                                                                        </PropertiesTextEdit>
                                                                     </dx:GridViewDataTextColumn>
                                                                     <dx:GridViewDataTextColumn FieldName="Ruolo" VisibleIndex="7">
-                                                                        <PropertiesTextEdit>
-                                                                            <ValidationSettings RequiredField-IsRequired="true" RequiredField-ErrorText="Il campo Ruolo è obbligatorio." />
-                                                                        </PropertiesTextEdit>
                                                                     </dx:GridViewDataTextColumn>
                                                                     <dx:GridViewDataTextColumn FieldName="NomeUtente" VisibleIndex="8">
-                                                                        <PropertiesTextEdit>
-                                                                            <ValidationSettings RequiredField-IsRequired="true" RequiredField-ErrorText="Il campo Nome Utente è obbligatorio." />
-                                                                        </PropertiesTextEdit>
                                                                     </dx:GridViewDataTextColumn>
                                                                 </Columns>
                                                             </dx:ASPxGridView>
@@ -261,20 +244,15 @@
                                                                                     </dx:ASPxButtonEdit>
                                                                                 </Template>
                                                                             </dx:GridViewToolbarItem>
+                                                                            <dx:GridViewToolbarItem Command="ClearFilter" Text="Cancella Flitro" />
                                                                             <dx:GridViewToolbarItem Command="ExportToXlsx" Text="Esporta" />
-                                                                            <dx:GridViewToolbarItem Alignment="left">
-                                                                                <Template>
-                                                                                    <dx:ASPxButton ID="btnClearFilters" runat="server" Text="❌ Cancella Filtro" AutoPostBack="false">
-                                                                                        <ClientSideEvents Click="function(s, e) {
-                                                                                         ServiziAssociati_Gridview.ClearFilter(); 
-                                                                                         tbToolbarSearchServizi.SetText('');
-                                                                                     }" />
-                                                                                    </dx:ASPxButton>
-                                                                                </Template>
-                                                                            </dx:GridViewToolbarItem>
                                                                         </Items>
                                                                     </dx:GridViewToolbar>
                                                                 </Toolbars>
+                                                                <SettingsPopup EditForm-VerticalAlign="WindowCenter" EditForm-HorizontalAlign="Center" EditForm-Modal="true"></SettingsPopup>
+                                                                <SettingsPopup>
+                                                                    <EditForm AllowResize="True" AutoUpdatePosition="True"></EditForm>
+                                                                </SettingsPopup>
                                                                 <SettingsSearchPanel CustomEditorID="tbToolbarSearchServizi" />
                                                                 <SettingsExport EnableClientSideExportAPI="true" ExcelExportMode="DataAware" Landscape="true" LeftMargin="30" FileName="Lista_Servizi_Associati" />
                                                                 <SettingsCustomizationDialog Enabled="true" />
@@ -310,28 +288,36 @@
                                                                     <dx:GridViewDataTextColumn FieldName="IdDominio" Visible="false" VisibleIndex="0" ReadOnly="true"></dx:GridViewDataTextColumn>
                                                                     <dx:GridViewDataTextColumn FieldName="NomeServizio" VisibleIndex="2">
                                                                         <PropertiesTextEdit>
-                                                                            <ValidationSettings RequiredField-IsRequired="true" RequiredField-ErrorText="Il campo Nome Servizio è obbligatorio." />
+                                                                            <InvalidStyle BackColor="LightPink"></InvalidStyle>
+                                                                            <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="testValidation">
+                                                                                <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
+                                                                                <RequiredField IsRequired="True"></RequiredField>
+                                                                            </ValidationSettings>
                                                                         </PropertiesTextEdit>
                                                                     </dx:GridViewDataTextColumn>
-                                                                    <dx:GridViewDataDateColumn FieldName="DataAtt" VisibleIndex="3">
+                                                                    <dx:GridViewDataDateColumn FieldName="DataAtt" VisibleIndex="3" Width="5%">
                                                                         <PropertiesDateEdit>
                                                                             <ValidationSettings RequiredField-IsRequired="true" RequiredField-ErrorText="La Data di Attivazione è obbligatoria." />
                                                                         </PropertiesDateEdit>
                                                                     </dx:GridViewDataDateColumn>
-                                                                    <dx:GridViewDataDateColumn FieldName="DataScad" VisibleIndex="4">
+                                                                    <dx:GridViewDataDateColumn FieldName="DataScad" VisibleIndex="4" Width="5%">
                                                                         <PropertiesDateEdit>
                                                                             <ValidationSettings RequiredField-IsRequired="true" RequiredField-ErrorText="La Data di Scadenza è obbligatoria." />
                                                                         </PropertiesDateEdit>
                                                                     </dx:GridViewDataDateColumn>
                                                                     <dx:GridViewDataMemoColumn FieldName="Descrizione" VisibleIndex="5">
-                                                                        <PropertiesMemoEdit>
-                                                                            <ValidationSettings RequiredField-IsRequired="true" RequiredField-ErrorText="Il campo Descrizione è obbligatorio." />
+                                                                        <PropertiesMemoEdit Rows="6" Width="100%" Height="120px">
+                                                                            <InvalidStyle BackColor="LightPink"></InvalidStyle>
+                                                                            <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="testValidation">
+                                                                                <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
+                                                                                <RequiredField IsRequired="True"></RequiredField>
+                                                                            </ValidationSettings>
                                                                         </PropertiesMemoEdit>
                                                                         <DataItemTemplate>
                                                                             <%# GetPreviewText(Container.Text) %>
                                                                         </DataItemTemplate>
                                                                     </dx:GridViewDataMemoColumn>
-                                                                    <dx:GridViewDataTextColumn FieldName="Prezzo" VisibleIndex="6">
+                                                                    <dx:GridViewDataTextColumn FieldName="Prezzo" VisibleIndex="6" Width="5%">
                                                                         <PropertiesTextEdit>
                                                                             <ValidationSettings RequiredField-IsRequired="true" RequiredField-ErrorText="Il campo Prezzo è obbligatorio." />
                                                                         </PropertiesTextEdit>
@@ -396,7 +382,7 @@
             </div>
         </div>
     </div>
-        <dx:ASPxCallback ID="EliminaServizi_Callback" ClientInstanceName="EliminaServizi_Callback" runat="server" OnCallback="EliminaServizi_Callback_Callback">
+    <dx:ASPxCallback ID="EliminaServizi_Callback" ClientInstanceName="EliminaServizi_Callback" runat="server" OnCallback="EliminaServizi_Callback_Callback">
         <ClientSideEvents CallbackComplete="function(s,e){ServiziAssociati_Gridview.Refresh(); showNotification();}" />
     </dx:ASPxCallback>
     <asp:SqlDataSource ID="DtsDomini" runat="server" ConnectionString="<%$ ConnectionStrings:info4portaleConnectionString %>"

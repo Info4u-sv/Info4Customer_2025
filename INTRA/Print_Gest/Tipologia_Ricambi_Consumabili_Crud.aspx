@@ -30,10 +30,15 @@
                                             </dx:ASPxButtonEdit>
                                         </Template>
                                     </dx:GridViewToolbarItem>
+                                    <dx:GridViewToolbarItem Command="ClearFilter" Text="Cancella Flitro" />
                                     <dx:GridViewToolbarItem Command="ExportToXlsx" Text="Esporta" />
                                 </Items>
                             </dx:GridViewToolbar>
                         </Toolbars>
+                        <SettingsPopup EditForm-VerticalAlign="WindowCenter" EditForm-HorizontalAlign="Center" EditForm-Modal="true"></SettingsPopup>
+                        <SettingsPopup>
+                            <EditForm AllowResize="True" AutoUpdatePosition="True"></EditForm>
+                        </SettingsPopup>
                         <SettingsSearchPanel CustomEditorID="tbToolbarSearch" />
                         <SettingsExport EnableClientSideExportAPI="true" ExcelExportMode="DataAware" Landscape="true" LeftMargin="30" FileName="Lista_Depositi" />
                         <SettingsCustomizationDialog Enabled="true" />
@@ -66,7 +71,7 @@
                         <SettingsEditing EditFormColumnCount="2" Mode="PopupEditForm"></SettingsEditing>
                         <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
                         <Columns>
-                            <dx:GridViewCommandColumn ShowEditButton="True" ShowDeleteButton="false" VisibleIndex="0" ShowNewButtonInHeader="True" ShowClearFilterButton="true" Width="60px">
+                            <dx:GridViewCommandColumn ShowEditButton="True" ShowDeleteButton="false" VisibleIndex="0" ShowNewButtonInHeader="True" ShowClearFilterButton="false" Width="60px">
                                 <%--                                <CustomButtons>
                                     <dx:BootstrapGridViewCommandColumnCustomButton ID="StampaRpt" IconCssClass="icon4u icon-print image" CssClass="btn btn-sm btn-custom-padding action-btn print" Text="" />
                                     <dx:BootstrapGridViewCommandColumnCustomButton ID="Vai" IconCssClass="icon4u icon-go image" CssClass="btn btn-sm btn-custom-padding action-btn go" Text="" />
@@ -88,7 +93,7 @@
                                 </PropertiesTextEdit>
                             </dx:GridViewDataTextColumn>
                         </Columns>
-                                                <dx:EditFormLayoutProperties ColCount="2" SettingsItemCaptions-Location="Top">
+                        <dx:EditFormLayoutProperties ColCount="2" SettingsItemCaptions-Location="Top">
                             <Items>
                                 <dx:GridViewColumnLayoutItem ColumnName="Nome" RequiredMarkDisplayMode="Hidden" VerticalAlign="Top" />
                                 <dx:EditModeCommandLayoutItem ShowCancelButton="true" ShowUpdateButton="true" HorizontalAlign="Right" />
@@ -99,28 +104,25 @@
             </div>
         </div>
     </div>
-    <asp:SqlDataSource runat="server" ID="Tipologia_Ricambi_Consumabili_Dts" ConnectionString='<%$ ConnectionStrings:info4portaleConnectionString %>' 
-    SelectCommand="SELECT Tipologia_Ricambi_Consumabili.* FROM Tipologia_Ricambi_Consumabili" 
+    <asp:SqlDataSource runat="server" ID="Tipologia_Ricambi_Consumabili_Dts" ConnectionString='<%$ ConnectionStrings:info4portaleConnectionString %>'
+        SelectCommand="SELECT Tipologia_Ricambi_Consumabili.* FROM Tipologia_Ricambi_Consumabili"
+        InsertCommand="INSERT INTO Tipologia_Ricambi_Consumabili(Nome, CreatedUser) VALUES (@Nome, @CreatedUser)"
+        UpdateCommand="UPDATE Tipologia_Ricambi_Consumabili SET Nome = @Nome, EditUser = @EditUser, UpdatedOn = GETDATE() WHERE (ID = @ID)"
+        DeleteCommand="DELETE FROM Tipologia_Ricambi_Consumabili WHERE (ID = @ID)">
 
-    InsertCommand="INSERT INTO Tipologia_Ricambi_Consumabili(Nome, CreatedUser) VALUES (@Nome, @CreatedUser)" 
-
-    UpdateCommand="UPDATE Tipologia_Ricambi_Consumabili SET Nome = @Nome, EditUser = @EditUser, UpdatedOn = GETDATE() WHERE (ID = @ID)" 
-
-    DeleteCommand="DELETE FROM Tipologia_Ricambi_Consumabili WHERE (ID = @ID)">
-    
-    <DeleteParameters>
-        <asp:Parameter Name="ID"></asp:Parameter>
-    </DeleteParameters>
-    <InsertParameters>
-        <asp:Parameter Name="Nome"></asp:Parameter>
-        <asp:Parameter Name="CreatedUser"></asp:Parameter>
-    </InsertParameters>
-    <UpdateParameters>
-        <asp:Parameter Name="Nome"></asp:Parameter>
-        <asp:Parameter Name="EditUser"></asp:Parameter>
-        <asp:Parameter Name="ID"></asp:Parameter>
-    </UpdateParameters>
-</asp:SqlDataSource>
+        <DeleteParameters>
+            <asp:Parameter Name="ID"></asp:Parameter>
+        </DeleteParameters>
+        <InsertParameters>
+            <asp:Parameter Name="Nome"></asp:Parameter>
+            <asp:Parameter Name="CreatedUser"></asp:Parameter>
+        </InsertParameters>
+        <UpdateParameters>
+            <asp:Parameter Name="Nome"></asp:Parameter>
+            <asp:Parameter Name="EditUser"></asp:Parameter>
+            <asp:Parameter Name="ID"></asp:Parameter>
+        </UpdateParameters>
+    </asp:SqlDataSource>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="PageScriptContent" runat="server">
     <script>

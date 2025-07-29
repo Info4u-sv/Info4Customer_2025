@@ -78,7 +78,10 @@
                                                         EndCallback="function(s,e){if (e.command == 'UPDATEEDIT') {;showNotification();}}" />
                                                     <Styles Header-Wrap="True" Cell-Paddings-Padding="3" Header-Paddings-Padding="3" FilterBar-Paddings-Padding="3" CommandColumn-Paddings-Padding="3" FilterBarImageCell-Paddings-Padding="3" FilterCell-Paddings-Padding="3"></Styles>
                                                     <SettingsPager PageSizeItemSettings-Items="10,20,50,100" PageSizeItemSettings-Visible="true" PageSizeItemSettings-AllItemText="All" PageSizeItemSettings-ShowAllItem="true" Position="TopAndBottom"></SettingsPager>
-
+                                                    <SettingsPopup EditForm-VerticalAlign="WindowCenter" EditForm-HorizontalAlign="Center" EditForm-Modal="true"></SettingsPopup>
+                                                    <SettingsPopup>
+                                                        <EditForm AllowResize="True" AutoUpdatePosition="True"></EditForm>
+                                                    </SettingsPopup>
                                                     <Settings AutoFilterCondition="Contains" ShowFilterRowMenu="true" />
                                                     <SettingsCustomizationDialog Enabled="true" />
                                                     <Settings ShowFilterRow="True"></Settings>
@@ -236,6 +239,7 @@ FROM            TCK_EmailInvioStatusAreaTicket INNER JOIN
             .label.Annullato {
                 background-color: #fb6e52;
             }
+
             .label.ControlloTicket {
                 background-color: #7e3794;
             }

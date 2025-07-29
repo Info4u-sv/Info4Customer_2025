@@ -57,7 +57,7 @@ namespace INTRA.VIO.Utenti
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::DevExpress.Web.GridViewCommandColumnCustomButton Riattiva;
+        protected global::DevExpress.Web.Bootstrap.BootstrapGridViewCommandColumnCustomButton Riattiva;
 
         /// <summary>
         /// Controllo Sospendi.
@@ -66,7 +66,7 @@ namespace INTRA.VIO.Utenti
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::DevExpress.Web.GridViewCommandColumnCustomButton Sospendi;
+        protected global::DevExpress.Web.Bootstrap.BootstrapGridViewCommandColumnCustomButton Sospendi;
 
         /// <summary>
         /// Controllo Password.
@@ -75,7 +75,7 @@ namespace INTRA.VIO.Utenti
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::DevExpress.Web.GridViewCommandColumnCustomButton Password;
+        protected global::DevExpress.Web.Bootstrap.BootstrapGridViewCommandColumnCustomButton Password;
 
         /// <summary>
         /// Controllo AggiornamentoTextbox_Callback.

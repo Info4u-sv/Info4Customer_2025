@@ -2,9 +2,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="RootHolder" runat="server">
     <style>
-        div#MainContent_Generic_Gridview_DXPEForm_PW-1 {
+        /*div#MainContent_Generic_Gridview_DXPEForm_PW-1 {
             top: -75px !important;
-        }
+        }*/
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -24,9 +24,9 @@
             }}" />
                     <Styles AlternatingRow-Enabled="True" Header-Wrap="True" Cell-Paddings-Padding="3" Header-Paddings-Padding="3" FilterBar-Paddings-Padding="3" CommandColumn-Paddings-Padding="3" FilterBarImageCell-Paddings-Padding="3" FilterCell-Paddings-Padding="3"></Styles>
 
+                    <SettingsPopup EditForm-VerticalAlign="WindowCenter" EditForm-HorizontalAlign="WindowCenter" EditForm-Modal="true"></SettingsPopup>
                     <SettingsPopup>
-                        <EditForm AllowResize="True" Modal="True" VerticalAlign="WindowCenter">
-                        </EditForm>
+                        <EditForm AllowResize="True" AutoUpdatePosition="True"></EditForm>
                     </SettingsPopup>
                     <SettingsAdaptivity>
                         <AdaptiveDetailLayoutProperties ColCount="2">
@@ -76,7 +76,7 @@
                                         </dx:ASPxButtonEdit>
                                     </Template>
                                 </dx:GridViewToolbarItem>
-
+                                <dx:GridViewToolbarItem Command="ClearFilter" Text="Cancella Flitro" />
                             </Items>
                         </dx:GridViewToolbar>
                     </Toolbars>
@@ -121,6 +121,11 @@
                                     <Badge IconCssClass="fa fa-save" Text="" />
                                     <SettingsBootstrap RenderOption="Success" />
                                     <ClientSideEvents Click="function(s,e){if(ASPxClientEdit.ValidateGroup('InsertValid')){Generic_Gridview.UpdateEdit();}}" />
+                                </dx:BootstrapButton>
+                                <dx:BootstrapButton runat="server" Text="" ID="Cancel_Btn" AutoPostBack="false" Badge-CssClass="BadgeBtn-just-icon" CssClasses-Control="btn btn-just-icon btn-just-icon-padding">
+                                    <Badge IconCssClass="fa fa-times" />
+                                    <SettingsBootstrap RenderOption="Danger" Sizing="Normal" />
+                                    <ClientSideEvents Click="function(s,e){ Generic_Gridview.CancelEdit(); }" />
                                 </dx:BootstrapButton>
                             </div>
                         </EditForm>

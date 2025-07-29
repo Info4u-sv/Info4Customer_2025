@@ -39,12 +39,16 @@
                 <div class="card-content" style="text-align: left !important;">
                     <h4 class="card-title">Lista Depositi Con Articoli Sotto Scorta</h4>
 
-                    <dx:ASPxCallback runat="server" ID="ShopRedirect_CallBack" ClientInstanceName="ShopRedirect_CallBack" OnCallback="ShopRedirect_CallBack_Callback" ></dx:ASPxCallback>
+                    <dx:ASPxCallback runat="server" ID="ShopRedirect_CallBack" ClientInstanceName="ShopRedirect_CallBack" OnCallback="ShopRedirect_CallBack_Callback"></dx:ASPxCallback>
 
                     <dx:ASPxGridView runat="server" ID="Generic_Gridview" ClientInstanceName="Generic_Gridview" AutoGenerateColumns="False" DataSourceID="Generic_Dts" Width="100%" Styles-AlternatingRow-Enabled="True" SettingsPopup-EditForm-HorizontalAlign="WindowCenter" SettingsPopup-EditForm-VerticalAlign="WindowCenter" KeyFieldName="CodDep">
                         <ClientSideEvents CustomButtonClick="function(s,e){if(e.buttonID == 'Approvvigiona'){s.GetRowValues(e.visibleIndex,'CodDep',OnGetRowValues)} else if(e.buttonID == 'Inventario'){ s.GetRowValues(e.visibleIndex, 'CodDep', OnGetRowValuesConfermaInventario); }}" EndCallback="function(s, e) { ASPxClientHint.Update(); }" />
                         <Styles Header-Wrap="True" Cell-Paddings-Padding="3" Header-Paddings-Padding="3" FilterBar-Paddings-Padding="3" CommandColumn-Paddings-Padding="3" FilterBarImageCell-Paddings-Padding="3" FilterCell-Paddings-Padding="3"></Styles>
                         <Settings AutoFilterCondition="Contains" ShowFilterRowMenu="true" />
+                        <SettingsPopup EditForm-VerticalAlign="WindowCenter" EditForm-HorizontalAlign="Center" EditForm-Modal="true"></SettingsPopup>
+                        <SettingsPopup>
+                            <EditForm AllowResize="True" AutoUpdatePosition="True"></EditForm>
+                        </SettingsPopup>
                         <Toolbars>
                             <dx:GridViewToolbar>
                                 <Items>
@@ -57,6 +61,7 @@
                                             </dx:ASPxButtonEdit>
                                         </Template>
                                     </dx:GridViewToolbarItem>
+                                    <dx:GridViewToolbarItem Command="ClearFilter" Text="Cancella Flitro" />
                                     <dx:GridViewToolbarItem Command="ExportToXlsx" Text="Esporta" />
                                 </Items>
                             </dx:GridViewToolbar>
@@ -168,7 +173,7 @@
             </asp:Repeater>
         </div>
     </div>
-    <dx:ASPxPopupControl runat="server" ID="Articoli_Popup" ClientInstanceName="Articoli_Popup" Width="800px" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="TopSides" HeaderText="Lista Articoli">
+    <dx:ASPxPopupControl runat="server" ID="Articoli_Popup" ClientInstanceName="Articoli_Popup" Width="800px" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="TopSides" HeaderText="Lista Articoli" ShowShadow="true" Modal="True" EnableAnimation="true">
         <ContentCollection>
             <dx:PopupControlContentControl>
                 <dx:ASPxLabel runat="server" Text="Nel campo specificato, la quantità inserita viene aggiunta agli elementi presenti, non rappresenta una nuova quantità. Gli articoli verranno aggiunti senza la creazione di alcun ordine."></dx:ASPxLabel>
@@ -192,6 +197,10 @@
                             </Items>
                         </dx:GridViewToolbar>
                     </Toolbars>
+                    <SettingsPopup EditForm-VerticalAlign="WindowCenter" EditForm-HorizontalAlign="Center" EditForm-Modal="true"></SettingsPopup>
+                    <SettingsPopup>
+                        <EditForm AllowResize="True" AutoUpdatePosition="True"></EditForm>
+                    </SettingsPopup>
                     <SettingsSearchPanel CustomEditorID="tbToolbarSearch" />
                     <SettingsExport EnableClientSideExportAPI="true" ExcelExportMode="DataAware" Landscape="true" LeftMargin="30" FileName="List" />
                     <SettingsCustomizationDialog Enabled="true" />

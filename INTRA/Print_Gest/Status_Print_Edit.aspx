@@ -10,8 +10,8 @@
                 <div class="card-header card-header-icon" data-background-color="blue">
                     <i class="material-icons">edit</i>
                 </div>
-                
-               
+
+
                 <div class="card-content">
                     <div class="card-content">
                         <style>
@@ -73,16 +73,35 @@
                             </dx:ASPxCallbackPanel>
                             <%--bottone aggiorna--%>
                             <div class="col-md-12" style="padding-bottom: 40px; padding-top: 40px;">
-                                <dx:ASPxButton ID="Update_Btn" runat="server" Text="Aggiorna" AutoPostBack="false" ClientInstanceName="Update_Btn" BackColor="DarkBlue">
-                                    <%--funzione pop-up--%>
-                                    <ClientSideEvents Click="function(s,e){if(ASPxClientEdit.ValidateGroup('ValidazioneEdit')){
-ConfermaOperazione('Confermi di voler aggiornare il progetto con i dati inseriti?','Update_Callback','Aggiorna');
-}
-else{
-showNotificationError('Alcuni dati non sono stati compilati, controllare e riprovare.')
-}
-}" />
-                                </dx:ASPxButton>
+                                <dx:BootstrapButton runat="server"
+                                    ID="Update_Btn"
+                                    ClientInstanceName="Update_Btn"
+                                    AutoPostBack="false"
+                                    Badge-CssClass="BadgeBtn-just-icon"
+                                    CssClasses-Control="btn btn-just-icon btn-just-icon-padding btn-update">
+
+                                    <Badge IconCssClass="fa fa-save" Text="Aggiorna" />
+
+                                    <SettingsBootstrap RenderOption="Success" Sizing="Small" />
+
+                                  <ClientSideEvents
+    Click="function(s, e) {
+        if (ASPxClientEdit.ValidateGroup('ValidazioneEdit')) {
+            ConfermaOperazioneWithClientFunction(
+                'Conferma aggiornamento',
+                'Confermi di voler aggiornare il progetto con i dati inseriti?',
+                'Conferma',
+                'Annulla',
+                function() { Update_Callback.PerformCallback(); },
+                null,
+                0,
+                null
+            );
+        } else {
+            showNotificationError('Alcuni dati non sono stati compilati, controllare e riprovare.');
+        }
+    }" />
+                                </dx:BootstrapButton>
                                 <%--funzione per aggiornare i dati--%>
                                 <dx:ASPxCallback ID="Update_Callback" ClientInstanceName="Update_Callback" runat="server" OnCallback="Update_Callback_Callback" Style="float: right">
                                     <ClientSideEvents

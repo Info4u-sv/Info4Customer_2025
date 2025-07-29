@@ -19,9 +19,9 @@
         }
     </script>
     <style>
-        div#MainContent_Generic_Gridview_DXPEForm_PW-1 {
+        /*div#MainContent_Generic_Gridview_DXPEForm_PW-1 {
             top: -75px !important;
-        }
+        }*/
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -51,7 +51,10 @@
                             EndCallback="function(s,e){console.log(e.command); ASPxClientHint.Update(); if (e.command == 'UPDATEEDIT') {Generic_Gridview.Refresh();showNotification();}}" />
                         <Styles Header-Wrap="True" Cell-Paddings-Padding="3" Header-Paddings-Padding="3" FilterBar-Paddings-Padding="3" CommandColumn-Paddings-Padding="3" FilterBarImageCell-Paddings-Padding="3" FilterCell-Paddings-Padding="3"></Styles>
                         <SettingsPager PageSizeItemSettings-Items="10,20,50,100" PageSizeItemSettings-Visible="true" PageSizeItemSettings-AllItemText="All" PageSizeItemSettings-ShowAllItem="true" Position="TopAndBottom"></SettingsPager>
-
+                        <SettingsPopup EditForm-VerticalAlign="WindowCenter" EditForm-HorizontalAlign="Center" EditForm-Modal="true"></SettingsPopup>
+                        <SettingsPopup>
+                            <EditForm AllowResize="True" AutoUpdatePosition="True"></EditForm>
+                        </SettingsPopup>
                         <Settings AutoFilterCondition="Contains" ShowFilterRowMenu="true" />
                         <%-- <ClientSideEvents EndCallback="function(s,e){if(e.command == 'UPDATEEDIT' || e.command == 'DELETEROW'){Generic_Gridview.Refresh(); showNotification();}}"
                             CustomButtonClick="function(s,e){if(e.buttonID == 'Elimina'){OnGetRowValuesElimina(e.visibleIndex);}}" />--%>
@@ -67,6 +70,7 @@
                                             </dx:ASPxButtonEdit>
                                         </Template>
                                     </dx:GridViewToolbarItem>
+                                    <dx:GridViewToolbarItem Command="ClearFilter" Text="Cancella Flitro" />
                                     <dx:GridViewToolbarItem Command="ExportToXlsx" Text="Esporta" />
                                 </Items>
                             </dx:GridViewToolbar>
@@ -103,7 +107,7 @@
                         <SettingsEditing EditFormColumnCount="2" Mode="PopupEditForm"></SettingsEditing>
                         <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
                         <Columns>
-                            <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowClearFilterButton="true" Width="60px" ButtonRenderMode="Image">
+                            <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowClearFilterButton="false" Width="60px" ButtonRenderMode="Image">
                                 <CustomButtons>
                                     <dx:BootstrapGridViewCommandColumnCustomButton ID="Elimina" IconCssClass="icon4u icon-delete image" CssClass="btn btn-sm btn-custom-padding action-btn delete" Text="Elimina" />
                                     <dx:BootstrapGridViewCommandColumnCustomButton ID="StampaRpt" IconCssClass="icon4u icon-print image" CssClass="btn btn-sm btn-custom-padding action-btn print" Text="Stampa" />
@@ -134,7 +138,8 @@
                                         </PropertiesTextEdit>
                                     </dx:GridViewDataTextColumn>
                                     <dx:GridViewDataComboBoxColumn FieldName="U_I_Prov" VisibleIndex="8" Caption="Provincia" Width="30px" EditFormSettings-CaptionLocation="Top">
-                                        <PropertiesComboBox DataSourceID="Province_Dts" ValueField="Provincia" TextField="Provincia" >
+                                        <PropertiesComboBox DataSourceID="Province_Dts" ValueField="Provincia" TextField="Provincia">
+                                            <InvalidStyle BackColor="LightPink"></InvalidStyle>
                                             <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="testValidation">
                                                 <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
                                                 <RequiredField IsRequired="True"></RequiredField>
@@ -153,6 +158,7 @@
                                     <dx:GridViewDataTextColumn FieldName="U_I_Cap" VisibleIndex="9" Caption="Cap" Width="60px" EditFormSettings-CaptionLocation="Top">
                                         <PropertiesTextEdit>
                                             <MaskSettings Mask="00000" />
+                                            <InvalidStyle BackColor="LightPink"></InvalidStyle>
                                             <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="testValidation">
                                                 <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
                                                 <RequiredField IsRequired="True"></RequiredField>

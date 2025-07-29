@@ -68,5 +68,26 @@ namespace INTRA.Domini
             inserisci.CodCli = "0";
             inserisci.InsertWEB_Domini(inserisci);
         }
+
+        protected void Generic_Gridview_CellEditorInitialize(object sender, ASPxGridViewEditorEventArgs e)
+        {
+            ASPxGridView GridEdit = sender as ASPxGridView;
+            if (GridEdit.IsNewRowEditing)
+            {
+                if (e.Column.FieldName == "DataAttivazione")
+                {
+
+                    ASPxDateEdit DataAttivazione = e.Editor as ASPxDateEdit;
+                    DataAttivazione.Value = DateTime.Now;
+                }
+                if (e.Column.FieldName == "DataScadenza")
+                {
+
+                    ASPxDateEdit DataScadenza = e.Editor as ASPxDateEdit;
+                    DataScadenza.Value = DateTime.Now.AddYears(1);
+                }
+
+            }
+        }
     }
 }

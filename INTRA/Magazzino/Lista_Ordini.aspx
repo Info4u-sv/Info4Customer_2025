@@ -35,6 +35,7 @@
                                             </dx:ASPxButtonEdit>
                                         </Template>
                                     </dx:GridViewToolbarItem>
+                                    <dx:GridViewToolbarItem Command="ClearFilter" Text="Cancella Flitro" />
                                     <dx:GridViewToolbarItem Command="ExportToXlsx" Text="Esporta" />
                                 </Items>
                             </dx:GridViewToolbar>
@@ -71,7 +72,7 @@
                         <SettingsEditing EditFormColumnCount="2" Mode="PopupEditForm"></SettingsEditing>
                         <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
                         <Columns>
-                            <dx:GridViewCommandColumn VisibleIndex="0" ShowClearFilterButton="true" Width="40px">
+                            <dx:GridViewCommandColumn VisibleIndex="0" ShowClearFilterButton="false" Width="40px">
                                 <CustomButtons>
                                     <dx:BootstrapGridViewCommandColumnCustomButton ID="Vai" IconCssClass="icon4u icon-go image" CssClass="btn btn-sm btn-custom-padding action-btn go" Text="" />
                                 </CustomButtons>

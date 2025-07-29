@@ -232,6 +232,10 @@
                             </dx:TreeListToolbar>
 
                         </Toolbars>
+                        <SettingsPopup EditForm-VerticalAlign="WindowCenter" EditForm-HorizontalAlign="Center" EditForm-Modal="true"></SettingsPopup>
+                        <SettingsPopup>
+                            <EditForm AllowResize="True" AutoUpdatePosition="True"></EditForm>
+                        </SettingsPopup>
                         <SettingsSearchPanel Visible="True" CustomEditorID="tbToolbarSearch"></SettingsSearchPanel>
                         <SettingsExport EnableClientSideExportAPI="true" FileName="Lista" />
                         <SettingsEditing AllowNodeDragDrop="True" />
@@ -325,8 +329,10 @@
                                         <div class="col-lg-3">
                                             Display Name:
                                             <dx:ASPxTextBox ID="DisplayName_Edit" runat="server" Width="100%" Value='<%#Bind("DisplayName") %>' Caption="" CaptionSettings-Position="Top">
+                                                <InvalidStyle BackColor="LightPink"></InvalidStyle>
                                                 <ValidationSettings ValidationGroup="TreeEditForm" ErrorDisplayMode="None">
-                                                    <RequiredField IsRequired="true" />
+                                                    <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
+                                                    <RequiredField IsRequired="True"></RequiredField>
                                                 </ValidationSettings>
                                             </dx:ASPxTextBox>
                                         </div>
@@ -334,24 +340,30 @@
                                         <div class="col-lg-3">
                                             Titolo piccolo box home:
                                             <dx:ASPxTextBox ID="TitPiccoloBoxHomeP_Edit" runat="server" Width="100%" Value='<%#Bind("TitPiccoloBoxHomeP") %>' CaptionSettings-Position="Top">
+                                                <InvalidStyle BackColor="LightPink"></InvalidStyle>
                                                 <ValidationSettings ValidationGroup="TreeEditForm" ErrorDisplayMode="None">
-                                                    <RequiredField IsRequired="true" />
+                                                    <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
+                                                    <RequiredField IsRequired="True"></RequiredField>
                                                 </ValidationSettings>
                                             </dx:ASPxTextBox>
                                         </div>
                                         <div class="col-lg-3">
                                             Titolo grande box home:
                                             <dx:ASPxTextBox ID="TitGrandeBoxHomeP_Edit" runat="server" Width="100%" Value='<%#Bind("TitGrandeBoxHomeP") %>' CaptionSettings-Position="Top">
+                                                <InvalidStyle BackColor="LightPink"></InvalidStyle>
                                                 <ValidationSettings ValidationGroup="TreeEditForm" ErrorDisplayMode="None">
-                                                    <RequiredField IsRequired="true" />
+                                                    <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
+                                                    <RequiredField IsRequired="True"></RequiredField>
                                                 </ValidationSettings>
                                             </dx:ASPxTextBox>
                                         </div>
                                         <div class="col-lg-3">
                                             Tipo catalogo:
                                             <dx:ASPxComboBox runat="server" ID="TipoCatalogo_Combobox" DataSourceID="CatalogoTipo_Sql" ValueField="ValueField" TextField="Descrizione" ValueType="System.Int32" SelectedIndex="2" Width="100%" ClientEnabled="false">
+                                                <InvalidStyle BackColor="LightPink"></InvalidStyle>
                                                 <ValidationSettings ValidationGroup="TreeEditForm" ErrorDisplayMode="None">
-                                                    <RequiredField IsRequired="true" />
+                                                    <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
+                                                    <RequiredField IsRequired="True"></RequiredField>
                                                 </ValidationSettings>
                                             </dx:ASPxComboBox>
                                         </div>
@@ -378,8 +390,10 @@
                                                 </ValidationSettings>
                                             </dx:ASPxTextBox>--%>
                                             <dx:ASPxComboBox runat="server" ID="Set_Cmb" ClientInstanceName="Set_Cmb" DataSourceID="Settori_Dts" ValueField="CodSet" TextField="Descrizione" ValueType="System.String" Width="100%" Value='<%#Bind("Settore") %>'>
+                                                <InvalidStyle BackColor="LightPink"></InvalidStyle>
                                                 <ValidationSettings ValidationGroup="TreeEditForm" ErrorDisplayMode="None">
-                                                    <RequiredField IsRequired="true" />
+                                                    <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
+                                                    <RequiredField IsRequired="True"></RequiredField>
                                                 </ValidationSettings>
                                                 <%--<ClientSideEvents SelectedIndexChanged="function(s,e){CreaSession_cb.PerformCallback(`Settore|${s.GetValue()}|Set_Cmb`);}"/>--%>
                                             </dx:ASPxComboBox>

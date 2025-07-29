@@ -7,12 +7,21 @@
 // </generato automaticamente>
 //------------------------------------------------------------------------------
 
-namespace IntranetTemplate2017.SuperAdmin.RulesGest
+namespace INTRA.SuperAdmin.RulesGest
 {
 
 
     public partial class Role
     {
+
+        /// <summary>
+        /// Controllo cpRolePanel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxCallbackPanel cpRolePanel;
 
         /// <summary>
         /// Controllo NewRole.
@@ -24,30 +33,39 @@ namespace IntranetTemplate2017.SuperAdmin.RulesGest
         protected global::System.Web.UI.WebControls.TextBox NewRole;
 
         /// <summary>
-        /// Controllo Button2.
+        /// Controllo AddRoleButton.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Button2;
+        protected global::DevExpress.Web.Bootstrap.BootstrapButton AddRoleButton;
 
         /// <summary>
-        /// Controllo UserRoles.
+        /// Controllo Generic_Gridview.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView UserRoles;
+        protected global::DevExpress.Web.ASPxGridView Generic_Gridview;
 
         /// <summary>
-        /// Controllo ConfirmationMessage.
+        /// Controllo DeleteConfirmButton.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ConfirmationMessage;
+        protected global::DevExpress.Web.Bootstrap.BootstrapGridViewCommandColumnCustomButton DeleteConfirmButton;
+
+        /// <summary>
+        /// Controllo SqlDataSource_Roles.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource_Roles;
     }
 }

@@ -518,17 +518,28 @@
                                     </dx:PanelContent>
                                 </PanelCollection>
                             </dx:ASPxCallbackPanel>
-                                <dx:ASPxButton ID="Update_Btn" ClientInstanceName="Update_Btn" runat="server" Text="Aggiorna" AutoPostBack="false" BackColor="#0055A6">
-                                    <ClientSideEvents Click="function(s,e){
-if(ASPxClientEdit.ValidateGroup('ValidazioneEdit')){                                
-    
-ConfermaOperazione('Confermi di voler aggiornare il progetto con i dati inseriti?','Update_FormLayout_Callback');
-}
-else{
-showNotificationError('Alcuni dati non sono stati compilati, controllare e riprovare.')
-}
-}" />
-                                </dx:ASPxButton><br /><br />
+                            <dx:BootstrapButton
+                                runat="server"
+                                ID="Update_Btn"
+                                ClientInstanceName="Update_Btn"
+                                AutoPostBack="false"
+                                Badge-CssClass="BadgeBtn-just-icon"
+                                CssClasses-Control="btn btn-just-icon btn-just-icon-padding btn-update">
+
+                                <Badge IconCssClass="fa fa-sync-alt" Text="Aggiorna" />
+
+                                <SettingsBootstrap RenderOption="Success" Sizing="Small" />
+
+                                <ClientSideEvents Click="function(s,e){
+        if (ASPxClientEdit.ValidateGroup('ValidazioneEdit')) {
+            ConfermaOperazione('Confermi di voler aggiornare il progetto con i dati inseriti?', 'Update_FormLayout_Callback');
+        } else {
+            showNotificationError('Alcuni dati non sono stati compilati, controllare e riprovare.');
+        }
+    }" />
+                            </dx:BootstrapButton>
+                            <br />
+                            <br />
                         </div>
                         <dx:ASPxLoadingPanel ID="LoadingPanel" ClientInstanceName="LoadingPanel" runat="server" Text="Caricamento in corso..." Modal="true"></dx:ASPxLoadingPanel>
                         <div class="col-md-6">
@@ -632,19 +643,19 @@ showNotificationError('Alcuni dati non sono stati compilati, controllare e ripro
                                 </Columns>
                             </dx:ASPxGridView>
 
-                                <%-- callback per aggiornamento dati del FormLayout alla pressione del tasto Aggiorna --%>
-                                <dx:ASPxCallback ID="Update_FormLayout_Callback" ClientInstanceName="Update_FormLayout_Callback" runat="server" OnCallback="Update_FormLayout_Callback_Callback" Style="float: right">
-                                    <ClientSideEvents
-                                        BeginCallback="function(s,e){LoadingPanel.Show();}"
-                                        EndCallback="function(s,e){LoadingPanel.Hide(); Update_Scandenze_Copie_Callback.PerformCallback(); Edit_CallbackPnl_Callback.PerformCallback();showNotification();}" />
-                                </dx:ASPxCallback>
-                                <%-- callback per l'aggiornamento di gestione copie alla pressione del tasto Aggiorna --%>
-                                <dx:ASPxCallback ID="Update_Scandenze_Copie_Callback" ClientInstanceName="Update_Scandenze_Copie_Callback" runat="server" OnCallback="Update_Scandenze_Copie_Callback_Callback" Style="float: right">
-                                    <ClientSideEvents
-                                        EndCallback="function(s,e){showNotification();Printer_Rilevamento_Copie_GW.Refresh();}" />
-                                </dx:ASPxCallback>
-                            </div>
+                            <%-- callback per aggiornamento dati del FormLayout alla pressione del tasto Aggiorna --%>
+                            <dx:ASPxCallback ID="Update_FormLayout_Callback" ClientInstanceName="Update_FormLayout_Callback" runat="server" OnCallback="Update_FormLayout_Callback_Callback" Style="float: right">
+                                <ClientSideEvents
+                                    BeginCallback="function(s,e){LoadingPanel.Show();}"
+                                    EndCallback="function(s,e){LoadingPanel.Hide(); Update_Scandenze_Copie_Callback.PerformCallback(); Edit_CallbackPnl_Callback.PerformCallback();showNotification();}" />
+                            </dx:ASPxCallback>
+                            <%-- callback per l'aggiornamento di gestione copie alla pressione del tasto Aggiorna --%>
+                            <dx:ASPxCallback ID="Update_Scandenze_Copie_Callback" ClientInstanceName="Update_Scandenze_Copie_Callback" runat="server" OnCallback="Update_Scandenze_Copie_Callback_Callback" Style="float: right">
+                                <ClientSideEvents
+                                    EndCallback="function(s,e){showNotification();Printer_Rilevamento_Copie_GW.Refresh();}" />
+                            </dx:ASPxCallback>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>

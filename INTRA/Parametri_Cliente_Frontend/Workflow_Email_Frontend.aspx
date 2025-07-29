@@ -43,6 +43,7 @@
                                             </dx:ASPxButtonEdit>
                                         </Template>
                                     </dx:GridViewToolbarItem>
+                                    <dx:GridViewToolbarItem Command="ClearFilter" Text="Cancella Flitro" />
                                     <dx:GridViewToolbarItem Command="ExportToXlsx" Text="Esporta" />
                                 </Items>
                             </dx:GridViewToolbar>
@@ -81,7 +82,7 @@
                         <SettingsEditing EditFormColumnCount="2" Mode="PopupEditForm"></SettingsEditing>
                         <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
                         <Columns>
-                            <dx:GridViewCommandColumn VisibleIndex="0" ShowEditButton="True" ShowClearFilterButton="true" Width="40px">
+                            <dx:GridViewCommandColumn VisibleIndex="0" ShowEditButton="True" ShowClearFilterButton="false" Width="40px">
                             </dx:GridViewCommandColumn>
                             <dx:GridViewDataTextColumn FieldName="ID" ReadOnly="True" VisibleIndex="1" Visible="false" Width="60px">
                                 <EditFormSettings Visible="False"></EditFormSettings>

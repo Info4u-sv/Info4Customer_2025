@@ -28,6 +28,47 @@
                     Reset_User_Popup.Show();
                 });
             }
+            if (e.buttonID == 'Riattiva') {
+
+                riattivaIndex = e.visibleIndex;
+                e.processOnServer = false;
+
+                ConfermaOperazioneWithClientFunction(
+                    "Conferma Riattivazione",
+                    "Confermi di voler riattivare l'utente selezionato?",
+                    "Conferma",
+                    "Annulla",
+                    function () {
+                        s.PerformCallback("Riattiva|" + riattivaIndex);
+                    },
+                    function () { },
+                    0,
+                    null
+                );
+            }
+            if (e.buttonID == 'Sospendi') {
+                sospendiIndex = e.visibleIndex;
+                e.processOnServer = false;
+
+                ConfermaOperazioneWithClientFunction(
+                    "Conferma Sospensione",
+                    "Confermi di voler sospendere l'utente selezionato?",
+                    "Conferma",
+                    "Annulla",
+                    function () {
+                        s.PerformCallback("Sospendi|" + sospendiIndex);
+                    },
+                    function () { },
+                    0,
+                    null
+                );
+            }
+        }
+        function OnEndCallback(s, e) {
+            if (s.cpRefreshGrid) {
+                delete s.cpRefreshGrid;
+                s.PerformCallback();
+            }
         }
     </script>
     <div class="row">
@@ -62,8 +103,9 @@
                             <SettingsBootstrap RenderOption="Info" Sizing="small" />
                         </dx:BootstrapButton>
                     </div>
-                    <dx:ASPxGridView Styles-AlternatingRow-Enabled="True" ID="User_Grdw" ClientInstanceName="User_Grdw" runat="server" Theme="Office365" Width="100%" AutoGenerateColumns="False" KeyFieldName="UserName">
-                        <ClientSideEvents CustomButtonClick="OnCustomButtonClick" />
+                    <dx:ASPxGridView Styles-AlternatingRow-Enabled="True" ID="User_Grdw" ClientInstanceName="User_Grdw" runat="server" Theme="Office365" Width="100%" AutoGenerateColumns="False" KeyFieldName="ID" OnCustomButtonInitialize="User_Grdw_CustomButtonInitialize" OnCustomButtonCallback="User_Grdw_CustomButtonCallback" OnCustomCallback="User_Grdw_CustomCallback">
+  
+                        <ClientSideEvents CustomButtonClick="OnCustomButtonClick" EndCallback="OnEndCallback" />
                         <Styles AlternatingRow-Enabled="True" Header-Wrap="True" Cell-Paddings-Padding="3" Header-Paddings-Padding="3" FilterBar-Paddings-Padding="3" CommandColumn-Paddings-Padding="3" FilterBarImageCell-Paddings-Padding="3" FilterCell-Paddings-Padding="3"></Styles>
                         <SettingsDataSecurity AllowDelete="False" AllowEdit="False" AllowInsert="False" />
                         <Settings ShowFilterRow="True" ShowFilterRowMenu="True" ShowHeaderFilterButton="True" />
@@ -81,6 +123,7 @@
                                             </dx:ASPxButtonEdit>
                                         </Template>
                                     </dx:GridViewToolbarItem>
+                                    <dx:GridViewToolbarItem Command="ClearFilter" Text="Cancella Flitro" />
                                     <dx:GridViewToolbarItem Command="ExportToXlsx" Text="Esporta" />
                                 </Items>
                             </dx:GridViewToolbar>
@@ -114,10 +157,12 @@
                             </SelectButton>
                         </SettingsCommandButton>
                         <Columns>
-                            <dx:GridViewCommandColumn Caption="Azioni" ShowClearFilterButton="true" ShowEditButton="true">
+                            <dx:GridViewCommandColumn Caption="Azioni" ShowClearFilterButton="false" ShowEditButton="true">
                                 <CustomButtons>
                                     <dx:BootstrapGridViewCommandColumnCustomButton ID="GoTo" IconCssClass="icon4u icon-edit image" CssClass="btn btn-sm btn-custom-padding action-btn edit" />
                                     <dx:BootstrapGridViewCommandColumnCustomButton ID="Reset" IconCssClass="icon4u icon-reset image" CssClass="btn btn-sm btn-custom-padding action-btn reset" />
+                                    <dx:BootstrapGridViewCommandColumnCustomButton ID="Riattiva" IconCssClass="icon-riattiva" CssClass="btn btn-success btn-sm me-1" />
+                                    <dx:BootstrapGridViewCommandColumnCustomButton ID="Sospendi" IconCssClass="icon-sospendi" CssClass="btn btn-danger btn-sm" />
                                 </CustomButtons>
                             </dx:GridViewCommandColumn>
                             <%--<dx:GridViewDataTextColumn Caption="Azioni" VisibleIndex="0">
@@ -204,5 +249,28 @@
         }
 
     </script>
+    <style>
+        .icon-riattiva::before {
+            content: "";
+            display: inline-block;
+            background-image: url('/img/DevExButton/Start-on-go.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+
+        .icon-sospendi::before {
+            content: "";
+            display: inline-block;
+            background-image: url('/img/DevExButton/stop.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+    </style>
 </asp:Content>
 

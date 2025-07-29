@@ -267,6 +267,7 @@
                                             </dx:ASPxButtonEdit>
                                         </Template>
                                     </dx:GridViewToolbarItem>
+                                    <dx:GridViewToolbarItem Command="ClearFilter" Text="Cancella Flitro" />
                                     <dx:GridViewToolbarItem Command="ExportToXlsx" Text="Esporta" />
                                 </Items>
                             </dx:GridViewToolbar>
@@ -319,7 +320,7 @@
 
                         <SettingsEditing EditFormColumnCount="2" Mode="PopupEditForm" />
 
-                        <SettingsPopup EditForm-VerticalAlign="Middle" EditForm-HorizontalAlign="Center" EditForm-Modal="true"></SettingsPopup>
+                        <SettingsPopup EditForm-VerticalAlign="WindowCenter" EditForm-HorizontalAlign="WindowCenter" EditForm-Modal="true"></SettingsPopup>
 
                         <SettingsPopup>
 
@@ -331,7 +332,7 @@
                         <%-- bottoni edit delete stampa--%>
                         <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
                         <Columns>
-                            <dx:GridViewCommandColumn ShowClearFilterButton="true" ShowRecoverButton="true" VisibleIndex="0" ButtonRenderMode="Image" ShowNewButtonInHeader="true" ShowEditButton="false" ShowDeleteButton="true" Width="80px">
+                            <dx:GridViewCommandColumn ShowClearFilterButton="false" ShowRecoverButton="true" VisibleIndex="0" ButtonRenderMode="Image" ShowNewButtonInHeader="true" ShowEditButton="false" ShowDeleteButton="true" Width="80px">
                                 <CustomButtons>
                                     <dx:BootstrapGridViewCommandColumnCustomButton ID="GoTo" Text="Apri Dettaglio" IconCssClass="icon4u icon-go image" CssClass="btn btn-sm btn-custom-padding action-btn go" />
                                     <dx:BootstrapGridViewCommandColumnCustomButton ID="Edit" Text="Modifica" IconCssClass="icon4u icon-edit image" CssClass="btn btn-sm btn-custom-padding action-btn edit" />
@@ -635,7 +636,7 @@
         }
     </script>
 
-        <script src="../ImageCropper_4U/dist/script.js"></script>
+    <script src="../ImageCropper_4U/dist/script.js"></script>
 
 
     <script>

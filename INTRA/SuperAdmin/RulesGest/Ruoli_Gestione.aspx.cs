@@ -13,7 +13,7 @@ namespace INTRA.SuperAdmin.RulesGest
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            salva_btn.Click += salva_btn_Click;
         }
 
         private void getUserPrivileges()
@@ -203,24 +203,15 @@ namespace INTRA.SuperAdmin.RulesGest
         {
 
 
-            //if (e.Parameter == "1")
-            //{
-            //    Generic_Sql.DataBind();
-            //    UpdatePermessi();
-            //}
-
-
-
-
-
-            ControlRolePrivileges();   // Carica struttura menu base
-            getUserPrivileges();       // Carica permessi del ruolo selezionato
-            FireJavascriptEvents();    // Aggiorna stile dei checkbox
+            if (e.Parameter == "1")
+            {
+                Generic_Sql.DataBind();
+                UpdatePermessi();
+            }
 
 
             grdPrivileges.DataBind();
         }
-
 
         private void ControlRolePrivileges()
         {
