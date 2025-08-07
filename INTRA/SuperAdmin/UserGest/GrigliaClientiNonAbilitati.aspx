@@ -21,7 +21,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="card">
-        <div class="card-header card-header-icon" data-background-color="orange">
+        <div class="card-header card-header-icon" data-background-color="blue">
             <i class="fa fa-list" style="font-size: 30px"></i>
         </div>
         <div class="card-content">
@@ -79,7 +79,7 @@
                         <Items>
                             <dx:GridViewToolbarItem Alignment="left">
                                 <Template>
-                                    <dx:ASPxButtonEdit ID="tbToolbarSearch" runat="server" NullText="Cerca..." Height="100%">
+                                    <dx:ASPxButtonEdit ID="tbToolbarSearch" runat="server" NullText="Cerca..." Height="100%" ClearButton-DisplayMode="Always">
                                         <Buttons>
                                             <dx:SpinButtonExtended Image-IconID="find_find_16x16gray" />
                                         </Buttons>

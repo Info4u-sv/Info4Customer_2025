@@ -15,34 +15,33 @@ namespace INTRA.Webservice_primo_online {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Webservice_primo_online.WebService_primoSoap")]
     public interface WebService_primoSoap {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SendMailAimCore1", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HelloWorld", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        void SendMailAimCore1(string fromAddress, string toAddress, string subject, string body, string TipoAllegato, string IdAllegato);
+        string HelloWorld();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SendMailAimCore1", ReplyAction="*")]
-        System.Threading.Tasks.Task SendMailAimCore1Async(string fromAddress, string toAddress, string subject, string body, string TipoAllegato, string IdAllegato);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HelloWorld", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> HelloWorldAsync();
         
-        // CODEGEN: Il parametro 'ATT' richiede informazioni sullo schema aggiuntive che non possono essere acquisite utilizzando la modalità parametro. L'attributo specifico è 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SendMailNoTemplateAttachByDb", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/converttodaysweb", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        INTRA.Webservice_primo_online.SendMailNoTemplateAttachByDbResponse SendMailNoTemplateAttachByDb(INTRA.Webservice_primo_online.SendMailNoTemplateAttachByDbRequest request);
+        int converttodaysweb(int day, int month, int year);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SendMailNoTemplateAttachByDb", ReplyAction="*")]
-        System.Threading.Tasks.Task<INTRA.Webservice_primo_online.SendMailNoTemplateAttachByDbResponse> SendMailNoTemplateAttachByDbAsync(INTRA.Webservice_primo_online.SendMailNoTemplateAttachByDbRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/converttodaysweb", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> converttodayswebAsync(int day, int month, int year);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CheckHostStatus", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Multiplication", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string CheckHostStatus(string hostCodParam, string userNameCodParam, string passwordCodParam, string portCodParam, string SslModeCodParam, string EnableImplicitSslCodParam);
+        int Multiplication(int a, int b);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CheckHostStatus", ReplyAction="*")]
-        System.Threading.Tasks.Task<string> CheckHostStatusAsync(string hostCodParam, string userNameCodParam, string passwordCodParam, string portCodParam, string SslModeCodParam, string EnableImplicitSslCodParam);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Multiplication", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> MultiplicationAsync(int a, int b);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/TestSendEmai", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/addTckCustomer", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        void TestSendEmai(string from, string to, string msg, string msgObject);
+        int addTckCustomer(string CodCli, string OggettoTCK, string MotivoChiamata, int TCK_TipoRichiesta, int TCK_AreaCompetenza, int TCK_StatusChiamata, int TCK_PrioritaRichiesta, string NomePersonaRiferimento, string TelPersonaRiferimento, string MailPersonaRiferimento, string UserName);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/TestSendEmai", ReplyAction="*")]
-        System.Threading.Tasks.Task TestSendEmaiAsync(string from, string to, string msg, string msgObject);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/addTckCustomer", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> addTckCustomerAsync(string CodCli, string OggettoTCK, string MotivoChiamata, int TCK_TipoRichiesta, int TCK_AreaCompetenza, int TCK_StatusChiamata, int TCK_PrioritaRichiesta, string NomePersonaRiferimento, string TelPersonaRiferimento, string MailPersonaRiferimento, string UserName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/addTckCustomerArray", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -51,87 +50,47 @@ namespace INTRA.Webservice_primo_online {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/addTckCustomerArray", ReplyAction="*")]
         System.Threading.Tasks.Task<int> addTckCustomerArrayAsync(INTRA.Webservice_primo_online.TCK_Ticket_WS TckPost, string SessionID);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SendMailAimXtype", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        void SendMailAimXtype(string from, string to, int CodRapportino, int TicketStatus_Template, string UserCrudTemplate, string MailTecnicoTemplate, string NomeTecnicoTemplate, int Attachments);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SendMailAimXtype", ReplyAction="*")]
+        System.Threading.Tasks.Task SendMailAimXtypeAsync(string from, string to, int CodRapportino, int TicketStatus_Template, string UserCrudTemplate, string MailTecnicoTemplate, string NomeTecnicoTemplate, int Attachments);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SendTicketMailAim", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         void SendTicketMailAim(int TicketId, int TicketStatus, string UserCrud, INTRA.Webservice_primo_online.TCK_Ticket_WS rapportini, string MailTecnico, string NomeTecnico, bool Responsabili, string TipoAllegato, string IdAllegato);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SendTicketMailAim", ReplyAction="*")]
         System.Threading.Tasks.Task SendTicketMailAimAsync(int TicketId, int TicketStatus, string UserCrud, INTRA.Webservice_primo_online.TCK_Ticket_WS rapportini, string MailTecnico, string NomeTecnico, bool Responsabili, string TipoAllegato, string IdAllegato);
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="SendMailNoTemplateAttachByDb", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class SendMailNoTemplateAttachByDbRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public string From;
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/TestSendEmai", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        void TestSendEmai(string from, string to, string msg, string msgObject);
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public string Destinatari;
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/TestSendEmai", ReplyAction="*")]
+        System.Threading.Tasks.Task TestSendEmaiAsync(string from, string to, string msg, string msgObject);
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
-        public string CopiaConoscenza;
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CheckHostStatus", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string CheckHostStatus(string hostCodParam, string userNameCodParam, string passwordCodParam, string portCodParam, string SslModeCodParam, string EnableImplicitSslCodParam);
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=3)]
-        public string CopiaConoscenzaNascosta;
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CheckHostStatus", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> CheckHostStatusAsync(string hostCodParam, string userNameCodParam, string passwordCodParam, string portCodParam, string SslModeCodParam, string EnableImplicitSslCodParam);
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=4)]
-        public string Oggetto;
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateNoteTecnico", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        void UpdateNoteTecnico(int idTicket, string nota);
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=5)]
-        public string Messaggio;
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateNoteTecnico", ReplyAction="*")]
+        System.Threading.Tasks.Task UpdateNoteTecnicoAsync(int idTicket, string nota);
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=6)]
-        public string[] IdDocAllegati;
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateStatusChiamata", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        void UpdateStatusChiamata(int idTicket, int status);
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=7)]
-        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
-        public byte[] ATT;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=8)]
-        public string Filename;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=9)]
-        public string UtenteSMTP;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=10)]
-        public string Password;
-        
-        public SendMailNoTemplateAttachByDbRequest() {
-        }
-        
-        public SendMailNoTemplateAttachByDbRequest(string From, string Destinatari, string CopiaConoscenza, string CopiaConoscenzaNascosta, string Oggetto, string Messaggio, string[] IdDocAllegati, byte[] ATT, string Filename, string UtenteSMTP, string Password) {
-            this.From = From;
-            this.Destinatari = Destinatari;
-            this.CopiaConoscenza = CopiaConoscenza;
-            this.CopiaConoscenzaNascosta = CopiaConoscenzaNascosta;
-            this.Oggetto = Oggetto;
-            this.Messaggio = Messaggio;
-            this.IdDocAllegati = IdDocAllegati;
-            this.ATT = ATT;
-            this.Filename = Filename;
-            this.UtenteSMTP = UtenteSMTP;
-            this.Password = Password;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="SendMailNoTemplateAttachByDbResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class SendMailNoTemplateAttachByDbResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public string SendMailNoTemplateAttachByDbResult;
-        
-        public SendMailNoTemplateAttachByDbResponse() {
-        }
-        
-        public SendMailNoTemplateAttachByDbResponse(string SendMailNoTemplateAttachByDbResult) {
-            this.SendMailNoTemplateAttachByDbResult = SendMailNoTemplateAttachByDbResult;
-        }
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateStatusChiamata", ReplyAction="*")]
+        System.Threading.Tasks.Task UpdateStatusChiamataAsync(int idTicket, int status);
     }
     
     /// <remarks/>
@@ -1705,71 +1664,36 @@ namespace INTRA.Webservice_primo_online {
                 base(binding, remoteAddress) {
         }
         
-        public void SendMailAimCore1(string fromAddress, string toAddress, string subject, string body, string TipoAllegato, string IdAllegato) {
-            base.Channel.SendMailAimCore1(fromAddress, toAddress, subject, body, TipoAllegato, IdAllegato);
+        public string HelloWorld() {
+            return base.Channel.HelloWorld();
         }
         
-        public System.Threading.Tasks.Task SendMailAimCore1Async(string fromAddress, string toAddress, string subject, string body, string TipoAllegato, string IdAllegato) {
-            return base.Channel.SendMailAimCore1Async(fromAddress, toAddress, subject, body, TipoAllegato, IdAllegato);
+        public System.Threading.Tasks.Task<string> HelloWorldAsync() {
+            return base.Channel.HelloWorldAsync();
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        INTRA.Webservice_primo_online.SendMailNoTemplateAttachByDbResponse INTRA.Webservice_primo_online.WebService_primoSoap.SendMailNoTemplateAttachByDb(INTRA.Webservice_primo_online.SendMailNoTemplateAttachByDbRequest request) {
-            return base.Channel.SendMailNoTemplateAttachByDb(request);
+        public int converttodaysweb(int day, int month, int year) {
+            return base.Channel.converttodaysweb(day, month, year);
         }
         
-        public string SendMailNoTemplateAttachByDb(string From, string Destinatari, string CopiaConoscenza, string CopiaConoscenzaNascosta, string Oggetto, string Messaggio, string[] IdDocAllegati, byte[] ATT, string Filename, string UtenteSMTP, string Password) {
-            INTRA.Webservice_primo_online.SendMailNoTemplateAttachByDbRequest inValue = new INTRA.Webservice_primo_online.SendMailNoTemplateAttachByDbRequest();
-            inValue.From = From;
-            inValue.Destinatari = Destinatari;
-            inValue.CopiaConoscenza = CopiaConoscenza;
-            inValue.CopiaConoscenzaNascosta = CopiaConoscenzaNascosta;
-            inValue.Oggetto = Oggetto;
-            inValue.Messaggio = Messaggio;
-            inValue.IdDocAllegati = IdDocAllegati;
-            inValue.ATT = ATT;
-            inValue.Filename = Filename;
-            inValue.UtenteSMTP = UtenteSMTP;
-            inValue.Password = Password;
-            INTRA.Webservice_primo_online.SendMailNoTemplateAttachByDbResponse retVal = ((INTRA.Webservice_primo_online.WebService_primoSoap)(this)).SendMailNoTemplateAttachByDb(inValue);
-            return retVal.SendMailNoTemplateAttachByDbResult;
+        public System.Threading.Tasks.Task<int> converttodayswebAsync(int day, int month, int year) {
+            return base.Channel.converttodayswebAsync(day, month, year);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<INTRA.Webservice_primo_online.SendMailNoTemplateAttachByDbResponse> INTRA.Webservice_primo_online.WebService_primoSoap.SendMailNoTemplateAttachByDbAsync(INTRA.Webservice_primo_online.SendMailNoTemplateAttachByDbRequest request) {
-            return base.Channel.SendMailNoTemplateAttachByDbAsync(request);
+        public int Multiplication(int a, int b) {
+            return base.Channel.Multiplication(a, b);
         }
         
-        public System.Threading.Tasks.Task<INTRA.Webservice_primo_online.SendMailNoTemplateAttachByDbResponse> SendMailNoTemplateAttachByDbAsync(string From, string Destinatari, string CopiaConoscenza, string CopiaConoscenzaNascosta, string Oggetto, string Messaggio, string[] IdDocAllegati, byte[] ATT, string Filename, string UtenteSMTP, string Password) {
-            INTRA.Webservice_primo_online.SendMailNoTemplateAttachByDbRequest inValue = new INTRA.Webservice_primo_online.SendMailNoTemplateAttachByDbRequest();
-            inValue.From = From;
-            inValue.Destinatari = Destinatari;
-            inValue.CopiaConoscenza = CopiaConoscenza;
-            inValue.CopiaConoscenzaNascosta = CopiaConoscenzaNascosta;
-            inValue.Oggetto = Oggetto;
-            inValue.Messaggio = Messaggio;
-            inValue.IdDocAllegati = IdDocAllegati;
-            inValue.ATT = ATT;
-            inValue.Filename = Filename;
-            inValue.UtenteSMTP = UtenteSMTP;
-            inValue.Password = Password;
-            return ((INTRA.Webservice_primo_online.WebService_primoSoap)(this)).SendMailNoTemplateAttachByDbAsync(inValue);
+        public System.Threading.Tasks.Task<int> MultiplicationAsync(int a, int b) {
+            return base.Channel.MultiplicationAsync(a, b);
         }
         
-        public string CheckHostStatus(string hostCodParam, string userNameCodParam, string passwordCodParam, string portCodParam, string SslModeCodParam, string EnableImplicitSslCodParam) {
-            return base.Channel.CheckHostStatus(hostCodParam, userNameCodParam, passwordCodParam, portCodParam, SslModeCodParam, EnableImplicitSslCodParam);
+        public int addTckCustomer(string CodCli, string OggettoTCK, string MotivoChiamata, int TCK_TipoRichiesta, int TCK_AreaCompetenza, int TCK_StatusChiamata, int TCK_PrioritaRichiesta, string NomePersonaRiferimento, string TelPersonaRiferimento, string MailPersonaRiferimento, string UserName) {
+            return base.Channel.addTckCustomer(CodCli, OggettoTCK, MotivoChiamata, TCK_TipoRichiesta, TCK_AreaCompetenza, TCK_StatusChiamata, TCK_PrioritaRichiesta, NomePersonaRiferimento, TelPersonaRiferimento, MailPersonaRiferimento, UserName);
         }
         
-        public System.Threading.Tasks.Task<string> CheckHostStatusAsync(string hostCodParam, string userNameCodParam, string passwordCodParam, string portCodParam, string SslModeCodParam, string EnableImplicitSslCodParam) {
-            return base.Channel.CheckHostStatusAsync(hostCodParam, userNameCodParam, passwordCodParam, portCodParam, SslModeCodParam, EnableImplicitSslCodParam);
-        }
-        
-        public void TestSendEmai(string from, string to, string msg, string msgObject) {
-            base.Channel.TestSendEmai(from, to, msg, msgObject);
-        }
-        
-        public System.Threading.Tasks.Task TestSendEmaiAsync(string from, string to, string msg, string msgObject) {
-            return base.Channel.TestSendEmaiAsync(from, to, msg, msgObject);
+        public System.Threading.Tasks.Task<int> addTckCustomerAsync(string CodCli, string OggettoTCK, string MotivoChiamata, int TCK_TipoRichiesta, int TCK_AreaCompetenza, int TCK_StatusChiamata, int TCK_PrioritaRichiesta, string NomePersonaRiferimento, string TelPersonaRiferimento, string MailPersonaRiferimento, string UserName) {
+            return base.Channel.addTckCustomerAsync(CodCli, OggettoTCK, MotivoChiamata, TCK_TipoRichiesta, TCK_AreaCompetenza, TCK_StatusChiamata, TCK_PrioritaRichiesta, NomePersonaRiferimento, TelPersonaRiferimento, MailPersonaRiferimento, UserName);
         }
         
         public int addTckCustomerArray(INTRA.Webservice_primo_online.TCK_Ticket_WS TckPost, string SessionID) {
@@ -1780,12 +1704,52 @@ namespace INTRA.Webservice_primo_online {
             return base.Channel.addTckCustomerArrayAsync(TckPost, SessionID);
         }
         
+        public void SendMailAimXtype(string from, string to, int CodRapportino, int TicketStatus_Template, string UserCrudTemplate, string MailTecnicoTemplate, string NomeTecnicoTemplate, int Attachments) {
+            base.Channel.SendMailAimXtype(from, to, CodRapportino, TicketStatus_Template, UserCrudTemplate, MailTecnicoTemplate, NomeTecnicoTemplate, Attachments);
+        }
+        
+        public System.Threading.Tasks.Task SendMailAimXtypeAsync(string from, string to, int CodRapportino, int TicketStatus_Template, string UserCrudTemplate, string MailTecnicoTemplate, string NomeTecnicoTemplate, int Attachments) {
+            return base.Channel.SendMailAimXtypeAsync(from, to, CodRapportino, TicketStatus_Template, UserCrudTemplate, MailTecnicoTemplate, NomeTecnicoTemplate, Attachments);
+        }
+        
         public void SendTicketMailAim(int TicketId, int TicketStatus, string UserCrud, INTRA.Webservice_primo_online.TCK_Ticket_WS rapportini, string MailTecnico, string NomeTecnico, bool Responsabili, string TipoAllegato, string IdAllegato) {
             base.Channel.SendTicketMailAim(TicketId, TicketStatus, UserCrud, rapportini, MailTecnico, NomeTecnico, Responsabili, TipoAllegato, IdAllegato);
         }
         
         public System.Threading.Tasks.Task SendTicketMailAimAsync(int TicketId, int TicketStatus, string UserCrud, INTRA.Webservice_primo_online.TCK_Ticket_WS rapportini, string MailTecnico, string NomeTecnico, bool Responsabili, string TipoAllegato, string IdAllegato) {
             return base.Channel.SendTicketMailAimAsync(TicketId, TicketStatus, UserCrud, rapportini, MailTecnico, NomeTecnico, Responsabili, TipoAllegato, IdAllegato);
+        }
+        
+        public void TestSendEmai(string from, string to, string msg, string msgObject) {
+            base.Channel.TestSendEmai(from, to, msg, msgObject);
+        }
+        
+        public System.Threading.Tasks.Task TestSendEmaiAsync(string from, string to, string msg, string msgObject) {
+            return base.Channel.TestSendEmaiAsync(from, to, msg, msgObject);
+        }
+        
+        public string CheckHostStatus(string hostCodParam, string userNameCodParam, string passwordCodParam, string portCodParam, string SslModeCodParam, string EnableImplicitSslCodParam) {
+            return base.Channel.CheckHostStatus(hostCodParam, userNameCodParam, passwordCodParam, portCodParam, SslModeCodParam, EnableImplicitSslCodParam);
+        }
+        
+        public System.Threading.Tasks.Task<string> CheckHostStatusAsync(string hostCodParam, string userNameCodParam, string passwordCodParam, string portCodParam, string SslModeCodParam, string EnableImplicitSslCodParam) {
+            return base.Channel.CheckHostStatusAsync(hostCodParam, userNameCodParam, passwordCodParam, portCodParam, SslModeCodParam, EnableImplicitSslCodParam);
+        }
+        
+        public void UpdateNoteTecnico(int idTicket, string nota) {
+            base.Channel.UpdateNoteTecnico(idTicket, nota);
+        }
+        
+        public System.Threading.Tasks.Task UpdateNoteTecnicoAsync(int idTicket, string nota) {
+            return base.Channel.UpdateNoteTecnicoAsync(idTicket, nota);
+        }
+        
+        public void UpdateStatusChiamata(int idTicket, int status) {
+            base.Channel.UpdateStatusChiamata(idTicket, status);
+        }
+        
+        public System.Threading.Tasks.Task UpdateStatusChiamataAsync(int idTicket, int status) {
+            return base.Channel.UpdateStatusChiamataAsync(idTicket, status);
         }
     }
 }

@@ -77,6 +77,7 @@
                                     </Template>
                                 </dx:GridViewToolbarItem>
                                 <dx:GridViewToolbarItem Command="ClearFilter" Text="Cancella Flitro" />
+                                <dx:GridViewToolbarItem Command="ExportToXlsx" Text="Esporta" />
                             </Items>
                         </dx:GridViewToolbar>
                     </Toolbars>
@@ -84,7 +85,7 @@
                     <SettingsEditing Mode="PopupEditForm"></SettingsEditing>
                     <SettingsPopup EditForm-Modal="true" EditForm-VerticalAlign="WindowCenter" EditForm-HorizontalAlign="WindowCenter"></SettingsPopup>
                     <SettingsSearchPanel Visible="True" CustomEditorID="tbToolbarSearch"></SettingsSearchPanel>
-
+                    <SettingsExport EnableClientSideExportAPI="true" ExcelExportMode="DataAware" Landscape="true" LeftMargin="30" FileName="Lista_Parametri" />
                     <SettingsText ConfirmDelete="true"></SettingsText>
 
                     <EditFormLayoutProperties ColCount="2">
@@ -93,7 +94,7 @@
                     <Columns>
                         <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" Width="40px">
                         </dx:GridViewCommandColumn>
-                        <dx:GridViewDataTextColumn FieldName="ID" VisibleIndex="1" ReadOnly="True" Width="40px">
+                        <dx:GridViewDataTextColumn FieldName="ID" VisibleIndex="1" ReadOnly="True" Width="40px" Visible="false">
                             <EditFormSettings Visible="False" />
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn FieldName="CodParam" VisibleIndex="2" ReadOnly="true"></dx:GridViewDataTextColumn>
@@ -119,12 +120,12 @@
                             <div style="float: right">
                                 <dx:BootstrapButton runat="server" Text="" ID="Update_Btn" AutoPostBack="false" Badge-CssClass="BadgeBtn-just-icon" CssClasses-Control="btn btn-just-icon btn-just-icon-padding ">
                                     <Badge IconCssClass="fa fa-save" Text="" />
-                                    <SettingsBootstrap RenderOption="Success" />
+                                    <SettingsBootstrap RenderOption="Success" Sizing="Small" />
                                     <ClientSideEvents Click="function(s,e){if(ASPxClientEdit.ValidateGroup('InsertValid')){Generic_Gridview.UpdateEdit();}}" />
                                 </dx:BootstrapButton>
                                 <dx:BootstrapButton runat="server" Text="" ID="Cancel_Btn" AutoPostBack="false" Badge-CssClass="BadgeBtn-just-icon" CssClasses-Control="btn btn-just-icon btn-just-icon-padding">
                                     <Badge IconCssClass="fa fa-times" />
-                                    <SettingsBootstrap RenderOption="Danger" Sizing="Normal" />
+                                    <SettingsBootstrap RenderOption="Default" Sizing="Small" />
                                     <ClientSideEvents Click="function(s,e){ Generic_Gridview.CancelEdit(); }" />
                                 </dx:BootstrapButton>
                             </div>

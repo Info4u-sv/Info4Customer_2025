@@ -26,7 +26,7 @@ namespace INTRA.AppCode
         public bool ITBook { get; set; }
         public string CodCli { get; set; }
         public string SessionID { get; set; }
-
+        public int IDTicket { get; set; }
 
         public int PRT_Documenti_Insert(PRT_Documenti setting)
         {
@@ -50,16 +50,17 @@ namespace INTRA.AppCode
         public int PRT_DocumentiTCK_Insert(PRT_Documenti doc)
         {
             Sql4Helper objSqlHelper = new Sql4Helper();
-            SqlParameter[] objParams = new SqlParameter[8];
+            SqlParameter[] objParams = new SqlParameter[9];
 
-            objParams[0] = new SqlParameter("@CodCli", doc.CodCli);
-            objParams[1] = new SqlParameter("@SessionID", doc.SessionID);
-            objParams[2] = new SqlParameter("@DisplayName", doc.DisplayName);
-            objParams[3] = new SqlParameter("@Description", doc.Description);
-            objParams[4] = new SqlParameter("@FileName", doc.FileName);
-            objParams[5] = new SqlParameter("@FileExtension", doc.FileExtension);
-            objParams[6] = new SqlParameter("@PathFolder", doc.PathFolder);
-            objParams[7] = new SqlParameter("@CreatedUser", doc.CreatedUser);
+            objParams[0] = new SqlParameter("@IDTicket", doc.IDTicket);
+            objParams[1] = new SqlParameter("@CodCli", doc.CodCli);
+            objParams[2] = new SqlParameter("@SessionID", doc.SessionID);
+            objParams[3] = new SqlParameter("@DisplayName", doc.DisplayName);
+            objParams[4] = new SqlParameter("@Description", doc.Description);
+            objParams[5] = new SqlParameter("@FileName", doc.FileName);
+            objParams[6] = new SqlParameter("@FileExtension", doc.FileExtension);
+            objParams[7] = new SqlParameter("@PathFolder", doc.PathFolder);
+            objParams[8] = new SqlParameter("@CreatedUser", doc.CreatedUser);
             int LastIdDoc = objSqlHelper.ExecuteNonQueryForNews("PRT_DocumentiTCK_Insert", objParams);
             return LastIdDoc;
         }

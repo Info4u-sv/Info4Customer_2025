@@ -123,6 +123,15 @@ namespace INTRA.SuperAdmin.UserGest
         protected global::DevExpress.Web.Bootstrap.BootstrapButton Reset_Btn;
 
         /// <summary>
+        /// Controllo Close_Popup_Btn.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::DevExpress.Web.Bootstrap.BootstrapButton Close_Popup_Btn;
+
+        /// <summary>
         /// Controllo Reset_Callback.
         /// </summary>
         /// <remarks>

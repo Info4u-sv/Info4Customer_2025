@@ -80,7 +80,6 @@
                 s.RemoveToken(1);
             }
         }
-
     </script>
     <style>
         .badge.BadgeTopBtn {
@@ -122,6 +121,7 @@
             height: 25px;
             vertical-align: middle;
         }
+
         .icon-sospendi::before {
             content: "";
             display: inline-block;
@@ -130,6 +130,17 @@
             background-repeat: no-repeat;
             width: 25px;
             height: 25px;
+            vertical-align: middle;
+        }
+
+        .icon-riattiva::before {
+            content: "";
+            display: inline-block;
+            background-image: url('/img/DevExButton/Start-on-go.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 20px;
+            height: 20px;
             vertical-align: middle;
         }
     </style>
@@ -198,6 +209,61 @@
                 }
                 notificationShown = false;
             }
+            function OnCustomButtonClick(s, e) {
+                if (e.buttonID == 'Password') {
+                    e.processOnServer = true;
+                    return;
+                }
+
+                if (e.buttonID == 'Riattiva') {
+                    e.processOnServer = false;
+                    let riattivaIndex = e.visibleIndex;
+
+                    ConfermaOperazioneWithClientFunction(
+                        "Conferma Riattivazione",
+                        "Confermi di voler riattivare l'utente selezionato?",
+                        "Conferma",
+                        "Annulla",
+                        function () {
+                            s.PerformCallback("Riattiva|" + riattivaIndex);
+                        },
+                        function () { },
+                        0,
+                        null
+                    );
+                }
+
+                if (e.buttonID == 'Sospendi') {
+                    e.processOnServer = false;
+                    let sospendiIndex = e.visibleIndex;
+
+                    ConfermaOperazioneWithClientFunction(
+                        "Conferma Sospensione",
+                        "Confermi di voler sospendere l'utente selezionato?",
+                        "Conferma",
+                        "Annulla",
+                        function () {
+                            s.PerformCallback("Sospendi|" + sospendiIndex);
+                        },
+                        function () { },
+                        0,
+                        null
+                    );
+                }
+                if (e.buttonID == 'Elimina') { OnGetRowValuesElimina(e.visibleIndex); }
+            }
+            function OnEndCallback(s, e) {
+                if (s.cpRefreshGrid) {
+                    delete s.cpRefreshGrid;
+                    s.PerformCallback();
+                }
+            }
+            function OnGetRowValuesElimina(index) {
+                ConfermaOperazioneWithClientFunction("Conferma Cancellazione", "Confermi di voler eliminare l\'utente selezionato?", "Conferma", "Annulla", Elimina, null, index, null);
+            }
+            function Elimina(Valore) {
+                Generic_Gridview.DeleteRow(Valore);
+            }
         </script>
         <div class="row">
             <div class="col-md-12">
@@ -210,41 +276,8 @@
                         <dx:ASPxCallbackPanel ID="Cards_CallbackPnl" ClientInstanceName="Cards_CallbackPnl" runat="server" Width="100%" OnCallback="Cards_CallbackPnl_Callback">
                             <PanelCollection>
                                 <dx:PanelContent>
-                                    <dx:ASPxGridView SettingsBehavior-ConfirmDelete="true" SettingsText-ConfirmDelete="Confermi l'eliminazione dell'utente?" SettingsText-PopupEditFormCaption="Modifica/Inserisci utente" Styles-AlternatingRow-Enabled="True" ID="Generic_Gridview" ClientInstanceName="Generic_Gridview" DataSourceID="EditCardView_Dts" runat="server" Width="100%" AutoGenerateColumns="False" OnRowInserting="Generic_Gridview_RowInserting" OnRowUpdating="Generic_Gridview_RowUpdating" KeyFieldName="ID" OnRowDeleted="Generic_Gridview_RowDeleted" OnCustomButtonInitialize="Generic_Gridview_CustomButtonInitialize" OnCustomButtonCallback="Generic_Gridview_CustomButtonCallback" OnRowDeleting="Generic_Gridview_RowDeleting">
-                                        <ClientSideEvents CustomButtonClick="
-                           function(s,e){
-                           if(e.buttonID == 'Riattiva')
-                           {  
-
-                           if (confirm('Sei sicuro di voler riattivare questo utente?'))  
-                                {  
-                                    e.processOnServer = true;  
-                                }  
-                                else  
-                                {  
-                                   e.processOnServer = false;  
-                                }  
-                           }
-                            if(e.buttonID == 'Sospendi')
-                            {  
-                            if (confirm('Sei sicuro di voler sospendere questo utente?'))  
-                                {  
-                                    e.processOnServer = true;  
-                                }  
-                                else  
-                                {  
-                                   e.processOnServer = false;  
-                                } 
-
-                              }
-
-                            if(e.buttonID == 'Password'){ 
-                             
-                             e.processOnServer = true;  
-                                   
-                                } 
-                           }" />
-                                        <ClientSideEvents BeginCallback="BeginCallbackGrid" EndCallback="EndCallbackGrid" />
+                                    <dx:ASPxGridView SettingsBehavior-ConfirmDelete="true" SettingsText-ConfirmDelete="Confermi l'eliminazione dell'utente?" SettingsText-PopupEditFormCaption="Modifica/Inserisci utente" Styles-AlternatingRow-Enabled="True" ID="Generic_Gridview" ClientInstanceName="Generic_Gridview" DataSourceID="EditCardView_Dts" runat="server" Width="100%" AutoGenerateColumns="False" OnRowInserting="Generic_Gridview_RowInserting" OnRowUpdating="Generic_Gridview_RowUpdating" KeyFieldName="ID" OnCustomButtonInitialize="Generic_Gridview_CustomButtonInitialize" OnCustomButtonCallback="Generic_Gridview_CustomButtonCallback" OnRowDeleting="Generic_Gridview_RowDeleting" OnCustomCallback="Generic_Gridview_CustomCallback">
+                                        <ClientSideEvents CustomButtonClick="OnCustomButtonClick" BeginCallback="BeginCallbackGrid" EndCallback="EndCallbackGrid" />
                                         <SettingsPager PageSizeItemSettings-Items="10,20,50,100" PageSizeItemSettings-Visible="true" PageSizeItemSettings-AllItemText="All" PageSizeItemSettings-ShowAllItem="true" Position="TopAndBottom"></SettingsPager>
 
                                         <SettingsPopup>
@@ -313,18 +346,11 @@
                                         <SettingsSearchPanel Visible="True" CustomEditorID="tbToolbarSearch"></SettingsSearchPanel>
                                         <SettingsExport EnableClientSideExportAPI="true" ExcelExportMode="DataAware" Landscape="true" LeftMargin="30" FileName="Lista" />
                                         <Columns>
-                                            <dx:GridViewCommandColumn ShowNewButtonInHeader="false" ShowEditButton="true" ShowDeleteButton="true" VisibleIndex="0" ButtonRenderMode="Image" ShowClearFilterButton="false">
+                                            <dx:GridViewCommandColumn ShowNewButtonInHeader="false" ShowEditButton="true" ShowDeleteButton="false" VisibleIndex="0" ButtonRenderMode="Image" ShowClearFilterButton="false">
                                                 <CustomButtons>
-                                                    <dx:GridViewCommandColumnCustomButton ID="Riattiva">
-                                                        <Image Url="~/img/DevExButton/Start-on-go.png" Width="30px">
-                                                        </Image>
-                                                    </dx:GridViewCommandColumnCustomButton>
-<%--                                                    <dx:GridViewCommandColumnCustomButton ID="Sospendi">
-                                                        <Image Url="~/img/DevExButton/stop.png" Width="30px">
-                                                        </Image>
-                                                    </dx:GridViewCommandColumnCustomButton>--%>
+                                                    <dx:BootstrapGridViewCommandColumnCustomButton ID="Elimina" IconCssClass="icon4u icon-delete image" CssClass="btn btn-sm btn-custom-padding action-btn delete" Text="" />
                                                     <dx:BootstrapGridViewCommandColumnCustomButton ID="Sospendi" IconCssClass="icon-sospendi" CssClass="btn btn-danger btn-sm me-1" />
-
+                                                    <dx:BootstrapGridViewCommandColumnCustomButton ID="Riattiva" IconCssClass="icon-riattiva" CssClass="btn btn-success btn-sm me-1" />
                                                     <dx:BootstrapGridViewCommandColumnCustomButton ID="Password" IconCssClass="icon-password" CssClass="btn btn-info btn-sm me-1" />
 
                                                 </CustomButtons>

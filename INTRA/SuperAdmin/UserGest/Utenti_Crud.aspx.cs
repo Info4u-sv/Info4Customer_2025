@@ -5,6 +5,7 @@ using INTRA.AppCode;
 using INTRA.ShopRM.AppCode;
 using System;
 using System.Configuration;
+using System.Data.SqlClient;
 using System.Text;
 using System.Web;
 using System.Web.Profile;
@@ -349,7 +350,7 @@ namespace INTRA.SuperAdmin.UserGest
         {
             if (e.VisibleIndex > -1)
             {
-                bool Scaduto = Convert.ToBoolean(Generic_Gridview.GetRowValues(e.VisibleIndex, "Scaduto"));
+                bool Scaduto = Convert.ToBoolean(Generic_Gridview.GetRowValues(e.VisibleIndex, "IsLockedOut"));
                 if (Scaduto)
                 {
                     if (e.ButtonID == "Sospendi")
@@ -368,26 +369,64 @@ namespace INTRA.SuperAdmin.UserGest
                 }
             }
         }
-
+        protected void Generic_Gridview_CustomCallback(object sender, ASPxGridViewCustomCallbackEventArgs e)
+        {
+            string[] parts = e.Parameters.Split('|');
+            if (parts.Length == 2 && parts[0] == "Sospendi")
+            {
+                int visibleIndex = int.Parse(parts[1]);
+                Generic_Gridview_CustomButtonCallback(sender, new ASPxGridViewCustomButtonCallbackEventArgs("Sospendi", visibleIndex));
+            }
+            if (parts.Length == 2 && parts[0] == "Riattiva")
+            {
+                int visibleIndex = int.Parse(parts[1]);
+                Generic_Gridview_CustomButtonCallback(sender, new ASPxGridViewCustomButtonCallbackEventArgs("Riattiva", visibleIndex));
+            }
+        }
         protected void Generic_Gridview_CustomButtonCallback(object sender, ASPxGridViewCustomButtonCallbackEventArgs e)
         {
-            PRT_Utenti_SA Set = new PRT_Utenti_SA();
-            if (e.ButtonID == "Riattiva")
+            string username = Generic_Gridview.GetRowValues(e.VisibleIndex, "UtenteIntranet")?.ToString();
+
+            if (!string.IsNullOrEmpty(username))
             {
-                Set.ID = Convert.ToInt32(Generic_Gridview.GetRowValues(e.VisibleIndex, "ID"));
-                Set.VIO_Utenti_Riattivazione(Set);
-                Generic_Gridview.JSProperties["cpCambiaPassword"] = 0;
-            }
-            if (e.ButtonID == "Sospendi")
-            {
-                Set.ID = Convert.ToInt32(Generic_Gridview.GetRowValues(e.VisibleIndex, "ID"));
-                Set.VIO_Utenti_Sospensione(Set);
-                Generic_Gridview.JSProperties["cpCambiaPassword"] = 0;
-            }
-            if (e.ButtonID == "Password")
-            {
-                Session["UsernameModPsw"] = Generic_Gridview.GetRowValues(e.VisibleIndex, "UtenteIntranet");
-                Generic_Gridview.JSProperties["cpCambiaPassword"] = 1;
+                MembershipUser user = Membership.GetUser(username);
+                Guid userId = (Guid)user.ProviderUserKey;
+
+                string query = string.Empty;
+                switch (e.ButtonID)
+                {
+                    case "Riattiva":
+                        query = @"UPDATE aspnet_Membership 
+              SET IsLockedOut = 0
+              WHERE UserId = @UserId";
+                        break;
+
+                    case "Sospendi":
+                        query = @"UPDATE aspnet_Membership 
+                          SET IsLockedOut = 1, LastLockoutDate = GETDATE() 
+                          WHERE UserId = @UserId";
+                        break;
+
+                    case "Password":
+                        Session["UsernameModPsw"] = username;
+                        Generic_Gridview.JSProperties["cpCambiaPassword"] = 1;
+                        return;
+                }
+
+                if (!string.IsNullOrEmpty(query))
+                {
+                    using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["info4portaleConnectionString"].ConnectionString))
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@UserId", userId);
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+
+                    Generic_Gridview.JSProperties["cpCambiaPassword"] = 0;
+                    Generic_Gridview.JSProperties["cpRefreshGrid"] = true;
+                }
             }
             EditCardView_Dts.SelectParameters["Tipologia"].DefaultValue = grid.GetRowValues(grid.FocusedRowIndex, "RoleName").ToString();
             EditCardView_Dts.DataBind();

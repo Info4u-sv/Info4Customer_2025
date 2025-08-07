@@ -112,7 +112,7 @@
                             <div class="version-text" style="position: absolute; top: 1px; right: 45px; font-size: 13px; color: #999; font-family: 'Helvetica Neue', Arial, sans-serif; font-style: italic; z-index: 999;">
                                 Versione 7/2025
                             </div>
-                            <div class="card-header card-header-icon" data-background-color="red">
+                            <div class="card-header card-header-icon" data-background-color="blue">
                                 <i class="material-icons">assignment</i>
                             </div>
                             <div class="card-header">
@@ -146,31 +146,29 @@
                                                 <br />
                                                 <div>
                                                     <dx:BootstrapButton runat="server"
-                                                        Text='Modifica Utente'
                                                         ID="btnModificaUtente"
                                                         AutoPostBack="False"
                                                         Badge-CssClass="BadgeBtn-just-icon"
-                                                        CssClasses-Control="btn btn-primary">
+                                                        CssClasses-Control="btn btn-just-icon btn-just-icon-padding">
                                                         <ClientSideEvents Click="function(s,e){
                                                         AnagraficaUserPanel.PerformCallback('ABILITA');
                                                         EditAndRolesPanel.PerformCallback('LOAD');
                                                          showNotification();
                                                     }" />
-                                                        <Badge IconCssClass="fa fa-user-edit" />
-                                                        <SettingsBootstrap Sizing="Large" />
+                                                        <Badge IconCssClass="fa fa-user-edit" Text="Modifica Utente" />
+                                                        <SettingsBootstrap RenderOption="Success" Sizing="Small" />
                                                     </dx:BootstrapButton>
 
                                                     <dx:BootstrapButton runat="server"
                                                         AutoPostBack="False"
-                                                        Text='Cancella'
                                                         Badge-CssClass="BadgeBtn-just-icon"
-                                                        CssClasses-Control="btn btn-secondary">
+                                                       CssClasses-Control="btn btn-just-icon btn-just-icon-padding">
                                                         <ClientSideEvents Click="function(s,e){
                                                         showNotification();
                                                         nascondiEditAndRolesPanel();
                                                     }" />
-                                                        <Badge IconCssClass="fa fa-times" />
-                                                        <SettingsBootstrap Sizing="Large" />
+                                                        <Badge IconCssClass="fa fa-times" Text="Cancella" />
+                                                        <SettingsBootstrap RenderOption="Danger" Sizing="Small" />
                                                     </dx:BootstrapButton>
                                                 </div>
                                             </div>
@@ -206,21 +204,21 @@
                                                             <br />
                                                             <dx:BootstrapButton ID="BtnSalvaRuoli" runat="server"
                                                                 AutoPostBack="False"
-                                                                CssClasses-Control="btn btn-success mt-2"
-                                                                Text='Salva Ruoli' Badge-CssClass="BadgeBtn-just-icon">
+                                                                CssClasses-Control="btn btn-just-icon btn-just-icon-padding"
+                                                                Badge-CssClass="BadgeBtn-just-icon">
                                                                 <ClientSideEvents Click="function(s,e){
             e.processOnServer = false;
             SalvaSelezioneRuoliECallback();
             showNotification();
         }" />
-                                                                <Badge IconCssClass="fa fa-save" />
-                                                                <SettingsBootstrap Sizing="Large" />
+                                                                <Badge IconCssClass="fa fa-save" Text="Salva Ruoli" />
+                                                                <SettingsBootstrap RenderOption="Success" Sizing="Small" />
                                                             </dx:BootstrapButton>
                                                         </div>
 
                                                         <div class="col-lg-4 col-md-4 col-sm-12 mb-4">
                                                             <div class="card">
-                                                                <div class="card-header card-header-icon" data-background-color="red">
+                                                                <div class="card-header card-header-icon" data-background-color="blue">
                                                                     <i class="material-icons">assignment</i>
                                                                 </div>
                                                                 <div class="card-content">
@@ -235,7 +233,7 @@
 
                                                         <div class="col-lg-4 col-md-4 col-sm-12 mb-4">
                                                             <div class="card">
-                                                                <div class="card-header card-header-icon" data-background-color="red">
+                                                                <div class="card-header card-header-icon" data-background-color="blue">
                                                                     <i class="material-icons">assignment</i>
                                                                 </div>
                                                                 <div class="card-content">
@@ -245,13 +243,12 @@
                                                                     <br />
                                                                     <dx:BootstrapButton ID="Button3" runat="server"
                                                                         AutoPostBack="True"
-                                                                        CssClasses-Control="btn btn-warning shiny"
-                                                                        Text='Modifica Password'
+                                                                        CssClasses-Control="btn btn-just-icon btn-just-icon-padding"
                                                                         Badge-CssClass="BadgeBtn-just-icon"
                                                                         OnClick="Button3_Click">
                                                                         <ClientSideEvents Click="function(s, e) { showNotification(); }" />
-                                                                        <Badge IconCssClass="fa fa-key" />
-                                                                        <SettingsBootstrap Sizing="Large" />
+                                                                        <Badge IconCssClass="fa fa-key" Text="Modifica Password" />
+                                                                        <SettingsBootstrap RenderOption="Warning" Sizing="Small" />
 
                                                                     </dx:BootstrapButton>
                                                                 </div>
@@ -285,7 +282,7 @@
 
                                 <div class="col-md-12 mt-5">
                                     <div class="card">
-                                        <div class="card-header card-header-icon" data-background-color="red">
+                                        <div class="card-header card-header-icon" data-background-color="blue">
                                             <i class="material-icons">assignment</i>
                                         </div>
                                         <div class="card-header">
@@ -461,28 +458,26 @@
                                                 <dx:BootstrapButton ID="FirmaTecnico_LinkB" runat="server"
                                                     AutoPostBack="True"
                                                     OnClick="FirmaTecnico_LinkB_Click"
-                                                    CssClasses-Control="btn btn-azure btn-labeled"
-                                                    Text='Carica Firma'
+                                                    CssClasses-Control="btn btn-just-icon btn-just-icon-padding"
                                                     Badge-CssClass="BadgeBtn-just-icon"
                                                     ToolTip="Aggiorna i dati">
-                                                    <Badge IconCssClass="fa fa-upload" />
-                                                    <SettingsBootstrap Sizing="Large" />
+                                                    <Badge IconCssClass="fa fa-upload" Text="Carica Firma" />
+                                                    <SettingsBootstrap RenderOption="Default" Sizing="Small" />
 
                                                 </dx:BootstrapButton>
                                             </div>
                                             <div class="col-xs-12 col-md-6 col-sm-12 col-lg-2">
                                                 <dx:BootstrapButton ID="btnSaveRegister" runat="server"
                                                     AutoPostBack="True"
-                                                    CssClasses-Control="btn btn-success btn-labeled"
-                                                    Text='Aggiorna i dati'
+                                                   CssClasses-Control="btn btn-just-icon btn-just-icon-padding"
                                                     Badge-CssClass="BadgeBtn-just-icon"
                                                     CausesValidation="true"
                                                     OnClick="BtnSaveRegister_Click">
                                                     <ClientSideEvents Click="function(s, e) {
                                                     showNotification();
                                                 }" />
-                                                    <Badge IconCssClass="fa fa-save" />
-                                                    <SettingsBootstrap Sizing="Large" />
+                                                    <Badge IconCssClass="fa fa-save" Text="Aggiorna i dati" />
+                                                    <SettingsBootstrap RenderOption="Success" Sizing="Small" />
                                                 </dx:BootstrapButton>
                                             </div>
 
@@ -538,7 +533,7 @@
 
         <div class="col-md-12 mt-5">
             <div class="card">
-                <div class="card-header card-header-icon" data-background-color="red">
+                <div class="card-header card-header-icon" data-background-color="blue">
                     <i class="material-icons">assignment</i>
                 </div>
                 <div class="card-header">
@@ -625,15 +620,14 @@
                                 <div style="float: right; padding-top: 20px">
                                     <dx:BootstrapButton ID="UpdatePermessi_Btn" runat="server"
                                         AutoPostBack="False"
-                                        CssClasses-Control="btn btn-info"
-                                        Badge-CssClass="BadgeBtn-just-icon"
-                                        Text='Aggiorna Permessi'>
+                                        CssClasses-Control="btn btn-just-icon btn-just-icon-padding"
+                                        Badge-CssClass="BadgeBtn-just-icon">
                                         <ClientSideEvents Click="function(s, e) {
                                         showNotification();
                                         PrivilegesPanel.PerformCallback('save');
                                     }" />
-                                        <Badge IconCssClass="fa fa-shield-alt" />
-                                        <SettingsBootstrap Sizing="Large" />
+                                        <Badge IconCssClass="fa fa-shield-alt" Text="Aggiorna Permessi" />
+                                        <SettingsBootstrap RenderOption="Success" Sizing="Small" />
                                     </dx:BootstrapButton>
                                 </div>
                             </dx:PanelContent>
@@ -647,20 +641,4 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="PageScriptContent" runat="server">
-    <style>
-        .btn.btn-primary, .btn.btn-secondary {
-            background-color: #0055A6;
-            color: #ffffff;
-        }
-
-            .btn.btn-primary:hover, .btn.btn:hover, .btn.btn-secondary:hover {
-                background-color: #0055A6;
-                color: #ffffff;
-            }
-
-            .btn.btn-primary:focus {
-                background-color: #0055A6;
-                color: #ffffff;
-            }
-    </style>
 </asp:Content>

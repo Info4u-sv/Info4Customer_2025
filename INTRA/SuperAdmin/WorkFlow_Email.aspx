@@ -8,7 +8,7 @@
             }
         }
         function OnGetRowValuesElimina(index) {
-            ConfermaOperazioneWithClientFunction("Conferma Cancellazione", "Confermi di voler eliminare il dato selezionato?", "Conferma", "Annulla", Elimina,null, index,null);
+            ConfermaOperazioneWithClientFunction("Conferma Cancellazione", "Confermi di voler eliminare il Cod Param selezionato?", "Conferma", "Annulla", Elimina,null, index,null);
         }
         function Elimina(Valore) {
             console.log('Valore => ' + Valore);

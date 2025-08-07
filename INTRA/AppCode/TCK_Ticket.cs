@@ -184,6 +184,10 @@ namespace INTRA.AppCode
         public bool DaFatturare { get; set; }
 
         public int IDImpianto { get; set; }
+
+        public string CodiceAssistenza { get; set; }
+
+
         #endregion
 
         public int InsertCOL_Rapportini(TCK_Ticket Rapportini)
@@ -192,7 +196,7 @@ namespace INTRA.AppCode
             string firmavuota = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFQAAAA7CAYAAADlya1OAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6Q0EyMkFGRUM3NUNCMTFFNjk3NzZDM0JDRTBFRjYyNjciIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6Q0EyMkFGRUI3NUNCMTFFNjk3NzZDM0JDRTBFRjYyNjciIHhtcDpDcmVhdG9yVG9vbD0iV2luZG93cyBQaG90byBFZGl0b3IgMTAuMC4xMDAxMS4xNjM4NCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ1dWlkOmZhZjViZGQ1LWJhM2QtMTFkYS1hZDMxLWQzM2Q3NTE4MmYxYiIgc3RSZWY6ZG9jdW1lbnRJRD0iMDRBNkIyNDc4QjkxMjVBQTc4NDgwMTdBMzA5NUM4OTEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6E7tyIAAAAZklEQVR42uzQMREAAAgEILV/57eEkwcR6CTFnVEgVKhQhAoVilChQhEqVKhQhAoVilChQhEqVChChQoVilChQhEqVChChQpFqFChQhEqVChChQpFqFChCBUqVChChQpFqNAHVoABAFS/A3O3K7OxAAAAAElFTkSuQmCC";
 
             Sql4Helper objSqlHelper = new Sql4Helper();
-            SqlParameter[] objParams = new SqlParameter[35];
+            SqlParameter[] objParams = new SqlParameter[26];
 
             objParams[0] = new SqlParameter("@CodCli", Rapportini.CodCliente);
             objParams[1] = new SqlParameter("@Società", Rapportini.Società);
@@ -224,15 +228,15 @@ namespace INTRA.AppCode
             objParams[23] = new SqlParameter("@FirmaVuota", firmavuota);
             objParams[24] = new SqlParameter("@NoteTecnico", Rapportini.NoteTecnico);
             objParams[25] = new SqlParameter("@OggettoTCK", Rapportini.OggettoTCK);
-            objParams[26] = new SqlParameter("@RecurrenceInfo", Rapportini.RecurrenceInfo);
-            objParams[27] = new SqlParameter("@DataIntervento", Rapportini.DataIntervento);
-            objParams[28] = new SqlParameter("@ResourceId", Rapportini.ResourceId);
-            objParams[29] = new SqlParameter("@TicketPadre", Rapportini.TicketPadre);
-            objParams[30] = new SqlParameter("@IDRecurrence", Rapportini.IDRecurrence);
-            objParams[31] = new SqlParameter("@DataFineIntervento", Rapportini.DataFineIntervento);
-            objParams[32] = new SqlParameter("@CodiceImpianto", Rapportini.CodiceImpianto);
-            objParams[33] = new SqlParameter("@TicketStorico", Rapportini.TicketStorico);
-            objParams[34] = new SqlParameter("@DataIns", Rapportini.DataIns);
+            //objParams[26] = new SqlParameter("@RecurrenceInfo", Rapportini.RecurrenceInfo);
+            //objParams[26] = new SqlParameter("@DataIntervento", Rapportini.DataIntervento);
+            //objParams[28] = new SqlParameter("@ResourceId", Rapportini.ResourceId);
+            //objParams[29] = new SqlParameter("@TicketPadre", Rapportini.TicketPadre);
+            //objParams[30] = new SqlParameter("@IDRecurrence", Rapportini.IDRecurrence);
+            //objParams[31] = new SqlParameter("@DataFineIntervento", Rapportini.DataFineIntervento);
+            //objParams[32] = new SqlParameter("@CodiceImpianto", Rapportini.CodiceImpianto);
+            //objParams[33] = new SqlParameter("@TicketStorico", Rapportini.TicketStorico);
+            //objParams[34] = new SqlParameter("@DataIns", Rapportini.DataIns);
             int LastId = objSqlHelper.ExecuteNonQueryForNews("TCK_TicketTestata_Insert", objParams);
             return LastId;
         }
@@ -240,7 +244,7 @@ namespace INTRA.AppCode
         public void UpdateCOL_Rapportini(TCK_Ticket Rapportini)
         {
             Sql4Helper objSqlHelper = new Sql4Helper();
-            SqlParameter[] objParams = new SqlParameter[41];
+            SqlParameter[] objParams = new SqlParameter[40];
 
             objParams[0] = new SqlParameter("@CodRapportino", Rapportini.CodRapportino);
             objParams[1] = new SqlParameter("@Società", Rapportini.Società);
@@ -285,8 +289,8 @@ namespace INTRA.AppCode
             objParams[36] = new SqlParameter("@OraFineIntervento", Rapportini.OraFineIntervento);
             objParams[37] = new SqlParameter("@TCK_TipoRichiesta", Rapportini.TCK_TipoRichiesta);
             objParams[38] = new SqlParameter("@OggettoTCK", Rapportini.OggettoTCK);
-            objParams[39] = new SqlParameter("@DataFineIntervento", Rapportini.DataFineIntervento);
-            objParams[40] = new SqlParameter("@CodiceImpianto", Rapportini.CodiceImpianto);
+            objParams[39] = new SqlParameter("@CodiceAssistenza", Rapportini.CodiceAssistenza);
+
             //COL_Rapportini_Edit
             objSqlHelper.ExecuteNonQueryForNews("TCK_TicketTestata_Update", objParams);
         }

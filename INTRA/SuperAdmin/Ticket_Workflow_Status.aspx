@@ -125,6 +125,7 @@
                                                                 TextField="Descrizione"
                                                                 ValueField="ID"
                                                                 ValueType="System.Int32">
+                                                                <InvalidStyle BackColor="LightPink"></InvalidStyle>
                                                                 <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="testValidation">
                                                                     <RequiredField IsRequired="True" />
                                                                     <ErrorFrameStyle BackColor="LightPink" />

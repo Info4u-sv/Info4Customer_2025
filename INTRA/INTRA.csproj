@@ -59,6 +59,7 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Include="AppCode\AppointmentInvio.cs" />
     <Compile Include="AppCode\BeyondFunzioniGenerali.cs" />
     <Compile Include="AppCode\Contratto_Riepilogo_Det_Rpt.cs">
       <SubType>Component</SubType>
@@ -67,6 +68,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="AppCode\DomVsService.cs" />
+    <Compile Include="AppCode\FatturazioneFinale.cs" />
     <Compile Include="AppCode\Istanze_Generiche.cs" />
     <Compile Include="AppCode\ListaTicket_LINQ.designer.cs">
       <AutoGen>True</AutoGen>
@@ -87,12 +89,15 @@
     <Compile Include="AppCode\SHP_OrderBodyMail.cs" />
     <Compile Include="AppCode\SHP_PRT_Setting.cs" />
     <Compile Include="AppCode\STD_Email.cs" />
+    <Compile Include="AppCode\TCK_DettTecniciTicket.cs" />
     <Compile Include="AppCode\TCK_EmailInvioStatusAreaTicket.cs" />
     <Compile Include="AppCode\TCK_Ticket.cs" />
+    <Compile Include="AppCode\TCK_TipoEsecuzione.cs" />
     <Compile Include="AppCode\Utenti_CRUD_Class.cs" />
     <Compile Include="AppCode\VIO_Parametri.cs" />
     <Compile Include="AppCode\VIO_Utenti_CRUD_23.cs" />
     <Compile Include="AppCode\WEB_Domini.cs" />
+    <Compile Include="AppCode\WS_TCK_Ticket.cs" />
     <Compile Include="App_GlobalResources\Contratto_Riepilogo_Det_Rpt.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -179,6 +184,20 @@
     </Compile>
     <Compile Include="Gestionale\Clienti_CRUD.aspx.designer.cs">
       <DependentUpon>Clienti_CRUD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Invio_Controllo_Fatturazione_Finale.aspx.cs">
+      <DependentUpon>Invio_Controllo_Fatturazione_Finale.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Invio_Controllo_Fatturazione_Finale.aspx.designer.cs">
+      <DependentUpon>Invio_Controllo_Fatturazione_Finale.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Invio_Ticket_Aperti.aspx.cs">
+      <DependentUpon>Invio_Ticket_Aperti.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Invio_Ticket_Aperti.aspx.designer.cs">
+      <DependentUpon>Invio_Ticket_Aperti.aspx</DependentUpon>
     </Compile>
     <Compile Include="Magazzino\Articoli_DaFatt_Gest.aspx.cs">
       <DependentUpon>Articoli_DaFatt_Gest.aspx</DependentUpon>
@@ -977,6 +996,12 @@
     <Compile Include="TestInvioEmail.aspx.designer.cs">
       <DependentUpon>TestInvioEmail.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Ticket\InserimentoTicket.aspx.cs">
+      <DependentUpon>InserimentoTicket.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ticket\InserimentoTicket.aspx.designer.cs">
+      <DependentUpon>InserimentoTicket.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Ticket\TCK_Insert.aspx.cs">
       <DependentUpon>TCK_Insert.aspx</DependentUpon>
     </Compile>
@@ -1003,6 +1028,13 @@
     </Compile>
     <Compile Include="Ticket\Ticket_List.aspx.designer.cs">
       <DependentUpon>Ticket_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ticket\Ticket_view.aspx.cs">
+      <DependentUpon>Ticket_view.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ticket\Ticket_view.aspx.designer.cs">
+      <DependentUpon>Ticket_view.aspx</DependentUpon>
     </Compile>
     <Compile Include="Users\Invio_Email_RecuperoDati.aspx.cs">
       <DependentUpon>Invio_Email_RecuperoDati.aspx</DependentUpon>
@@ -1218,6 +1250,8 @@
     <Content Include="ImageCropper_4U\src\index.html" />
     <Content Include="ImageCropper_4U\src\script.js" />
     <Content Include="ImageCropper_4U\src\style.css" />
+    <Content Include="Invio_Controllo_Fatturazione_Finale.aspx" />
+    <Content Include="Invio_Ticket_Aperti.aspx" />
     <Content Include="Magazzino\Articoli_DaFatt_Gest.aspx" />
     <Content Include="Print_Gest\Tipologia_Ricambi_Consumabili_Crud.aspx" />
     <Content Include="Print_Gest\Colori_Print_CRUD.aspx" />
@@ -1227,9 +1261,6 @@
     <Content Include="css\native-like-experience.css" />
     <Content Include="assets\js\draggable\jquery-ui.min.js" />
     <Content Include="assets\js\draggable\jquery.ui.touch-punch.min.js" />
-    <Content Include="Connected Services\Webservice_primo_online\INTRA.Webservice_primo_online.SendMailNoTemplateAttachByDbResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Age_Ordini\AppCode\ListaOrdini_LINQ.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>ListaOrdini_LINQ.designer.cs</LastGenOutput>
@@ -3324,10 +3355,12 @@
     <Content Include="SuperAdmin\UserGest\GrigliaClientiNonAbilitati.aspx" />
     <Content Include="TestInvioEmail.aspx" />
     <Content Include="TicketStatus.xml" />
+    <Content Include="Ticket\InserimentoTicket.aspx" />
     <Content Include="Ticket\TCK_Insert.aspx" />
     <Content Include="Ticket\TaskView_Custom.aspx" />
     <Content Include="Ticket\TCK_List.aspx" />
     <Content Include="Ticket\Ticket_List.aspx" />
+    <Content Include="Ticket\Ticket_view.aspx" />
     <Content Include="Users\Invio_Email_RecuperoDati.aspx" />
     <Content Include="Users\Recupero_Dati.aspx" />
     <Content Include="VIO_Utenti\Gruppo_Utenti_Crud.aspx" />
@@ -3449,6 +3482,7 @@
     <Content Include="Users\ProfiloUtente.aspx" />
     <Content Include="VIO_Utenti\Utenti_Crud.aspx" />
     <Content Include="Web References\WebReference4u\Reference.map" />
+    <None Include="Web References\WebService4u\WebService_primo.disco" />
     <Content Include="_App_Offline.htm" />
     <Content Include="bin\Microsoft.AspNet.Web.Optimization.WebForms.dll.refresh" />
     <Content Include="bin\Microsoft.Build.Tasks.CodeAnalysis.dll.refresh" />
@@ -3838,6 +3872,8 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <None Include="Web References\WebReference4u\WebService_primo.disco" />
     <None Include="Web References\WebReference4u\WebService_primo.wsdl" />
+    <None Include="Web References\WebService4u\WebService_primo.discomap" />
+    <None Include="Web References\WebService4u\WebService_primo.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

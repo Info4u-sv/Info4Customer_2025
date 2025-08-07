@@ -51,13 +51,13 @@ namespace INTRA.SuperAdmin.UserGest
         protected global::DevExpress.Web.ASPxGridView Generic_Gridview;
 
         /// <summary>
-        /// Controllo Riattiva.
+        /// Controllo Elimina.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::DevExpress.Web.GridViewCommandColumnCustomButton Riattiva;
+        protected global::DevExpress.Web.Bootstrap.BootstrapGridViewCommandColumnCustomButton Elimina;
 
         /// <summary>
         /// Controllo Sospendi.
@@ -67,6 +67,15 @@ namespace INTRA.SuperAdmin.UserGest
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
         protected global::DevExpress.Web.Bootstrap.BootstrapGridViewCommandColumnCustomButton Sospendi;
+
+        /// <summary>
+        /// Controllo Riattiva.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::DevExpress.Web.Bootstrap.BootstrapGridViewCommandColumnCustomButton Riattiva;
 
         /// <summary>
         /// Controllo Password.

@@ -8,11 +8,6 @@
             }
         }
     </script>
-    <style>
-        div#MainContent_Generic_Gridview_DXPEForm_PW-1 {
-            top: -75px !important;
-        }
-    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="row">
@@ -48,6 +43,10 @@
                                 </Items>
                             </dx:GridViewToolbar>
                         </Toolbars>
+                        <SettingsPopup EditForm-VerticalAlign="WindowCenter" EditForm-HorizontalAlign="Center" EditForm-Modal="true"></SettingsPopup>
+                        <SettingsPopup>
+                            <EditForm AllowResize="True" AutoUpdatePosition="True"></EditForm>
+                        </SettingsPopup>
                         <SettingsSearchPanel CustomEditorID="tbToolbarSearch" />
                         <SettingsExport EnableClientSideExportAPI="true" ExcelExportMode="DataAware" Landscape="true" LeftMargin="30" FileName="Lista_Email" />
                         <SettingsCustomizationDialog Enabled="true" />

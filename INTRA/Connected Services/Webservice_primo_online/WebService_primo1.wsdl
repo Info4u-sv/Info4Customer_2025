@@ -1,82 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s1="http://tempuri.org/AbstractTypes" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
-      <s:element name="SendMailAimCore1">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="fromAddress" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="toAddress" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="subject" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="body" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="TipoAllegato" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="IdAllegato" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="SendMailAimCore1Response">
+      <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
-      <s:element name="SendMailNoTemplateAttachByDb">
+      <s:element name="HelloWorldResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="From" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Destinatari" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="CopiaConoscenza" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="CopiaConoscenzaNascosta" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Oggetto" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Messaggio" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="IdDocAllegati" type="tns:ArrayOfString" />
-            <s:element minOccurs="0" maxOccurs="1" name="ATT" type="s:base64Binary" />
-            <s:element minOccurs="0" maxOccurs="1" name="Filename" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="UtenteSMTP" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="ArrayOfString">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
-        </s:sequence>
-      </s:complexType>
-      <s:element name="SendMailNoTemplateAttachByDbResponse">
+      <s:element name="converttodaysweb">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="SendMailNoTemplateAttachByDbResult" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="day" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="month" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="year" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="CheckHostStatus">
+      <s:element name="converttodayswebResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="hostCodParam" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="userNameCodParam" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="passwordCodParam" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="portCodParam" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="SslModeCodParam" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="EnableImplicitSslCodParam" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="converttodayswebResult" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="CheckHostStatusResponse">
+      <s:element name="Multiplication">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="CheckHostStatusResult" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="a" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="b" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="TestSendEmai">
+      <s:element name="MultiplicationResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="from" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="to" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="msgObject" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="MultiplicationResult" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="TestSendEmaiResponse">
-        <s:complexType />
+      <s:element name="addTckCustomer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CodCli" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OggettoTCK" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MotivoChiamata" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TCK_TipoRichiesta" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="TCK_AreaCompetenza" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="TCK_StatusChiamata" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="TCK_PrioritaRichiesta" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="NomePersonaRiferimento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TelPersonaRiferimento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MailPersonaRiferimento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="addTckCustomerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="addTckCustomerResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="addTckCustomerArray">
         <s:complexType>
@@ -206,6 +195,23 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="SendMailAimXtype">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="from" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="to" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CodRapportino" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="TicketStatus_Template" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserCrudTemplate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MailTecnicoTemplate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NomeTecnicoTemplate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Attachments" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMailAimXtypeResponse">
+        <s:complexType />
+      </s:element>
       <s:element name="SendTicketMailAim">
         <s:complexType>
           <s:sequence>
@@ -224,44 +230,87 @@
       <s:element name="SendTicketMailAimResponse">
         <s:complexType />
       </s:element>
+      <s:element name="TestSendEmai">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="from" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="to" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="msgObject" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestSendEmaiResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CheckHostStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hostCodParam" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userNameCodParam" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passwordCodParam" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="portCodParam" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SslModeCodParam" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EnableImplicitSslCodParam" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckHostStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckHostStatusResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateNoteTecnico">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idTicket" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="nota" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateNoteTecnicoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateStatusChiamata">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idTicket" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="status" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateStatusChiamataResponse">
+        <s:complexType />
+      </s:element>
       <s:element name="string" nillable="true" type="s:string" />
-    </s:schema>
-    <s:schema targetNamespace="http://tempuri.org/AbstractTypes">
-      <s:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
-      <s:complexType name="StringArray">
-        <s:complexContent mixed="false">
-          <s:restriction base="soapenc:Array">
-            <s:sequence>
-              <s:element minOccurs="0" maxOccurs="unbounded" name="String" type="s:string" />
-            </s:sequence>
-          </s:restriction>
-        </s:complexContent>
-      </s:complexType>
+      <s:element name="int" type="s:int" />
     </s:schema>
   </wsdl:types>
-  <wsdl:message name="SendMailAimCore1SoapIn">
-    <wsdl:part name="parameters" element="tns:SendMailAimCore1" />
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
-  <wsdl:message name="SendMailAimCore1SoapOut">
-    <wsdl:part name="parameters" element="tns:SendMailAimCore1Response" />
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
   </wsdl:message>
-  <wsdl:message name="SendMailNoTemplateAttachByDbSoapIn">
-    <wsdl:part name="parameters" element="tns:SendMailNoTemplateAttachByDb" />
+  <wsdl:message name="converttodayswebSoapIn">
+    <wsdl:part name="parameters" element="tns:converttodaysweb" />
   </wsdl:message>
-  <wsdl:message name="SendMailNoTemplateAttachByDbSoapOut">
-    <wsdl:part name="parameters" element="tns:SendMailNoTemplateAttachByDbResponse" />
+  <wsdl:message name="converttodayswebSoapOut">
+    <wsdl:part name="parameters" element="tns:converttodayswebResponse" />
   </wsdl:message>
-  <wsdl:message name="CheckHostStatusSoapIn">
-    <wsdl:part name="parameters" element="tns:CheckHostStatus" />
+  <wsdl:message name="MultiplicationSoapIn">
+    <wsdl:part name="parameters" element="tns:Multiplication" />
   </wsdl:message>
-  <wsdl:message name="CheckHostStatusSoapOut">
-    <wsdl:part name="parameters" element="tns:CheckHostStatusResponse" />
+  <wsdl:message name="MultiplicationSoapOut">
+    <wsdl:part name="parameters" element="tns:MultiplicationResponse" />
   </wsdl:message>
-  <wsdl:message name="TestSendEmaiSoapIn">
-    <wsdl:part name="parameters" element="tns:TestSendEmai" />
+  <wsdl:message name="addTckCustomerSoapIn">
+    <wsdl:part name="parameters" element="tns:addTckCustomer" />
   </wsdl:message>
-  <wsdl:message name="TestSendEmaiSoapOut">
-    <wsdl:part name="parameters" element="tns:TestSendEmaiResponse" />
+  <wsdl:message name="addTckCustomerSoapOut">
+    <wsdl:part name="parameters" element="tns:addTckCustomerResponse" />
   </wsdl:message>
   <wsdl:message name="addTckCustomerArraySoapIn">
     <wsdl:part name="parameters" element="tns:addTckCustomerArray" />
@@ -269,37 +318,95 @@
   <wsdl:message name="addTckCustomerArraySoapOut">
     <wsdl:part name="parameters" element="tns:addTckCustomerArrayResponse" />
   </wsdl:message>
+  <wsdl:message name="SendMailAimXtypeSoapIn">
+    <wsdl:part name="parameters" element="tns:SendMailAimXtype" />
+  </wsdl:message>
+  <wsdl:message name="SendMailAimXtypeSoapOut">
+    <wsdl:part name="parameters" element="tns:SendMailAimXtypeResponse" />
+  </wsdl:message>
   <wsdl:message name="SendTicketMailAimSoapIn">
     <wsdl:part name="parameters" element="tns:SendTicketMailAim" />
   </wsdl:message>
   <wsdl:message name="SendTicketMailAimSoapOut">
     <wsdl:part name="parameters" element="tns:SendTicketMailAimResponse" />
   </wsdl:message>
-  <wsdl:message name="SendMailAimCore1HttpGetIn">
-    <wsdl:part name="fromAddress" type="s:string" />
-    <wsdl:part name="toAddress" type="s:string" />
-    <wsdl:part name="subject" type="s:string" />
-    <wsdl:part name="body" type="s:string" />
-    <wsdl:part name="TipoAllegato" type="s:string" />
-    <wsdl:part name="IdAllegato" type="s:string" />
+  <wsdl:message name="TestSendEmaiSoapIn">
+    <wsdl:part name="parameters" element="tns:TestSendEmai" />
   </wsdl:message>
-  <wsdl:message name="SendMailAimCore1HttpGetOut" />
-  <wsdl:message name="SendMailNoTemplateAttachByDbHttpGetIn">
-    <wsdl:part name="From" type="s:string" />
-    <wsdl:part name="Destinatari" type="s:string" />
-    <wsdl:part name="CopiaConoscenza" type="s:string" />
-    <wsdl:part name="CopiaConoscenzaNascosta" type="s:string" />
-    <wsdl:part name="Oggetto" type="s:string" />
-    <wsdl:part name="Messaggio" type="s:string" />
-    <wsdl:part name="IdDocAllegati" type="s1:StringArray" />
-    <wsdl:part name="ATT" type="s1:StringArray" />
-    <wsdl:part name="Filename" type="s:string" />
-    <wsdl:part name="UtenteSMTP" type="s:string" />
-    <wsdl:part name="Password" type="s:string" />
+  <wsdl:message name="TestSendEmaiSoapOut">
+    <wsdl:part name="parameters" element="tns:TestSendEmaiResponse" />
   </wsdl:message>
-  <wsdl:message name="SendMailNoTemplateAttachByDbHttpGetOut">
+  <wsdl:message name="CheckHostStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckHostStatus" />
+  </wsdl:message>
+  <wsdl:message name="CheckHostStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckHostStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateNoteTecnicoSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateNoteTecnico" />
+  </wsdl:message>
+  <wsdl:message name="UpdateNoteTecnicoSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateNoteTecnicoResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateStatusChiamataSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateStatusChiamata" />
+  </wsdl:message>
+  <wsdl:message name="UpdateStatusChiamataSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateStatusChiamataResponse" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldHttpGetIn" />
+  <wsdl:message name="HelloWorldHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
+  <wsdl:message name="converttodayswebHttpGetIn">
+    <wsdl:part name="day" type="s:string" />
+    <wsdl:part name="month" type="s:string" />
+    <wsdl:part name="year" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="converttodayswebHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="MultiplicationHttpGetIn">
+    <wsdl:part name="a" type="s:string" />
+    <wsdl:part name="b" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MultiplicationHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="addTckCustomerHttpGetIn">
+    <wsdl:part name="CodCli" type="s:string" />
+    <wsdl:part name="OggettoTCK" type="s:string" />
+    <wsdl:part name="MotivoChiamata" type="s:string" />
+    <wsdl:part name="TCK_TipoRichiesta" type="s:string" />
+    <wsdl:part name="TCK_AreaCompetenza" type="s:string" />
+    <wsdl:part name="TCK_StatusChiamata" type="s:string" />
+    <wsdl:part name="TCK_PrioritaRichiesta" type="s:string" />
+    <wsdl:part name="NomePersonaRiferimento" type="s:string" />
+    <wsdl:part name="TelPersonaRiferimento" type="s:string" />
+    <wsdl:part name="MailPersonaRiferimento" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="addTckCustomerHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="SendMailAimXtypeHttpGetIn">
+    <wsdl:part name="from" type="s:string" />
+    <wsdl:part name="to" type="s:string" />
+    <wsdl:part name="CodRapportino" type="s:string" />
+    <wsdl:part name="TicketStatus_Template" type="s:string" />
+    <wsdl:part name="UserCrudTemplate" type="s:string" />
+    <wsdl:part name="MailTecnicoTemplate" type="s:string" />
+    <wsdl:part name="NomeTecnicoTemplate" type="s:string" />
+    <wsdl:part name="Attachments" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMailAimXtypeHttpGetOut" />
+  <wsdl:message name="TestSendEmaiHttpGetIn">
+    <wsdl:part name="from" type="s:string" />
+    <wsdl:part name="to" type="s:string" />
+    <wsdl:part name="msg" type="s:string" />
+    <wsdl:part name="msgObject" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TestSendEmaiHttpGetOut" />
   <wsdl:message name="CheckHostStatusHttpGetIn">
     <wsdl:part name="hostCodParam" type="s:string" />
     <wsdl:part name="userNameCodParam" type="s:string" />
@@ -311,38 +418,69 @@
   <wsdl:message name="CheckHostStatusHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
-  <wsdl:message name="TestSendEmaiHttpGetIn">
+  <wsdl:message name="UpdateNoteTecnicoHttpGetIn">
+    <wsdl:part name="idTicket" type="s:string" />
+    <wsdl:part name="nota" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateNoteTecnicoHttpGetOut" />
+  <wsdl:message name="UpdateStatusChiamataHttpGetIn">
+    <wsdl:part name="idTicket" type="s:string" />
+    <wsdl:part name="status" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateStatusChiamataHttpGetOut" />
+  <wsdl:message name="HelloWorldHttpPostIn" />
+  <wsdl:message name="HelloWorldHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="converttodayswebHttpPostIn">
+    <wsdl:part name="day" type="s:string" />
+    <wsdl:part name="month" type="s:string" />
+    <wsdl:part name="year" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="converttodayswebHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="MultiplicationHttpPostIn">
+    <wsdl:part name="a" type="s:string" />
+    <wsdl:part name="b" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MultiplicationHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="addTckCustomerHttpPostIn">
+    <wsdl:part name="CodCli" type="s:string" />
+    <wsdl:part name="OggettoTCK" type="s:string" />
+    <wsdl:part name="MotivoChiamata" type="s:string" />
+    <wsdl:part name="TCK_TipoRichiesta" type="s:string" />
+    <wsdl:part name="TCK_AreaCompetenza" type="s:string" />
+    <wsdl:part name="TCK_StatusChiamata" type="s:string" />
+    <wsdl:part name="TCK_PrioritaRichiesta" type="s:string" />
+    <wsdl:part name="NomePersonaRiferimento" type="s:string" />
+    <wsdl:part name="TelPersonaRiferimento" type="s:string" />
+    <wsdl:part name="MailPersonaRiferimento" type="s:string" />
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="addTckCustomerHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="SendMailAimXtypeHttpPostIn">
+    <wsdl:part name="from" type="s:string" />
+    <wsdl:part name="to" type="s:string" />
+    <wsdl:part name="CodRapportino" type="s:string" />
+    <wsdl:part name="TicketStatus_Template" type="s:string" />
+    <wsdl:part name="UserCrudTemplate" type="s:string" />
+    <wsdl:part name="MailTecnicoTemplate" type="s:string" />
+    <wsdl:part name="NomeTecnicoTemplate" type="s:string" />
+    <wsdl:part name="Attachments" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMailAimXtypeHttpPostOut" />
+  <wsdl:message name="TestSendEmaiHttpPostIn">
     <wsdl:part name="from" type="s:string" />
     <wsdl:part name="to" type="s:string" />
     <wsdl:part name="msg" type="s:string" />
     <wsdl:part name="msgObject" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="TestSendEmaiHttpGetOut" />
-  <wsdl:message name="SendMailAimCore1HttpPostIn">
-    <wsdl:part name="fromAddress" type="s:string" />
-    <wsdl:part name="toAddress" type="s:string" />
-    <wsdl:part name="subject" type="s:string" />
-    <wsdl:part name="body" type="s:string" />
-    <wsdl:part name="TipoAllegato" type="s:string" />
-    <wsdl:part name="IdAllegato" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="SendMailAimCore1HttpPostOut" />
-  <wsdl:message name="SendMailNoTemplateAttachByDbHttpPostIn">
-    <wsdl:part name="From" type="s:string" />
-    <wsdl:part name="Destinatari" type="s:string" />
-    <wsdl:part name="CopiaConoscenza" type="s:string" />
-    <wsdl:part name="CopiaConoscenzaNascosta" type="s:string" />
-    <wsdl:part name="Oggetto" type="s:string" />
-    <wsdl:part name="Messaggio" type="s:string" />
-    <wsdl:part name="IdDocAllegati" type="s1:StringArray" />
-    <wsdl:part name="ATT" type="s1:StringArray" />
-    <wsdl:part name="Filename" type="s:string" />
-    <wsdl:part name="UtenteSMTP" type="s:string" />
-    <wsdl:part name="Password" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="SendMailNoTemplateAttachByDbHttpPostOut">
-    <wsdl:part name="Body" element="tns:string" />
-  </wsdl:message>
+  <wsdl:message name="TestSendEmaiHttpPostOut" />
   <wsdl:message name="CheckHostStatusHttpPostIn">
     <wsdl:part name="hostCodParam" type="s:string" />
     <wsdl:part name="userNameCodParam" type="s:string" />
@@ -354,79 +492,142 @@
   <wsdl:message name="CheckHostStatusHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
-  <wsdl:message name="TestSendEmaiHttpPostIn">
-    <wsdl:part name="from" type="s:string" />
-    <wsdl:part name="to" type="s:string" />
-    <wsdl:part name="msg" type="s:string" />
-    <wsdl:part name="msgObject" type="s:string" />
+  <wsdl:message name="UpdateNoteTecnicoHttpPostIn">
+    <wsdl:part name="idTicket" type="s:string" />
+    <wsdl:part name="nota" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="TestSendEmaiHttpPostOut" />
+  <wsdl:message name="UpdateNoteTecnicoHttpPostOut" />
+  <wsdl:message name="UpdateStatusChiamataHttpPostIn">
+    <wsdl:part name="idTicket" type="s:string" />
+    <wsdl:part name="status" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateStatusChiamataHttpPostOut" />
   <wsdl:portType name="WebService_primoSoap">
-    <wsdl:operation name="SendMailAimCore1">
-      <wsdl:input message="tns:SendMailAimCore1SoapIn" />
-      <wsdl:output message="tns:SendMailAimCore1SoapOut" />
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="SendMailNoTemplateAttachByDb">
-      <wsdl:input message="tns:SendMailNoTemplateAttachByDbSoapIn" />
-      <wsdl:output message="tns:SendMailNoTemplateAttachByDbSoapOut" />
+    <wsdl:operation name="converttodaysweb">
+      <wsdl:input message="tns:converttodayswebSoapIn" />
+      <wsdl:output message="tns:converttodayswebSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="CheckHostStatus">
-      <wsdl:input message="tns:CheckHostStatusSoapIn" />
-      <wsdl:output message="tns:CheckHostStatusSoapOut" />
+    <wsdl:operation name="Multiplication">
+      <wsdl:input message="tns:MultiplicationSoapIn" />
+      <wsdl:output message="tns:MultiplicationSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="TestSendEmai">
-      <wsdl:input message="tns:TestSendEmaiSoapIn" />
-      <wsdl:output message="tns:TestSendEmaiSoapOut" />
+    <wsdl:operation name="addTckCustomer">
+      <wsdl:input message="tns:addTckCustomerSoapIn" />
+      <wsdl:output message="tns:addTckCustomerSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="addTckCustomerArray">
       <wsdl:input message="tns:addTckCustomerArraySoapIn" />
       <wsdl:output message="tns:addTckCustomerArraySoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="SendMailAimXtype">
+      <wsdl:input message="tns:SendMailAimXtypeSoapIn" />
+      <wsdl:output message="tns:SendMailAimXtypeSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="SendTicketMailAim">
       <wsdl:input message="tns:SendTicketMailAimSoapIn" />
       <wsdl:output message="tns:SendTicketMailAimSoapOut" />
     </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:portType name="WebService_primoHttpGet">
-    <wsdl:operation name="SendMailAimCore1">
-      <wsdl:input message="tns:SendMailAimCore1HttpGetIn" />
-      <wsdl:output message="tns:SendMailAimCore1HttpGetOut" />
-    </wsdl:operation>
-    <wsdl:operation name="SendMailNoTemplateAttachByDb">
-      <wsdl:input message="tns:SendMailNoTemplateAttachByDbHttpGetIn" />
-      <wsdl:output message="tns:SendMailNoTemplateAttachByDbHttpGetOut" />
+    <wsdl:operation name="TestSendEmai">
+      <wsdl:input message="tns:TestSendEmaiSoapIn" />
+      <wsdl:output message="tns:TestSendEmaiSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="CheckHostStatus">
-      <wsdl:input message="tns:CheckHostStatusHttpGetIn" />
-      <wsdl:output message="tns:CheckHostStatusHttpGetOut" />
+      <wsdl:input message="tns:CheckHostStatusSoapIn" />
+      <wsdl:output message="tns:CheckHostStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateNoteTecnico">
+      <wsdl:input message="tns:UpdateNoteTecnicoSoapIn" />
+      <wsdl:output message="tns:UpdateNoteTecnicoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStatusChiamata">
+      <wsdl:input message="tns:UpdateStatusChiamataSoapIn" />
+      <wsdl:output message="tns:UpdateStatusChiamataSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WebService_primoHttpGet">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldHttpGetIn" />
+      <wsdl:output message="tns:HelloWorldHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="converttodaysweb">
+      <wsdl:input message="tns:converttodayswebHttpGetIn" />
+      <wsdl:output message="tns:converttodayswebHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Multiplication">
+      <wsdl:input message="tns:MultiplicationHttpGetIn" />
+      <wsdl:output message="tns:MultiplicationHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="addTckCustomer">
+      <wsdl:input message="tns:addTckCustomerHttpGetIn" />
+      <wsdl:output message="tns:addTckCustomerHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMailAimXtype">
+      <wsdl:input message="tns:SendMailAimXtypeHttpGetIn" />
+      <wsdl:output message="tns:SendMailAimXtypeHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="TestSendEmai">
       <wsdl:input message="tns:TestSendEmaiHttpGetIn" />
       <wsdl:output message="tns:TestSendEmaiHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="CheckHostStatus">
+      <wsdl:input message="tns:CheckHostStatusHttpGetIn" />
+      <wsdl:output message="tns:CheckHostStatusHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateNoteTecnico">
+      <wsdl:input message="tns:UpdateNoteTecnicoHttpGetIn" />
+      <wsdl:output message="tns:UpdateNoteTecnicoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStatusChiamata">
+      <wsdl:input message="tns:UpdateStatusChiamataHttpGetIn" />
+      <wsdl:output message="tns:UpdateStatusChiamataHttpGetOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="WebService_primoHttpPost">
-    <wsdl:operation name="SendMailAimCore1">
-      <wsdl:input message="tns:SendMailAimCore1HttpPostIn" />
-      <wsdl:output message="tns:SendMailAimCore1HttpPostOut" />
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldHttpPostIn" />
+      <wsdl:output message="tns:HelloWorldHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="SendMailNoTemplateAttachByDb">
-      <wsdl:input message="tns:SendMailNoTemplateAttachByDbHttpPostIn" />
-      <wsdl:output message="tns:SendMailNoTemplateAttachByDbHttpPostOut" />
+    <wsdl:operation name="converttodaysweb">
+      <wsdl:input message="tns:converttodayswebHttpPostIn" />
+      <wsdl:output message="tns:converttodayswebHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="CheckHostStatus">
-      <wsdl:input message="tns:CheckHostStatusHttpPostIn" />
-      <wsdl:output message="tns:CheckHostStatusHttpPostOut" />
+    <wsdl:operation name="Multiplication">
+      <wsdl:input message="tns:MultiplicationHttpPostIn" />
+      <wsdl:output message="tns:MultiplicationHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="addTckCustomer">
+      <wsdl:input message="tns:addTckCustomerHttpPostIn" />
+      <wsdl:output message="tns:addTckCustomerHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMailAimXtype">
+      <wsdl:input message="tns:SendMailAimXtypeHttpPostIn" />
+      <wsdl:output message="tns:SendMailAimXtypeHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="TestSendEmai">
       <wsdl:input message="tns:TestSendEmaiHttpPostIn" />
       <wsdl:output message="tns:TestSendEmaiHttpPostOut" />
     </wsdl:operation>
+    <wsdl:operation name="CheckHostStatus">
+      <wsdl:input message="tns:CheckHostStatusHttpPostIn" />
+      <wsdl:output message="tns:CheckHostStatusHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateNoteTecnico">
+      <wsdl:input message="tns:UpdateNoteTecnicoHttpPostIn" />
+      <wsdl:output message="tns:UpdateNoteTecnicoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStatusChiamata">
+      <wsdl:input message="tns:UpdateStatusChiamataHttpPostIn" />
+      <wsdl:output message="tns:UpdateStatusChiamataHttpPostOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebService_primoSoap" type="tns:WebService_primoSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="SendMailAimCore1">
-      <soap:operation soapAction="http://tempuri.org/SendMailAimCore1" style="document" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -434,8 +635,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SendMailNoTemplateAttachByDb">
-      <soap:operation soapAction="http://tempuri.org/SendMailNoTemplateAttachByDb" style="document" />
+    <wsdl:operation name="converttodaysweb">
+      <soap:operation soapAction="http://tempuri.org/converttodaysweb" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -443,8 +644,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="CheckHostStatus">
-      <soap:operation soapAction="http://tempuri.org/CheckHostStatus" style="document" />
+    <wsdl:operation name="Multiplication">
+      <soap:operation soapAction="http://tempuri.org/Multiplication" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -452,8 +653,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="TestSendEmai">
-      <soap:operation soapAction="http://tempuri.org/TestSendEmai" style="document" />
+    <wsdl:operation name="addTckCustomer">
+      <soap:operation soapAction="http://tempuri.org/addTckCustomer" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -470,8 +671,53 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SendMailAimXtype">
+      <soap:operation soapAction="http://tempuri.org/SendMailAimXtype" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SendTicketMailAim">
       <soap:operation soapAction="http://tempuri.org/SendTicketMailAim" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestSendEmai">
+      <soap:operation soapAction="http://tempuri.org/TestSendEmai" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckHostStatus">
+      <soap:operation soapAction="http://tempuri.org/CheckHostStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateNoteTecnico">
+      <soap:operation soapAction="http://tempuri.org/UpdateNoteTecnico" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStatusChiamata">
+      <soap:operation soapAction="http://tempuri.org/UpdateStatusChiamata" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -482,8 +728,8 @@
   </wsdl:binding>
   <wsdl:binding name="WebService_primoSoap12" type="tns:WebService_primoSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="SendMailAimCore1">
-      <soap12:operation soapAction="http://tempuri.org/SendMailAimCore1" style="document" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -491,8 +737,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SendMailNoTemplateAttachByDb">
-      <soap12:operation soapAction="http://tempuri.org/SendMailNoTemplateAttachByDb" style="document" />
+    <wsdl:operation name="converttodaysweb">
+      <soap12:operation soapAction="http://tempuri.org/converttodaysweb" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -500,8 +746,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="CheckHostStatus">
-      <soap12:operation soapAction="http://tempuri.org/CheckHostStatus" style="document" />
+    <wsdl:operation name="Multiplication">
+      <soap12:operation soapAction="http://tempuri.org/Multiplication" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -509,8 +755,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="TestSendEmai">
-      <soap12:operation soapAction="http://tempuri.org/TestSendEmai" style="document" />
+    <wsdl:operation name="addTckCustomer">
+      <soap12:operation soapAction="http://tempuri.org/addTckCustomer" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -527,8 +773,53 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SendMailAimXtype">
+      <soap12:operation soapAction="http://tempuri.org/SendMailAimXtype" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SendTicketMailAim">
       <soap12:operation soapAction="http://tempuri.org/SendTicketMailAim" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestSendEmai">
+      <soap12:operation soapAction="http://tempuri.org/TestSendEmai" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckHostStatus">
+      <soap12:operation soapAction="http://tempuri.org/CheckHostStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateNoteTecnico">
+      <soap12:operation soapAction="http://tempuri.org/UpdateNoteTecnico" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStatusChiamata">
+      <soap12:operation soapAction="http://tempuri.org/UpdateStatusChiamata" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -539,21 +830,55 @@
   </wsdl:binding>
   <wsdl:binding name="WebService_primoHttpGet" type="tns:WebService_primoHttpGet">
     <http:binding verb="GET" />
-    <wsdl:operation name="SendMailAimCore1">
-      <http:operation location="/SendMailAimCore1" />
-      <wsdl:input>
-        <http:urlEncoded />
-      </wsdl:input>
-      <wsdl:output />
-    </wsdl:operation>
-    <wsdl:operation name="SendMailNoTemplateAttachByDb">
-      <http:operation location="/SendMailNoTemplateAttachByDb" />
+    <wsdl:operation name="HelloWorld">
+      <http:operation location="/HelloWorld" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
       <wsdl:output>
         <mime:mimeXml part="Body" />
       </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="converttodaysweb">
+      <http:operation location="/converttodaysweb" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Multiplication">
+      <http:operation location="/Multiplication" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addTckCustomer">
+      <http:operation location="/addTckCustomer" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMailAimXtype">
+      <http:operation location="/SendMailAimXtype" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="TestSendEmai">
+      <http:operation location="/TestSendEmai" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
     </wsdl:operation>
     <wsdl:operation name="CheckHostStatus">
       <http:operation location="/CheckHostStatus" />
@@ -564,8 +889,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="TestSendEmai">
-      <http:operation location="/TestSendEmai" />
+    <wsdl:operation name="UpdateNoteTecnico">
+      <http:operation location="/UpdateNoteTecnico" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStatusChiamata">
+      <http:operation location="/UpdateStatusChiamata" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -574,21 +906,55 @@
   </wsdl:binding>
   <wsdl:binding name="WebService_primoHttpPost" type="tns:WebService_primoHttpPost">
     <http:binding verb="POST" />
-    <wsdl:operation name="SendMailAimCore1">
-      <http:operation location="/SendMailAimCore1" />
-      <wsdl:input>
-        <mime:content type="application/x-www-form-urlencoded" />
-      </wsdl:input>
-      <wsdl:output />
-    </wsdl:operation>
-    <wsdl:operation name="SendMailNoTemplateAttachByDb">
-      <http:operation location="/SendMailNoTemplateAttachByDb" />
+    <wsdl:operation name="HelloWorld">
+      <http:operation location="/HelloWorld" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
       <wsdl:output>
         <mime:mimeXml part="Body" />
       </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="converttodaysweb">
+      <http:operation location="/converttodaysweb" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Multiplication">
+      <http:operation location="/Multiplication" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addTckCustomer">
+      <http:operation location="/addTckCustomer" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMailAimXtype">
+      <http:operation location="/SendMailAimXtype" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="TestSendEmai">
+      <http:operation location="/TestSendEmai" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
     </wsdl:operation>
     <wsdl:operation name="CheckHostStatus">
       <http:operation location="/CheckHostStatus" />
@@ -599,8 +965,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="TestSendEmai">
-      <http:operation location="/TestSendEmai" />
+    <wsdl:operation name="UpdateNoteTecnico">
+      <http:operation location="/UpdateNoteTecnico" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStatusChiamata">
+      <http:operation location="/UpdateStatusChiamata" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
