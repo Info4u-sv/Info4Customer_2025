@@ -220,6 +220,33 @@
             console.log("Elimino indice: ", valore);
             Tecnici_Gridview.DeleteRow(valore);
         }
+        //Gestione del click sul bottone "Elimina" nella griglia dei tecnici
+        function OnCustomButtonMateriali(s, e) {
+            if (e.buttonID === "EliminaMateriali") {
+                e.processOnServer = false;
+                OnGetRowValuesEliminaMateriali(e.visibleIndex);
+            }
+        }
+
+        function OnGetRowValuesEliminaMateriali(index) {
+            ConfermaOperazioneWithClientFunction(
+                "Conferma Cancellazione",
+                "Confermi di voler eliminare il materiale impiegato selezionato?",
+                "Conferma",
+                "Annulla",
+                function () {
+                    EliminaMateriale(index);
+                },
+                function () { },
+                index,
+                null
+            );
+        }
+        //Elimina una riga dalla griglia dei tecnici
+        function EliminaMateriale(valore) {
+            console.log("Elimino indice: ", valore);
+            Generic_Gridview.DeleteRow(valore);
+        }
         //Conta i tecnici visibili e calcola il totale delle ore (fine-inizio)
         function aggiornaRiepilogo() {
             var grid = Tecnici_Gridview;
@@ -279,15 +306,34 @@
         // Quando la pagina carica, controlla larghezza finestra
         document.addEventListener('DOMContentLoaded', () => {
             const collapse1 = document.getElementById('collapse1');
+            const collapse2 = document.getElementById('collapse2');
+            const collapse3 = document.getElementById('collapse3');
             if (window.innerWidth >= 992) {
                 // Desktop
                 collapse1.classList.add('in');  // apre il pannello
+                collapse2.classList.add('in');  // apre il pannello
+                collapse3.classList.add('in');  // apre il pannello
             } else {
                 // Mobile/tablet
                 collapse1.classList.remove('in'); // chiude il pannello
+                collapse2.classList.remove('in'); // chiude il pannello
+                collapse3.classList.remove('in'); // chiude il pannello
             }
         });
-        </script>
+    </script>
+<script type="text/javascript">
+    function ApriPDF() {
+        const params = new URLSearchParams(window.location.search);
+        const idTicket = params.get("IdTicket");
+
+        if (idTicket) {
+            const url = '/Ticket/ViewDoc_Empty.aspx?IdTicket=' + idTicket;
+            window.open(url, '_blank');
+        } else {
+            alert("Impossibile generare il PDF: IdTicket non presente nella querystring.");
+        }
+    }
+</script>
     <style>
         .dxgvDataRow_Office365:last-child td.dxgv, .dxgvTable_Office365 {
             border-bottom: 0px solid rgba(0,0,0,0.1) !important;
@@ -304,13 +350,85 @@
                     <div style="float: right; padding-right: 10px; padding-top: 4px;">
                         <dx:BootstrapButton
                             runat="server"
+                            ID="GeneraPDF_Btn"
+                            ClientInstanceName="GeneraPDF_Btn"
+                            AutoPostBack="false"
+                            CssClasses-Control="btn btn-just-icon btn-just-icon-padding"
+                            Style="min-width: 150px; z-index: 9999 !important;"
+                            ToolTip="Genera il PDF del ticket"
+                            Badge-CssClass="BadgeBtn-just-icon"
+                            Visible="true">
+
+                            <Badge IconCssClass="fa fa-file-pdf-o" Text="Genera PDF" />
+                            <SettingsBootstrap RenderOption="Danger" Sizing="Small" />
+                            <ClientSideEvents Click="function(s, e) { ApriPDF(); }" />
+                        </dx:BootstrapButton>
+                        <dx:BootstrapButton
+                            runat="server"
+                            ID="AssociaTecnico_Btn"
+                            ClientInstanceName="AssociaTecnico_Btn"
+                            AutoPostBack="false"
+                            CssClasses-Control="btn btn-just-icon btn-just-icon-padding"
+                            Style="min-width: 150px; z-index: 9999 !important;"
+                            ToolTip="Associa un tecnico al ticket"
+                            Badge-CssClass="BadgeBtn-just-icon"
+                            Visible="false">
+
+                            <Badge IconCssClass="fa fa-user-plus" Text="Associa Tecnico" />
+                            <SettingsBootstrap RenderOption="Info" Sizing="Small" />
+                            <ClientSideEvents Click="function(s, e) { AssociaTecnico_popup.Show(); }" />
+                        </dx:BootstrapButton>
+                        <dx:BootstrapButton
+                            runat="server"
+                            ID="ModificaNoteTecnico_Btn"
+                            ClientInstanceName="ModificaNoteTecnico_Btn"
+                            AutoPostBack="false"
+                            CssClasses-Control="btn btn-just-icon btn-just-icon-padding"
+                            Style="min-width: 150px; z-index: 9999 !important;"
+                            ToolTip="Modifica le note tecnico"
+                            Badge-CssClass="BadgeBtn-just-icon"
+                            Visible="false">
+
+                            <Badge IconCssClass="fa fa-edit" Text="Modifica Note Tecnico" />
+                            <SettingsBootstrap RenderOption="Primary" Sizing="Small" />
+                            <ClientSideEvents Click="function(s, e) { ModificaNoteTecnico_popup.Show(); }" />
+                        </dx:BootstrapButton>
+                        <dx:BootstrapButton
+                            runat="server"
+                            ID="ChiudiTicket_Btn"
+                            ClientInstanceName="ChiudiTicket_Btn"
+                            AutoPostBack="false"
+                            CssClasses-Control="btn btn-just-icon btn-just-icon-padding"
+                            Style="min-width: 150px; z-index: 9999 !important;"
+                            ToolTip="Chiudi il ticket"
+                            Badge-CssClass="BadgeBtn-just-icon"
+                            Visible="false">
+                            <Badge IconCssClass="fa fa-check" Text="Chiudi ticket" />
+                            <SettingsBootstrap RenderOption="Danger" Sizing="Small" />
+                            <ClientSideEvents Click="function(s, e) {
+                              e.processOnServer = false;
+                              ConfermaOperazioneWithClientFunction(
+                                'Conferma Chiudi Ticket',
+                                'Sei sicuro di voler chiudere il ticket?',
+                                'Avvia',
+                                'Annulla',
+                                function () {
+                                  CallbackPnlFormView.PerformCallback('ChiudiTicket');
+                                },
+                                function () {}
+                              );
+                            }" />
+                        </dx:BootstrapButton>
+                        <dx:BootstrapButton
+                            runat="server"
                             ID="AvviaTicket_Btn"
                             ClientInstanceName="AvviaTicket_Btn"
                             AutoPostBack="false"
                             CssClasses-Control="btn btn-just-icon btn-just-icon-padding"
                             Style="min-width: 150px; z-index: 9999 !important;"
                             ToolTip="Avvia il ticket"
-                            Badge-CssClass="BadgeBtn-just-icon">
+                            Badge-CssClass="BadgeBtn-just-icon"
+                            Visible="false">
 
                             <Badge IconCssClass="fa fa-play" Text="Avvia ticket" />
                             <SettingsBootstrap RenderOption="Success" Sizing="Small" />
@@ -335,7 +453,8 @@
                             CssClasses-Control="btn btn-just-icon btn-just-icon-padding"
                             Style="min-width: 150px; z-index: 9999 !important;"
                             ToolTip="Forza la riapertura ticket"
-                            Badge-CssClass="BadgeBtn-just-icon">
+                            Badge-CssClass="BadgeBtn-just-icon"
+                            Visible="false">
 
                             <Badge IconCssClass="fa fa-unlock" Text="Forza riapertura" />
                             <SettingsBootstrap RenderOption="Warning" Sizing="Small" />
@@ -360,7 +479,8 @@
                             CssClasses-Control="btn btn-just-icon btn-just-icon-padding"
                             Style="min-width: 150px; z-index: 9999 !important;"
                             ToolTip="Forza la chiusura ticket"
-                            Badge-CssClass="BadgeBtn-just-icon">
+                            Badge-CssClass="BadgeBtn-just-icon"
+                            Visible="false">
 
                             <Badge IconCssClass="fa fa-lock" Text="Forza chiusura" />
                             <SettingsBootstrap RenderOption="Danger" Sizing="Small" />
@@ -374,7 +494,8 @@
                             CssClasses-Control="btn btn-just-icon btn-just-icon-padding"
                             Style="min-width: 150px; z-index: 9999 !important;"
                             ToolTip="Torna indietro"
-                            Badge-CssClass="BadgeBtn-just-icon">
+                            Badge-CssClass="BadgeBtn-just-icon"
+                            Visible="false">
 
                             <Badge IconCssClass="fa fa-history" Text="Torna Alla Lista" />
                             <SettingsBootstrap RenderOption="Info" Sizing="Small" />
@@ -387,6 +508,22 @@
                             <div class="panel-group">
                                 <div class="panel panel-default">
                                     <div class="panel-heading" style="border-bottom: 3px solid blue;">
+                                        <asp:Repeater ID="RepeaterTicket" runat="server" DataSourceID="DtsTestataRapp">
+                                            <ItemTemplate>
+                                                <h4 class="panel-title">Ticket N°: <span style="color: red;"><%# Eval("CodRapportino") %></span>
+                                                    Data: <span style="color: red;"><%# Eval("DataIns", "{0:dd/MM/yyyy}") %></span>
+                                                    Stato Registrazione King: <span style="color: red;"><%# Eval("RegistrazioneRapp") %></span>
+                                                    Creato da: <span style="color: red;"><%# Eval("InsertUser") %></span>
+                                                </h4>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel-group">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" style="border-bottom: 3px solid blue;">
                                         <h4 class="panel-title">
                                             <a data-toggle="collapse" href="#collapse1">CLIENTE</a>
                                         </h4>
@@ -394,6 +531,67 @@
                                     <div id="collapse1" class="panel-collapse collapse">
                                         <div class="panel-body" style="padding: 0!important">
                                             <dx:ASPxCallbackPanel ID="CallbackPnlFormView" runat="server" ClientInstanceName="CallbackPnlFormView" OnCallback="Edit_CallbackPnl_Callback">
+                                                <ClientSideEvents EndCallback="function(s, e) {
+                                                var res = s.cpResult;
+
+                                                if (res === 'OK') {
+                                                    location.reload();
+                                                } else if (res && res.startsWith('ERROR|')) {
+                                                    var parts = res.split('|');
+                                                    var errorType = parts[1];
+                                                    var message = parts[2];
+
+                                                    showNotificationErrorText(message);
+
+                                                    if(errorType === 'TotaleOre') {
+                                                        var panel = document.getElementById('summaryPanel');
+                                                        if(panel) {
+                                                            panel.style.borderColor = 'red';
+                                                            panel.style.backgroundColor = '#f8d7da';
+                                                            setTimeout(function(){
+                                                                panel.style.borderColor = '#f0e1a0';
+                                                                panel.style.backgroundColor = '#fff4c8';
+                                                            }, 10000);
+                                                        }
+                                                    } else if(errorType === 'ValidationDettagliIntervento') {
+                                                        var el = Rbl_TCK_StatusChiamata_chiusura.GetMainElement();
+                                                        if(el) {
+                                                            el.style.border = '2px solid red';
+                                                            el.style.backgroundColor = '#f8d7da';
+
+                                                            Rbl_TCK_StatusChiamata_chiusura.ValueChanged.AddHandler(function(s,e){
+                                                                var el = s.GetMainElement();
+                                                                if(el) {
+                                                                    el.style.border = '';
+                                                                    el.style.backgroundColor = '';
+                                                                }
+                                                            });
+                                                        }
+                                                    } else if(errorType === 'ValidationEseguito') {
+                                                        var el = Rbl_TCK_TipoEsecuzioneResponsive.GetMainElement();
+                                                        if(el) {
+                                                            el.style.border = '2px solid red';
+                                                            el.style.backgroundColor = '#f8d7da';
+
+                                                            Rbl_TCK_TipoEsecuzioneResponsive.ValueChanged.AddHandler(function(s,e){
+                                                                var el = s.GetMainElement();
+                                                                if(el) {
+                                                                    el.style.border = '';
+                                                                    el.style.backgroundColor = '';
+                                                                }
+                                                            });
+                                                        }
+                                                    } else {
+                                                        ASPxClientEdit.ValidateGroup('testValidation');
+                                                    }
+                                                } else if (res && res.startsWith('ERROR:')) {
+                                                    var msg = res.substring(6);
+                                                    showNotificationErrorText(msg);
+                                                }
+                                            }" />
+
+
+
                                                 <PanelCollection>
                                                     <dx:PanelContent>
                                                         <asp:FormView ID="FormViewTicket" ClientInstanceName="FormViewTicket" runat="server" DataSourceID="DtsTestataRapp" Width="100%">
@@ -421,7 +619,7 @@
                                                                                                         s.ShowDropDown();
                                                                                                     }
                                                                                                 }
-    </script>
+                                                                                            </script>
                                                                                             <script>
                                                                                                 function onClientiComboBoxInit(s, e) {
                                                                                                     if (s.GetValue()) {
@@ -645,6 +843,443 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading" style="border-bottom: 3px solid blue;">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" href="#collapse2">SPESE</a>
+                                    </h4>
+                                </div>
+                                <div id="collapse2" class="panel-collapse collapse">
+                                    <div class="panel-body" style="padding: 0!important">
+                                        <dx:ASPxCallbackPanel ID="CallbackPnlFormViewSpese" runat="server" ClientInstanceName="CallbackPnlFormViewSpese" OnCallback="Edit_CallbackPnl_Callback">
+                                            <PanelCollection>
+                                                <dx:PanelContent>
+                                                    <asp:FormView ID="FormViewTicketSpese" ClientInstanceName="FormViewTicketSpese" runat="server" DataSourceID="DtsTestataRapp" Width="100%">
+                                                        <EditItemTemplate>
+                                                            <dx:ASPxFormLayout runat="server" ID="TicketAddFormSpese" ClientInstanceName="TicketAddFormSpese" Width="100%" Paddings-Padding="0" BackColor="#ffffff" ValidateRequestMode="Enabled">
+                                                                <Items>
+                                                                    <dx:LayoutGroup ColumnCount="4" Caption="" Paddings-Padding="0">
+                                                                        <GridSettings>
+                                                                            <Breakpoints>
+                                                                                <dx:LayoutBreakpoint MaxWidth="600" ColumnCount="1" Name="S" />
+                                                                            </Breakpoints>
+                                                                        </GridSettings>
+
+                                                                        <Paddings Padding="0px" />
+                                                                        <Items>
+
+                                                                            <dx:LayoutGroup GroupBoxDecoration="None" ColCount="2">
+                                                                                <SettingsItemCaptions Location="Top" />
+                                                                                <Items>
+                                                                                    <dx:LayoutItem Caption="Diritto Fisso:" FieldName="DirittoFisso">
+                                                                                        <LayoutItemNestedControlCollection>
+                                                                                            <dx:LayoutItemNestedControlContainer>
+                                                                                                <dx:ASPxTextBox ID="TxtDirittoFisso" runat="server" Text='<%# Bind("DirittoFisso") %>' NullText="">
+                                                                                                    <InvalidStyle BackColor="LightPink" />
+                                                                                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationSpese">
+                                                                                                        <ErrorFrameStyle BackColor="LightPink" />
+                                                                                                        <RequiredField IsRequired="True" />
+                                                                                                    </ValidationSettings>
+                                                                                                </dx:ASPxTextBox>
+                                                                                            </dx:LayoutItemNestedControlContainer>
+                                                                                        </LayoutItemNestedControlCollection>
+                                                                                    </dx:LayoutItem>
+
+                                                                                    <dx:LayoutItem Caption="Spese di Viaggio Km:" FieldName="SpeseViaggioKm">
+                                                                                        <LayoutItemNestedControlCollection>
+                                                                                            <dx:LayoutItemNestedControlContainer>
+                                                                                                <dx:ASPxTextBox ID="TxtSpeseViaggioKm" runat="server" Text='<%# Bind("SpeseViaggioKm") %>' NullText="">
+                                                                                                    <InvalidStyle BackColor="LightPink" />
+                                                                                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationSpese">
+                                                                                                        <ErrorFrameStyle BackColor="LightPink" />
+                                                                                                        <RequiredField IsRequired="True" />
+                                                                                                    </ValidationSettings>
+                                                                                                </dx:ASPxTextBox>
+                                                                                            </dx:LayoutItemNestedControlContainer>
+                                                                                        </LayoutItemNestedControlCollection>
+                                                                                    </dx:LayoutItem>
+                                                                                </Items>
+                                                                            </dx:LayoutGroup>
+
+                                                                            <dx:LayoutGroup GroupBoxDecoration="None" ColCount="2">
+                                                                                <SettingsItemCaptions Location="Top" />
+                                                                                <Items>
+                                                                                    <dx:LayoutItem Caption="Tariffa Oraria:" FieldName="TariffaOraria">
+                                                                                        <LayoutItemNestedControlCollection>
+                                                                                            <dx:LayoutItemNestedControlContainer>
+                                                                                                <dx:ASPxTextBox ID="TxtTariffaOraria" runat="server" Text='<%# Bind("TariffaOraria") %>' NullText="">
+                                                                                                    <InvalidStyle BackColor="LightPink" />
+                                                                                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationSpese">
+                                                                                                        <ErrorFrameStyle BackColor="LightPink" />
+                                                                                                        <RequiredField IsRequired="True" />
+                                                                                                    </ValidationSettings>
+                                                                                                </dx:ASPxTextBox>
+                                                                                            </dx:LayoutItemNestedControlContainer>
+                                                                                        </LayoutItemNestedControlCollection>
+                                                                                    </dx:LayoutItem>
+
+                                                                                    <dx:LayoutItem Caption="Spese di Viaggio €:" FieldName="SpeseViaggioEuro">
+                                                                                        <LayoutItemNestedControlCollection>
+                                                                                            <dx:LayoutItemNestedControlContainer>
+                                                                                                <dx:ASPxTextBox ID="TxtSpeseViaggioEuro" runat="server" Text='<%# Bind("SpeseViaggioEuro") %>' NullText="">
+                                                                                                    <InvalidStyle BackColor="LightPink" />
+                                                                                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationSpese">
+                                                                                                        <ErrorFrameStyle BackColor="LightPink" />
+                                                                                                        <RequiredField IsRequired="True" />
+                                                                                                    </ValidationSettings>
+                                                                                                </dx:ASPxTextBox>
+                                                                                            </dx:LayoutItemNestedControlContainer>
+                                                                                        </LayoutItemNestedControlCollection>
+                                                                                    </dx:LayoutItem>
+                                                                                </Items>
+                                                                            </dx:LayoutGroup>
+
+                                                                            <dx:LayoutGroup GroupBoxDecoration="None" ColCount="1">
+                                                                                <SettingsItemCaptions Location="Top" />
+                                                                                <Items>
+                                                                                    <dx:LayoutItem Caption="Totale a Forfait €:" FieldName="TotaleEuroForfait">
+                                                                                        <LayoutItemNestedControlCollection>
+                                                                                            <dx:LayoutItemNestedControlContainer>
+                                                                                                <dx:ASPxTextBox ID="TxtTotaleEuroForfait" runat="server" Text='<%# Bind("TotaleEuroForfait") %>' NullText="">
+                                                                                                    <InvalidStyle BackColor="LightPink" />
+                                                                                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationSpese">
+                                                                                                        <ErrorFrameStyle BackColor="LightPink" />
+                                                                                                        <RequiredField IsRequired="True" />
+                                                                                                    </ValidationSettings>
+                                                                                                </dx:ASPxTextBox>
+                                                                                            </dx:LayoutItemNestedControlContainer>
+                                                                                        </LayoutItemNestedControlCollection>
+                                                                                    </dx:LayoutItem>
+                                                                                </Items>
+                                                                            </dx:LayoutGroup>
+                                                                        </Items>
+                                                                    </dx:LayoutGroup>
+                                                                </Items>
+                                                            </dx:ASPxFormLayout>
+                                                        </EditItemTemplate>
+                                                    </asp:FormView>
+                                                    <dx:BootstrapButton runat="server" ID="BootstrapButton3" ClientInstanceName="UpdateTicketBtn" AutoPostBack="false"
+                                                        Badge-CssClass="BadgeBtn-just-icon"
+                                                        CssClasses-Control="btn btn-just-icon btn-just-icon-padding btn-success">
+
+                                                        <Badge IconCssClass="fa fa-sync" Text="AGGIORNA" />
+                                                        <SettingsBootstrap RenderOption="Success" Sizing="Small" />
+
+                                                        <ClientSideEvents Click="function(s,e){
+    var valid = ASPxClientEdit.ValidateGroup('ValidationSpese');
+    if(valid){                                
+        ConfermaOperazione('Confermi di voler aggiornare il ticket con i dati inseriti?','Update_FormViewTicketSpese_Callback');
+    } else {
+        showNotificationErrorWithText('Alcuni dati non sono stati compilati, controllare e riprovare.');
+    }
+}" />
+                                                    </dx:BootstrapButton>
+                                                </dx:PanelContent>
+                                            </PanelCollection>
+                                        </dx:ASPxCallbackPanel>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading" style="border-bottom: 3px solid blue;">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" href="#collapse3">Materiali Impiegati </a>
+                                    </h4>
+                                </div>
+                                <div id="collapse3" class="panel-collapse collapse">
+                                    <div class="panel-body" style="padding: 0!important">
+                                        <dx:ASPxCallbackPanel ID="CallbackPnlFormViewMateriali" runat="server" ClientInstanceName="CallbackPnlFormViewMateriali" OnCallback="Edit_CallbackPnl_Callback">
+                                            <PanelCollection>
+                                                <dx:PanelContent>
+                                                    <asp:FormView ID="FormViewTicketMateriali" ClientInstanceName="FormViewTicketMateriali" runat="server" Width="100%">
+                                                        <InsertItemTemplate>
+                                                            <dx:ASPxFormLayout runat="server" ID="TicketAddFormMateriali" ClientInstanceName="TicketAddFormMateriali" Width="100%" Paddings-Padding="0" BackColor="#ffffff" ValidateRequestMode="Enabled">
+                                                                <Items>
+                                                                    <dx:LayoutGroup ColumnCount="4" Caption="" Paddings-Padding="0">
+                                                                        <GridSettings>
+                                                                            <Breakpoints>
+                                                                                <dx:LayoutBreakpoint MaxWidth="600" ColumnCount="1" Name="S" />
+                                                                            </Breakpoints>
+                                                                        </GridSettings>
+
+                                                                        <Paddings Padding="0px" />
+                                                                        <Items>
+
+                                                                            <dx:LayoutGroup GroupBoxDecoration="None" ColCount="2">
+                                                                                <SettingsItemCaptions Location="Top" />
+                                                                                <Items>
+                                                                                    <dx:LayoutItem Caption="Codice: " FieldName="CodMateriale">
+                                                                                        <LayoutItemNestedControlCollection>
+                                                                                            <dx:LayoutItemNestedControlContainer>
+                                                                                                <dx:ASPxTextBox ID="TxtCodMateriale" runat="server" NullText="">
+                                                                                                    <InvalidStyle BackColor="LightPink" />
+                                                                                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationMateriali">
+                                                                                                        <ErrorFrameStyle BackColor="LightPink" />
+                                                                                                        <RequiredField IsRequired="True" />
+                                                                                                    </ValidationSettings>
+                                                                                                </dx:ASPxTextBox>
+                                                                                            </dx:LayoutItemNestedControlContainer>
+                                                                                        </LayoutItemNestedControlCollection>
+                                                                                    </dx:LayoutItem>
+
+                                                                                    <dx:LayoutItem Caption="Descrizione: " FieldName="Descrizione">
+                                                                                        <LayoutItemNestedControlCollection>
+                                                                                            <dx:LayoutItemNestedControlContainer>
+                                                                                                <dx:ASPxTextBox ID="TxtDescrizione" runat="server" NullText="">
+                                                                                                    <InvalidStyle BackColor="LightPink" />
+                                                                                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationMateriali">
+                                                                                                        <ErrorFrameStyle BackColor="LightPink" />
+                                                                                                        <RequiredField IsRequired="True" />
+                                                                                                    </ValidationSettings>
+                                                                                                </dx:ASPxTextBox>
+                                                                                            </dx:LayoutItemNestedControlContainer>
+                                                                                        </LayoutItemNestedControlCollection>
+                                                                                    </dx:LayoutItem>
+                                                                                </Items>
+                                                                            </dx:LayoutGroup>
+
+                                                                            <dx:LayoutGroup GroupBoxDecoration="None" ColCount="2">
+                                                                                <SettingsItemCaptions Location="Top" />
+                                                                                <Items>
+                                                                                    <dx:LayoutItem Caption="UM: " FieldName="Um">
+                                                                                        <LayoutItemNestedControlCollection>
+                                                                                            <dx:LayoutItemNestedControlContainer>
+                                                                                                <dx:ASPxTextBox ID="TxtUm" runat="server" NullText="">
+                                                                                                    <InvalidStyle BackColor="LightPink" />
+                                                                                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationMateriali">
+                                                                                                        <ErrorFrameStyle BackColor="LightPink" />
+                                                                                                        <RequiredField IsRequired="True" />
+                                                                                                    </ValidationSettings>
+                                                                                                </dx:ASPxTextBox>
+                                                                                            </dx:LayoutItemNestedControlContainer>
+                                                                                        </LayoutItemNestedControlCollection>
+                                                                                    </dx:LayoutItem>
+
+                                                                                    <dx:LayoutItem Caption="Qta*: " FieldName="Qta">
+                                                                                        <LayoutItemNestedControlCollection>
+                                                                                            <dx:LayoutItemNestedControlContainer>
+                                                                                                <dx:ASPxSpinEdit ID="TxtQta" runat="server" NullText="">
+                                                                                                    <InvalidStyle BackColor="LightPink" />
+                                                                                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationMateriali">
+                                                                                                        <ErrorFrameStyle BackColor="LightPink" />
+                                                                                                        <RequiredField IsRequired="True" />
+                                                                                                    </ValidationSettings>
+                                                                                                </dx:ASPxSpinEdit>
+                                                                                            </dx:LayoutItemNestedControlContainer>
+                                                                                        </LayoutItemNestedControlCollection>
+                                                                                    </dx:LayoutItem>
+                                                                                </Items>
+                                                                            </dx:LayoutGroup>
+
+                                                                        </Items>
+                                                                    </dx:LayoutGroup>
+                                                                </Items>
+                                                            </dx:ASPxFormLayout>
+                                                        </InsertItemTemplate>
+                                                        <EditItemTemplate>
+                                                            <dx:ASPxFormLayout runat="server" ID="TicketAddFormMateriali" ClientInstanceName="TicketAddFormMateriali" Width="100%" Paddings-Padding="0" BackColor="#ffffff" ValidateRequestMode="Enabled">
+                                                                <Items>
+                                                                    <dx:LayoutGroup ColumnCount="4" Caption="" Paddings-Padding="0">
+                                                                        <GridSettings>
+                                                                            <Breakpoints>
+                                                                                <dx:LayoutBreakpoint MaxWidth="600" ColumnCount="1" Name="S" />
+                                                                            </Breakpoints>
+                                                                        </GridSettings>
+
+                                                                        <Paddings Padding="0px" />
+                                                                        <Items>
+
+                                                                            <dx:LayoutGroup GroupBoxDecoration="None" ColCount="2">
+                                                                                <SettingsItemCaptions Location="Top" />
+                                                                                <Items>
+                                                                                    <dx:LayoutItem Caption="Codice: " FieldName="CodMateriale">
+                                                                                        <LayoutItemNestedControlCollection>
+                                                                                            <dx:LayoutItemNestedControlContainer>
+                                                                                                <dx:ASPxTextBox ID="TxtCodMateriale" runat="server" NullText="">
+                                                                                                    <InvalidStyle BackColor="LightPink" />
+                                                                                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationMateriali">
+                                                                                                        <ErrorFrameStyle BackColor="LightPink" />
+                                                                                                        <RequiredField IsRequired="True" />
+                                                                                                    </ValidationSettings>
+                                                                                                </dx:ASPxTextBox>
+                                                                                            </dx:LayoutItemNestedControlContainer>
+                                                                                        </LayoutItemNestedControlCollection>
+                                                                                    </dx:LayoutItem>
+
+                                                                                    <dx:LayoutItem Caption="Descrizione: " FieldName="Descrizione">
+                                                                                        <LayoutItemNestedControlCollection>
+                                                                                            <dx:LayoutItemNestedControlContainer>
+                                                                                                <dx:ASPxTextBox ID="TxtDescrizione" runat="server" NullText="">
+                                                                                                    <InvalidStyle BackColor="LightPink" />
+                                                                                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationMateriali">
+                                                                                                        <ErrorFrameStyle BackColor="LightPink" />
+                                                                                                        <RequiredField IsRequired="True" />
+                                                                                                    </ValidationSettings>
+                                                                                                </dx:ASPxTextBox>
+                                                                                            </dx:LayoutItemNestedControlContainer>
+                                                                                        </LayoutItemNestedControlCollection>
+                                                                                    </dx:LayoutItem>
+                                                                                </Items>
+                                                                            </dx:LayoutGroup>
+
+                                                                            <dx:LayoutGroup GroupBoxDecoration="None" ColCount="2">
+                                                                                <SettingsItemCaptions Location="Top" />
+                                                                                <Items>
+                                                                                    <dx:LayoutItem Caption="UM: " FieldName="Um">
+                                                                                        <LayoutItemNestedControlCollection>
+                                                                                            <dx:LayoutItemNestedControlContainer>
+                                                                                                <dx:ASPxTextBox ID="TxtUm" runat="server" NullText="">
+                                                                                                    <InvalidStyle BackColor="LightPink" />
+                                                                                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationMateriali">
+                                                                                                        <ErrorFrameStyle BackColor="LightPink" />
+                                                                                                        <RequiredField IsRequired="True" />
+                                                                                                    </ValidationSettings>
+                                                                                                </dx:ASPxTextBox>
+                                                                                            </dx:LayoutItemNestedControlContainer>
+                                                                                        </LayoutItemNestedControlCollection>
+                                                                                    </dx:LayoutItem>
+
+                                                                                    <dx:LayoutItem Caption="Qta*: " FieldName="Qta">
+                                                                                        <LayoutItemNestedControlCollection>
+                                                                                            <dx:LayoutItemNestedControlContainer>
+                                                                                                <dx:ASPxSpinEdit ID="TxtQta" runat="server" NullText="">
+                                                                                                    <InvalidStyle BackColor="LightPink" />
+                                                                                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationMateriali">
+                                                                                                        <ErrorFrameStyle BackColor="LightPink" />
+                                                                                                        <RequiredField IsRequired="True" />
+                                                                                                    </ValidationSettings>
+                                                                                                </dx:ASPxSpinEdit>
+                                                                                            </dx:LayoutItemNestedControlContainer>
+                                                                                        </LayoutItemNestedControlCollection>
+                                                                                    </dx:LayoutItem>
+                                                                                </Items>
+                                                                            </dx:LayoutGroup>
+                                                                        </Items>
+                                                                    </dx:LayoutGroup>
+                                                                </Items>
+                                                            </dx:ASPxFormLayout>
+                                                        </EditItemTemplate>
+                                                    </asp:FormView>
+                                                    <dx:BootstrapButton runat="server" ID="BootstrapButton5" ClientInstanceName="UpdateTicketBtn" AutoPostBack="false"
+                                                        Badge-CssClass="BadgeBtn-just-icon"
+                                                        CssClasses-Control="btn btn-just-icon btn-just-icon-padding btn-success">
+
+                                                        <Badge IconCssClass="fa fa-sync" Text="INSERISCI MATERIALE" />
+                                                        <SettingsBootstrap RenderOption="Success" Sizing="Small" />
+
+                                                        <ClientSideEvents Click="function(s,e){
+    var valid = ASPxClientEdit.ValidateGroup('ValidationMateriali');
+    if(valid){                                
+        ConfermaOperazione('Confermi di voler aggiornare il ticket con i dati inseriti?','Update_FormViewTicketMateriali_Callback');
+    } else {
+        showNotificationErrorWithText('Alcuni dati non sono stati compilati, controllare e riprovare.');
+    }
+}" />
+                                                    </dx:BootstrapButton>
+
+                                                    <dx:ASPxGridView runat="server" ID="Generic_Gridview" ClientInstanceName="Generic_Gridview" AutoGenerateColumns="False" DataSourceID="DtsMateriali" KeyFieldName="id" Width="100%" Styles-AlternatingRow-Enabled="True" SettingsPopup-EditForm-HorizontalAlign="WindowCenter" SettingsPopup-EditForm-VerticalAlign="WindowCenter" OnRowUpdating="Generic_Gridview_RowUpdating" OnRowDeleting="Generic_Gridview_RowDeleting">
+                                                        <Styles Header-Wrap="True" Cell-Paddings-Padding="3" Header-Paddings-Padding="3" FilterBar-Paddings-Padding="3" CommandColumn-Paddings-Padding="3" FilterBarImageCell-Paddings-Padding="3" FilterCell-Paddings-Padding="3"></Styles>
+                                                        <SettingsPager PageSizeItemSettings-Items="10,20,50,100" PageSizeItemSettings-Visible="true" PageSizeItemSettings-AllItemText="All" PageSizeItemSettings-ShowAllItem="true" Position="TopAndBottom"></SettingsPager>
+
+                                                        <Settings AutoFilterCondition="Contains" ShowFilterRowMenu="true" />
+                                                        <ClientSideEvents EndCallback="function(s,e){if(e.command == 'UPDATEEDIT' || e.command == 'DELETEROW'){Generic_Gridview.Refresh(); showNotification();}}" CustomButtonClick="OnCustomButtonMateriali" />
+                                                        <SettingsPopup EditForm-VerticalAlign="WindowCenter" EditForm-HorizontalAlign="Center" EditForm-Modal="true"></SettingsPopup>
+                                                        <SettingsPopup>
+                                                            <EditForm AllowResize="True" AutoUpdatePosition="True"></EditForm>
+                                                        </SettingsPopup>
+                                                        <SettingsCustomizationDialog Enabled="true" />
+
+                                                        <Settings ShowFilterRow="false"></Settings>
+                                                        <SettingsBehavior FilterRowMode="OnClick"></SettingsBehavior>
+                                                        <SettingsCommandButton>
+                                                            <ClearFilterButton RenderMode="Button" Image-ToolTip="ClearFilterButton" Text="ClearFilterButton" Styles-CssPostfix="hidebtn">
+                                                                <Styles Style-CssClass="btn btn-sm btn-custom-padding action-btn ClearFilter icon4u icon-ClearFilter image"></Styles>
+                                                            </ClearFilterButton>
+                                                            <EditButton RenderMode="Button" Image-AlternateText="Modifica" Image-ToolTip="Modifica" Text="Modifica" Styles-CssPostfix="hidebtn">
+                                                                <Styles Style-CssClass="btn btn-sm btn-custom-padding action-btn edit icon4u icon-edit image"></Styles>
+                                                            </EditButton>
+                                                            <DeleteButton RenderMode="Button" Image-ToolTip="Elimina" Text="Elimina" Styles-CssPostfix="hidebtn">
+                                                                <Styles Style-CssClass="btn btn-sm btn-custom-padding action-btn delete icon4u icon-delete image"></Styles>
+                                                            </DeleteButton>
+                                                            <UpdateButton RenderMode="Button" Image-ToolTip="UpdateButton" Text="UpdateButton" Styles-CssPostfix="hidebtn">
+                                                                <Styles Style-CssClass="btn btn-sm btn-custom-padding action-btn update icon4u icon-update image"></Styles>
+                                                            </UpdateButton>
+                                                            <CancelButton RenderMode="Button" Image-ToolTip="CancelButton" Text="CancelButton" Styles-CssPostfix="hidebtn">
+                                                                <Styles Style-CssClass="btn btn-sm btn-custom-padding action-btn cancel icon4u icon-cancel image"></Styles>
+                                                            </CancelButton>
+                                                            <NewButton RenderMode="Button" Image-ToolTip="Nuovo" Text="Nuovo" Styles-CssPostfix="hidebtn">
+                                                                <Styles Style-CssClass="btn btn-sm btn-custom-padding action-btn new icon4u icon-new image"></Styles>
+                                                            </NewButton>
+                                                            <SelectButton RenderMode="Button" Image-ToolTip="Seleziona" Text="Seleziona" Styles-CssPostfix="hidebtn">
+                                                                <Styles Style-CssClass="btn btn-sm btn-custom-padding action-btn selectbtn icon4u icon-selectbtn image"></Styles>
+                                                            </SelectButton>
+                                                        </SettingsCommandButton>
+                                                        <SettingsEditing EditFormColumnCount="2" Mode="PopupEditForm"></SettingsEditing>
+                                                        <Columns>
+                                                            <dx:GridViewCommandColumn ShowEditButton="True" ShowDeleteButton="false" VisibleIndex="0" ShowNewButtonInHeader="false" ShowClearFilterButton="false" Width="60px">
+                                                                <CustomButtons>
+                                                                    <dx:BootstrapGridViewCommandColumnCustomButton ID="EliminaMateriali" IconCssClass="icon4u icon-delete image" CssClass="btn btn-sm btn-custom-padding action-btn delete" Text="" />
+                                                                </CustomButtons>
+                                                            </dx:GridViewCommandColumn>
+                                                        </Columns>
+                                                        <Columns>
+                                                            <dx:GridViewDataTextColumn FieldName="CodRapportino" VisibleIndex="1" EditFormSettings-Visible="False" Width="80px" Visible="false"></dx:GridViewDataTextColumn>
+                                                            <dx:GridViewDataTextColumn FieldName="CodMateriale" VisibleIndex="2" EditFormSettings-CaptionLocation="Top">
+                                                                <PropertiesTextEdit>
+                                                                    <InvalidStyle BackColor="LightPink"></InvalidStyle>
+                                                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="testValidation">
+                                                                        <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
+                                                                        <RequiredField IsRequired="True"></RequiredField>
+                                                                    </ValidationSettings>
+                                                                </PropertiesTextEdit>
+                                                            </dx:GridViewDataTextColumn>
+                                                            <dx:GridViewDataTextColumn FieldName="Descrizione" VisibleIndex="2" EditFormSettings-CaptionLocation="Top">
+                                                                <PropertiesTextEdit>
+                                                                    <InvalidStyle BackColor="LightPink"></InvalidStyle>
+                                                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="testValidation">
+                                                                        <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
+                                                                        <RequiredField IsRequired="True"></RequiredField>
+                                                                    </ValidationSettings>
+                                                                </PropertiesTextEdit>
+                                                            </dx:GridViewDataTextColumn>
+                                                            <dx:GridViewDataTextColumn FieldName="Um" VisibleIndex="2" EditFormSettings-CaptionLocation="Top">
+                                                                <PropertiesTextEdit>
+                                                                    <InvalidStyle BackColor="LightPink"></InvalidStyle>
+                                                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="testValidation">
+                                                                        <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
+                                                                        <RequiredField IsRequired="True"></RequiredField>
+                                                                    </ValidationSettings>
+                                                                </PropertiesTextEdit>
+                                                            </dx:GridViewDataTextColumn>
+                                                            <dx:GridViewDataSpinEditColumn FieldName="Qta" VisibleIndex="2" Width="80px" EditFormSettings-CaptionLocation="Top">
+                                                                <PropertiesSpinEdit MinValue="1" MaxValue="10000">
+                                                                    <InvalidStyle BackColor="LightPink"></InvalidStyle>
+                                                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="testValidation">
+                                                                        <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
+                                                                        <RequiredField IsRequired="False"></RequiredField>
+                                                                    </ValidationSettings>
+                                                                </PropertiesSpinEdit>
+                                                            </dx:GridViewDataSpinEditColumn>
+                                                        </Columns>
+                                                        <dx:EditFormLayoutProperties ColCount="2" SettingsItemCaptions-Location="Top">
+                                                            <Items>
+                                                                <dx:GridViewColumnLayoutItem ColumnName="CodMateriale" RequiredMarkDisplayMode="Hidden" VerticalAlign="Top" />
+                                                                <dx:GridViewColumnLayoutItem ColumnName="Descrizione" RequiredMarkDisplayMode="Hidden" VerticalAlign="Top" />
+                                                                <dx:GridViewColumnLayoutItem ColumnName="HexCUmolor" RequiredMarkDisplayMode="Hidden" VerticalAlign="Top" />
+                                                                <dx:GridViewColumnLayoutItem ColumnName="Qta" RequiredMarkDisplayMode="Hidden" VerticalAlign="Top" />
+                                                                <dx:EditModeCommandLayoutItem ShowCancelButton="true" ShowUpdateButton="true" HorizontalAlign="Right" />
+                                                            </Items>
+                                                        </dx:EditFormLayoutProperties>
+                                                    </dx:ASPxGridView>
+                                                </dx:PanelContent>
+                                            </PanelCollection>
+                                        </dx:ASPxCallbackPanel>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <!-- Colonna 2/3 -->
                         <div class="col-md-8">
@@ -814,7 +1449,6 @@
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-content">
-                                            <h4 class="card-title">Dettagli Intervento</h4>
                                             <dx:ASPxCallbackPanel ID="CallbackPnlFormViewEseguito" runat="server" ClientInstanceName="CallbackPnlFormViewEseguito" OnCallback="Eseguito_CallbackPnl_Callback">
                                                 <PanelCollection>
                                                     <dx:PanelContent>
@@ -1034,7 +1668,6 @@
 
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -1114,12 +1747,295 @@
         <ClientSideEvents Shown="function(s, e) { resizeForzaChiusuraPopup(); }" />
     </dx:ASPxPopupControl>
 
+    <dx:ASPxPopupControl ID="ModificaNoteTecnico_popup"
+        runat="server"
+        CssClass="responsive-popup"
+        AllowResize="true" ResizingMode="Live"
+        ClientInstanceName="ModificaNoteTecnico_popup"
+        CloseAction="CloseButton" CloseOnEscape="true"
+        Modal="true"
+        PopupHorizontalAlign="WindowCenter"
+        PopupVerticalAlign="WindowCenter"
+        HeaderText="Modifica Note Tecnico">
+
+        <ContentCollection>
+            <dx:PopupControlContentControl>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+
+                    <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Note Annullamento Ticket*:" ForeColor="Red" AssociatedControlID="AnnullamentoTck_Txt" />
+
+                    <dx:ASPxCallbackPanel ID="CallbackPanelModificaNoteTecnico" runat="server"
+                        ClientInstanceName="CallbackPanelModificaNoteTecnico"
+                        OnCallback="CallbackPanelModificaNoteTecnico_Callback"
+                        Width="100%">
+                        <ClientSideEvents
+                            EndCallback="function(s, e) {
+                            if(s.cpSaved === 'OK'){
+                                ModificaNoteTecnico_popup.Hide();
+                                Tecnici_Gridview.Refresh();
+                                showNotification();
+
+                                // aggiorna summaryPanel
+                                if(s.cpTotalTecnici !== undefined && s.cpTotalOre !== undefined){
+                                    document.getElementById('totalTecnici').innerText = s.cpTotalTecnici;
+                                    document.getElementById('tempoTicket').innerText = s.cpTotalOre;
+                                }
+
+                                s.cpSaved = null;
+                                s.cpTotalTecnici = null;
+                                s.cpTotalOre = null;
+                            }
+                        }" />
+                        <PanelCollection>
+                            <dx:PanelContent>
+                                <asp:FormView ID="FormView2" runat="server" DataKeyNames="Id" DataSourceID="DtsAssegnaTecnico"
+                                    RenderOuterTable="False">
+                                    <ItemTemplate>
+                                        <div>
+                                            <asp:Label ID="lblNomeCli" runat="server" Text="Società: " /><%# Eval("Società") %>
+                                        </div>
+                                        <div>
+                                            <asp:Label ID="lblIndirizzoCli" runat="server" Text="Indirizzo: " /><%# Eval("Indirizzo") %>
+                                        </div>
+                                        <div>
+                                            <asp:Label ID="lblTipoChiamataCli" runat="server" Text="Tipo chiamata: " /><%# Eval("DescrizioneChiamata") %>
+                                        </div>
+                                        <div>
+                                            <asp:Label ID="lblTecnicoCli" runat="server" Text="Tecnico*: " Style="color: Red;" />
+                                        </div>
+                                        <asp:CheckBoxList ID="NoteTecnico_Ckbl" runat="server" RepeatLayout="Table"
+                                            DataSourceID="Tecnici_Dts"
+                                            DataTextField="UserName"
+                                            DataValueField="UserName"
+                                            OnDataBound="NoteTecnico_Ckbl_DataBound"
+                                            ValidationGroup="ValidPopTecnicoGrp2"
+                                            RepeatDirection="Horizontal" RepeatColumns="3" Width="100%" />
+                                        <asp:Label ID="lblNoteTecnico" runat="server" Text="Note tecnico: "></asp:Label>
+                                        <dx:ASPxMemo ID="NoteTecnico_Txt" Text='<%# Eval("NoteTecnico") %>' runat="server" Width="100%" Rows="6">
+                                            <InvalidStyle BackColor="LightPink"></InvalidStyle>
+                                            <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="testValidation">
+                                                <ErrorFrameStyle BackColor="LightPink" />
+                                                <RequiredField IsRequired="True" />
+                                            </ValidationSettings>
+                                        </dx:ASPxMemo>
+                                        <asp:Label ID="lblInvioEmailApertura" runat="server" Text="Invia mail apertura ticket: "></asp:Label>
+                                        <label class="toggle-switch">
+                                            <asp:CheckBox ID="ToggleSwitch" runat="server" Checked="true" />
+                                            <span class="slider"></span>
+                                        </label>
+                                    </ItemTemplate>
+                                </asp:FormView>
+                            </dx:PanelContent>
+                        </PanelCollection>
+                    </dx:ASPxCallbackPanel>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end;">
+                        <dx:BootstrapButton
+                            runat="server"
+                            ID="Aggiorna_Btn"
+                            ClientInstanceName="Aggiorna_Btn"
+                            AutoPostBack="false"
+                            CssClasses-Control="btn btn-just-icon btn-just-icon-padding"
+                            Style="min-width: 140px; flex: 1 1 auto; max-width: 200px;"
+                            ToolTip="Aggiorna i dati"
+                            Badge-CssClass="BadgeBtn-just-icon">
+
+                            <Badge IconCssClass="fa fa-sync" Text="Aggiorna" />
+                            <SettingsBootstrap RenderOption="Info" Sizing="Small" />
+                            <ClientSideEvents Click="function(s, e) {
+        if(!ASPxClientEdit.ValidateEditorsInContainer(ASPxClientControl.GetControlCollection().GetByName('FormView2'), 'testValidation')) {
+            e.processOnServer = false;
+            return;
+        }
+
+        e.processOnServer = false;
+
+        ConfermaOperazioneWithClientFunction(
+            'Conferma Aggiornamento',
+            'Sei sicuro di voler aggiornare i dati?',
+            'Conferma',
+            'Annulla',
+            function () { salvaAggiorna(); },
+            function () { }
+        );
+    }" />
+                        </dx:BootstrapButton>
+
+                        <dx:BootstrapButton
+                            runat="server"
+                            ID="BootstrapButton4"
+                            AutoPostBack="false"
+                            ClientInstanceName="btnAnnullaChiusura"
+                            CssClasses-Control="btn btn-just-icon btn-just-icon-padding"
+                            Style="min-width: 140px; flex: 1 1 auto; max-width: 200px;"
+                            ToolTip="Annulla"
+                            Badge-CssClass="BadgeBtn-just-icon">
+
+                            <Badge IconCssClass="fa fa-times" Text="Annulla" />
+                            <SettingsBootstrap RenderOption="Secondary" Sizing="Small" />
+                            <ClientSideEvents Click="function(s, e) { ModificaNoteTecnico_popup.Hide(); }" />
+                        </dx:BootstrapButton>
+                    </div>
+                </div>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+        <ClientSideEvents Shown="function(s, e) { resizeModificaNoteTecnicoPopup(); }" />
+    </dx:ASPxPopupControl>
+
+    <dx:ASPxPopupControl ID="AssociaTecnico_popup"
+        runat="server"
+        CssClass="responsive-popup"
+        AllowResize="true" ResizingMode="Live"
+        ClientInstanceName="AssociaTecnico_popup"
+        CloseAction="CloseButton" CloseOnEscape="true"
+        Modal="true"
+        PopupHorizontalAlign="WindowCenter"
+        PopupVerticalAlign="WindowCenter"
+        HeaderText="Associa Tecnico">
+
+        <ContentCollection>
+            <dx:PopupControlContentControl>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+
+                    <dx:ASPxCallbackPanel ID="CallbackPanelAssociaTecnico" runat="server"
+                        ClientInstanceName="CallbackPanelAssociaTecnico"
+                        OnCallback="CallbackPanelAssociaTecnico_Callback"
+                        Width="100%">
+                        <ClientSideEvents EndCallback="onEndCallbackAssociaTecnico" />
+                        <PanelCollection>
+                            <dx:PanelContent>
+                                <div>
+                                    <asp:Label ID="lblTecnicoAssocia" runat="server" Text="Tecnico*: " Style="color: Red;" />
+                                </div>
+                                <asp:CheckBoxList ID="AssociaTecnico_Ckbl" runat="server" RepeatLayout="Table"
+                                    DataSourceID="Tecnici_Dts"
+                                    DataTextField="UserName"
+                                    DataValueField="UserName"
+                                    ValidationGroup="ValidPopTecnicoGrp_Associa"
+                                    RepeatDirection="Horizontal" RepeatColumns="3" Width="100%">
+                                </asp:CheckBoxList>
+
+                                <asp:Label ID="lblNoteAssocia" runat="server" Text="Note tecnico: "></asp:Label>
+                                <dx:ASPxMemo ID="NoteTecnicoAssocia_Txt" runat="server" Width="100%" Rows="6">
+                                    <InvalidStyle BackColor="LightPink"></InvalidStyle>
+                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidPopTecnicoGrp_Associa">
+                                        <ErrorFrameStyle BackColor="LightPink" />
+                                        <RequiredField IsRequired="True" />
+                                    </ValidationSettings>
+                                </dx:ASPxMemo>
+
+                                <div style="margin-top: 10px;">
+                                    <asp:CheckBox ID="InviaCalendarChk" runat="server" Text="Invia Calendar" onclick="toggleCalendarFields(this);" />
+                                </div>
+                                <div id="calendarFields" class="row" style="display: none; margin-top: 10px;">
+                                    <div class="col-lg-12 col-md-12 col-xs-12">
+                                        Data Intervento:
+                                        <dx:ASPxDateEdit ID="DataInterventoEdit" runat="server" Width="100%">
+                                            <InvalidStyle BackColor="LightPink" />
+                                            <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidTestataTecnico">
+                                                <ErrorFrameStyle BackColor="LightPink" />
+                                                <RequiredField IsRequired="True" />
+                                            </ValidationSettings>
+                                        </dx:ASPxDateEdit>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-xs-6">
+                                        Inzio Intervento:
+    <dx:ASPxTextBox ID="Inizio_Txt" ClientInstanceName="Inizio_Txt" runat="server" Native="true" Width="100%" Text="">
+        <ClientSideEvents Init="OnInitTimeEdit" Validation="onNameValidation" />
+        <ValidationSettings SetFocusOnError="True" ValidationGroup="ValidPopTecnicoGrp_Associa" ErrorDisplayMode="None">
+            <RequiredField IsRequired="True" />
+        </ValidationSettings>
+        <InvalidStyle BackColor="LightPink" />
+    </dx:ASPxTextBox>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-xs-6">
+                                        Fine Intervento:
+    <dx:ASPxTextBox ID="Fine_Txt" ClientInstanceName="Fine_Txt" runat="server" Native="true" Width="100%" Text="">
+        <ClientSideEvents Init="OnInitTimeEdit" Validation="TimeValidationGridview" />
+        <ValidationSettings SetFocusOnError="True" ValidationGroup="ValidPopTecnicoGrp_Associa" ErrorDisplayMode="None" ErrorText="Hai impostato un orario di fine inferiore all'orario di inizio">
+            <RequiredField IsRequired="True" />
+        </ValidationSettings>
+        <InvalidStyle BackColor="LightPink" />
+    </dx:ASPxTextBox>
+                                    </div>
+                                </div>
+                            </dx:PanelContent>
+                        </PanelCollection>
+                    </dx:ASPxCallbackPanel>
+
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end;">
+                        <dx:BootstrapButton
+                            runat="server"
+                            ID="AssociaTecnico_ConfirmBtn"
+                            ClientInstanceName="AssociaTecnico_ConfirmBtn"
+                            AutoPostBack="false"
+                            CssClasses-Control="btn btn-just-icon btn-just-icon-padding"
+                            Style="min-width: 140px; flex: 1 1 auto; max-width: 200px;"
+                            ToolTip="Associa tecnico"
+                            Badge-CssClass="BadgeBtn-just-icon">
+
+                            <Badge IconCssClass="fa fa-save" Text="CONFERMA" />
+                            <SettingsBootstrap RenderOption="Success" Sizing="Small" />
+                            <ClientSideEvents Click="function(s, e) {
+    if (!validateAll()) {
+        e.processOnServer = false;
+        return;
+    }
+                            e.processOnServer = false;
+                            ConfermaOperazioneWithClientFunction(
+                                'Conferma Associazione',
+                                'Vuoi associare il tecnico selezionato?',
+                                'Conferma',
+                                'Annulla',
+                                function () { salvaAssociazioneTecnico(); },
+                                function () { }
+                            );
+                        }" />
+                        </dx:BootstrapButton>
+
+                        <dx:BootstrapButton
+                            runat="server"
+                            ID="AssociaTecnico_AnnullaBtn"
+                            AutoPostBack="false"
+                            ClientInstanceName="AssociaTecnico_AnnullaBtn"
+                            CssClasses-Control="btn btn-just-icon btn-just-icon-padding"
+                            Style="min-width: 140px; flex: 1 1 auto; max-width: 200px;"
+                            ToolTip="Annulla"
+                            Badge-CssClass="BadgeBtn-just-icon">
+
+                            <Badge IconCssClass="fa fa-times" Text="Annulla" />
+                            <SettingsBootstrap RenderOption="Secondary" Sizing="Small" />
+                            <ClientSideEvents Click="function(s, e) { AssociaTecnico_popup.Hide(); }" />
+                        </dx:BootstrapButton>
+                    </div>
+                </div>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+        <ClientSideEvents Shown="function(s, e) { resizeAssociaTecnicoPopup(); }" />
+    </dx:ASPxPopupControl>
+
 
     <dx:ASPxCallback ID="Update_FormLayout_Callback" ClientInstanceName="Update_FormLayout_Callback" runat="server" OnCallback="Update_FormLayout_Callback_Callback" Style="float: right">
         <ClientSideEvents
             EndCallback="function(s,e){
     CallbackPnlFormView.PerformCallback();
              CallbackPnlFormViewEseguito.PerformCallback();
+            showNotification();
+}" />
+    </dx:ASPxCallback>
+    <dx:ASPxCallback ID="Update_FormViewTicketSpese_Callback" ClientInstanceName="Update_FormViewTicketSpese_Callback" runat="server" OnCallback="Update_FormViewTicketSpe_Callback" Style="float: right">
+        <ClientSideEvents
+            EndCallback="function(s,e){
+    CallbackPnlFormViewSpese.PerformCallback();
+            showNotification();
+}" />
+    </dx:ASPxCallback>
+    <dx:ASPxCallback ID="Update_FormViewTicketMateriali_Callback" ClientInstanceName="Update_FormViewTicketMateriali_Callback" runat="server" OnCallback="Update_FormViewTicketMat_Callback" Style="float: right">
+        <ClientSideEvents
+            EndCallback="function(s,e){
+    CallbackPnlFormViewMateriali.PerformCallback();
+            Generic_Gridview.Refresh();
             showNotification();
 }" />
     </dx:ASPxCallback>
@@ -1204,13 +2120,55 @@
             <asp:Parameter Name="Id" Type="Int32" />
         </DeleteParameters>
     </asp:SqlDataSource>
+    <asp:SqlDataSource ID="DtsMateriali" runat="server" ConnectionString="<%$ ConnectionStrings:info4portaleConnectionString %>"
+        SelectCommand="SELECT CodRapportino, CodMateriale, Descrizione, Um, Qta, id FROM TCK_DettRicambiTicket WHERE (CodRapportino = @CodRapportino)"
+        UpdateCommand="SELECT *    FROM TCK_DettRicambiTicket  where 1 = 2" DeleteCommand="SELECT *    FROM TCK_DettRicambiTicket  where 1 = 2">
+        <SelectParameters>
+            <asp:QueryStringParameter DefaultValue="0" Name="CodRapportino" QueryStringField="IdTicket"
+                Type="Int32" />
+        </SelectParameters>
+    </asp:SqlDataSource>
 
     <!-- Datasource per combo tecnici -->
     <asp:SqlDataSource ID="Tecnici_Dts" runat="server" ConnectionString="<%$ ConnectionStrings:info4portaleConnectionString %>"
         SelectCommand="SELECT aspnet_Users.UserName FROM aspnet_Users INNER JOIN aspnet_UsersInRoles ON aspnet_Users.UserId = aspnet_UsersInRoles.UserId INNER JOIN aspnet_Roles ON aspnet_UsersInRoles.RoleId = aspnet_Roles.RoleId WHERE aspnet_Roles.RoleName = 'tecnico'"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="DtsAssegnaTecnico" runat="server" ConnectionString="<%$ ConnectionStrings:info4portaleConnectionString %>"
+        SelectCommand="SELECT TCK_TestataTicket.Indirizzo, TCK_TipoRichiesta.Id, TCK_TestataTicket.TipoChiamata, TCK_TipoRichiesta.Descrizione AS DescrizioneChiamata, TCK_TestataTicket.CodRapportino, TCK_TestataTicket.Società, TCK_TestataTicket.NoteTecnico FROM TCK_TestataTicket INNER JOIN TCK_TipoRichiesta ON TCK_TestataTicket.TCK_TipoRichiesta = TCK_TipoRichiesta.Id WHERE (TCK_TestataTicket.CodRapportino = @Param1)">
+        <SelectParameters>
+            <asp:QueryStringParameter DefaultValue="0" Name="Param1" QueryStringField="IdTicket" />
+        </SelectParameters>
+    </asp:SqlDataSource>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="PageScriptContent" runat="server">
     <script>
+        function validateCheckBoxList() {
+            const list = document.getElementById('<%= AssociaTecnico_Ckbl.ClientID %>');
+            if (!list) return false;
+
+            const inputs = list.querySelectorAll("input[type='checkbox']");
+            const selected = Array.from(inputs).some(cb => cb.checked);
+
+            // Se nessuno selezionato, evidenzia errore
+            if (!selected) {
+                list.style.backgroundColor = "LightPink";
+                showNotificationErrorText("Seleziona almeno un tecnico.");
+                return false;
+            } else {
+                list.style.backgroundColor = ""; // Reset colore
+            }
+
+            return true;
+        }
+        function validateAll() {
+            if (!ASPxClientEdit.ValidateEditorsInContainer(null, 'ValidPopTecnicoGrp_Associa')) {
+                showNotificationErrorText("Compila correttamente tutti i campi obbligatori.");
+                return false;
+            }
+            if (!validateCheckBoxList()) {
+                return false;
+            }
+            return true;
+        }
         function salvaForzaChiusura() {
             var memo = AnnullamentoTck_Txt;
 
@@ -1237,9 +2195,38 @@
             ForzaChiusura_Callback.PerformCallback(testo);
             showNotification();
         }
+        function validateCheckBoxList() {
+            var ckbl = document.getElementById('<%= AssociaTecnico_Ckbl.ClientID %>');
+            var inputs = ckbl.getElementsByTagName("input");
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].checked) return true;
+            }
+            alert("Seleziona almeno un tecnico");
+            return false;
+        }
 
+        function salvaAggiorna() {
+            CallbackPanelModificaNoteTecnico.PerformCallback("SalvaNoteTecnico");
+        }
+        function salvaAssociazioneTecnico() {
+            CallbackPanelAssociaTecnico.PerformCallback("SalvaAssociazioneTecnico");
+        }
+        function toggleCalendarFields(checkbox) {
+            var fields = document.getElementById('calendarFields');
+            fields.style.display = checkbox.checked ? 'flex' : 'none';
 
+            if (checkbox.checked) {
+                var dataIntervento = document.getElementById('<%= DataInterventoEdit.ClientID %>_I');
+                if (dataIntervento) {
+                    var today = new Date();
+                    var dd = String(today.getDate()).padStart(2, '0');
+                    var mm = String(today.getMonth() + 1).padStart(2, '0');
+                    var yyyy = today.getFullYear();
 
+                    dataIntervento.value = dd + '-' + mm + '-' + yyyy;
+                }
+            }
+        }
 
     </script>
     <script>
@@ -1280,6 +2267,29 @@
                 });
             });
         });
+        function onEndCallbackAssociaTecnico(s, e) {
+            if (s.cpSaved === "OK") {
+                AssociaTecnico_popup.Hide();
+                Tecnici_Gridview.Refresh();
+                showNotification();
+
+                console.log('cpTotalTecnici:', s.cpTotalTecnici);
+                console.log('cpTotalOre:', s.cpTotalOre);
+                console.log('totalTecnici element:', document.getElementById('totalTecnici'));
+                console.log('tempoTicket element:', document.getElementById('tempoTicket'));
+
+                if (typeof s.cpTotalTecnici !== 'undefined' && document.getElementById('totalTecnici')) {
+                    document.getElementById('totalTecnici').innerText = s.cpTotalTecnici;
+                }
+                if (typeof s.cpTotalOre !== 'undefined' && document.getElementById('tempoTicket')) {
+                    document.getElementById('tempoTicket').innerText = s.cpTotalOre;
+                }
+            }
+
+            s.cpSaved = null;
+            s.cpTotalTecnici = null;
+            s.cpTotalOre = null;
+        }
     </script>
     <style>
         .edit-time-wrapper {
@@ -1333,6 +2343,52 @@
         .hidden {
             opacity: 0;
         }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 35px;
+        }
+
+            .toggle-switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            background-color: #c6c6c6;
+            border-radius: 24px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transition: 0.3s;
+        }
+
+            .slider::before {
+                position: absolute;
+                content: "";
+                height: 22px;
+                width: 22px;
+                left: 1px;
+                bottom: 1px;
+                background-color: white;
+                border-radius: 50%;
+                transition: 0.3s;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            }
+
+        .toggle-switch input:checked + .slider {
+            background-color: #4caf50;
+        }
+
+            .toggle-switch input:checked + .slider::before {
+                transform: translateX(26px);
+            }
     </style>
     <script>
         //Adatta il popup alla larghezza dello schermo
@@ -1365,12 +2421,71 @@
                 resizeForzaChiusuraPopup();
             }
         });
-    </script>
-    <script>
+        function resizeModificaNoteTecnicoPopup() {
+            var popup = ModificaNoteTecnico_popup;
+            if (!popup) {
+                console.warn("popup non disponibile");
+                return;
+            }
+
+            var winWidth = window.innerWidth;
+            var height = 400;
+
+            console.log("📏 width finestra:", winWidth);
+
+            if (winWidth < 576) {
+                popup.SetWidth(Math.floor(winWidth * 0.85));
+            } else if (winWidth < 992) {
+                popup.SetWidth(700);
+            } else {
+                popup.SetWidth(900);
+            }
+
+            popup.SetHeight(height);
+        }
+
+        //Ricalcola dimensioni se il popup è visibile
+        window.addEventListener('resize', function () {
+            if (ModificaNoteTecnico_popup && ModificaNoteTecnico_popup.IsVisible()) {
+                resizeModificaNoteTecnicoPopup();
+            }
+        });
+        function resizeAssociaTecnicoPopup() {
+            var popup = AssociaTecnico_popup;
+            if (!popup) {
+                console.warn("popup non disponibile");
+                return;
+            }
+
+            var winWidth = window.innerWidth;
+            var height = 400;
+
+            console.log("📏 width finestra:", winWidth);
+
+            if (winWidth < 576) {
+                popup.SetWidth(Math.floor(winWidth * 0.85));
+            } else if (winWidth < 992) {
+                popup.SetWidth(700);
+            } else {
+                popup.SetWidth(900);
+            }
+
+            popup.SetHeight(height);
+        }
+
+        //Ricalcola dimensioni se il popup è visibile
+        window.addEventListener('resize', function () {
+            if (AssociaTecnico_popup && AssociaTecnico_popup.IsVisible()) {
+                resizeAssociaTecnicoPopup();
+            }
+        });
         ASPxClientUtils.AttachEventToElement(window, "load", function () {
             setTimeout(function () {
                 if (typeof ForzaChiusura_popup !== "undefined" && ForzaChiusura_popup.IsVisible()) {
                     resizeForzaChiusuraPopup();
+                }
+                if (typeof ModificaNoteTecnico_popup !== "undefined" && ModificaNoteTecnico_popup.IsVisible()) {
+                    resizeModificaNoteTecnicoPopup();
                 }
             }, 100);
         });

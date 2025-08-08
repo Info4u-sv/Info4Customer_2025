@@ -996,6 +996,18 @@
     <Compile Include="TestInvioEmail.aspx.designer.cs">
       <DependentUpon>TestInvioEmail.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Ticket\AppCode\Dettaglio_Materiali_Rapportino.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ticket\AppCode\Dettaglio_Materiali_Rapportino.Designer.cs">
+      <DependentUpon>Dettaglio_Materiali_Rapportino.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ticket\AppCode\GestioneTicket_Rpt.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ticket\AppCode\GestioneTicket_Rpt.Designer.cs">
+      <DependentUpon>GestioneTicket_Rpt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ticket\InserimentoTicket.aspx.cs">
       <DependentUpon>InserimentoTicket.aspx</DependentUpon>
     </Compile>
@@ -1035,6 +1047,13 @@
     </Compile>
     <Compile Include="Ticket\Ticket_view.aspx.designer.cs">
       <DependentUpon>Ticket_view.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ticket\ViewDoc_Empty.aspx.cs">
+      <DependentUpon>ViewDoc_Empty.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ticket\ViewDoc_Empty.aspx.designer.cs">
+      <DependentUpon>ViewDoc_Empty.aspx</DependentUpon>
     </Compile>
     <Compile Include="Users\Invio_Email_RecuperoDati.aspx.cs">
       <DependentUpon>Invio_Email_RecuperoDati.aspx</DependentUpon>
@@ -3361,6 +3380,7 @@
     <Content Include="Ticket\TCK_List.aspx" />
     <Content Include="Ticket\Ticket_List.aspx" />
     <Content Include="Ticket\Ticket_view.aspx" />
+    <Content Include="Ticket\ViewDoc_Empty.aspx" />
     <Content Include="Users\Invio_Email_RecuperoDati.aspx" />
     <Content Include="Users\Recupero_Dati.aspx" />
     <Content Include="VIO_Utenti\Gruppo_Utenti_Crud.aspx" />
@@ -3915,6 +3935,12 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ticket\AppCode\Dettaglio_Materiali_Rapportino.resx">
+      <DependentUpon>Dettaglio_Materiali_Rapportino.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ticket\AppCode\GestioneTicket_Rpt.resx">
+      <DependentUpon>GestioneTicket_Rpt.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
