@@ -349,6 +349,10 @@
             border-bottom: 0px solid rgba(0,0,0,0.1) !important;
         }
 
+        .dxflGroupCell_Office365 {
+            padding: 0 !important;
+        }
+
         .progress {
             height: 20px;
             border-radius: 8px;
@@ -432,6 +436,22 @@
                         </dx:ASPxCallbackPanel>
                     </div>
                     <div style="float: right; padding-right: 10px; padding-top: 4px;">
+                        <dx:BootstrapButton
+                            runat="server"
+                            ID="InviaMail_Btn"
+                            ClientInstanceName="InviaMail_Btn"
+                            AutoPostBack="false"
+                            CssClasses-Control="btn btn-just-icon btn-just-icon-padding"
+                            Style="min-width: 150px; z-index: 9999 !important;"
+                            ToolTip="Invia via mail"
+                            Badge-CssClass="BadgeBtn-just-icon"
+                            Visible="false">
+                            <Badge IconCssClass="fa fa-envelope" Text="Invia via Mail" />
+                            <SettingsBootstrap RenderOption="Success" Sizing="Small" />
+                            <ClientSideEvents Click="function(s, e) { 
+        PopupInviaMail.Show();
+    }" />
+                        </dx:BootstrapButton>
                         <dx:BootstrapButton
                             runat="server"
                             ID="FirmaT_Btn"
@@ -1725,6 +1745,87 @@
                                                                                     </LayoutItemNestedControlCollection>
                                                                                     <CaptionSettings VerticalAlign="Top" Location="Top" />
                                                                                 </dx:LayoutItem>
+
+                                                                                <dx:LayoutItem Name="liFirmaTecnico" Caption="Firma Tecnico:" ColumnSpan="2">
+                                                                                    <LayoutItemNestedControlCollection>
+                                                                                        <dx:LayoutItemNestedControlContainer>
+                                                                                            <dx:ASPxComboBox
+                                                                                                ID="ddltecnicifirma"
+                                                                                                runat="server"
+                                                                                                DataSourceID="FirmaTecnicoDTS"
+                                                                                                TextField="Utente"
+                                                                                                ValueField="Utente"
+                                                                                                NullText="Scegli un tecnico..."
+                                                                                                Width="100%">
+                                                                                                <ClientSideEvents SelectedIndexChanged="function(s,e){
+                                        if(FirmaTecnico_CallbackPnl) {
+                                            FirmaTecnico_CallbackPnl.PerformCallback(s.GetValue());
+                                        }
+                                    }" />
+                                                                                            </dx:ASPxComboBox>
+                                                                                            <br />
+                                                                                            <br />
+                                                                                            <dx:ASPxCallbackPanel
+                                                                                                ID="FirmaTecnico_CallbackPnl"
+                                                                                                runat="server"
+                                                                                                ClientInstanceName="FirmaTecnico_CallbackPnl"
+                                                                                                OnCallback="FirmaTecnico_CallbackPnl_Callback">
+                                                                                                <PanelCollection>
+                                                                                                    <dx:PanelContent>
+                                                                                                        <dx:ASPxLabel ID="lblFirmaTecnico" runat="server" Font-Bold="true" Text='<%# Bind("FirmaTecnico") %>' />
+                                                                                                        <br />
+                                                                                                        <dx:ASPxImage
+                                                                                                            ID="imgFirmaTecnico"
+                                                                                                            runat="server"
+                                                                                                            Width="200px"
+                                                                                                            Visible="true"
+                                                                                                            ImageUrl='<%# Bind("ImgFirmaTecnico") %>' />
+                                                                                                    </dx:PanelContent>
+                                                                                                </PanelCollection>
+                                                                                            </dx:ASPxCallbackPanel>
+                                                                                        </dx:LayoutItemNestedControlContainer>
+                                                                                    </LayoutItemNestedControlCollection>
+                                                                                    <CaptionSettings VerticalAlign="Top" Location="Top" />
+                                                                                </dx:LayoutItem>
+                                                                                <dx:LayoutItem Name="liFirmaCliente" Caption="Firma Cliente:" ColumnSpan="2">
+                                                                                    <LayoutItemNestedControlCollection>
+                                                                                        <dx:LayoutItemNestedControlContainer>
+                                                                                            <dx:ASPxTextBox ID="TxtFirmaCliente" runat="server" NullText="">
+                                                                                            </dx:ASPxTextBox>
+                                                                                            <dx:BootstrapButton
+                                                                                                runat="server"
+                                                                                                ID="FirmaT_Btn"
+                                                                                                ClientInstanceName="FirmaT_Btn"
+                                                                                                AutoPostBack="false"
+                                                                                                CssClasses-Control="btn btn-just-icon btn-just-icon-padding"
+                                                                                                Style="min-width: 10px; z-index: 9999 !important;" Width="30%"
+                                                                                                ToolTip="Firma il ticket"
+                                                                                                Badge-CssClass="BadgeBtn-just-icon"
+                                                                                                Visible="true">
+
+                                                                                                <Badge IconCssClass="fa fa-edit" Text="Cliente" />
+                                                                                                <SettingsBootstrap RenderOption="Info" Sizing="Small" />
+                                                                                                <ClientSideEvents Click="function(s, e) { 
+                            var idTicket = getQueryStringValue('IdTicket'); 
+                            if(idTicket) window.open('Ticket_Firma.aspx?IdTicket=' + idTicket, '_blank'); 
+                            else alert('IdTicket non trovato!');
+    }" />
+                                                                                            </dx:BootstrapButton>
+                                                                                            <br />
+                                                                                            <dx:ASPxLabel ID="lblFirmaCliente" runat="server" Font-Bold="true" Text='<%# Bind("FirmaCliente") %>' />
+                                                                                            <br />
+                                                                                            <dx:ASPxImage
+                                                                                                ID="ASPxImage1"
+                                                                                                runat="server"
+                                                                                                Width="400px"
+                                                                                                Visible="true"
+                                                                                                ImageUrl='<%# Bind("ImgFirmaCliente") %>' />
+                                                                                        </dx:LayoutItemNestedControlContainer>
+                                                                                    </LayoutItemNestedControlCollection>
+                                                                                    <CaptionSettings VerticalAlign="Top" Location="Top" />
+                                                                                </dx:LayoutItem>
+
+
                                                                                 <dx:LayoutItem Caption="Fatturazione" FieldName="TCK_TipoChiusuraChiamataFattura" ColumnSpan="2">
                                                                                     <LayoutItemNestedControlCollection>
                                                                                         <dx:LayoutItemNestedControlContainer>
@@ -1769,7 +1870,6 @@
                                                                                     </LayoutItemNestedControlCollection>
                                                                                     <CaptionSettings VerticalAlign="Top" Location="Top" />
                                                                                 </dx:LayoutItem>
-
                                                                             </Items>
                                                                         </dx:LayoutGroup>
                                                                     </Items>
@@ -2155,6 +2255,103 @@
         <ClientSideEvents Shown="function(s, e) { resizeAssociaTecnicoPopup(); }" />
     </dx:ASPxPopupControl>
 
+    <dx:ASPxPopupControl
+        ID="PopupInviaMail"
+        runat="server"
+        ClientInstanceName="PopupInviaMail"
+        Modal="true"
+        CloseAction="CloseButton"
+        AllowDragging="true"
+        ShowFooter="false"
+        PopupHorizontalAlign="WindowCenter"
+        PopupVerticalAlign="WindowCenter"
+        Width="800px"
+        HeaderText="Invia Email">
+
+        <ContentCollection>
+            <dx:PopupControlContentControl runat="server">
+                <dx:ASPxCallbackPanel
+                    ID="CallbackPanelInviaMail"
+                    runat="server"
+                    ClientInstanceName="CallbackPanelInviaMail"
+                    OnCallback="CallbackPanelInviaMail_Callback">
+                    <PanelCollection>
+                        <dx:PanelContent runat="server">
+                            <div class="row" style="margin-bottom: 10px;">
+                                <div class="col-xs-12 col-sm-3">
+                                    <label class="control-label" style="color: Red;">Destinatario/i*:&nbsp;</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-9">
+                                    <dx:ASPxTokenBox
+                                        ID="TokenBoxTo"
+                                        runat="server"
+                                        ClientInstanceName="tokenBoxTo"
+                                        DataSourceID="Destinatario_Dts"
+                                        TextField="Email"
+                                        TextSeparator=";"
+                                        Width="100%">
+                                        <ValidationSettings SetFocusOnError="True" ValidationGroup="EmailContattoGrp" ErrorDisplayMode="None">
+                                            <RequiredField IsRequired="True" />
+                                        </ValidationSettings>
+                                        <ClientSideEvents Validation="validateEmail" />
+                                        <InvalidStyle BackColor="LightPink" />
+                                        <ItemStyle CssClass="contact-item" />
+                                    </dx:ASPxTokenBox>
+                                    <asp:SqlDataSource
+                                        ID="Destinatario_Dts"
+                                        runat="server"
+                                        ConnectionString='<%$ ConnectionStrings:info4portaleConnectionString %>'
+                                        SelectCommand="SELECT Email FROM EmailClienti_View WHERE (CodRapportino = @CodRapportino)">
+                                        <SelectParameters>
+                                            <asp:QueryStringParameter QueryStringField="IdTicket" Name="CodRapportino" />
+                                        </SelectParameters>
+                                    </asp:SqlDataSource>
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin-top: 15px; justify-content: flex-end; display: flex;">
+                                <dx:BootstrapButton
+                                    runat="server"
+                                    ID="InviaEmailContatto_Btn"
+                                    ClientInstanceName="InviaEmailContatto_Btn"
+                                    AutoPostBack="false"
+                                    CssClasses-Control="btn btn-just-icon btn-just-icon-padding"
+                                    Style="min-width: 140px; flex: 1 1 auto; max-width: 200px;"
+                                    ToolTip="Invia Mail"
+                                    Badge-CssClass="BadgeBtn-just-icon">
+                                    <Badge IconCssClass="fa fa-envelope" Text="Invia Mail" />
+                                    <SettingsBootstrap RenderOption="Success" Sizing="Small" />
+                                    <ClientSideEvents Click="function(s, e) { CallbackPanelInviaMail.PerformCallback(); PopupInviaMail.Hide(); showNotification();}" />
+                                </dx:BootstrapButton>
+                            </div>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                </dx:ASPxCallbackPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
+
+    <script>
+        function ResizePopup() {
+            if (PopupInviaMail) {
+                var w = window.innerWidth;
+
+                if (w <= 991) {
+                    PopupInviaMail.SetWidth(w * 0.9);
+                } else {
+                    PopupInviaMail.SetWidth(800);
+                }
+            }
+        }
+
+        window.addEventListener('resize', ResizePopup);
+        window.addEventListener('load', ResizePopup);
+    </script>
+    <script>
+        function ExecNotify1() {
+            Notify1('Sto Inviando la mail', 'top-right', '5000', 'info', 'fa-envelope', false);
+        }
+    </script>
 
     <dx:ASPxCallback ID="Update_FormLayout_Callback" ClientInstanceName="Update_FormLayout_Callback" runat="server" OnCallback="Update_FormLayout_Callback_Callback" Style="float: right">
         <ClientSideEvents
@@ -2371,6 +2568,10 @@
                     dataIntervento.value = dd + '-' + mm + '-' + yyyy;
                 }
             }
+        }
+        function validateEmail(email) {
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
         }
 
     </script>

@@ -35,6 +35,7 @@
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.xrSubreport3 = new DevExpress.XtraReports.UI.XRSubreport();
             this.xrLabel56 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrCheckBox12 = new DevExpress.XtraReports.UI.XRCheckBox();
             this.xrCheckBox11 = new DevExpress.XtraReports.UI.XRCheckBox();
@@ -52,6 +53,7 @@
             this.xrLabel54 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel53 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel45 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrSubreport1 = new DevExpress.XtraReports.UI.XRSubreport();
             this.xrLabel37 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel44 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel35 = new DevExpress.XtraReports.UI.XRLabel();
@@ -68,6 +70,7 @@
             this.xrRichText2 = new DevExpress.XtraReports.UI.XRRichText();
             this.xrLabel26 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel24 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrSubreport2 = new DevExpress.XtraReports.UI.XRSubreport();
             this.xrLabel21 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel23 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel19 = new DevExpress.XtraReports.UI.XRLabel();
@@ -98,17 +101,14 @@
             this.IdTicket = new DevExpress.XtraReports.Parameters.Parameter();
             this.ReportFooter = new DevExpress.XtraReports.UI.ReportFooterBand();
             this.xrLabel52 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrPictureBox3 = new DevExpress.XtraReports.UI.XRPictureBox();
-            this.xrPictureBox2 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.xrLabel51 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel50 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel49 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel48 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel47 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel46 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrSubreport3 = new DevExpress.XtraReports.UI.XRSubreport();
-            this.xrSubreport1 = new DevExpress.XtraReports.UI.XRSubreport();
-            this.xrSubreport2 = new DevExpress.XtraReports.UI.XRSubreport();
+            this.xrPictureBox3 = new DevExpress.XtraReports.UI.XRPictureBox();
+            this.xrPictureBox2 = new DevExpress.XtraReports.UI.XRPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -185,6 +185,14 @@
             this.Detail.HeightF = 701.0115F;
             this.Detail.Name = "Detail";
             this.Detail.StylePriority.UseBorders = false;
+            // 
+            // xrSubreport3
+            // 
+            this.xrSubreport3.LocationFloat = new DevExpress.Utils.PointFloat(375.8683F, 433.1422F);
+            this.xrSubreport3.Name = "xrSubreport3";
+            this.xrSubreport3.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("IdTicket", null, "Query.CodRapportino"));
+            this.xrSubreport3.ReportSource = new INTRA.Ticket.AppCode.Totale_Tempi_Ticket_Sub_Rpt();
+            this.xrSubreport3.SizeF = new System.Drawing.SizeF(131.9815F, 23.00003F);
             // 
             // xrLabel56
             // 
@@ -387,6 +395,14 @@
             this.xrLabel45.SizeF = new System.Drawing.SizeF(729.0707F, 2F);
             this.xrLabel45.StylePriority.UseBorders = false;
             this.xrLabel45.Text = "xrLabel44";
+            // 
+            // xrSubreport1
+            // 
+            this.xrSubreport1.LocationFloat = new DevExpress.Utils.PointFloat(8.839671F, 433.1422F);
+            this.xrSubreport1.Name = "xrSubreport1";
+            this.xrSubreport1.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("IdTicket", null, "Query.CodRapportino"));
+            this.xrSubreport1.ReportSource = new INTRA.Ticket.AppCode.Dettaglio_Tecnici_Sub_Rpt();
+            this.xrSubreport1.SizeF = new System.Drawing.SizeF(122.016F, 23.00003F);
             // 
             // xrLabel37
             // 
@@ -622,6 +638,14 @@
             this.xrLabel24.StylePriority.UseTextAlignment = false;
             this.xrLabel24.Text = "MATERIALE IMPIEGATO:";
             this.xrLabel24.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            // 
+            // xrSubreport2
+            // 
+            this.xrSubreport2.LocationFloat = new DevExpress.Utils.PointFloat(8.958228F, 379.1035F);
+            this.xrSubreport2.Name = "xrSubreport2";
+            this.xrSubreport2.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("IdTicket", null, "Query.CodRapportino"));
+            this.xrSubreport2.ReportSource = new INTRA.Ticket.AppCode.Dettaglio_Materiali_Rapportino_Sub_Rpt();
+            this.xrSubreport2.SizeF = new System.Drawing.SizeF(122.016F, 23.00003F);
             // 
             // xrLabel21
             // 
@@ -1052,29 +1076,6 @@
             this.xrLabel52.SizeF = new System.Drawing.SizeF(330.9035F, 66.99992F);
             this.xrLabel52.StylePriority.UseBorders = false;
             // 
-            // xrPictureBox3
-            // 
-            this.xrPictureBox3.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Right | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrPictureBox3.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "ImageSource", "[ImgFirmaCliente]")});
-            this.xrPictureBox3.LocationFloat = new DevExpress.Utils.PointFloat(208.968F, 46.00003F);
-            this.xrPictureBox3.Name = "xrPictureBox3";
-            this.xrPictureBox3.SizeF = new System.Drawing.SizeF(200.1283F, 66.99994F);
-            this.xrPictureBox3.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage;
-            this.xrPictureBox3.StylePriority.UseBorders = false;
-            // 
-            // xrPictureBox2
-            // 
-            this.xrPictureBox2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrPictureBox2.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "ImageSource", "[ImgFirmaTecnico]")});
-            this.xrPictureBox2.LocationFloat = new DevExpress.Utils.PointFloat(8.839671F, 46.00003F);
-            this.xrPictureBox2.Name = "xrPictureBox2";
-            this.xrPictureBox2.SizeF = new System.Drawing.SizeF(200.1283F, 66.99994F);
-            this.xrPictureBox2.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage;
-            this.xrPictureBox2.StylePriority.UseBorders = false;
-            // 
             // xrLabel51
             // 
             this.xrLabel51.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Right | DevExpress.XtraPrinting.BorderSide.Bottom)));
@@ -1161,29 +1162,30 @@
             this.xrLabel46.Text = "L\'INCARICATO DELLA DITTA";
             this.xrLabel46.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
-            // xrSubreport3
+            // xrPictureBox3
             // 
-            this.xrSubreport3.LocationFloat = new DevExpress.Utils.PointFloat(375.8683F, 433.1422F);
-            this.xrSubreport3.Name = "xrSubreport3";
-            this.xrSubreport3.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("IdTicket", null, "Query.CodRapportino"));
-            this.xrSubreport3.ReportSource = new INTRA.Ticket.AppCode.Totale_Tempi_Ticket_Sub_Rpt();
-            this.xrSubreport3.SizeF = new System.Drawing.SizeF(131.9815F, 23.00003F);
+            this.xrPictureBox3.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Right | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrPictureBox3.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "ImageSource", "[ImgFirmaCliente]")});
+            this.xrPictureBox3.ImageUrl = "[ImgFirmaTecnico]";
+            this.xrPictureBox3.LocationFloat = new DevExpress.Utils.PointFloat(208.968F, 46.00003F);
+            this.xrPictureBox3.Name = "xrPictureBox3";
+            this.xrPictureBox3.SizeF = new System.Drawing.SizeF(200.1283F, 66.99994F);
+            this.xrPictureBox3.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
+            this.xrPictureBox3.StylePriority.UseBorders = false;
             // 
-            // xrSubreport1
+            // xrPictureBox2
             // 
-            this.xrSubreport1.LocationFloat = new DevExpress.Utils.PointFloat(8.839671F, 433.1422F);
-            this.xrSubreport1.Name = "xrSubreport1";
-            this.xrSubreport1.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("IdTicket", null, "Query.CodRapportino"));
-            this.xrSubreport1.ReportSource = new INTRA.Ticket.AppCode.Dettaglio_Tecnici_Sub_Rpt();
-            this.xrSubreport1.SizeF = new System.Drawing.SizeF(122.016F, 23.00003F);
-            // 
-            // xrSubreport2
-            // 
-            this.xrSubreport2.LocationFloat = new DevExpress.Utils.PointFloat(8.958228F, 379.1035F);
-            this.xrSubreport2.Name = "xrSubreport2";
-            this.xrSubreport2.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("IdTicket", null, "Query.CodRapportino"));
-            this.xrSubreport2.ReportSource = new INTRA.Ticket.AppCode.Dettaglio_Materiali_Rapportino_Sub_Rpt();
-            this.xrSubreport2.SizeF = new System.Drawing.SizeF(122.016F, 23.00003F);
+            this.xrPictureBox2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrPictureBox2.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "ImageSource", "[ImgFirmaTecnico]")});
+            this.xrPictureBox2.ImageUrl = "[ImgFirmaTecnico]";
+            this.xrPictureBox2.LocationFloat = new DevExpress.Utils.PointFloat(8.839671F, 46.00003F);
+            this.xrPictureBox2.Name = "xrPictureBox2";
+            this.xrPictureBox2.SizeF = new System.Drawing.SizeF(200.1283F, 66.99994F);
+            this.xrPictureBox2.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
+            this.xrPictureBox2.StylePriority.UseBorders = false;
             // 
             // GestioneTicket_Rpt
             // 
@@ -1269,8 +1271,6 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel51;
         private DevExpress.XtraReports.UI.XRLabel xrLabel50;
         private DevExpress.XtraReports.UI.XRLabel xrLabel49;
-        private DevExpress.XtraReports.UI.XRPictureBox xrPictureBox3;
-        private DevExpress.XtraReports.UI.XRPictureBox xrPictureBox2;
         private DevExpress.XtraReports.UI.XRLabel xrLabel52;
         private DevExpress.XtraReports.UI.XRLabel xrLabel37;
         private DevExpress.XtraReports.UI.XRSubreport xrSubreport1;
@@ -1293,5 +1293,7 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel56;
         private DevExpress.XtraReports.UI.XRPictureBox xrPictureBox4;
         private DevExpress.XtraReports.UI.XRSubreport xrSubreport3;
+        private DevExpress.XtraReports.UI.XRPictureBox xrPictureBox3;
+        private DevExpress.XtraReports.UI.XRPictureBox xrPictureBox2;
     }
 }

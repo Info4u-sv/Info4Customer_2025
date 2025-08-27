@@ -1,7 +1,9 @@
 ﻿using DevExpress.Web;
 using DevExpress.Web.Data;
 using DevExpress.XtraPrinting.Native;
+using info4lab;
 using info4lab.Portal;
+using INTRA.Webservice_primo_online;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -9,14 +11,18 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Profile;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Forms;
 
 namespace INTRA.Ticket
 {
     public partial class Ticket_view : System.Web.UI.Page
     {
+        int Inviato_status = 7;
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -38,6 +44,20 @@ namespace INTRA.Ticket
                 {
                     var (status, chiusura) = GetStatusChiamata(idTicket);
 
+                    ASPxFormLayout layout = FormViewDettagliIntervento.FindControl("formlayoutDettagliIntervento") as ASPxFormLayout;
+                    if (layout != null)
+                    {
+                        var liFirmaTecnico = layout.FindItemOrGroupByName("liFirmaTecnico") as LayoutItem;
+                        var liFirmaCliente = layout.FindItemOrGroupByName("liFirmaCliente") as LayoutItem;
+
+                        bool showFirme = (status == 3 || status == 4 || status == 7 || status == 6);
+
+                        if (liFirmaTecnico != null)
+                            liFirmaTecnico.Visible = showFirme;
+
+                        if (liFirmaCliente != null)
+                            liFirmaCliente.Visible = showFirme;
+                    }
                     // Reset visibilità a false per tutti
                     AssociaTecnico_Btn.Visible = false;
                     AvviaTicket_Btn.Visible = false;
@@ -45,6 +65,8 @@ namespace INTRA.Ticket
                     ModificaNoteTecnico_Btn.Visible = false;
                     TornaAllaLista_Btn.Visible = false;
                     FirmaT_Btn.Visible = false;
+                    InviaMail_Btn.Visible = false;
+
 
                     if (status == 1)
                     {
@@ -81,6 +103,7 @@ namespace INTRA.Ticket
                         TornaAllaLista_Btn.Visible = true;
                         GeneraPDF_Btn.Visible = true;
                         ChiusoStatusTCK_Pnl.Visible = true;
+                        InviaMail_Btn.Visible = true;
                         DisableControls(FormViewTicket);
                         DisableControls(FormViewDettagliIntervento);
                         DisableControls(FormViewTicketSpese);
@@ -146,14 +169,48 @@ namespace INTRA.Ticket
                     AssegnatoStatusTCK_Pnl.Visible = false;
                     LavorazioneStatusTCK_Pnl.Visible = false;
                     ChiusoStatusTCK_Pnl.Visible = false;
+                    InviaMail_Btn.Visible = false;
                 }
             }
         }
 
-
-        private void DisableControls(Control parent)
+        protected void FirmaTecnico_CallbackPnl_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
-            foreach (Control c in parent.Controls)
+            string username = e.Parameter;
+            if (string.IsNullOrEmpty(username))
+                return;
+
+            var panel = sender as ASPxCallbackPanel;
+            var lbl = panel.FindControl("lblFirmaTecnico") as ASPxLabel;
+            var img = panel.FindControl("imgFirmaTecnico") as ASPxImage;
+
+
+            dynamic profile = ProfileBase.Create(username);
+            if (profile != null)
+            {
+                lbl.Text = $"{profile.cognome ?? ""} {profile.nome ?? ""}";
+
+                if (profile.FirmaTecnico != null)
+                {
+                    img.ImageUrl = profile.FirmaTecnico;
+                    img.Visible = true;
+                }
+                else
+                {
+                    img.Visible = false;
+                }
+            }
+            Session["FirmaTecnico"] = lbl.Text;
+            Session["ImgFirmaTecnico"] = img.ImageUrl ?? "";
+        }
+
+
+
+
+
+        private void DisableControls(System.Web.UI.Control parent)
+        {
+            foreach (System.Web.UI.Control c in parent.Controls)
             {
                 if (c is WebControl wc)
                     wc.Enabled = false;
@@ -393,12 +450,14 @@ namespace INTRA.Ticket
                 var noteMemo = layout.FindControl("Note_Txt_DX") as ASPxMemo;
                 var tipoEsecuzione = layoutEseguito.FindControl("Rbl_TCK_TipoEsecuzione") as ASPxRadioButtonList;
                 var tipoFatturazione = layout.FindControl("TCK_TipoChiusuraChiamataFattura_Combobox") as ASPxComboBox;
+                var TxtFirmaCliente = layout.FindControl("TxtFirmaCliente") as ASPxTextBox;
+
 
 
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["info4portaleConnectionString"].ConnectionString))
                 {
                     string query = @"UPDATE TCK_TestataTicket
-                     SET OggettoTCK = @OggettoTCK, MotivoChiamata = @MotivoChiamata, LavoroEseguito = @LavoroEseguito, Note = @Note, TCK_TipoEsecuzione = @TCK_TipoEsecuzione, TCK_TipoChiusuraChiamataFattura = @TCK_TipoChiusuraChiamataFattura
+                     SET OggettoTCK = @OggettoTCK, MotivoChiamata = @MotivoChiamata, LavoroEseguito = @LavoroEseguito, Note = @Note, TCK_TipoEsecuzione = @TCK_TipoEsecuzione, TCK_TipoChiusuraChiamataFattura = @TCK_TipoChiusuraChiamataFattura, FirmaTecnico = @FirmaTecnico, ImgFirmaTecnico = @ImgFirmaTecnico, FirmaCliente = @FirmaCliente
                      WHERE CodRapportino = @IdTicket";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -409,6 +468,9 @@ namespace INTRA.Ticket
                         cmd.Parameters.AddWithValue("@Note", noteMemo?.Text ?? "");
                         cmd.Parameters.AddWithValue("@TCK_TipoEsecuzione", tipoEsecuzione?.Value ?? DBNull.Value);
                         cmd.Parameters.AddWithValue("@TCK_TipoChiusuraChiamataFattura", tipoFatturazione?.Value?.ToString() ?? "0");
+                        cmd.Parameters.AddWithValue("@FirmaTecnico", Session["FirmaTecnico"] ?? "");
+                        cmd.Parameters.AddWithValue("@ImgFirmaTecnico", Session["ImgFirmaTecnico"] ?? "");
+                        cmd.Parameters.AddWithValue("@FirmaCliente", TxtFirmaCliente?.Text ?? "");
                         cmd.Parameters.AddWithValue("@IdTicket", Request.QueryString["IdTicket"] ?? "");
 
                         conn.Open();
@@ -994,7 +1056,7 @@ SELECT cast(TCK_TestataTicket.TCK_TipoChiusuraChiamataFattura as nvarchar) + cas
 
             var noteTxt = (DevExpress.Web.ASPxMemo)FormView2.FindControl("NoteTecnico_Txt");
             var ckbl = (CheckBoxList)FormView2.FindControl("NoteTecnico_Ckbl");
-            var toggle = (CheckBox)FormView2.FindControl("ToggleSwitch");
+            var toggle = (System.Web.UI.WebControls.CheckBox)FormView2.FindControl("ToggleSwitch");
 
             if (noteTxt == null || ckbl == null || toggle == null)
                 return;
@@ -1116,7 +1178,42 @@ SELECT cast(TCK_TestataTicket.TCK_TipoChiusuraChiamataFattura as nvarchar) + cas
             CallbackPanelModificaNoteTecnico.JSProperties["cpTotalOre"] = totalOre.ToString("0.##");
             CallbackPanelModificaNoteTecnico.JSProperties["cpSaved"] = "OK";
         }
+        protected void CallbackPanelInviaMail_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
+        {
+            ASPxCallbackPanel panel = (ASPxCallbackPanel)sender;
+            ASPxTokenBox TokenBoxTo = (ASPxTokenBox)panel.FindControl("TokenBoxTo"); 
+            object Destinario = TokenBoxTo.Text;
+            string[] EMailTo = Destinario.ToString().Split(';');
+            //GetTicket = GetDisplayTicket();
 
+            WS_TCK_Ticket _ObjWS = new WS_TCK_Ticket();
+            Webservice_primo_online.WebService_primoSoapClient _ObjService = new Webservice_primo_online.WebService_primoSoapClient("WebService_primoSoap");
+            Webservice_primo_online.TCK_Ticket_WS _TicketWS = new Webservice_primo_online.TCK_Ticket_WS();
+
+            string idTicket = Request.QueryString["IdTicket"];
+            int idTicketInt = 0;
+            int.TryParse(idTicket, out idTicketInt);
+
+            _TicketWS.CodRapportino = idTicketInt;
+
+             _TicketWS = GetTicketDetails(idTicketInt);
+            MembershipUser edtUsr = Membership.GetUser();
+            string Destinatari = "";
+            for (int i = 0; i < EMailTo.Length; i++)
+            {
+                _TicketWS.TckInviatoA = EMailTo[i];
+                Destinatari = EMailTo[i] + ";";
+                try
+                {
+                    _ObjService.SendTicketMailAim(idTicketInt, Inviato_status, _TicketWS.FirmaTecnico, _TicketWS, EMailTo[i].ToString(), EMailTo[i].ToString(), false, "Url", _TicketWS.LinkTckPdf);
+                    SiteMaster.ShowToastr(Page, "Operazione Eseguita!", "Conferma", "Success", false, "toast-top-right", false);
+                }
+                catch (Exception ex)
+                {
+                    SiteMaster.ShowToastr(Page, ex.ToString(), "Errore", "Error", false, "toast-top-right", false);
+                }
+            }
+        }
         protected void CallbackPanelAssociaTecnico_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
             if (e.Parameter != "SalvaAssociazioneTecnico")
@@ -1131,7 +1228,7 @@ SELECT cast(TCK_TestataTicket.TCK_TipoChiusuraChiamataFattura as nvarchar) + cas
             // Recupera i controlli
             var ckbl = CallbackPanelAssociaTecnico.FindControl("AssociaTecnico_Ckbl") as CheckBoxList;
             var noteTxt = CallbackPanelAssociaTecnico.FindControl("NoteTecnicoAssocia_Txt") as ASPxMemo;
-            var inviaCalendarChk = CallbackPanelAssociaTecnico.FindControl("InviaCalendarChk") as CheckBox;
+            var inviaCalendarChk = CallbackPanelAssociaTecnico.FindControl("InviaCalendarChk") as System.Web.UI.WebControls.CheckBox;
             var dataIntervento = CallbackPanelAssociaTecnico.FindControl("DataInterventoEdit") as ASPxDateEdit;
             var inizioTxt = CallbackPanelAssociaTecnico.FindControl("Inizio_Txt") as ASPxTextBox;
             var fineTxt = CallbackPanelAssociaTecnico.FindControl("Fine_Txt") as ASPxTextBox;

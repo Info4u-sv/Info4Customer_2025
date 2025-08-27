@@ -69,6 +69,15 @@ namespace INTRA.Ticket
         protected global::System.Web.UI.WebControls.Panel Annullato_Pnl;
 
         /// <summary>
+        /// Controllo InviaMail_Btn.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::DevExpress.Web.Bootstrap.BootstrapButton InviaMail_Btn;
+
+        /// <summary>
         /// Controllo FirmaT_Btn.
         /// </summary>
         /// <remarks>
@@ -544,6 +553,51 @@ namespace INTRA.Ticket
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
         protected global::DevExpress.Web.Bootstrap.BootstrapButton AssociaTecnico_AnnullaBtn;
+
+        /// <summary>
+        /// Controllo PopupInviaMail.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxPopupControl PopupInviaMail;
+
+        /// <summary>
+        /// Controllo CallbackPanelInviaMail.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxCallbackPanel CallbackPanelInviaMail;
+
+        /// <summary>
+        /// Controllo TokenBoxTo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTokenBox TokenBoxTo;
+
+        /// <summary>
+        /// Controllo Destinatario_Dts.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource Destinatario_Dts;
+
+        /// <summary>
+        /// Controllo InviaEmailContatto_Btn.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::DevExpress.Web.Bootstrap.BootstrapButton InviaEmailContatto_Btn;
 
         /// <summary>
         /// Controllo Update_FormLayout_Callback.
