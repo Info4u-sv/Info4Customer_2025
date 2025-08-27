@@ -22,7 +22,7 @@ namespace INTRA4U.DocUltimateViewer
             // So it can be any string value that your IDocumentHandler implementation understands.
             if (Session["PathDocumentoAllegatoSession"] != null)
             {
-                documentViewer1.Document = Session["PathDocumentoAllegatoSession"].ToString();
+                //documentViewer1.Document = Session["PathDocumentoAllegatoSession"].ToString();
             }
 
 

@@ -44,6 +44,7 @@ namespace INTRA.Ticket
                     ForzaChiusura_Btn.Visible = false;
                     ModificaNoteTecnico_Btn.Visible = false;
                     TornaAllaLista_Btn.Visible = false;
+                    FirmaT_Btn.Visible = false;
 
                     if (status == 1)
                     {
@@ -52,6 +53,8 @@ namespace INTRA.Ticket
                         ModificaNoteTecnico_Btn.Visible = true;
                         TornaAllaLista_Btn.Visible = true;
                         GeneraPDF_Btn.Visible = true;
+                        ApertoStatusTCK_Pnl.Visible = true;
+
                     }
                     else if (status == 2)
                     {
@@ -60,6 +63,7 @@ namespace INTRA.Ticket
                         ModificaNoteTecnico_Btn.Visible = true;
                         TornaAllaLista_Btn.Visible = true;
                         GeneraPDF_Btn.Visible = true;
+                        AssegnatoStatusTCK_Pnl.Visible = true;
                     }
                     else if (status == 3)
                     {
@@ -68,12 +72,64 @@ namespace INTRA.Ticket
                         ModificaNoteTecnico_Btn.Visible = true;
                         TornaAllaLista_Btn.Visible = true;
                         GeneraPDF_Btn.Visible = true;
+                        LavorazioneStatusTCK_Pnl.Visible = true;
+                        FirmaT_Btn.Visible = true;
                     }
                     else if (status == 7 && chiusura == 4)
                     {
                         ForzaRiapertura_Btn.Visible = true;
                         TornaAllaLista_Btn.Visible = true;
                         GeneraPDF_Btn.Visible = true;
+                        ChiusoStatusTCK_Pnl.Visible = true;
+                        DisableControls(FormViewTicket);
+                        DisableControls(FormViewDettagliIntervento);
+                        DisableControls(FormViewTicketSpese);
+                        DisableControls(FormViewTicketMateriali);
+                        DisableControls(FormViewEseguito);
+                        UpdateTicketBtn.Visible = false;
+                        BootstrapButton3.Visible = false;
+                        BootstrapButton1.Visible = false;
+                        BootstrapButton5.Visible = false;
+                        // Disabilita tutti tranne il delete
+                        Tecnici_Gridview.SettingsEditing.Mode = GridViewEditingMode.EditForm;
+
+                        // Nascondi bottoni New ed Edit
+                        Tecnici_Gridview.Columns.OfType<GridViewCommandColumn>().ToList().ForEach(col =>
+                        {
+                            col.ShowNewButtonInHeader = false;
+                            col.ShowEditButton = false;
+                        });
+
+                        // Disabilita update automatico
+                        Tecnici_Gridview.SettingsBehavior.AllowFocusedRow = false;
+                    }
+                    else if (status == 7 && chiusura == 6)
+                    {
+                        ForzaRiapertura_Btn.Visible = true;
+                        TornaAllaLista_Btn.Visible = true;
+                        GeneraPDF_Btn.Visible = true;
+                        Annullato_Pnl.Visible = true;
+                        DisableControls(FormViewTicket);
+                        DisableControls(FormViewDettagliIntervento);
+                        DisableControls(FormViewTicketSpese);
+                        DisableControls(FormViewTicketMateriali);
+                        DisableControls(FormViewEseguito);
+                        UpdateTicketBtn.Visible = false;
+                        BootstrapButton3.Visible = false;
+                        BootstrapButton1.Visible = false;
+                        BootstrapButton5.Visible = false;
+                        // Disabilita tutti tranne il delete
+                        Tecnici_Gridview.SettingsEditing.Mode = GridViewEditingMode.EditForm;
+
+                        // Nascondi bottoni New ed Edit
+                        Tecnici_Gridview.Columns.OfType<GridViewCommandColumn>().ToList().ForEach(col =>
+                        {
+                            col.ShowNewButtonInHeader = false;
+                            col.ShowEditButton = false;
+                        });
+
+                        // Disabilita update automatico
+                        Tecnici_Gridview.SettingsBehavior.AllowFocusedRow = false;
                     }
                 }
                 else
@@ -85,7 +141,64 @@ namespace INTRA.Ticket
                     ModificaNoteTecnico_Btn.Visible = false;
                     TornaAllaLista_Btn.Visible = false;
                     GeneraPDF_Btn.Visible = false;
+                    FirmaT_Btn.Visible = false;
+                    ApertoStatusTCK_Pnl.Visible = false;
+                    AssegnatoStatusTCK_Pnl.Visible = false;
+                    LavorazioneStatusTCK_Pnl.Visible = false;
+                    ChiusoStatusTCK_Pnl.Visible = false;
                 }
+            }
+        }
+
+
+        private void DisableControls(Control parent)
+        {
+            foreach (Control c in parent.Controls)
+            {
+                if (c is WebControl wc)
+                    wc.Enabled = false;
+
+                if (c.HasControls())
+                    DisableControls(c);
+            }
+        }
+        protected void StatusTicket_CallbackPnl_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
+        {
+            string idTicket = Request.QueryString["IdTicket"];
+            if (!string.IsNullOrEmpty(idTicket))
+            {
+                var (status, chiusura) = GetStatusChiamata(idTicket);
+
+                // Reset visibilità a false per tutti
+                ApertoStatusTCK_Pnl.Visible = false;
+                AssegnatoStatusTCK_Pnl.Visible = false;
+                LavorazioneStatusTCK_Pnl.Visible = false;
+                ChiusoStatusTCK_Pnl.Visible = false;
+
+                if (status == 1)
+                {
+                    ApertoStatusTCK_Pnl.Visible = true;
+                }
+                else if (status == 2)
+                {
+                    AssegnatoStatusTCK_Pnl.Visible = true;
+                }
+                else if (status == 3)
+                {
+                    LavorazioneStatusTCK_Pnl.Visible = true;
+                }
+                else if (status == 7 && chiusura == 4)
+                {
+                    ChiusoStatusTCK_Pnl.Visible = true;
+                }
+            }
+            else
+            {
+                // Nascondi tutti se manca idTicket
+                ApertoStatusTCK_Pnl.Visible = false;
+                AssegnatoStatusTCK_Pnl.Visible = false;
+                LavorazioneStatusTCK_Pnl.Visible = false;
+                ChiusoStatusTCK_Pnl.Visible = false;
             }
         }
         private (int StatusChiamata, int StatusChiusura) GetStatusChiamata(string idTicket)

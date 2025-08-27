@@ -308,35 +308,74 @@
             const collapse1 = document.getElementById('collapse1');
             const collapse2 = document.getElementById('collapse2');
             const collapse3 = document.getElementById('collapse3');
+            const collapse4 = document.getElementById('collapse4');
             if (window.innerWidth >= 992) {
                 // Desktop
                 collapse1.classList.add('in');  // apre il pannello
                 collapse2.classList.add('in');  // apre il pannello
                 collapse3.classList.add('in');  // apre il pannello
+                collapse4.classList.add('in');  // apre il pannello
             } else {
                 // Mobile/tablet
                 collapse1.classList.remove('in'); // chiude il pannello
                 collapse2.classList.remove('in'); // chiude il pannello
                 collapse3.classList.remove('in'); // chiude il pannello
+                collapse4.classList.remove('in'); // chiude il pannello
             }
         });
     </script>
-<script type="text/javascript">
-    function ApriPDF() {
-        const params = new URLSearchParams(window.location.search);
-        const idTicket = params.get("IdTicket");
+    <script type="text/javascript">
+        function ApriPDF() {
+            const params = new URLSearchParams(window.location.search);
+            const idTicket = params.get("IdTicket");
 
-        if (idTicket) {
-            const url = '/Ticket/ViewDoc_Empty.aspx?IdTicket=' + idTicket;
-            window.open(url, '_blank');
-        } else {
-            alert("Impossibile generare il PDF: IdTicket non presente nella querystring.");
+            if (idTicket) {
+                const url = '/Ticket/ViewDoc_Empty.aspx?IdTicket=' + idTicket;
+                window.open(url, '_blank');
+            } else {
+                alert("Impossibile generare il PDF: IdTicket non presente nella querystring.");
+            }
         }
-    }
-</script>
+    </script>
+
+    <script type="text/javascript">
+        function getQueryStringValue(key) {
+            var params = new URLSearchParams(window.location.search);
+            return params.get(key);
+        }
+    </script>
     <style>
         .dxgvDataRow_Office365:last-child td.dxgv, .dxgvTable_Office365 {
             border-bottom: 0px solid rgba(0,0,0,0.1) !important;
+        }
+
+        .progress {
+            height: 20px;
+            border-radius: 8px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .progress-bar-magenta {
+            background-color: #bc5679 !important;
+        }
+
+        .progress-bar-orange {
+            background-color: #ff9800 !important;
+        }
+
+        .progress-bar-azure {
+            background-color: #2dc3e8 !important;
+        }
+
+        .progress-bar-darkorange {
+            background-color: #ed4e2a !important;
         }
     </style>
     <div class="row">
@@ -347,7 +386,71 @@
                 </div>
                 <div class="card-content">
                     <h4 class="card-title">Gestione Ticket</h4>
+                    <div class="no-padding">
+                        <dx:ASPxCallbackPanel ID="StatusTicket_CallbackPnl" runat="server" ClientInstanceName="StatusTicket_CallbackPnl" OnCallback="StatusTicket_CallbackPnl_Callback">
+                            <PanelCollection>
+                                <dx:PanelContent>
+                                    <asp:Panel ID="ApertoStatusTCK_Pnl" runat="server" Visible="false" Style="padding-right: 13px;">
+                                        <div class="progress progress-striped active">
+                                            <div class="progress-bar progress-bar-magenta" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                                <span>Aperto</span>
+                                            </div>
+                                        </div>
+
+                                    </asp:Panel>
+                                    <asp:Panel ID="AssegnatoStatusTCK_Pnl" runat="server" Visible="false">
+                                        <div class="progress progress-striped active">
+                                            <div class="progress-bar progress-bar-orange" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                                                <span><strong>Assegnato</strong></span>
+                                            </div>
+                                        </div>
+
+                                    </asp:Panel>
+                                    <asp:Panel ID="LavorazioneStatusTCK_Pnl" runat="server" Visible="false">
+                                        <div class="progress progress-striped active">
+                                            <div class="progress-bar progress-bar-azure" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
+                                                <span>In Lavorazione</span>
+                                            </div>
+                                        </div>
+                                    </asp:Panel>
+                                    <asp:Panel ID="ChiusoStatusTCK_Pnl" runat="server" Visible="false">
+                                        <div class="progress progress-striped active">
+                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                                <span>Chiuso</span>
+                                            </div>
+                                        </div>
+                                    </asp:Panel>
+                                    <asp:Panel ID="Annullato_Pnl" runat="server" Visible="false">
+                                        <div class="progress progress-striped active">
+                                            <div class="progress-bar progress-bar-darkorange" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                                <span>Annullato</span>
+                                            </div>
+                                        </div>
+                                    </asp:Panel>
+                                </dx:PanelContent>
+                            </PanelCollection>
+                        </dx:ASPxCallbackPanel>
+                    </div>
                     <div style="float: right; padding-right: 10px; padding-top: 4px;">
+                        <dx:BootstrapButton
+                            runat="server"
+                            ID="FirmaT_Btn"
+                            ClientInstanceName="FirmaT_Btn"
+                            AutoPostBack="false"
+                            CssClasses-Control="btn btn-just-icon btn-just-icon-padding"
+                            Style="min-width: 150px; z-index: 9999 !important;"
+                            ToolTip="Firma il ticket"
+                            Badge-CssClass="BadgeBtn-just-icon"
+                            Visible="false">
+
+                            <Badge IconCssClass="fa fa-edit" Text="Firma Ticket" />
+                            <SettingsBootstrap RenderOption="Primary" Sizing="Small" />
+                            <ClientSideEvents Click="function(s, e) { 
+                            var idTicket = getQueryStringValue('IdTicket'); 
+                            if(idTicket) window.open('Ticket_Firma.aspx?IdTicket=' + idTicket, '_blank'); 
+                            else alert('IdTicket non trovato!');
+    }" />
+                        </dx:BootstrapButton>
                         <dx:BootstrapButton
                             runat="server"
                             ID="GeneraPDF_Btn"
@@ -359,7 +462,7 @@
                             Badge-CssClass="BadgeBtn-just-icon"
                             Visible="true">
 
-                            <Badge IconCssClass="fa fa-file-pdf-o" Text="Genera PDF" />
+                            <Badge IconCssClass="fa fa-search" Text="Genera PDF" />
                             <SettingsBootstrap RenderOption="Danger" Sizing="Small" />
                             <ClientSideEvents Click="function(s, e) { ApriPDF(); }" />
                         </dx:BootstrapButton>
@@ -523,9 +626,9 @@
 
                             <div class="panel-group">
                                 <div class="panel panel-default">
-                                    <div class="panel-heading" style="border-bottom: 3px solid blue;">
+                                    <div class="panel-heading" style="border-bottom: 3px solid #ffce55;">
                                         <h4 class="panel-title">
-                                            <a data-toggle="collapse" href="#collapse1">CLIENTE</a>
+                                            <a data-toggle="collapse" href="#collapse1">Cliente</a>
                                         </h4>
                                     </div>
                                     <div id="collapse1" class="panel-collapse collapse">
@@ -845,9 +948,9 @@
                             </div>
 
                             <div class="panel panel-default">
-                                <div class="panel-heading" style="border-bottom: 3px solid blue;">
+                                <div class="panel-heading" style="border-bottom: 3px solid #6a5acd;">
                                     <h4 class="panel-title">
-                                        <a data-toggle="collapse" href="#collapse2">SPESE</a>
+                                        <a data-toggle="collapse" href="#collapse2">Spese</a>
                                     </h4>
                                 </div>
                                 <div id="collapse2" class="panel-collapse collapse">
@@ -984,7 +1087,7 @@
 
 
                             <div class="panel panel-default">
-                                <div class="panel-heading" style="border-bottom: 3px solid blue;">
+                                <div class="panel-heading" style="border-bottom: 3px solid #fb6e52;">
                                     <h4 class="panel-title">
                                         <a data-toggle="collapse" href="#collapse3">Materiali Impiegati </a>
                                     </h4>
@@ -1274,6 +1377,44 @@
                                                             </Items>
                                                         </dx:EditFormLayoutProperties>
                                                     </dx:ASPxGridView>
+                                                </dx:PanelContent>
+                                            </PanelCollection>
+                                        </dx:ASPxCallbackPanel>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading" style="border-bottom: 3px solid #ffa500;">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" href="#collapse4">Allegati Ticket </a>
+                                    </h4>
+                                </div>
+                                <div id="collapse4" class="panel-collapse collapse">
+                                    <div class="panel-body" style="padding: 0!important">
+                                        <dx:ASPxCallbackPanel ID="CallbackPnlAllegatiTicket" runat="server" ClientInstanceName="CallbackPnlAllegatiTicket" OnCallback="Edit_CallbackPnl_Callback">
+                                            <PanelCollection>
+                                                <dx:PanelContent>
+                                                    <dx:ASPxGridView ID="AllegatiTck_Gridview" DataSourceID="AllegatiTck_Dts" runat="server" Width="100%" AutoGenerateColumns="False" KeyFieldName="ID">
+                                                        <Columns>
+                                                            <dx:GridViewDataTextColumn FieldName="ID" Caption="" Width="0" ReadOnly="True" Visible="false" VisibleIndex="3">
+                                                            </dx:GridViewDataTextColumn>
+                                                            <dx:GridViewDataTextColumn FieldName="DisplayName" Caption="Nome" VisibleIndex="0"></dx:GridViewDataTextColumn>
+                                                            <dx:GridViewDataTextColumn FieldName="Description" Caption="Descrizione" VisibleIndex="1"></dx:GridViewDataTextColumn>
+                                                            <dx:GridViewDataTextColumn Caption="Visualizza" VisibleIndex="2">
+                                                                <DataItemTemplate>
+                                                                    <a href='<%# ResolveUrl("~/" + Eval("PathFolder")) %>' target="_blank">
+                                                                        <dx:ASPxImage ID="File_Img" runat="server" ImageUrl="../img/pdf.png" Width="30px" ToolTip="Apri File"></dx:ASPxImage>
+                                                                    </a>
+                                                                </DataItemTemplate>
+                                                            </dx:GridViewDataTextColumn>
+                                                        </Columns>
+                                                    </dx:ASPxGridView>
+                                                    <asp:SqlDataSource ID="AllegatiTck_Dts" runat="server" ConnectionString='<%$ ConnectionStrings:info4portaleConnectionString %>' SelectCommand="SELECT ID, PathFolder, DisplayName, Description FROM PRT_DocumentiTCK WHERE (IDTicket = @IdTicket)">
+                                                        <SelectParameters>
+                                                            <asp:QueryStringParameter QueryStringField="IdTicket" Name="IdTicket"></asp:QueryStringParameter>
+                                                        </SelectParameters>
+                                                    </asp:SqlDataSource>
                                                 </dx:PanelContent>
                                             </PanelCollection>
                                         </dx:ASPxCallbackPanel>
@@ -1584,7 +1725,6 @@
                                                                                     </LayoutItemNestedControlCollection>
                                                                                     <CaptionSettings VerticalAlign="Top" Location="Top" />
                                                                                 </dx:LayoutItem>
-
                                                                                 <dx:LayoutItem Caption="Fatturazione" FieldName="TCK_TipoChiusuraChiamataFattura" ColumnSpan="2">
                                                                                     <LayoutItemNestedControlCollection>
                                                                                         <dx:LayoutItemNestedControlContainer>
@@ -2120,6 +2260,11 @@
             <asp:Parameter Name="Id" Type="Int32" />
         </DeleteParameters>
     </asp:SqlDataSource>
+    <asp:SqlDataSource ID="FirmaTecnicoDTS" runat="server" ConnectionString="<%$ ConnectionStrings:info4portaleConnectionString %>" SelectCommand="SELECT DISTINCT TCK_TestataTicket.CodRapportino, TCK_DettTecniciTicket.Utente FROM TCK_TestataTicket INNER JOIN TCK_DettTecniciTicket ON TCK_TestataTicket.CodRapportino = TCK_DettTecniciTicket.CodRapportino WHERE (TCK_TestataTicket.CodRapportino = @IdTicket)">
+        <SelectParameters>
+            <asp:QueryStringParameter DefaultValue="0" Name="IdTicket" QueryStringField="IdTicket" />
+        </SelectParameters>
+    </asp:SqlDataSource>
     <asp:SqlDataSource ID="DtsMateriali" runat="server" ConnectionString="<%$ ConnectionStrings:info4portaleConnectionString %>"
         SelectCommand="SELECT CodRapportino, CodMateriale, Descrizione, Um, Qta, id FROM TCK_DettRicambiTicket WHERE (CodRapportino = @CodRapportino)"
         UpdateCommand="SELECT *    FROM TCK_DettRicambiTicket  where 1 = 2" DeleteCommand="SELECT *    FROM TCK_DettRicambiTicket  where 1 = 2">
@@ -2532,6 +2677,4 @@
             }
         }
     </script>
-
-
 </asp:Content>

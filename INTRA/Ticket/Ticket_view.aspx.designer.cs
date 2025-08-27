@@ -15,6 +15,69 @@ namespace INTRA.Ticket
     {
 
         /// <summary>
+        /// Controllo StatusTicket_CallbackPnl.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxCallbackPanel StatusTicket_CallbackPnl;
+
+        /// <summary>
+        /// Controllo ApertoStatusTCK_Pnl.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel ApertoStatusTCK_Pnl;
+
+        /// <summary>
+        /// Controllo AssegnatoStatusTCK_Pnl.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel AssegnatoStatusTCK_Pnl;
+
+        /// <summary>
+        /// Controllo LavorazioneStatusTCK_Pnl.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel LavorazioneStatusTCK_Pnl;
+
+        /// <summary>
+        /// Controllo ChiusoStatusTCK_Pnl.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel ChiusoStatusTCK_Pnl;
+
+        /// <summary>
+        /// Controllo Annullato_Pnl.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Annullato_Pnl;
+
+        /// <summary>
+        /// Controllo FirmaT_Btn.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::DevExpress.Web.Bootstrap.BootstrapButton FirmaT_Btn;
+
+        /// <summary>
         /// Controllo GeneraPDF_Btn.
         /// </summary>
         /// <remarks>
@@ -193,6 +256,33 @@ namespace INTRA.Ticket
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
         protected global::DevExpress.Web.Bootstrap.BootstrapGridViewCommandColumnCustomButton EliminaMateriali;
+
+        /// <summary>
+        /// Controllo CallbackPnlAllegatiTicket.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxCallbackPanel CallbackPnlAllegatiTicket;
+
+        /// <summary>
+        /// Controllo AllegatiTck_Gridview.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxGridView AllegatiTck_Gridview;
+
+        /// <summary>
+        /// Controllo AllegatiTck_Dts.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource AllegatiTck_Dts;
 
         /// <summary>
         /// Controllo Tecnici_Gridview.
@@ -571,6 +661,15 @@ namespace INTRA.Ticket
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DtsTecnici;
+
+        /// <summary>
+        /// Controllo FirmaTecnicoDTS.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource FirmaTecnicoDTS;
 
         /// <summary>
         /// Controllo DtsMateriali.

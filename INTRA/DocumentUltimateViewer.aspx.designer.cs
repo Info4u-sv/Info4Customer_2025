@@ -21,6 +21,6 @@ namespace INTRA4U
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::GleamTech.DocumentUltimate.AspNet.WebForms.DocumentViewerControl documentViewer;
+        //protected global::GleamTech.DocumentUltimate.AspNet.WebForms.DocumentViewerControl documentViewer;
     }
 }

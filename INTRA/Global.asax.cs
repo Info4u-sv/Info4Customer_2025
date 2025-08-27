@@ -1,6 +1,4 @@
 ﻿using DevExpress.Web;
-using GleamTech.DocumentUltimate;
-using GleamTech.DocumentUltimate.AspNet;
 using System;
 using System.Web;
 using System.Web.Optimization;
@@ -21,12 +19,12 @@ namespace INTRA
             ASPxWebControl.BackwardCompatibility.DataControlAllowReadUnlistedFieldsFromClientApiDefaultValue = true;
             //Set this property only if you have a valid license key, otherwise do not
             //set it so DocumentUltimate runs in trial mode.
-            DocumentUltimateConfiguration.Current.LicenseKey = "QECHM2U6CL-H5E3P24L5W-5NUUSNHA1K-CVXFQZ1CVG-BHAPW27KXK-4RU7WJFX88-E6MAW6BKUX";
+            //DocumentUltimateConfiguration.Current.LicenseKey = "QECHM2U6CL-H5E3P24L5W-5NUUSNHA1K-CVXFQZ1CVG-BHAPW27KXK-4RU7WJFX88-E6MAW6BKUX";
 
             //The default CacheLocation value is "~/App_Data/DocumentCache"
             //Both virtual and physical paths are allowed (or a Location instance for one of the supported 
             //file systems like Amazon S3 and Azure Blob).
-            DocumentUltimateWebConfiguration.Current.CacheLocation = "~/App_Data/DocumentCache";
+            //DocumentUltimateWebConfiguration.Current.CacheLocation = "~/App_Data/DocumentCache";
 
         }
         void Application_BeginRequest(Object sender, EventArgs e)

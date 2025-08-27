@@ -996,17 +996,29 @@
     <Compile Include="TestInvioEmail.aspx.designer.cs">
       <DependentUpon>TestInvioEmail.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Ticket\AppCode\Dettaglio_Materiali_Rapportino.cs">
+    <Compile Include="Ticket\AppCode\Dettaglio_Materiali_Rapportino_Sub_Rpt.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Ticket\AppCode\Dettaglio_Materiali_Rapportino.Designer.cs">
-      <DependentUpon>Dettaglio_Materiali_Rapportino.cs</DependentUpon>
+    <Compile Include="Ticket\AppCode\Dettaglio_Materiali_Rapportino_Sub_Rpt.Designer.cs">
+      <DependentUpon>Dettaglio_Materiali_Rapportino_Sub_Rpt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ticket\AppCode\Dettaglio_Tecnici_Sub_Rpt.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ticket\AppCode\Dettaglio_Tecnici_Sub_Rpt.Designer.cs">
+      <DependentUpon>Dettaglio_Tecnici_Sub_Rpt.cs</DependentUpon>
     </Compile>
     <Compile Include="Ticket\AppCode\GestioneTicket_Rpt.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Ticket\AppCode\GestioneTicket_Rpt.Designer.cs">
       <DependentUpon>GestioneTicket_Rpt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ticket\AppCode\Totale_Tempi_Ticket_Sub_Rpt.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ticket\AppCode\Totale_Tempi_Ticket_Sub_Rpt.Designer.cs">
+      <DependentUpon>Totale_Tempi_Ticket_Sub_Rpt.cs</DependentUpon>
     </Compile>
     <Compile Include="Ticket\InserimentoTicket.aspx.cs">
       <DependentUpon>InserimentoTicket.aspx</DependentUpon>
@@ -1033,6 +1045,13 @@
     </Compile>
     <Compile Include="Ticket\TCK_List.aspx.designer.cs">
       <DependentUpon>TCK_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ticket\Ticket_Firma.aspx.cs">
+      <DependentUpon>Ticket_Firma.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ticket\Ticket_Firma.aspx.designer.cs">
+      <DependentUpon>Ticket_Firma.aspx</DependentUpon>
     </Compile>
     <Compile Include="Ticket\Ticket_List.aspx.cs">
       <DependentUpon>Ticket_List.aspx</DependentUpon>
@@ -3378,6 +3397,7 @@
     <Content Include="Ticket\TCK_Insert.aspx" />
     <Content Include="Ticket\TaskView_Custom.aspx" />
     <Content Include="Ticket\TCK_List.aspx" />
+    <Content Include="Ticket\Ticket_Firma.aspx" />
     <Content Include="Ticket\Ticket_List.aspx" />
     <Content Include="Ticket\Ticket_view.aspx" />
     <Content Include="Ticket\ViewDoc_Empty.aspx" />
@@ -3936,11 +3956,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ticket\AppCode\Dettaglio_Materiali_Rapportino.resx">
-      <DependentUpon>Dettaglio_Materiali_Rapportino.cs</DependentUpon>
+    <EmbeddedResource Include="Ticket\AppCode\Dettaglio_Materiali_Rapportino_Sub_Rpt.resx">
+      <DependentUpon>Dettaglio_Materiali_Rapportino_Sub_Rpt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ticket\AppCode\Dettaglio_Tecnici_Sub_Rpt.resx">
+      <DependentUpon>Dettaglio_Tecnici_Sub_Rpt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ticket\AppCode\GestioneTicket_Rpt.resx">
       <DependentUpon>GestioneTicket_Rpt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ticket\AppCode\Totale_Tempi_Ticket_Sub_Rpt.resx">
+      <DependentUpon>Totale_Tempi_Ticket_Sub_Rpt.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -4024,11 +4050,8 @@
     <Reference Include="DevExpress.XtraReports.v24.2.Web, Version=24.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v24.2.Web.WebForms, Version=24.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraSpreadsheet.v24.2, Version=24.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="GleamTech.Core">
-      <HintPath>..\packages\GleamTech.Core.NuGetOrg.2.4.5\lib\net40\GleamTech.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="GleamTech.DocumentUltimate">
-      <HintPath>..\packages\DocumentUltimate.NuGetOrg.3.15.6\lib\net40\GleamTech.DocumentUltimate.dll</HintPath>
+    <Reference Include="GleamTech.Common, Version=6.5.0.0, Culture=neutral, PublicKeyToken=a05198837413a6d8, processorArchitecture=MSIL">
+      <HintPath>..\packages\GleamTech.Common.6.5.3\lib\net472\GleamTech.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls, Version=1.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

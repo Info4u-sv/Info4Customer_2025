@@ -7,29 +7,38 @@
 // </generato automaticamente>
 //------------------------------------------------------------------------------
 
-namespace INTRA4U.DocUltimateViewer
+namespace INTRA.Ticket
 {
 
 
-    public partial class Viewer
+    public partial class ViewDoc_EmptyAllegati
     {
 
         /// <summary>
-        /// Controllo RitornaAllaLista_Btn.
+        /// Controllo DocViewer.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxButton RitornaAllaLista_Btn;
+        protected global::GleamTech.DocumentUltimate.AspNet.WebForms.DocumentViewerControl DocViewer;
 
         /// <summary>
-        /// Controllo documentViewer1.
+        /// Controllo AllegatiTck_Gridview.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        //protected global::GleamTech.DocumentUltimate.AspNet.WebForms.DocumentViewerControl documentViewer1;
+        protected global::DevExpress.Web.ASPxGridView AllegatiTck_Gridview;
+
+        /// <summary>
+        /// Controllo AllegatiTck_Dts.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource AllegatiTck_Dts;
     }
 }

@@ -20,7 +20,7 @@ namespace INTRA4U
             // this value will be passed to that handler which should open and return a readable stream according 
             // to this file identifier. 
             // So it can be any string value that your IDocumentHandler implementation understands.
-            documentViewer.Document = "~/DocUltimateViewer/To use DocumentUltimate in an ASP.NET WebForms Project, do the following in Visual Studio.pdf";
+            //documentViewer.Document = "~/DocUltimateViewer/To use DocumentUltimate in an ASP.NET WebForms Project, do the following in Visual Studio.pdf";
 
             //---------------------------------------------
             // Here is an example (commented out) for loading a document from database.

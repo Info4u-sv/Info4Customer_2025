@@ -6,9 +6,9 @@ using System.Drawing;
 
 namespace INTRA.Ticket.AppCode
 {
-    public partial class Dettaglio_Materiali_Rapportino : DevExpress.XtraReports.UI.XtraReport
+    public partial class Dettaglio_Materiali_Rapportino_Sub_Rpt : DevExpress.XtraReports.UI.XtraReport
     {
-        public Dettaglio_Materiali_Rapportino()
+        public Dettaglio_Materiali_Rapportino_Sub_Rpt()
         {
             InitializeComponent();
         }
