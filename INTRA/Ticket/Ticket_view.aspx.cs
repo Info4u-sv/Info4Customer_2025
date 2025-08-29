@@ -123,6 +123,7 @@ namespace INTRA.Ticket
                         //BootstrapButton5.Visible = false;
                         // Disabilita tutti tranne il delete
                         Tecnici_Gridview.SettingsEditing.Mode = GridViewEditingMode.EditForm;
+                        Generic_Gridview.SettingsEditing.Mode = GridViewEditingMode.EditForm;
 
                         // Nascondi bottoni New ed Edit
                         Tecnici_Gridview.Columns.OfType<GridViewCommandColumn>().ToList().ForEach(col =>
@@ -130,9 +131,15 @@ namespace INTRA.Ticket
                             col.ShowNewButtonInHeader = false;
                             col.ShowEditButton = false;
                         });
+                        Generic_Gridview.Columns.OfType<GridViewCommandColumn>().ToList().ForEach(col =>
+                        {
+                            col.ShowNewButtonInHeader = false;
+                            col.ShowEditButton = false;
+                        });
 
                         // Disabilita update automatico
                         Tecnici_Gridview.SettingsBehavior.AllowFocusedRow = false;
+                        Generic_Gridview.SettingsBehavior.AllowFocusedRow = false;
                     }
                     else if (status == 7 && chiusura == 6)
                     {
@@ -151,6 +158,7 @@ namespace INTRA.Ticket
                         //BootstrapButton5.Visible = false;
                         // Disabilita tutti tranne il delete
                         Tecnici_Gridview.SettingsEditing.Mode = GridViewEditingMode.EditForm;
+                        Generic_Gridview.SettingsEditing.Mode = GridViewEditingMode.EditForm;
 
                         // Nascondi bottoni New ed Edit
                         Tecnici_Gridview.Columns.OfType<GridViewCommandColumn>().ToList().ForEach(col =>
@@ -158,9 +166,15 @@ namespace INTRA.Ticket
                             col.ShowNewButtonInHeader = false;
                             col.ShowEditButton = false;
                         });
+                        Generic_Gridview.Columns.OfType<GridViewCommandColumn>().ToList().ForEach(col =>
+                        {
+                            col.ShowNewButtonInHeader = false;
+                            col.ShowEditButton = false;
+                        });
 
                         // Disabilita update automatico
                         Tecnici_Gridview.SettingsBehavior.AllowFocusedRow = false;
+                        Generic_Gridview.SettingsBehavior.AllowFocusedRow = false;
                     }
                 }
                 else
@@ -403,9 +417,55 @@ namespace INTRA.Ticket
                 FormViewTicket.DataBind();
                 FormViewTicketSpese.DataBind();
                 //FormViewTicketMateriali.DataBind();
+                AllegatiTck_Gridview.DataBind();
             }
         }
+        protected void UploadAllegato_FileUploadComplete(object sender, DevExpress.Web.FileUploadCompleteEventArgs e)
+        {
+            try
+            {
+                if (!e.UploadedFile.IsValid) return;
 
+                int idTicket = Convert.ToInt32(Request.QueryString["IdTicket"]);
+                string basePath = Server.MapPath($"~/Public/AllegatiTCK/{idTicket}/");
+
+                // crea la cartella se non esiste
+                if (!Directory.Exists(basePath))
+                    Directory.CreateDirectory(basePath);
+
+                string fileName = Path.GetFileName(e.UploadedFile.FileName);
+                string filePath = Path.Combine(basePath, fileName);
+
+                // salva il file fisico
+                e.UploadedFile.SaveAs(filePath);
+
+                // path relativo da salvare nel DB
+                string relativePath = $"/Public/AllegatiTCK/{idTicket}/{fileName}";
+
+
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["info4portaleConnectionString"].ConnectionString))
+                {
+                    string query = @"INSERT INTO PRT_DocumentiTCK (IDTicket, PathFolder, DisplayName)
+                             VALUES (@IdTicket, @PathFolder, @DisplayName)";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@IdTicket", idTicket);
+                        cmd.Parameters.AddWithValue("@PathFolder", relativePath);
+                        cmd.Parameters.AddWithValue("@DisplayName", fileName);
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                e.CallbackData = "OK";
+            }
+            catch (Exception ex)
+            {
+                e.IsValid = false;
+                e.ErrorText = "Errore upload: " + ex.Message;
+            }
+        }
 
 
         protected void Update_FormLayout_Callback_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)

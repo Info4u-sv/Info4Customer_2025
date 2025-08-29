@@ -258,6 +258,15 @@ namespace INTRA.Ticket
         protected global::DevExpress.Web.ASPxCallbackPanel CallbackPnlAllegatiTicket;
 
         /// <summary>
+        /// Controllo UploadAllegato.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxUploadControl UploadAllegato;
+
+        /// <summary>
         /// Controllo AllegatiTck_Gridview.
         /// </summary>
         /// <remarks>

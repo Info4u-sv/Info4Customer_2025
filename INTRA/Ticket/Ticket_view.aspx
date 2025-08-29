@@ -139,6 +139,15 @@
             //return Colore;
         }
     </script>
+    <script type="text/javascript">
+        function OnFileUploadComplete(s, e) {
+            if (e.isValid) {
+                CallbackPnlAllegatiTicket.PerformCallback();
+            } else {
+                alert("Upload fallito: " + e.errorText);
+            }
+        }
+    </script>
     <script>
         //Calcola la descrizione dell'intervento in base al tipo di esecuzione e al cliente selezionato
         function interventoPressoCalcola() {
@@ -383,17 +392,18 @@
         }
     </style>
     <style>
-    @media (max-width: 768px) {
-        .dxflNestedControlCell_Office365 {
-            width: 90% !important;
+        @media (max-width: 768px) {
+            .dxflNestedControlCell_Office365 {
+                width: 90% !important;
+            }
         }
-    }
-    @media (max-width: 768px) {
-        .dxeRadioButtonList_Office{
-            width: 118% !important;
+
+        @media (max-width: 768px) {
+            .dxeRadioButtonList_Office {
+                width: 118% !important;
+            }
         }
-    }
-</style>
+    </style>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -1209,7 +1219,7 @@
                                                                     <InvalidStyle BackColor="LightPink"></InvalidStyle>
                                                                     <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="testValidation">
                                                                         <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
-                                                                        <RequiredField IsRequired="False"></RequiredField>
+                                                                        <RequiredField IsRequired="true"></RequiredField>
                                                                     </ValidationSettings>
                                                                 </PropertiesSpinEdit>
                                                             </dx:GridViewDataSpinEditColumn>
@@ -1230,7 +1240,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="panel panel-default">
                                 <div class="panel-heading" style="border-bottom: 3px solid #ffa500;">
                                     <h4 class="panel-title">
@@ -1242,6 +1251,18 @@
                                         <dx:ASPxCallbackPanel ID="CallbackPnlAllegatiTicket" runat="server" ClientInstanceName="CallbackPnlAllegatiTicket" OnCallback="Edit_CallbackPnl_Callback">
                                             <PanelCollection>
                                                 <dx:PanelContent>
+                                                    <div class="row" style="margin-top: 15px;">
+                                                        <div class="col-md-12">
+                                                            <dx:ASPxUploadControl ID="UploadAllegato" runat="server"
+                                                                ClientInstanceName="UploadAllegato"
+                                                                UploadMode="Auto"
+                                                                OnFileUploadComplete="UploadAllegato_FileUploadComplete"
+                                                                ShowUploadButton="true"
+                                                                ShowProgressPanel="true">
+                                                                <ClientSideEvents FileUploadComplete="OnFileUploadComplete" />
+                                                            </dx:ASPxUploadControl>
+                                                        </div>
+                                                    </div>
                                                     <dx:ASPxGridView ID="AllegatiTck_Gridview" DataSourceID="AllegatiTck_Dts" runat="server" Width="100%" AutoGenerateColumns="False" KeyFieldName="ID">
                                                         <Columns>
                                                             <dx:GridViewDataTextColumn FieldName="ID" Caption="" Width="0" ReadOnly="True" Visible="false" VisibleIndex="3" />
@@ -1272,6 +1293,7 @@
                         <dx:ASPxPopupControl ID="PopupAllegato" runat="server"
                             ClientInstanceName="PopupAllegato"
                             Width="800px"
+                            Height="800px"
                             Modal="true" ShowCloseButton="true"
                             PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" HeaderText="Allegato">
                             <ContentCollection>
@@ -2298,6 +2320,16 @@
                     PopupInviaMail.SetWidth(w * 0.9);
                 } else {
                     PopupInviaMail.SetWidth(800);
+                }
+            }
+            if (PopupAllegato) {
+                var w = window.innerWidth;
+
+                if (w <= 991) {
+                    PopupAllegato.SetWidth(w * 0.9);
+                    PopupAllegato.SetHeight(w * 0.9);
+                } else {
+                    PopupAllegato.SetWidth(800);
                 }
             }
         }
