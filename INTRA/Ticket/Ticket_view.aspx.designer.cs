@@ -231,24 +231,6 @@ namespace INTRA.Ticket
         protected global::DevExpress.Web.ASPxCallbackPanel CallbackPnlFormViewMateriali;
 
         /// <summary>
-        /// Controllo FormViewTicketMateriali.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FormView FormViewTicketMateriali;
-
-        /// <summary>
-        /// Controllo BootstrapButton5.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::DevExpress.Web.Bootstrap.BootstrapButton BootstrapButton5;
-
-        /// <summary>
         /// Controllo Generic_Gridview.
         /// </summary>
         /// <remarks>
@@ -292,6 +274,24 @@ namespace INTRA.Ticket
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource AllegatiTck_Dts;
+
+        /// <summary>
+        /// Controllo PopupAllegato.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxPopupControl PopupAllegato;
+
+        /// <summary>
+        /// Controllo iframeAllegato.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlIframe iframeAllegato;
 
         /// <summary>
         /// Controllo Tecnici_Gridview.
@@ -564,13 +564,22 @@ namespace INTRA.Ticket
         protected global::DevExpress.Web.ASPxPopupControl PopupInviaMail;
 
         /// <summary>
-        /// Controllo CallbackPanelInviaMail.
+        /// Controllo callbackpanelinviamail.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxCallbackPanel CallbackPanelInviaMail;
+        protected global::DevExpress.Web.ASPxCallbackPanel callbackpanelinviamail;
+
+        /// <summary>
+        /// Controllo Mittente_Txt.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::DevExpress.Web.Bootstrap.BootstrapTextBox Mittente_Txt;
 
         /// <summary>
         /// Controllo TokenBoxTo.
@@ -582,13 +591,40 @@ namespace INTRA.Ticket
         protected global::DevExpress.Web.ASPxTokenBox TokenBoxTo;
 
         /// <summary>
-        /// Controllo Destinatario_Dts.
+        /// Controllo CopiaConoscenza_Tokenbox.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource Destinatario_Dts;
+        protected global::DevExpress.Web.ASPxTokenBox CopiaConoscenza_Tokenbox;
+
+        /// <summary>
+        /// Controllo CopiaConoscenzaNascosta_Tokenbox.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTokenBox CopiaConoscenzaNascosta_Tokenbox;
+
+        /// <summary>
+        /// Controllo Oggetto_Txt.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::DevExpress.Web.Bootstrap.BootstrapTextBox Oggetto_Txt;
+
+        /// <summary>
+        /// Controllo Messaggio_HtmlEdit.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxHtmlEditor.ASPxHtmlEditor Messaggio_HtmlEdit;
 
         /// <summary>
         /// Controllo InviaEmailContatto_Btn.
@@ -598,6 +634,15 @@ namespace INTRA.Ticket
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
         protected global::DevExpress.Web.Bootstrap.BootstrapButton InviaEmailContatto_Btn;
+
+        /// <summary>
+        /// Controllo Destinatario_Dts.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource Destinatario_Dts;
 
         /// <summary>
         /// Controllo Update_FormLayout_Callback.
@@ -616,15 +661,6 @@ namespace INTRA.Ticket
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
         protected global::DevExpress.Web.ASPxCallback Update_FormViewTicketSpese_Callback;
-
-        /// <summary>
-        /// Controllo Update_FormViewTicketMateriali_Callback.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxCallback Update_FormViewTicketMateriali_Callback;
 
         /// <summary>
         /// Controllo Update_FormLayoutDettagli_Intervento_Callback_Control.

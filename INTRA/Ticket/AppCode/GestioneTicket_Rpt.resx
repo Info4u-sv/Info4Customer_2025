@@ -154,10 +154,10 @@
     T.DataIntervento,
     T.OraInzioIntervento,
     T.OraFineIntervento,
-    T.DirittoFisso,
-    T.TariffaOraria,
+    CAST(T.DirittoFisso AS DECIMAL(10,2)) AS DirittoFisso,
+    CAST(T.TariffaOraria AS DECIMAL(10,2)) AS TariffaOraria,
     T.SpeseViaggioKm,
-    T.SpeseViaggioEuro,
+    CAST(T.SpeseViaggioEuro AS DECIMAL(10,2)) AS SpeseViaggioEuro,
     T.TotaleEuroForfait,
     T.ImgFirmaCliente,
     T.FirmaCliente,
@@ -180,10 +180,10 @@
     T.MailPersonaRiferimento,
     T.TCK_TipoEsecuzione,
 
-    CONVERT(VARCHAR(10), T.CreatedOn, 103) AS DataIns
+    CONVERT(VARCHAR(10), T.CreatedOn, 103) AS DataIns,
 
     -- Tipo Richiesta
-    ,TR.Descrizione AS TipoChiamata,
+    TR.Descrizione AS TipoChiamata,
     TR.LabelClass AS Colore,
 
     -- Area Competenza

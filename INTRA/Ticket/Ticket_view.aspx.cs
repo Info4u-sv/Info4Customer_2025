@@ -3,13 +3,20 @@ using DevExpress.Web.Data;
 using DevExpress.XtraPrinting.Native;
 using info4lab;
 using info4lab.Portal;
+using INTRA.AppCode;
+using INTRA.Ticket.AppCode;
 using INTRA.Webservice_primo_online;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Web.Profile;
 using System.Web.Security;
@@ -22,6 +29,7 @@ namespace INTRA.Ticket
     public partial class Ticket_view : System.Web.UI.Page
     {
         int Inviato_status = 7;
+        Portal4Set PortalConfig = new Portal4Set();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -35,8 +43,8 @@ namespace INTRA.Ticket
                 FormViewDettagliIntervento.DataBind();
                 FormViewTicketSpese.DefaultMode = FormViewMode.Edit;
                 FormViewTicketSpese.DataBind();
-                FormViewTicketMateriali.ChangeMode(FormViewMode.Insert);
-                FormViewTicketMateriali.DataBind();
+                //FormViewTicketMateriali.ChangeMode(FormViewMode.Insert);
+                //FormViewTicketMateriali.DataBind();
 
                 // Gestione visibilità bottoni
                 string idTicket = Request.QueryString["IdTicket"];
@@ -107,12 +115,12 @@ namespace INTRA.Ticket
                         DisableControls(FormViewTicket);
                         DisableControls(FormViewDettagliIntervento);
                         DisableControls(FormViewTicketSpese);
-                        DisableControls(FormViewTicketMateriali);
+                        //DisableControls(FormViewTicketMateriali);
                         DisableControls(FormViewEseguito);
                         UpdateTicketBtn.Visible = false;
                         BootstrapButton3.Visible = false;
                         BootstrapButton1.Visible = false;
-                        BootstrapButton5.Visible = false;
+                        //BootstrapButton5.Visible = false;
                         // Disabilita tutti tranne il delete
                         Tecnici_Gridview.SettingsEditing.Mode = GridViewEditingMode.EditForm;
 
@@ -135,12 +143,12 @@ namespace INTRA.Ticket
                         DisableControls(FormViewTicket);
                         DisableControls(FormViewDettagliIntervento);
                         DisableControls(FormViewTicketSpese);
-                        DisableControls(FormViewTicketMateriali);
+                        //DisableControls(FormViewTicketMateriali);
                         DisableControls(FormViewEseguito);
                         UpdateTicketBtn.Visible = false;
                         BootstrapButton3.Visible = false;
                         BootstrapButton1.Visible = false;
-                        BootstrapButton5.Visible = false;
+                        //BootstrapButton5.Visible = false;
                         // Disabilita tutti tranne il delete
                         Tecnici_Gridview.SettingsEditing.Mode = GridViewEditingMode.EditForm;
 
@@ -394,7 +402,7 @@ namespace INTRA.Ticket
             {
                 FormViewTicket.DataBind();
                 FormViewTicketSpese.DataBind();
-                FormViewTicketMateriali.DataBind();
+                //FormViewTicketMateriali.DataBind();
             }
         }
 
@@ -566,64 +574,64 @@ namespace INTRA.Ticket
                 cmd.ExecuteNonQuery();
             }
         }
-        protected void Update_FormViewTicketMat_Callback(object sender, DevExpress.Web.CallbackEventArgs e)
-        {
+        //protected void Update_FormViewTicketMat_Callback(object sender, DevExpress.Web.CallbackEventArgs e)
+        //{
 
-            ASPxFormLayout layoutMateriali = FormViewTicketMateriali.FindControl("TicketAddFormMateriali") as ASPxFormLayout;
-            if (layoutMateriali == null) return;
+        //    ASPxFormLayout layoutMateriali = FormViewTicketMateriali.FindControl("TicketAddFormMateriali") as ASPxFormLayout;
+        //    if (layoutMateriali == null) return;
 
-            string idTicket = Request.QueryString["IdTicket"];
-            if (string.IsNullOrEmpty(idTicket)) return;
+        //    string idTicket = Request.QueryString["IdTicket"];
+        //    if (string.IsNullOrEmpty(idTicket)) return;
 
-            // Recupera i valori
-            string codMateriale = (layoutMateriali.FindControl("TxtCodMateriale") as ASPxTextBox)?.Text?.Trim();
-            string descrizione = (layoutMateriali.FindControl("TxtDescrizione") as ASPxTextBox)?.Text?.Trim();
-            string um = (layoutMateriali.FindControl("TxtUm") as ASPxTextBox)?.Text?.Trim();
-            decimal qta = (layoutMateriali.FindControl("TxtQta") as ASPxSpinEdit)?.Number ?? 0;
+        //    // Recupera i valori
+        //    string codMateriale = (layoutMateriali.FindControl("TxtCodMateriale") as ASPxTextBox)?.Text?.Trim();
+        //    string descrizione = (layoutMateriali.FindControl("TxtDescrizione") as ASPxTextBox)?.Text?.Trim();
+        //    string um = (layoutMateriali.FindControl("TxtUm") as ASPxTextBox)?.Text?.Trim();
+        //    decimal qta = (layoutMateriali.FindControl("TxtQta") as ASPxSpinEdit)?.Number ?? 0;
 
-            if (string.IsNullOrWhiteSpace(codMateriale) ||
-                string.IsNullOrWhiteSpace(descrizione) ||
-                string.IsNullOrWhiteSpace(um) ||
-                qta <= 0)
-            {
-                return;
-            }
+        //    if (string.IsNullOrWhiteSpace(codMateriale) ||
+        //        string.IsNullOrWhiteSpace(descrizione) ||
+        //        string.IsNullOrWhiteSpace(um) ||
+        //        qta <= 0)
+        //    {
+        //        return;
+        //    }
 
-            try
-            {
-                string connStr = ConfigurationManager.ConnectionStrings["info4portaleConnectionString"].ConnectionString;
+        //    try
+        //    {
+        //        string connStr = ConfigurationManager.ConnectionStrings["info4portaleConnectionString"].ConnectionString;
 
-                using (SqlConnection conn = new SqlConnection(connStr))
-                {
-                    conn.Open();
+        //        using (SqlConnection conn = new SqlConnection(connStr))
+        //        {
+        //            conn.Open();
 
-                    string sql = @"
-                INSERT INTO TCK_DettRicambiTicket
-                (CodRapportino, CodMateriale, Descrizione, Um, Qta)
-                VALUES
-                (@CodRapportino, @CodMateriale, @Descrizione, @Um, @Qta)";
+        //            string sql = @"
+        //        INSERT INTO TCK_DettRicambiTicket
+        //        (CodRapportino, CodMateriale, Descrizione, Um, Qta)
+        //        VALUES
+        //        (@CodRapportino, @CodMateriale, @Descrizione, @Um, @Qta)";
 
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@CodRapportino", idTicket);
-                        cmd.Parameters.AddWithValue("@CodMateriale", codMateriale);
-                        cmd.Parameters.AddWithValue("@Descrizione", descrizione);
-                        cmd.Parameters.AddWithValue("@Um", um);
-                        cmd.Parameters.AddWithValue("@Qta", qta);
+        //            using (SqlCommand cmd = new SqlCommand(sql, conn))
+        //            {
+        //                cmd.Parameters.AddWithValue("@CodRapportino", idTicket);
+        //                cmd.Parameters.AddWithValue("@CodMateriale", codMateriale);
+        //                cmd.Parameters.AddWithValue("@Descrizione", descrizione);
+        //                cmd.Parameters.AddWithValue("@Um", um);
+        //                cmd.Parameters.AddWithValue("@Qta", qta);
 
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-            }
-        // Reset campi form
-        (layoutMateriali.FindControl("TxtCodMateriale") as ASPxTextBox).Text = "";
-            (layoutMateriali.FindControl("TxtDescrizione") as ASPxTextBox).Text = "";
-            (layoutMateriali.FindControl("TxtUm") as ASPxTextBox).Text = "";
-            (layoutMateriali.FindControl("TxtQta") as ASPxSpinEdit).Number = 0;
-        }
+        //                cmd.ExecuteNonQuery();
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //    }
+        //// Reset campi form
+        //(layoutMateriali.FindControl("TxtCodMateriale") as ASPxTextBox).Text = "";
+        //    (layoutMateriali.FindControl("TxtDescrizione") as ASPxTextBox).Text = "";
+        //    (layoutMateriali.FindControl("TxtUm") as ASPxTextBox).Text = "";
+        //    (layoutMateriali.FindControl("TxtQta") as ASPxSpinEdit).Number = 0;
+        //}
 
         protected void Eseguito_CallbackPnl_Callback(object sender, CallbackEventArgsBase e)
         {
@@ -1036,6 +1044,7 @@ SELECT cast(TCK_TestataTicket.TCK_TipoChiusuraChiamataFattura as nvarchar) + cas
                             ticket.TCK_TipoEsecuzione_etichetta = reader["TipoEsecDescr"].ToString();
                             ticket.NoteTecnico = reader["NoteTecnico"].ToString();
                             ticket.PersonaDaContattare = reader["PersonaDaContattare"].ToString();
+                            ticket.OggettoTCK = reader["OggettoTCK"].ToString();
                             ticket.MotivoChiamata = reader["MotivoChiamata"].ToString();
                             ticket.InterventoPresso = reader["InterventoPresso"].ToString();
                             ticket.NomePersonaRiferimento = reader["PersonaDaContattare"].ToString();
@@ -1178,41 +1187,107 @@ SELECT cast(TCK_TestataTicket.TCK_TipoChiusuraChiamataFattura as nvarchar) + cas
             CallbackPanelModificaNoteTecnico.JSProperties["cpTotalOre"] = totalOre.ToString("0.##");
             CallbackPanelModificaNoteTecnico.JSProperties["cpSaved"] = "OK";
         }
+
         protected void CallbackPanelInviaMail_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
-            ASPxCallbackPanel panel = (ASPxCallbackPanel)sender;
-            ASPxTokenBox TokenBoxTo = (ASPxTokenBox)panel.FindControl("TokenBoxTo"); 
-            object Destinario = TokenBoxTo.Text;
-            string[] EMailTo = Destinario.ToString().Split(';');
-            //GetTicket = GetDisplayTicket();
+            int IdTicket = Convert.ToInt32(Request.QueryString["IdTicket"]);
 
-            WS_TCK_Ticket _ObjWS = new WS_TCK_Ticket();
-            Webservice_primo_online.WebService_primoSoapClient _ObjService = new Webservice_primo_online.WebService_primoSoapClient("WebService_primoSoap");
-            Webservice_primo_online.TCK_Ticket_WS _TicketWS = new Webservice_primo_online.TCK_Ticket_WS();
+            string HOST_ADDRESS = string.Empty;
+            int HOST_PORT = 587;
+            string HOST_USERNAME = string.Empty;
+            string HOST_PASSWORD = string.Empty;
 
-            string idTicket = Request.QueryString["IdTicket"];
-            int idTicketInt = 0;
-            int.TryParse(idTicket, out idTicketInt);
-
-            _TicketWS.CodRapportino = idTicketInt;
-
-             _TicketWS = GetTicketDetails(idTicketInt);
-            MembershipUser edtUsr = Membership.GetUser();
-            string Destinatari = "";
-            for (int i = 0; i < EMailTo.Length; i++)
+            string connStr = System.Configuration.ConfigurationManager.ConnectionStrings["info4portaleConnectionString"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(connStr))
             {
-                _TicketWS.TckInviatoA = EMailTo[i];
-                Destinatari = EMailTo[i] + ";";
-                try
+                conn.Open();
+                string query = @"SELECT settingid, value 
+                         FROM PRT_SETTING 
+                         WHERE settingid IN (11,12,13)";
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    _ObjService.SendTicketMailAim(idTicketInt, Inviato_status, _TicketWS.FirmaTecnico, _TicketWS, EMailTo[i].ToString(), EMailTo[i].ToString(), false, "Url", _TicketWS.LinkTckPdf);
-                    SiteMaster.ShowToastr(Page, "Operazione Eseguita!", "Conferma", "Success", false, "toast-top-right", false);
-                }
-                catch (Exception ex)
-                {
-                    SiteMaster.ShowToastr(Page, ex.ToString(), "Errore", "Error", false, "toast-top-right", false);
+                    while (reader.Read())
+                    {
+                        int settingId = Convert.ToInt32(reader["settingid"]);
+                        string value = reader["value"].ToString();
+
+                        switch (settingId)
+                        {
+                            case 11: // SMTP host
+                                HOST_ADDRESS = value;
+                                break;
+                            case 12: // SMTP username
+                                HOST_USERNAME = value;
+                                break;
+                            case 13: // SMTP password
+                                HOST_PASSWORD = value;
+                                break;
+                        }
+                    }
                 }
             }
+
+            MembershipUser UserLog = Membership.GetUser();
+
+            string[] EMailTo = TokenBoxTo.Text.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] CopiaConoscenzaList = CopiaConoscenza_Tokenbox.Text.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] CopiaConoscenzaNascostaList = CopiaConoscenzaNascosta_Tokenbox.Text.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+
+            MailMessage mail = new MailMessage
+            {
+                From = new MailAddress(Mittente_Txt.Text.Trim()),
+                Subject = Oggetto_Txt.Text,
+                Body = Messaggio_HtmlEdit.Html,
+                IsBodyHtml = true
+            };
+
+            foreach (string to in EMailTo)
+                mail.To.Add(new MailAddress(to));
+
+            foreach (string cc in CopiaConoscenzaList)
+                mail.CC.Add(new MailAddress(cc));
+
+            foreach (string bcc in CopiaConoscenzaNascostaList)
+                mail.Bcc.Add(new MailAddress(bcc));
+
+            mail.Subject = Oggetto_Txt.Text;
+            mail.Body = Messaggio_HtmlEdit.Html;
+            mail.IsBodyHtml = true;
+
+            GestioneTicket_Rpt report = new GestioneTicket_Rpt();
+            report.Parameters["IdTicket"].Value = IdTicket;
+            MemoryStream mem = new MemoryStream();
+            report.ExportToPdf(mem);
+            mem.Seek(0, SeekOrigin.Begin);
+            Attachment att = new Attachment(mem, $"TCK_{IdTicket}_Info4u.pdf", "application/pdf");
+            mail.Attachments.Add(att);
+
+            SmtpClient smtp = new SmtpClient(HOST_ADDRESS, HOST_PORT);
+            smtp.EnableSsl = true;
+            smtp.UseDefaultCredentials = false;
+            smtp.Timeout = 500000;
+            smtp.Credentials = new NetworkCredential(HOST_USERNAME, HOST_PASSWORD);
+            Disable_CertificateValidation();
+            smtp.Send(mail);
+        }
+        static void Disable_CertificateValidation()
+        {
+            ServicePointManager.ServerCertificateValidationCallback =
+               delegate (
+                   object s,
+                   X509Certificate certificate,
+                   X509Chain chain,
+                   SslPolicyErrors sslPolicyErrors
+               )
+               {
+                   return true;
+               };
+        }
+        protected void Mittente_Txt_Init(object sender, EventArgs e)
+        {
+            Mittente_Txt.Text = PortalConfig.GetConfigurationValue(Portal4Set.Settings.PRTMail);
         }
         protected void CallbackPanelAssociaTecnico_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {

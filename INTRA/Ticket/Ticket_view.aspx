@@ -382,6 +382,18 @@
             background-color: #ed4e2a !important;
         }
     </style>
+    <style>
+    @media (max-width: 768px) {
+        .dxflNestedControlCell_Office365 {
+            width: 90% !important;
+        }
+    }
+    @media (max-width: 768px) {
+        .dxeRadioButtonList_Office{
+            width: 118% !important;
+        }
+    }
+</style>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -911,6 +923,7 @@
                                                                                                     <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
                                                                                                     <RequiredField IsRequired="True"></RequiredField>
                                                                                                 </ValidationSettings>
+
                                                                                             </dx:ASPxMemo>
                                                                                         </dx:LayoutItemNestedControlContainer>
                                                                                     </LayoutItemNestedControlCollection>
@@ -1117,192 +1130,6 @@
                                         <dx:ASPxCallbackPanel ID="CallbackPnlFormViewMateriali" runat="server" ClientInstanceName="CallbackPnlFormViewMateriali" OnCallback="Edit_CallbackPnl_Callback">
                                             <PanelCollection>
                                                 <dx:PanelContent>
-                                                    <asp:FormView ID="FormViewTicketMateriali" ClientInstanceName="FormViewTicketMateriali" runat="server" Width="100%">
-                                                        <InsertItemTemplate>
-                                                            <dx:ASPxFormLayout runat="server" ID="TicketAddFormMateriali" ClientInstanceName="TicketAddFormMateriali" Width="100%" Paddings-Padding="0" BackColor="#ffffff" ValidateRequestMode="Enabled">
-                                                                <Items>
-                                                                    <dx:LayoutGroup ColumnCount="4" Caption="" Paddings-Padding="0">
-                                                                        <GridSettings>
-                                                                            <Breakpoints>
-                                                                                <dx:LayoutBreakpoint MaxWidth="600" ColumnCount="1" Name="S" />
-                                                                            </Breakpoints>
-                                                                        </GridSettings>
-
-                                                                        <Paddings Padding="0px" />
-                                                                        <Items>
-
-                                                                            <dx:LayoutGroup GroupBoxDecoration="None" ColCount="2">
-                                                                                <SettingsItemCaptions Location="Top" />
-                                                                                <Items>
-                                                                                    <dx:LayoutItem Caption="Codice: " FieldName="CodMateriale">
-                                                                                        <LayoutItemNestedControlCollection>
-                                                                                            <dx:LayoutItemNestedControlContainer>
-                                                                                                <dx:ASPxTextBox ID="TxtCodMateriale" runat="server" NullText="">
-                                                                                                    <InvalidStyle BackColor="LightPink" />
-                                                                                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationMateriali">
-                                                                                                        <ErrorFrameStyle BackColor="LightPink" />
-                                                                                                        <RequiredField IsRequired="True" />
-                                                                                                    </ValidationSettings>
-                                                                                                </dx:ASPxTextBox>
-                                                                                            </dx:LayoutItemNestedControlContainer>
-                                                                                        </LayoutItemNestedControlCollection>
-                                                                                    </dx:LayoutItem>
-
-                                                                                    <dx:LayoutItem Caption="Descrizione: " FieldName="Descrizione">
-                                                                                        <LayoutItemNestedControlCollection>
-                                                                                            <dx:LayoutItemNestedControlContainer>
-                                                                                                <dx:ASPxTextBox ID="TxtDescrizione" runat="server" NullText="">
-                                                                                                    <InvalidStyle BackColor="LightPink" />
-                                                                                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationMateriali">
-                                                                                                        <ErrorFrameStyle BackColor="LightPink" />
-                                                                                                        <RequiredField IsRequired="True" />
-                                                                                                    </ValidationSettings>
-                                                                                                </dx:ASPxTextBox>
-                                                                                            </dx:LayoutItemNestedControlContainer>
-                                                                                        </LayoutItemNestedControlCollection>
-                                                                                    </dx:LayoutItem>
-                                                                                </Items>
-                                                                            </dx:LayoutGroup>
-
-                                                                            <dx:LayoutGroup GroupBoxDecoration="None" ColCount="2">
-                                                                                <SettingsItemCaptions Location="Top" />
-                                                                                <Items>
-                                                                                    <dx:LayoutItem Caption="UM: " FieldName="Um">
-                                                                                        <LayoutItemNestedControlCollection>
-                                                                                            <dx:LayoutItemNestedControlContainer>
-                                                                                                <dx:ASPxTextBox ID="TxtUm" runat="server" NullText="">
-                                                                                                    <InvalidStyle BackColor="LightPink" />
-                                                                                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationMateriali">
-                                                                                                        <ErrorFrameStyle BackColor="LightPink" />
-                                                                                                        <RequiredField IsRequired="True" />
-                                                                                                    </ValidationSettings>
-                                                                                                </dx:ASPxTextBox>
-                                                                                            </dx:LayoutItemNestedControlContainer>
-                                                                                        </LayoutItemNestedControlCollection>
-                                                                                    </dx:LayoutItem>
-
-                                                                                    <dx:LayoutItem Caption="Qta*: " FieldName="Qta">
-                                                                                        <LayoutItemNestedControlCollection>
-                                                                                            <dx:LayoutItemNestedControlContainer>
-                                                                                                <dx:ASPxSpinEdit ID="TxtQta" runat="server" NullText="">
-                                                                                                    <InvalidStyle BackColor="LightPink" />
-                                                                                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationMateriali">
-                                                                                                        <ErrorFrameStyle BackColor="LightPink" />
-                                                                                                        <RequiredField IsRequired="True" />
-                                                                                                    </ValidationSettings>
-                                                                                                </dx:ASPxSpinEdit>
-                                                                                            </dx:LayoutItemNestedControlContainer>
-                                                                                        </LayoutItemNestedControlCollection>
-                                                                                    </dx:LayoutItem>
-                                                                                </Items>
-                                                                            </dx:LayoutGroup>
-
-                                                                        </Items>
-                                                                    </dx:LayoutGroup>
-                                                                </Items>
-                                                            </dx:ASPxFormLayout>
-                                                        </InsertItemTemplate>
-                                                        <EditItemTemplate>
-                                                            <dx:ASPxFormLayout runat="server" ID="TicketAddFormMateriali" ClientInstanceName="TicketAddFormMateriali" Width="100%" Paddings-Padding="0" BackColor="#ffffff" ValidateRequestMode="Enabled">
-                                                                <Items>
-                                                                    <dx:LayoutGroup ColumnCount="4" Caption="" Paddings-Padding="0">
-                                                                        <GridSettings>
-                                                                            <Breakpoints>
-                                                                                <dx:LayoutBreakpoint MaxWidth="600" ColumnCount="1" Name="S" />
-                                                                            </Breakpoints>
-                                                                        </GridSettings>
-
-                                                                        <Paddings Padding="0px" />
-                                                                        <Items>
-
-                                                                            <dx:LayoutGroup GroupBoxDecoration="None" ColCount="2">
-                                                                                <SettingsItemCaptions Location="Top" />
-                                                                                <Items>
-                                                                                    <dx:LayoutItem Caption="Codice: " FieldName="CodMateriale">
-                                                                                        <LayoutItemNestedControlCollection>
-                                                                                            <dx:LayoutItemNestedControlContainer>
-                                                                                                <dx:ASPxTextBox ID="TxtCodMateriale" runat="server" NullText="">
-                                                                                                    <InvalidStyle BackColor="LightPink" />
-                                                                                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationMateriali">
-                                                                                                        <ErrorFrameStyle BackColor="LightPink" />
-                                                                                                        <RequiredField IsRequired="True" />
-                                                                                                    </ValidationSettings>
-                                                                                                </dx:ASPxTextBox>
-                                                                                            </dx:LayoutItemNestedControlContainer>
-                                                                                        </LayoutItemNestedControlCollection>
-                                                                                    </dx:LayoutItem>
-
-                                                                                    <dx:LayoutItem Caption="Descrizione: " FieldName="Descrizione">
-                                                                                        <LayoutItemNestedControlCollection>
-                                                                                            <dx:LayoutItemNestedControlContainer>
-                                                                                                <dx:ASPxTextBox ID="TxtDescrizione" runat="server" NullText="">
-                                                                                                    <InvalidStyle BackColor="LightPink" />
-                                                                                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationMateriali">
-                                                                                                        <ErrorFrameStyle BackColor="LightPink" />
-                                                                                                        <RequiredField IsRequired="True" />
-                                                                                                    </ValidationSettings>
-                                                                                                </dx:ASPxTextBox>
-                                                                                            </dx:LayoutItemNestedControlContainer>
-                                                                                        </LayoutItemNestedControlCollection>
-                                                                                    </dx:LayoutItem>
-                                                                                </Items>
-                                                                            </dx:LayoutGroup>
-
-                                                                            <dx:LayoutGroup GroupBoxDecoration="None" ColCount="2">
-                                                                                <SettingsItemCaptions Location="Top" />
-                                                                                <Items>
-                                                                                    <dx:LayoutItem Caption="UM: " FieldName="Um">
-                                                                                        <LayoutItemNestedControlCollection>
-                                                                                            <dx:LayoutItemNestedControlContainer>
-                                                                                                <dx:ASPxTextBox ID="TxtUm" runat="server" NullText="">
-                                                                                                    <InvalidStyle BackColor="LightPink" />
-                                                                                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationMateriali">
-                                                                                                        <ErrorFrameStyle BackColor="LightPink" />
-                                                                                                        <RequiredField IsRequired="True" />
-                                                                                                    </ValidationSettings>
-                                                                                                </dx:ASPxTextBox>
-                                                                                            </dx:LayoutItemNestedControlContainer>
-                                                                                        </LayoutItemNestedControlCollection>
-                                                                                    </dx:LayoutItem>
-
-                                                                                    <dx:LayoutItem Caption="Qta*: " FieldName="Qta">
-                                                                                        <LayoutItemNestedControlCollection>
-                                                                                            <dx:LayoutItemNestedControlContainer>
-                                                                                                <dx:ASPxSpinEdit ID="TxtQta" runat="server" NullText="">
-                                                                                                    <InvalidStyle BackColor="LightPink" />
-                                                                                                    <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationMateriali">
-                                                                                                        <ErrorFrameStyle BackColor="LightPink" />
-                                                                                                        <RequiredField IsRequired="True" />
-                                                                                                    </ValidationSettings>
-                                                                                                </dx:ASPxSpinEdit>
-                                                                                            </dx:LayoutItemNestedControlContainer>
-                                                                                        </LayoutItemNestedControlCollection>
-                                                                                    </dx:LayoutItem>
-                                                                                </Items>
-                                                                            </dx:LayoutGroup>
-                                                                        </Items>
-                                                                    </dx:LayoutGroup>
-                                                                </Items>
-                                                            </dx:ASPxFormLayout>
-                                                        </EditItemTemplate>
-                                                    </asp:FormView>
-                                                    <dx:BootstrapButton runat="server" ID="BootstrapButton5" ClientInstanceName="UpdateTicketBtn" AutoPostBack="false"
-                                                        Badge-CssClass="BadgeBtn-just-icon"
-                                                        CssClasses-Control="btn btn-just-icon btn-just-icon-padding btn-success">
-
-                                                        <Badge IconCssClass="fa fa-sync" Text="INSERISCI MATERIALE" />
-                                                        <SettingsBootstrap RenderOption="Success" Sizing="Small" />
-
-                                                        <ClientSideEvents Click="function(s,e){
-    var valid = ASPxClientEdit.ValidateGroup('ValidationMateriali');
-    if(valid){                                
-        ConfermaOperazione('Confermi di voler aggiornare il ticket con i dati inseriti?','Update_FormViewTicketMateriali_Callback');
-    } else {
-        showNotificationErrorWithText('Alcuni dati non sono stati compilati, controllare e riprovare.');
-    }
-}" />
-                                                    </dx:BootstrapButton>
-
                                                     <dx:ASPxGridView runat="server" ID="Generic_Gridview" ClientInstanceName="Generic_Gridview" AutoGenerateColumns="False" DataSourceID="DtsMateriali" KeyFieldName="id" Width="100%" Styles-AlternatingRow-Enabled="True" SettingsPopup-EditForm-HorizontalAlign="WindowCenter" SettingsPopup-EditForm-VerticalAlign="WindowCenter" OnRowUpdating="Generic_Gridview_RowUpdating" OnRowDeleting="Generic_Gridview_RowDeleting">
                                                         <Styles Header-Wrap="True" Cell-Paddings-Padding="3" Header-Paddings-Padding="3" FilterBar-Paddings-Padding="3" CommandColumn-Paddings-Padding="3" FilterBarImageCell-Paddings-Padding="3" FilterCell-Paddings-Padding="3"></Styles>
                                                         <SettingsPager PageSizeItemSettings-Items="10,20,50,100" PageSizeItemSettings-Visible="true" PageSizeItemSettings-AllItemText="All" PageSizeItemSettings-ShowAllItem="true" Position="TopAndBottom"></SettingsPager>
@@ -1342,7 +1169,7 @@
                                                         </SettingsCommandButton>
                                                         <SettingsEditing EditFormColumnCount="2" Mode="PopupEditForm"></SettingsEditing>
                                                         <Columns>
-                                                            <dx:GridViewCommandColumn ShowEditButton="True" ShowDeleteButton="false" VisibleIndex="0" ShowNewButtonInHeader="false" ShowClearFilterButton="false" Width="60px">
+                                                            <dx:GridViewCommandColumn ShowEditButton="True" ShowDeleteButton="false" VisibleIndex="0" ShowNewButtonInHeader="true" ShowClearFilterButton="false" Width="60px">
                                                                 <CustomButtons>
                                                                     <dx:BootstrapGridViewCommandColumnCustomButton ID="EliminaMateriali" IconCssClass="icon4u icon-delete image" CssClass="btn btn-sm btn-custom-padding action-btn delete" Text="" />
                                                                 </CustomButtons>
@@ -1417,13 +1244,13 @@
                                                 <dx:PanelContent>
                                                     <dx:ASPxGridView ID="AllegatiTck_Gridview" DataSourceID="AllegatiTck_Dts" runat="server" Width="100%" AutoGenerateColumns="False" KeyFieldName="ID">
                                                         <Columns>
-                                                            <dx:GridViewDataTextColumn FieldName="ID" Caption="" Width="0" ReadOnly="True" Visible="false" VisibleIndex="3">
-                                                            </dx:GridViewDataTextColumn>
-                                                            <dx:GridViewDataTextColumn FieldName="DisplayName" Caption="Nome" VisibleIndex="0"></dx:GridViewDataTextColumn>
-                                                            <dx:GridViewDataTextColumn FieldName="Description" Caption="Descrizione" VisibleIndex="1"></dx:GridViewDataTextColumn>
+                                                            <dx:GridViewDataTextColumn FieldName="ID" Caption="" Width="0" ReadOnly="True" Visible="false" VisibleIndex="3" />
+                                                            <dx:GridViewDataTextColumn FieldName="DisplayName" Caption="Nome" VisibleIndex="0" />
+                                                            <dx:GridViewDataTextColumn FieldName="Description" Caption="Descrizione" VisibleIndex="1" />
                                                             <dx:GridViewDataTextColumn Caption="Visualizza" VisibleIndex="2">
                                                                 <DataItemTemplate>
-                                                                    <a href='<%# ResolveUrl("~/" + Eval("PathFolder")) %>' target="_blank">
+                                                                    <a href="javascript:void(0);"
+                                                                        onclick='<%# "ApriAllegatoPopup(\"" + ResolveUrl("~/" + Eval("PathFolder")) + "\");" %>'>
                                                                         <dx:ASPxImage ID="File_Img" runat="server" ImageUrl="../img/pdf.png" Width="30px" ToolTip="Apri File"></dx:ASPxImage>
                                                                     </a>
                                                                 </DataItemTemplate>
@@ -1442,6 +1269,17 @@
                                 </div>
                             </div>
                         </div>
+                        <dx:ASPxPopupControl ID="PopupAllegato" runat="server"
+                            ClientInstanceName="PopupAllegato"
+                            Width="800px"
+                            Modal="true" ShowCloseButton="true"
+                            PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" HeaderText="Allegato">
+                            <ContentCollection>
+                                <dx:PopupControlContentControl runat="server">
+                                    <iframe id="iframeAllegato" runat="server" width="100%" height="100%" frameborder="0"></iframe>
+                                </dx:PopupControlContentControl>
+                            </ContentCollection>
+                        </dx:ASPxPopupControl>
                         <!-- Colonna 2/3 -->
                         <div class="col-md-8">
                             <dx:ASPxGridView ID="Tecnici_Gridview" runat="server" Width="100%"
@@ -1629,7 +1467,7 @@
                                                                                 <dx:LayoutItem Caption="Da Eseguire:" FieldName="TCK_TipoEsecuzione" ColumnSpan="4">
                                                                                     <LayoutItemNestedControlCollection>
                                                                                         <dx:LayoutItemNestedControlContainer>
-                                                                                            <dx:ASPxRadioButtonList ID="Rbl_TCK_TipoEsecuzione" runat="server" ClientInstanceName="Rbl_TCK_TipoEsecuzioneResponsive"
+                                                                                            <dx:ASPxRadioButtonList CssClass="dxeRadioButtonList_Office" ID="Rbl_TCK_TipoEsecuzione" runat="server" ClientInstanceName="Rbl_TCK_TipoEsecuzioneResponsive"
                                                                                                 ValueType="System.Int32"
                                                                                                 Value='<%# Bind("TCK_TipoEsecuzione") %>'
                                                                                                 TextField="Descrizione"
@@ -1646,6 +1484,28 @@
                                                                                                     <RequiredField IsRequired="True" />
                                                                                                 </ValidationSettings>
                                                                                             </dx:ASPxRadioButtonList>
+                                                                                            <%-- <dx:BootstrapRadioButtonList
+                                                                                                ID="Rbl_TCK_TipoEsecuzione"
+                                                                                                runat="server"
+                                                                                                ClientInstanceName="Rbl_TCK_TipoEsecuzioneResponsive"
+                                                                                                ValueType="System.Int32"
+                                                                                                Value='<%# Bind("TCK_TipoEsecuzione") %>'
+                                                                                                TextField="Descrizione"
+                                                                                                ValueField="Id"
+                                                                                                DataSourceID="DtsTCK_TipoEsecuzione"
+                                                                                                AutoPostBack="False">
+
+                                                                                                <ClientSideEvents
+                                                                                                    Init="function(s, e) { safeInitPanel(); }"
+                                                                                                    ValueChanged="function(s, e) { updateEseguitoPanel(s.GetValue()); }" />
+
+                                                                                                <ValidationSettings
+                                                                                                    ErrorDisplayMode="None"
+                                                                                                    CausesValidation="True"
+                                                                                                    ValidationGroup="testValidation">
+                                                                                                    <RequiredField IsRequired="True" />
+                                                                                                </ValidationSettings>
+                                                                                            </dx:BootstrapRadioButtonList>--%>
                                                                                         </dx:LayoutItemNestedControlContainer>
                                                                                     </LayoutItemNestedControlCollection>
                                                                                     <CaptionSettings VerticalAlign="Top" Location="Top" />
@@ -1668,28 +1528,36 @@
                                                         <div id="EseguitoWarning" style="color: red; font-weight: bold; margin-bottom: 5px;"></div>
                                                         <div id="EseguitoPanel" style="background-color: #57b5e3; padding: 10px; border: 1px solid #11a9cc; margin-top: 10px; font-weight: bold; color: #ffffff;"></div>
 
-
                                                         <asp:FormView ID="FormViewDettagliIntervento" ClientInstanceName="FormViewDettagliIntervento" runat="server" DataSourceID="DtsTestataRapp" Width="100%" OnDataBound="FormViewDettagliIntervento_DataBound">
                                                             <EditItemTemplate>
                                                                 <dx:ASPxFormLayout runat="server" ID="formlayoutDettagliIntervento" ClientInstanceName="formlayoutDettagliIntervento" Width="100%" Paddings-Padding="0" BackColor="#ffffff" ValidateRequestMode="Enabled">
                                                                     <Items>
-                                                                        <dx:LayoutGroup ColumnCount="4" Caption="" Paddings-Padding="0">
+                                                                        <dx:LayoutGroup Caption="" ColumnCount="4" Paddings-Padding="0">
                                                                             <GridSettings>
                                                                                 <Breakpoints>
                                                                                     <dx:LayoutBreakpoint MaxWidth="600" ColumnCount="1" Name="S" />
                                                                                 </Breakpoints>
                                                                             </GridSettings>
-
                                                                             <Paddings Padding="0px"></Paddings>
                                                                             <Items>
                                                                                 <dx:LayoutItem Caption="Oggetto della chiamata:" ColumnSpan="4">
                                                                                     <LayoutItemNestedControlCollection>
                                                                                         <dx:LayoutItemNestedControlContainer>
-                                                                                            <dx:ASPxMemo ID="OggettoTck_Memo" Rows="2" runat="server" Text='<%# Bind("OggettoTCK") %>' NullText="Oggetto della chiamata?">
-                                                                                                <InvalidStyle BackColor="LightPink"></InvalidStyle>
-                                                                                                <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationDettagliIntervento">
-                                                                                                    <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
-                                                                                                    <RequiredField IsRequired="True"></RequiredField>
+                                                                                            <dx:ASPxMemo
+                                                                                                ID="OggettoTck_Memo"
+                                                                                                runat="server"
+                                                                                                Rows="2"
+                                                                                                Text='<%# Bind("OggettoTCK") %>'
+                                                                                                NullText="Oggetto della chiamata?"
+                                                                                                Width="100%"
+                                                                                                CssClass="oggetto-tck">
+                                                                                                <InvalidStyle BackColor="LightPink" />
+                                                                                                <ValidationSettings
+                                                                                                    ErrorDisplayMode="None"
+                                                                                                    CausesValidation="True"
+                                                                                                    ValidationGroup="ValidationDettagliIntervento">
+                                                                                                    <ErrorFrameStyle BackColor="LightPink" />
+                                                                                                    <RequiredField IsRequired="True" />
                                                                                                 </ValidationSettings>
                                                                                             </dx:ASPxMemo>
                                                                                         </dx:LayoutItemNestedControlContainer>
@@ -1700,7 +1568,7 @@
                                                                                     <LayoutItemNestedControlCollection>
                                                                                         <dx:LayoutItemNestedControlContainer>
 
-                                                                                            <dx:ASPxMemo ID="Motivo_Chiamata_Txt_DX" Rows="5" runat="server" Text='<%# Bind("MotivoChiamata") %>' NullText="Motivo della chiamata?">
+                                                                                            <dx:ASPxMemo ID="Motivo_Chiamata_Txt_DX" Rows="5" runat="server" Text='<%# Bind("MotivoChiamata") %>' NullText="Motivo della chiamata?" CssClass="motivo-tck">
                                                                                                 <InvalidStyle BackColor="LightPink"></InvalidStyle>
                                                                                                 <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationDettagliIntervento">
                                                                                                     <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
@@ -1716,7 +1584,7 @@
                                                                                     <LayoutItemNestedControlCollection>
                                                                                         <dx:LayoutItemNestedControlContainer>
 
-                                                                                            <dx:ASPxMemo ID="DescrPrest_Txt_DX" Rows="5" runat="server" Text='<%# Bind("LavoroEseguito") %>' NullText="Descrizione Prestazione?">
+                                                                                            <dx:ASPxMemo ID="DescrPrest_Txt_DX" Rows="5" runat="server" Text='<%# Bind("LavoroEseguito") %>' NullText="Descrizione Prestazione?" CssClass="descrPrest-tck">
                                                                                                 <InvalidStyle BackColor="LightPink"></InvalidStyle>
                                                                                                 <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationDettagliIntervento">
                                                                                                     <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
@@ -1734,7 +1602,7 @@
                                                                                     <LayoutItemNestedControlCollection>
                                                                                         <dx:LayoutItemNestedControlContainer>
 
-                                                                                            <dx:ASPxMemo ID="Note_Txt_DX" Rows="5" runat="server" Text='<%# Bind("Note") %>' NullText="Note?">
+                                                                                            <dx:ASPxMemo ID="Note_Txt_DX" Rows="5" runat="server" Text='<%# Bind("Note") %>' NullText="Note?" CssClass="note-tck">
                                                                                                 <InvalidStyle BackColor="LightPink"></InvalidStyle>
                                                                                                 <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationDettagliIntervento">
                                                                                                     <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
@@ -1756,7 +1624,8 @@
                                                                                                 TextField="Utente"
                                                                                                 ValueField="Utente"
                                                                                                 NullText="Scegli un tecnico..."
-                                                                                                Width="100%">
+                                                                                                Width="100%"
+                                                                                                CssClass="firmaTecnico-tck">
                                                                                                 <ClientSideEvents SelectedIndexChanged="function(s,e){
                                         if(FirmaTecnico_CallbackPnl) {
                                             FirmaTecnico_CallbackPnl.PerformCallback(s.GetValue());
@@ -1790,7 +1659,7 @@
                                                                                 <dx:LayoutItem Name="liFirmaCliente" Caption="Firma Cliente:" ColumnSpan="2">
                                                                                     <LayoutItemNestedControlCollection>
                                                                                         <dx:LayoutItemNestedControlContainer>
-                                                                                            <dx:ASPxTextBox ID="TxtFirmaCliente" runat="server" NullText="">
+                                                                                            <dx:ASPxTextBox ID="TxtFirmaCliente" runat="server" NullText="" CssClass="firmaCliente-tck">
                                                                                             </dx:ASPxTextBox>
                                                                                             <dx:BootstrapButton
                                                                                                 runat="server"
@@ -1829,7 +1698,7 @@
                                                                                 <dx:LayoutItem Caption="Fatturazione" FieldName="TCK_TipoChiusuraChiamataFattura" ColumnSpan="2">
                                                                                     <LayoutItemNestedControlCollection>
                                                                                         <dx:LayoutItemNestedControlContainer>
-                                                                                            <dx:ASPxComboBox ID="TCK_TipoChiusuraChiamataFattura_Combobox" ClientInstanceName="TCK_TipoChiusuraChiamataFattura_Combobox" Value='<%# Bind("TCK_TipoChiusuraChiamataFattura") %>' TextField="IdDescrizione" ValueField="Id" DisplayFormatString="{0} - {1}" TextFormatString="{0}" DataSourceID="DtsTCK_TipoChiusuraChiamataFattura" runat="server" ValueType="System.Int32" Width="100%">
+                                                                                            <dx:ASPxComboBox ID="TCK_TipoChiusuraChiamataFattura_Combobox" ClientInstanceName="TCK_TipoChiusuraChiamataFattura_Combobox" Value='<%# Bind("TCK_TipoChiusuraChiamataFattura") %>' TextField="IdDescrizione" ValueField="Id" DisplayFormatString="{0} - {1}" TextFormatString="{0}" DataSourceID="DtsTCK_TipoChiusuraChiamataFattura" runat="server" ValueType="System.Int32" Width="100%" CssClass="fatturazione-tck">
                                                                                                 <Columns>
                                                                                                     <dx:ListBoxColumn FieldName="Id" Width="30%" ClientVisible="false"></dx:ListBoxColumn>
                                                                                                     <dx:ListBoxColumn FieldName="Descrizione" Width="30%"></dx:ListBoxColumn>
@@ -1858,7 +1727,8 @@
                                                                                                 DataSourceID="DtsTCK_StatusChiamata"
                                                                                                 RepeatDirection="Horizontal"
                                                                                                 RepeatColumns="3"
-                                                                                                RepeatLayout="Flow">
+                                                                                                RepeatLayout="Flow"
+                                                                                                CssClass="chiusura-tck">
 
                                                                                                 <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationDettagliIntervento">
                                                                                                     <ErrorFrameStyle BackColor="LightPink" />
@@ -2271,59 +2141,147 @@
         <ContentCollection>
             <dx:PopupControlContentControl runat="server">
                 <dx:ASPxCallbackPanel
-                    ID="CallbackPanelInviaMail"
+                    ID="callbackpanelinviamail"
                     runat="server"
                     ClientInstanceName="CallbackPanelInviaMail"
                     OnCallback="CallbackPanelInviaMail_Callback">
                     <PanelCollection>
                         <dx:PanelContent runat="server">
-                            <div class="row" style="margin-bottom: 10px;">
-                                <div class="col-xs-12 col-sm-3">
-                                    <label class="control-label" style="color: Red;">Destinatario/i*:&nbsp;</label>
-                                </div>
-                                <div class="col-xs-12 col-sm-9">
-                                    <dx:ASPxTokenBox
-                                        ID="TokenBoxTo"
-                                        runat="server"
-                                        ClientInstanceName="tokenBoxTo"
-                                        DataSourceID="Destinatario_Dts"
-                                        TextField="Email"
-                                        TextSeparator=";"
-                                        Width="100%">
-                                        <ValidationSettings SetFocusOnError="True" ValidationGroup="EmailContattoGrp" ErrorDisplayMode="None">
-                                            <RequiredField IsRequired="True" />
-                                        </ValidationSettings>
-                                        <ClientSideEvents Validation="validateEmail" />
-                                        <InvalidStyle BackColor="LightPink" />
-                                        <ItemStyle CssClass="contact-item" />
-                                    </dx:ASPxTokenBox>
-                                    <asp:SqlDataSource
-                                        ID="Destinatario_Dts"
-                                        runat="server"
-                                        ConnectionString='<%$ ConnectionStrings:info4portaleConnectionString %>'
-                                        SelectCommand="SELECT Email FROM EmailClienti_View WHERE (CodRapportino = @CodRapportino)">
-                                        <SelectParameters>
-                                            <asp:QueryStringParameter QueryStringField="IdTicket" Name="CodRapportino" />
-                                        </SelectParameters>
-                                    </asp:SqlDataSource>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header card-header-success card-header-icon" data-background-color="blue">
+                                            <i class="material-icons">mail</i>
+                                        </div>
+                                        <div class="card-content">
+                                            <h4 class="card-title">Invio Email</h4>
+                                            <div>
+
+                                                <!-- Mittente -->
+                                                <div class="row" style="margin-bottom: 10px;">
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label">Mittente:&nbsp;</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <dx:BootstrapTextBox ID="Mittente_Txt" runat="server" Width="100%" OnInit="Mittente_Txt_Init" Enabled="false" />
+                                                    </div>
+                                                </div>
+
+                                                <!-- Destinatario obbligatorio -->
+                                                <div class="row" style="margin-bottom: 10px;">
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label" style="color: red;">Destinatario/i*:&nbsp;</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <dx:ASPxTokenBox
+                                                            ID="TokenBoxTo"
+                                                            runat="server"
+                                                            ClientInstanceName="tokenBoxTo"
+                                                            DataSourceID="Destinatario_Dts"
+                                                            TextField="Email"
+                                                            TextSeparator=";"
+                                                            Width="100%">
+                                                            <ValidationSettings SetFocusOnError="True" ValidationGroup="mail" ErrorDisplayMode="Text" ErrorTextPosition="Bottom">
+                                                                <RequiredField IsRequired="True" />
+                                                            </ValidationSettings>
+                                                            <ClientSideEvents Validation="validateEmail" />
+                                                            <InvalidStyle BackColor="LightPink" />
+                                                            <ItemStyle CssClass="contact-item" />
+                                                        </dx:ASPxTokenBox>
+                                                    </div>
+                                                </div>
+
+                                                <!-- CC -->
+                                                <div class="row" style="margin-bottom: 10px;">
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label">CC:&nbsp;</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <dx:ASPxTokenBox
+                                                            ID="CopiaConoscenza_Tokenbox"
+                                                            runat="server"
+                                                            ClientInstanceName="CopiaConoscenza_Tokenbox"
+                                                            DataSourceID="Destinatario_Dts"
+                                                            TextField="Email"
+                                                            TextSeparator=";"
+                                                            Width="100%" />
+                                                    </div>
+                                                </div>
+
+                                                <!-- CCN -->
+                                                <div class="row" style="margin-bottom: 10px;">
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label">CCN:&nbsp;</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <dx:ASPxTokenBox
+                                                            ID="CopiaConoscenzaNascosta_Tokenbox"
+                                                            runat="server"
+                                                            ClientInstanceName="CopiaConoscenzaNascosta_Tokenbox"
+                                                            DataSourceID="Destinatario_Dts"
+                                                            TextField="Email"
+                                                            TextSeparator=";"
+                                                            Width="100%" />
+                                                    </div>
+                                                </div>
+
+                                                <!-- Oggetto -->
+                                                <div class="row" style="margin-bottom: 10px;">
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label" style="color: red;">Oggetto*:&nbsp;</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <dx:BootstrapTextBox ID="Oggetto_Txt" ClientInstanceName="Oggetto_Txt" runat="server" Width="100%">
+                                                            <ValidationSettings RequiredField-IsRequired="true" ValidationGroup="mail" />
+                                                        </dx:BootstrapTextBox>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Messaggio -->
+                                                <div class="row" style="margin-bottom: 15px;">
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label">Messaggio:&nbsp;</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <dx:ASPxHtmlEditor ID="Messaggio_HtmlEdit" ClientInstanceName="Messaggio_HtmlEdit" runat="server" Width="100%" Settings-AllowHtmlView="false" Settings-AllowPreview="false" />
+                                                    </div>
+                                                </div>
+
+                                                <!-- Pulsante Invio -->
+                                                <div class="row" style="margin-top: 15px; justify-content: flex-end; display: flex;">
+                                                    <dx:BootstrapButton
+                                                        runat="server"
+                                                        ID="InviaEmailContatto_Btn"
+                                                        ClientInstanceName="InviaEmailContatto_Btn"
+                                                        AutoPostBack="false"
+                                                        CssClasses-Control="btn btn-just-icon btn-just-icon-padding"
+                                                        Style="min-width: 140px; flex: 1 1 auto; max-width: 200px;"
+                                                        ToolTip="Invia Mail"
+                                                        Badge-CssClass="BadgeBtn-just-icon">
+                                                        <Badge IconCssClass="fa fa-envelope" Text="Invia Mail" />
+                                                        <SettingsBootstrap RenderOption="Success" Sizing="Small" />
+                                                        <ClientSideEvents Click="function(s, e) { CallbackPanelInviaMail.PerformCallback(); PopupInviaMail.Hide(); showNotification();}" />
+                                                    </dx:BootstrapButton>
+                                                </div>
+
+                                                <!-- DataSource -->
+                                                <asp:SqlDataSource
+                                                    ID="Destinatario_Dts"
+                                                    runat="server"
+                                                    ConnectionString='<%$ ConnectionStrings:info4portaleConnectionString %>'
+                                                    SelectCommand="SELECT Email FROM EmailClienti_View WHERE (CodRapportino = @CodRapportino)">
+                                                    <SelectParameters>
+                                                        <asp:QueryStringParameter QueryStringField="IdTicket" Name="CodRapportino" />
+                                                    </SelectParameters>
+                                                </asp:SqlDataSource>
+
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="row" style="margin-top: 15px; justify-content: flex-end; display: flex;">
-                                <dx:BootstrapButton
-                                    runat="server"
-                                    ID="InviaEmailContatto_Btn"
-                                    ClientInstanceName="InviaEmailContatto_Btn"
-                                    AutoPostBack="false"
-                                    CssClasses-Control="btn btn-just-icon btn-just-icon-padding"
-                                    Style="min-width: 140px; flex: 1 1 auto; max-width: 200px;"
-                                    ToolTip="Invia Mail"
-                                    Badge-CssClass="BadgeBtn-just-icon">
-                                    <Badge IconCssClass="fa fa-envelope" Text="Invia Mail" />
-                                    <SettingsBootstrap RenderOption="Success" Sizing="Small" />
-                                    <ClientSideEvents Click="function(s, e) { CallbackPanelInviaMail.PerformCallback(); PopupInviaMail.Hide(); showNotification();}" />
-                                </dx:BootstrapButton>
-                            </div>
                         </dx:PanelContent>
                     </PanelCollection>
                 </dx:ASPxCallbackPanel>
@@ -2352,6 +2310,13 @@
             Notify1('Sto Inviando la mail', 'top-right', '5000', 'info', 'fa-envelope', false);
         }
     </script>
+    <script type="text/javascript">
+        function ApriAllegatoPopup(url) {
+            var iframe = document.getElementById('<%= iframeAllegato.ClientID %>');
+            iframe.src = url;
+            PopupAllegato.Show();
+        }
+    </script>
 
     <dx:ASPxCallback ID="Update_FormLayout_Callback" ClientInstanceName="Update_FormLayout_Callback" runat="server" OnCallback="Update_FormLayout_Callback_Callback" Style="float: right">
         <ClientSideEvents
@@ -2368,14 +2333,14 @@
             showNotification();
 }" />
     </dx:ASPxCallback>
-    <dx:ASPxCallback ID="Update_FormViewTicketMateriali_Callback" ClientInstanceName="Update_FormViewTicketMateriali_Callback" runat="server" OnCallback="Update_FormViewTicketMat_Callback" Style="float: right">
+    <%--    <dx:ASPxCallback ID="Update_FormViewTicketMateriali_Callback" ClientInstanceName="Update_FormViewTicketMateriali_Callback" runat="server" OnCallback="Update_FormViewTicketMat_Callback" Style="float: right">
         <ClientSideEvents
             EndCallback="function(s,e){
     CallbackPnlFormViewMateriali.PerformCallback();
             Generic_Gridview.Refresh();
             showNotification();
 }" />
-    </dx:ASPxCallback>
+    </dx:ASPxCallback>--%>
     <dx:ASPxCallback
         ID="Update_FormLayoutDettagli_Intervento_Callback_Control"
         ClientInstanceName="Update_FormLayoutDettagli_Intervento_Callback"
@@ -2464,11 +2429,25 @@
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="DtsMateriali" runat="server" ConnectionString="<%$ ConnectionStrings:info4portaleConnectionString %>"
         SelectCommand="SELECT CodRapportino, CodMateriale, Descrizione, Um, Qta, id FROM TCK_DettRicambiTicket WHERE (CodRapportino = @CodRapportino)"
-        UpdateCommand="SELECT *    FROM TCK_DettRicambiTicket  where 1 = 2" DeleteCommand="SELECT *    FROM TCK_DettRicambiTicket  where 1 = 2">
+        UpdateCommand="UPDATE TCK_DettRicambiTicket SET CodMateriale = @CodMateriale, Descrizione = @Descrizione, Um = @Um, Qta = @Qta, CodRapportino = WHERE (CodRapportino = @CodRapportino)" DeleteCommand="SELECT *    FROM TCK_DettRicambiTicket  where 1 = 2" InsertCommand="INSERT INTO TCK_DettRicambiTicket(CodRapportino, CodMateriale, Descrizione, Um, Qta) VALUES (@CodRapportino, @CodMateriale, @Descrizione, @Um, @Qta)">
+        <InsertParameters>
+            <asp:QueryStringParameter Name="CodRapportino" QueryStringField="IdTicket" Type="Int32" />
+            <asp:Parameter Name="CodMateriale"></asp:Parameter>
+            <asp:Parameter Name="Descrizione"></asp:Parameter>
+            <asp:Parameter Name="Um"></asp:Parameter>
+            <asp:Parameter Name="Qta"></asp:Parameter>
+        </InsertParameters>
         <SelectParameters>
             <asp:QueryStringParameter DefaultValue="0" Name="CodRapportino" QueryStringField="IdTicket"
                 Type="Int32" />
         </SelectParameters>
+        <UpdateParameters>
+            <asp:Parameter Name="CodMateriale"></asp:Parameter>
+            <asp:Parameter Name="Descrizione"></asp:Parameter>
+            <asp:Parameter Name="Um"></asp:Parameter>
+            <asp:Parameter Name="Qta"></asp:Parameter>
+            <asp:Parameter Name="CodRapportino"></asp:Parameter>
+        </UpdateParameters>
     </asp:SqlDataSource>
 
     <!-- Datasource per combo tecnici -->

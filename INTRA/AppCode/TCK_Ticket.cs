@@ -962,6 +962,21 @@ namespace INTRA.AppCode
 
             //PRT_LogErrorGest.Prt_LogOperazioneInsert(Command_Txt, "TCK_TestataTicket", "UPDATE", "info4portaleConnectionString");
         }
+        public void UpdateDynamicTicket(string StringaAggiornamento, string NomeTabella, string Filtro, string connectionString)
+        {
+            // Devo fare un update nella tabella TCK_DettTecniciTicket
+            string Command_Txt = " UPDATE [" + NomeTabella + "] set " + StringaAggiornamento + " where " + Filtro;
+            using (SqlConnection connection =
+                   new SqlConnection(ConfigurationManager.ConnectionStrings[connectionString].ConnectionString))
+            {
+                SqlCommand command = new SqlCommand(Command_Txt, connection);
+                command.Connection.Open();
+                command.ExecuteNonQuery();
+                command.Connection.Close();
+            }
+
+            //PRT_LogErrorGest.Prt_LogOperazioneInsert(Command_Txt, "TCK_TestataTicket", "UPDATE", "info4portaleConnectionString");
+        }
 
         public int CheckDettaglioTaskObbligatorio(int CodRapportino)
         {
