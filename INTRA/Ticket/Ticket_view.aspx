@@ -2,6 +2,10 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="RootHolder" runat="server">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/signature_pad_master/signature_pad.js"></script>
+    <link href="/assets/css/signature_pad_master/signature-pad.css" rel="stylesheet" />
+    <%--    <script src="/assets/js/signature_pad_master/app.js"></script>--%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
@@ -487,11 +491,7 @@
 
                             <Badge IconCssClass="fa fa-edit" Text="Firma Ticket" />
                             <SettingsBootstrap RenderOption="Primary" Sizing="Small" />
-                            <ClientSideEvents Click="function(s, e) { 
-                            var idTicket = getQueryStringValue('IdTicket'); 
-                            if(idTicket) window.open('Ticket_Firma.aspx?IdTicket=' + idTicket, '_blank'); 
-                            else alert('IdTicket non trovato!');
-    }" />
+                            <ClientSideEvents Click="function(s,e){ FirmaPopup.Show();}" />
                         </dx:BootstrapButton>
                         <dx:BootstrapButton
                             runat="server"
@@ -1146,7 +1146,7 @@
 
                                                         <Settings AutoFilterCondition="Contains" ShowFilterRowMenu="true" />
                                                         <ClientSideEvents EndCallback="function(s,e){if(e.command == 'UPDATEEDIT' || e.command == 'DELETEROW'){Generic_Gridview.Refresh(); showNotification();}}" CustomButtonClick="OnCustomButtonMateriali" />
-                                                        <SettingsPopup EditForm-VerticalAlign="WindowCenter" EditForm-HorizontalAlign="Center" EditForm-Modal="true"></SettingsPopup>
+                                                        <SettingsPopup EditForm-VerticalAlign="WindowCenter" EditForm-HorizontalAlign="WindowCenter" EditForm-Modal="true"></SettingsPopup>
                                                         <SettingsPopup>
                                                             <EditForm AllowResize="True" AutoUpdatePosition="True"></EditForm>
                                                         </SettingsPopup>
@@ -1177,7 +1177,7 @@
                                                                 <Styles Style-CssClass="btn btn-sm btn-custom-padding action-btn selectbtn icon4u icon-selectbtn image"></Styles>
                                                             </SelectButton>
                                                         </SettingsCommandButton>
-                                                        <SettingsEditing EditFormColumnCount="2" Mode="PopupEditForm"></SettingsEditing>
+                                                        <SettingsEditing EditFormColumnCount="1" Mode="EditForm"></SettingsEditing>
                                                         <Columns>
                                                             <dx:GridViewCommandColumn ShowEditButton="True" ShowDeleteButton="false" VisibleIndex="0" ShowNewButtonInHeader="true" ShowClearFilterButton="false" Width="60px">
                                                                 <CustomButtons>
@@ -1224,14 +1224,16 @@
                                                                 </PropertiesSpinEdit>
                                                             </dx:GridViewDataSpinEditColumn>
                                                         </Columns>
-                                                        <dx:EditFormLayoutProperties ColCount="2" SettingsItemCaptions-Location="Top">
+                                                        <dx:EditFormLayoutProperties ColCount="1" SettingsItemCaptions-Location="Top">
                                                             <Items>
                                                                 <dx:GridViewColumnLayoutItem ColumnName="CodMateriale" RequiredMarkDisplayMode="Hidden" VerticalAlign="Top" />
                                                                 <dx:GridViewColumnLayoutItem ColumnName="Descrizione" RequiredMarkDisplayMode="Hidden" VerticalAlign="Top" />
-                                                                <dx:GridViewColumnLayoutItem ColumnName="HexCUmolor" RequiredMarkDisplayMode="Hidden" VerticalAlign="Top" />
+                                                                <dx:GridViewColumnLayoutItem ColumnName="Um" RequiredMarkDisplayMode="Hidden" VerticalAlign="Top" />
                                                                 <dx:GridViewColumnLayoutItem ColumnName="Qta" RequiredMarkDisplayMode="Hidden" VerticalAlign="Top" />
                                                                 <dx:EditModeCommandLayoutItem ShowCancelButton="true" ShowUpdateButton="true" HorizontalAlign="Right" />
                                                             </Items>
+                                                            <SettingsAdaptivity AdaptivityMode="SingleColumnWindowLimit"
+                                                                SwitchToSingleColumnAtWindowInnerWidth="768" />
                                                         </dx:EditFormLayoutProperties>
                                                     </dx:ASPxGridView>
                                                 </dx:PanelContent>
@@ -1550,230 +1552,232 @@
                                                         <div id="EseguitoWarning" style="color: red; font-weight: bold; margin-bottom: 5px;"></div>
                                                         <div id="EseguitoPanel" style="background-color: #57b5e3; padding: 10px; border: 1px solid #11a9cc; margin-top: 10px; font-weight: bold; color: #ffffff;"></div>
 
-                                                        <asp:FormView ID="FormViewDettagliIntervento" ClientInstanceName="FormViewDettagliIntervento" runat="server" DataSourceID="DtsTestataRapp" Width="100%" OnDataBound="FormViewDettagliIntervento_DataBound">
-                                                            <EditItemTemplate>
-                                                                <dx:ASPxFormLayout runat="server" ID="formlayoutDettagliIntervento" ClientInstanceName="formlayoutDettagliIntervento" Width="100%" Paddings-Padding="0" BackColor="#ffffff" ValidateRequestMode="Enabled">
-                                                                    <Items>
-                                                                        <dx:LayoutGroup Caption="" ColumnCount="4" Paddings-Padding="0">
-                                                                            <GridSettings>
-                                                                                <Breakpoints>
-                                                                                    <dx:LayoutBreakpoint MaxWidth="600" ColumnCount="1" Name="S" />
-                                                                                </Breakpoints>
-                                                                            </GridSettings>
-                                                                            <Paddings Padding="0px"></Paddings>
-                                                                            <Items>
-                                                                                <dx:LayoutItem Caption="Oggetto della chiamata:" ColumnSpan="4">
-                                                                                    <LayoutItemNestedControlCollection>
-                                                                                        <dx:LayoutItemNestedControlContainer>
-                                                                                            <dx:ASPxMemo
-                                                                                                ID="OggettoTck_Memo"
-                                                                                                runat="server"
-                                                                                                Rows="2"
-                                                                                                Text='<%# Bind("OggettoTCK") %>'
-                                                                                                NullText="Oggetto della chiamata?"
-                                                                                                Width="100%"
-                                                                                                CssClass="oggetto-tck">
-                                                                                                <InvalidStyle BackColor="LightPink" />
-                                                                                                <ValidationSettings
-                                                                                                    ErrorDisplayMode="None"
-                                                                                                    CausesValidation="True"
-                                                                                                    ValidationGroup="ValidationDettagliIntervento">
-                                                                                                    <ErrorFrameStyle BackColor="LightPink" />
-                                                                                                    <RequiredField IsRequired="True" />
-                                                                                                </ValidationSettings>
-                                                                                            </dx:ASPxMemo>
-                                                                                        </dx:LayoutItemNestedControlContainer>
-                                                                                    </LayoutItemNestedControlCollection>
-                                                                                    <CaptionSettings VerticalAlign="Top" Location="Top" />
-                                                                                </dx:LayoutItem>
-                                                                                <dx:LayoutItem Caption="Motivo della chiamata:" ColumnSpan="4">
-                                                                                    <LayoutItemNestedControlCollection>
-                                                                                        <dx:LayoutItemNestedControlContainer>
+                                                        <dx:ASPxCallbackPanel ID="CallbackPanelFormView" runat="server" ClientInstanceName="CallbackPanelFormView"  OnCallback="CallbackPanelFormView_Callback">
+                                                            <PanelCollection>
+                                                                <dx:PanelContent>
+                                                                    <asp:FormView ID="FormViewDettagliIntervento" ClientInstanceName="FormViewDettagliIntervento" runat="server" DataSourceID="DtsTestataRapp" Width="100%" OnDataBound="FormViewDettagliIntervento_DataBound">
+                                                                        <EditItemTemplate>
+                                                                            <dx:ASPxFormLayout runat="server" ID="formlayoutDettagliIntervento" ClientInstanceName="formlayoutDettagliIntervento" Width="100%" Paddings-Padding="0" BackColor="#ffffff" ValidateRequestMode="Enabled">
+                                                                                <Items>
+                                                                                    <dx:LayoutGroup Caption="" ColumnCount="4" Paddings-Padding="0">
+                                                                                        <GridSettings>
+                                                                                            <Breakpoints>
+                                                                                                <dx:LayoutBreakpoint MaxWidth="600" ColumnCount="1" Name="S" />
+                                                                                            </Breakpoints>
+                                                                                        </GridSettings>
+                                                                                        <Paddings Padding="0px"></Paddings>
+                                                                                        <Items>
+                                                                                            <dx:LayoutItem Caption="Oggetto della chiamata:" ColumnSpan="4">
+                                                                                                <LayoutItemNestedControlCollection>
+                                                                                                    <dx:LayoutItemNestedControlContainer>
+                                                                                                        <dx:ASPxMemo
+                                                                                                            ID="OggettoTck_Memo"
+                                                                                                            runat="server"
+                                                                                                            Rows="2"
+                                                                                                            Text='<%# Bind("OggettoTCK") %>'
+                                                                                                            NullText="Oggetto della chiamata?"
+                                                                                                            Width="100%"
+                                                                                                            CssClass="oggetto-tck">
+                                                                                                            <InvalidStyle BackColor="LightPink" />
+                                                                                                            <ValidationSettings
+                                                                                                                ErrorDisplayMode="None"
+                                                                                                                CausesValidation="True"
+                                                                                                                ValidationGroup="ValidationDettagliIntervento">
+                                                                                                                <ErrorFrameStyle BackColor="LightPink" />
+                                                                                                                <RequiredField IsRequired="True" />
+                                                                                                            </ValidationSettings>
+                                                                                                        </dx:ASPxMemo>
+                                                                                                    </dx:LayoutItemNestedControlContainer>
+                                                                                                </LayoutItemNestedControlCollection>
+                                                                                                <CaptionSettings VerticalAlign="Top" Location="Top" />
+                                                                                            </dx:LayoutItem>
+                                                                                            <dx:LayoutItem Caption="Motivo della chiamata:" ColumnSpan="4">
+                                                                                                <LayoutItemNestedControlCollection>
+                                                                                                    <dx:LayoutItemNestedControlContainer>
 
-                                                                                            <dx:ASPxMemo ID="Motivo_Chiamata_Txt_DX" Rows="5" runat="server" Text='<%# Bind("MotivoChiamata") %>' NullText="Motivo della chiamata?" CssClass="motivo-tck">
-                                                                                                <InvalidStyle BackColor="LightPink"></InvalidStyle>
-                                                                                                <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationDettagliIntervento">
-                                                                                                    <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
-                                                                                                    <RequiredField IsRequired="True"></RequiredField>
-                                                                                                </ValidationSettings>
-                                                                                            </dx:ASPxMemo>
+                                                                                                        <dx:ASPxMemo ID="Motivo_Chiamata_Txt_DX" Rows="5" runat="server" Text='<%# Bind("MotivoChiamata") %>' NullText="Motivo della chiamata?" CssClass="motivo-tck">
+                                                                                                            <InvalidStyle BackColor="LightPink"></InvalidStyle>
+                                                                                                            <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationDettagliIntervento">
+                                                                                                                <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
+                                                                                                                <RequiredField IsRequired="True"></RequiredField>
+                                                                                                            </ValidationSettings>
+                                                                                                        </dx:ASPxMemo>
 
-                                                                                        </dx:LayoutItemNestedControlContainer>
-                                                                                    </LayoutItemNestedControlCollection>
-                                                                                    <CaptionSettings VerticalAlign="Top" Location="Top" />
-                                                                                </dx:LayoutItem>
-                                                                                <dx:LayoutItem Caption="Descrizione Prestazione:" ColumnSpan="4">
-                                                                                    <LayoutItemNestedControlCollection>
-                                                                                        <dx:LayoutItemNestedControlContainer>
+                                                                                                    </dx:LayoutItemNestedControlContainer>
+                                                                                                </LayoutItemNestedControlCollection>
+                                                                                                <CaptionSettings VerticalAlign="Top" Location="Top" />
+                                                                                            </dx:LayoutItem>
+                                                                                            <dx:LayoutItem Caption="Descrizione Prestazione:" ColumnSpan="4">
+                                                                                                <LayoutItemNestedControlCollection>
+                                                                                                    <dx:LayoutItemNestedControlContainer>
 
-                                                                                            <dx:ASPxMemo ID="DescrPrest_Txt_DX" Rows="5" runat="server" Text='<%# Bind("LavoroEseguito") %>' NullText="Descrizione Prestazione?" CssClass="descrPrest-tck">
-                                                                                                <InvalidStyle BackColor="LightPink"></InvalidStyle>
-                                                                                                <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationDettagliIntervento">
-                                                                                                    <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
-                                                                                                    <RequiredField IsRequired="True"></RequiredField>
-                                                                                                </ValidationSettings>
-                                                                                            </dx:ASPxMemo>
-                                                                                            <a href="#" class="btn btn-info" style="font-size: 1rem; padding: 2px 6px;" data-clipboard-text='<%# Eval("LavoroEseguito") %>'>
-                                                                                                <i class="fa fa-copy right"></i>Copia Negli Appunti
-                                                                                            </a>
-                                                                                        </dx:LayoutItemNestedControlContainer>
-                                                                                    </LayoutItemNestedControlCollection>
-                                                                                    <CaptionSettings VerticalAlign="Top" Location="Top" />
-                                                                                </dx:LayoutItem>
-                                                                                <dx:LayoutItem Caption="Note:" ColumnSpan="4">
-                                                                                    <LayoutItemNestedControlCollection>
-                                                                                        <dx:LayoutItemNestedControlContainer>
+                                                                                                        <dx:ASPxMemo ID="DescrPrest_Txt_DX" Rows="5" runat="server" Text='<%# Bind("LavoroEseguito") %>' NullText="Descrizione Prestazione?" CssClass="descrPrest-tck">
+                                                                                                            <InvalidStyle BackColor="LightPink"></InvalidStyle>
+                                                                                                            <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationDettagliIntervento">
+                                                                                                                <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
+                                                                                                                <RequiredField IsRequired="True"></RequiredField>
+                                                                                                            </ValidationSettings>
+                                                                                                        </dx:ASPxMemo>
+                                                                                                        <a href="#" class="btn btn-info" style="font-size: 1rem; padding: 2px 6px;" data-clipboard-text='<%# Eval("LavoroEseguito") %>'>
+                                                                                                            <i class="fa fa-copy right"></i>Copia Negli Appunti
+                                                                                                        </a>
+                                                                                                    </dx:LayoutItemNestedControlContainer>
+                                                                                                </LayoutItemNestedControlCollection>
+                                                                                                <CaptionSettings VerticalAlign="Top" Location="Top" />
+                                                                                            </dx:LayoutItem>
+                                                                                            <dx:LayoutItem Caption="Note:" ColumnSpan="4">
+                                                                                                <LayoutItemNestedControlCollection>
+                                                                                                    <dx:LayoutItemNestedControlContainer>
 
-                                                                                            <dx:ASPxMemo ID="Note_Txt_DX" Rows="5" runat="server" Text='<%# Bind("Note") %>' NullText="Note?" CssClass="note-tck">
-                                                                                                <InvalidStyle BackColor="LightPink"></InvalidStyle>
-                                                                                                <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationDettagliIntervento">
-                                                                                                    <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
-                                                                                                    <RequiredField IsRequired="False"></RequiredField>
-                                                                                                </ValidationSettings>
-                                                                                            </dx:ASPxMemo>
-                                                                                        </dx:LayoutItemNestedControlContainer>
-                                                                                    </LayoutItemNestedControlCollection>
-                                                                                    <CaptionSettings VerticalAlign="Top" Location="Top" />
-                                                                                </dx:LayoutItem>
+                                                                                                        <dx:ASPxMemo ID="Note_Txt_DX" Rows="5" runat="server" Text='<%# Bind("Note") %>' NullText="Note?" CssClass="note-tck">
+                                                                                                            <InvalidStyle BackColor="LightPink"></InvalidStyle>
+                                                                                                            <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationDettagliIntervento">
+                                                                                                                <ErrorFrameStyle BackColor="LightPink"></ErrorFrameStyle>
+                                                                                                                <RequiredField IsRequired="False"></RequiredField>
+                                                                                                            </ValidationSettings>
+                                                                                                        </dx:ASPxMemo>
+                                                                                                    </dx:LayoutItemNestedControlContainer>
+                                                                                                </LayoutItemNestedControlCollection>
+                                                                                                <CaptionSettings VerticalAlign="Top" Location="Top" />
+                                                                                            </dx:LayoutItem>
 
-                                                                                <dx:LayoutItem Name="liFirmaTecnico" Caption="Firma Tecnico:" ColumnSpan="2">
-                                                                                    <LayoutItemNestedControlCollection>
-                                                                                        <dx:LayoutItemNestedControlContainer>
-                                                                                            <dx:ASPxComboBox
-                                                                                                ID="ddltecnicifirma"
-                                                                                                runat="server"
-                                                                                                DataSourceID="FirmaTecnicoDTS"
-                                                                                                TextField="Utente"
-                                                                                                ValueField="Utente"
-                                                                                                NullText="Scegli un tecnico..."
-                                                                                                Width="100%"
-                                                                                                CssClass="firmaTecnico-tck">
-                                                                                                <ClientSideEvents SelectedIndexChanged="function(s,e){
+                                                                                            <dx:LayoutItem Name="liFirmaTecnico" Caption="Firma Tecnico:" ColumnSpan="2">
+                                                                                                <LayoutItemNestedControlCollection>
+                                                                                                    <dx:LayoutItemNestedControlContainer>
+                                                                                                        <dx:ASPxComboBox
+                                                                                                            ID="ddltecnicifirma"
+                                                                                                            runat="server"
+                                                                                                            DataSourceID="FirmaTecnicoDTS"
+                                                                                                            TextField="Utente"
+                                                                                                            ValueField="Utente"
+                                                                                                            NullText="Scegli un tecnico..."
+                                                                                                            Width="100%"
+                                                                                                            CssClass="firmaTecnico-tck">
+                                                                                                            <ClientSideEvents SelectedIndexChanged="function(s,e){
                                         if(FirmaTecnico_CallbackPnl) {
                                             FirmaTecnico_CallbackPnl.PerformCallback(s.GetValue());
                                         }
                                     }" />
-                                                                                            </dx:ASPxComboBox>
-                                                                                            <br />
-                                                                                            <br />
-                                                                                            <dx:ASPxCallbackPanel
-                                                                                                ID="FirmaTecnico_CallbackPnl"
-                                                                                                runat="server"
-                                                                                                ClientInstanceName="FirmaTecnico_CallbackPnl"
-                                                                                                OnCallback="FirmaTecnico_CallbackPnl_Callback">
-                                                                                                <PanelCollection>
-                                                                                                    <dx:PanelContent>
-                                                                                                        <dx:ASPxLabel ID="lblFirmaTecnico" runat="server" Font-Bold="true" Text='<%# Bind("FirmaTecnico") %>' />
+                                                                                                        </dx:ASPxComboBox>
+                                                                                                        <br />
+                                                                                                        <br />
+                                                                                                        <dx:ASPxCallbackPanel
+                                                                                                            ID="FirmaTecnico_CallbackPnl"
+                                                                                                            runat="server"
+                                                                                                            ClientInstanceName="FirmaTecnico_CallbackPnl"
+                                                                                                            OnCallback="FirmaTecnico_CallbackPnl_Callback">
+                                                                                                            <PanelCollection>
+                                                                                                                <dx:PanelContent>
+                                                                                                                    <dx:ASPxLabel ID="lblFirmaTecnico" runat="server" Font-Bold="true" Text='<%# Bind("FirmaTecnico") %>' />
+                                                                                                                    <br />
+                                                                                                                    <dx:ASPxImage
+                                                                                                                        ID="imgFirmaTecnico"
+                                                                                                                        runat="server"
+                                                                                                                        Width="200px"
+                                                                                                                        Visible="true"
+                                                                                                                        ImageUrl='<%# Bind("ImgFirmaTecnico") %>' />
+                                                                                                                </dx:PanelContent>
+                                                                                                            </PanelCollection>
+                                                                                                        </dx:ASPxCallbackPanel>
+                                                                                                    </dx:LayoutItemNestedControlContainer>
+                                                                                                </LayoutItemNestedControlCollection>
+                                                                                                <CaptionSettings VerticalAlign="Top" Location="Top" />
+                                                                                            </dx:LayoutItem>
+                                                                                            <dx:LayoutItem Name="liFirmaCliente" Caption="Firma Cliente:" ColumnSpan="2">
+                                                                                                <LayoutItemNestedControlCollection>
+                                                                                                    <dx:LayoutItemNestedControlContainer>
+                                                                                                        <dx:ASPxTextBox ID="TxtFirmaCliente" runat="server" NullText="" CssClass="firmaCliente-tck">
+                                                                                                        </dx:ASPxTextBox>
+                                                                                                        <dx:BootstrapButton
+                                                                                                            runat="server"
+                                                                                                            ID="FirmaT_Btn"
+                                                                                                            ClientInstanceName="FirmaT_Btn"
+                                                                                                            AutoPostBack="false"
+                                                                                                            CssClasses-Control="btn btn-just-icon btn-just-icon-padding"
+                                                                                                            Style="min-width: 10px; z-index: 9999 !important;" Width="30%"
+                                                                                                            ToolTip="Firma il ticket"
+                                                                                                            Badge-CssClass="BadgeBtn-just-icon"
+                                                                                                            Visible="true">
+
+                                                                                                            <Badge IconCssClass="fa fa-edit" Text="Cliente" />
+                                                                                                            <SettingsBootstrap RenderOption="Info" Sizing="Small" />
+                                                                                                            <ClientSideEvents Click="function(s, e) { FirmaPopup.Show(); }" />
+                                                                                                        </dx:BootstrapButton>
+                                                                                                        <br />
+                                                                                                        <dx:ASPxLabel ID="lblFirmaCliente" runat="server" Font-Bold="true" Text='<%# Bind("FirmaCliente") %>' />
                                                                                                         <br />
                                                                                                         <dx:ASPxImage
-                                                                                                            ID="imgFirmaTecnico"
+                                                                                                            ID="ASPxImage1"
                                                                                                             runat="server"
-                                                                                                            Width="200px"
+                                                                                                            Width="400px"
                                                                                                             Visible="true"
-                                                                                                            ImageUrl='<%# Bind("ImgFirmaTecnico") %>' />
-                                                                                                    </dx:PanelContent>
-                                                                                                </PanelCollection>
-                                                                                            </dx:ASPxCallbackPanel>
-                                                                                        </dx:LayoutItemNestedControlContainer>
-                                                                                    </LayoutItemNestedControlCollection>
-                                                                                    <CaptionSettings VerticalAlign="Top" Location="Top" />
-                                                                                </dx:LayoutItem>
-                                                                                <dx:LayoutItem Name="liFirmaCliente" Caption="Firma Cliente:" ColumnSpan="2">
-                                                                                    <LayoutItemNestedControlCollection>
-                                                                                        <dx:LayoutItemNestedControlContainer>
-                                                                                            <dx:ASPxTextBox ID="TxtFirmaCliente" runat="server" NullText="" CssClass="firmaCliente-tck">
-                                                                                            </dx:ASPxTextBox>
-                                                                                            <dx:BootstrapButton
-                                                                                                runat="server"
-                                                                                                ID="FirmaT_Btn"
-                                                                                                ClientInstanceName="FirmaT_Btn"
-                                                                                                AutoPostBack="false"
-                                                                                                CssClasses-Control="btn btn-just-icon btn-just-icon-padding"
-                                                                                                Style="min-width: 10px; z-index: 9999 !important;" Width="30%"
-                                                                                                ToolTip="Firma il ticket"
-                                                                                                Badge-CssClass="BadgeBtn-just-icon"
-                                                                                                Visible="true">
-
-                                                                                                <Badge IconCssClass="fa fa-edit" Text="Cliente" />
-                                                                                                <SettingsBootstrap RenderOption="Info" Sizing="Small" />
-                                                                                                <ClientSideEvents Click="function(s, e) { 
-                            var idTicket = getQueryStringValue('IdTicket'); 
-                            if(idTicket) window.open('Ticket_Firma.aspx?IdTicket=' + idTicket, '_blank'); 
-                            else alert('IdTicket non trovato!');
-    }" />
-                                                                                            </dx:BootstrapButton>
-                                                                                            <br />
-                                                                                            <dx:ASPxLabel ID="lblFirmaCliente" runat="server" Font-Bold="true" Text='<%# Bind("FirmaCliente") %>' />
-                                                                                            <br />
-                                                                                            <dx:ASPxImage
-                                                                                                ID="ASPxImage1"
-                                                                                                runat="server"
-                                                                                                Width="400px"
-                                                                                                Visible="true"
-                                                                                                ImageUrl='<%# Bind("ImgFirmaCliente") %>' />
-                                                                                        </dx:LayoutItemNestedControlContainer>
-                                                                                    </LayoutItemNestedControlCollection>
-                                                                                    <CaptionSettings VerticalAlign="Top" Location="Top" />
-                                                                                </dx:LayoutItem>
+                                                                                                            ImageUrl='<%# Bind("ImgFirmaCliente") %>' />
+                                                                                                    </dx:LayoutItemNestedControlContainer>
+                                                                                                </LayoutItemNestedControlCollection>
+                                                                                                <CaptionSettings VerticalAlign="Top" Location="Top" />
+                                                                                            </dx:LayoutItem>
 
 
-                                                                                <dx:LayoutItem Caption="Fatturazione" FieldName="TCK_TipoChiusuraChiamataFattura" ColumnSpan="2">
-                                                                                    <LayoutItemNestedControlCollection>
-                                                                                        <dx:LayoutItemNestedControlContainer>
-                                                                                            <dx:ASPxComboBox ID="TCK_TipoChiusuraChiamataFattura_Combobox" ClientInstanceName="TCK_TipoChiusuraChiamataFattura_Combobox" Value='<%# Bind("TCK_TipoChiusuraChiamataFattura") %>' TextField="IdDescrizione" ValueField="Id" DisplayFormatString="{0} - {1}" TextFormatString="{0}" DataSourceID="DtsTCK_TipoChiusuraChiamataFattura" runat="server" ValueType="System.Int32" Width="100%" CssClass="fatturazione-tck">
-                                                                                                <Columns>
-                                                                                                    <dx:ListBoxColumn FieldName="Id" Width="30%" ClientVisible="false"></dx:ListBoxColumn>
-                                                                                                    <dx:ListBoxColumn FieldName="Descrizione" Width="30%"></dx:ListBoxColumn>
-                                                                                                    <dx:ListBoxColumn FieldName="CodiceAssistenza" Width="55%"></dx:ListBoxColumn>
-                                                                                                    <dx:ListBoxColumn FieldName="TotOre" Caption="Ore" Width="15%"></dx:ListBoxColumn>
-                                                                                                </Columns>
-                                                                                            </dx:ASPxComboBox>
-                                                                                            <asp:SqlDataSource ID="DtsTCK_TipoChiusuraChiamataFattura" runat="server" ConnectionString="<%$ ConnectionStrings:info4portaleConnectionString %>" SelectCommand="SELECT TCK_TipoChiusuraChiamata.Id, TCK_TipoChiusuraChiamata.Descrizione, CAST(TCK_TipoChiusuraChiamata.Id AS nvarchar) + ' - ' + TCK_TipoChiusuraChiamata.Descrizione AS IdDescrizione, TCK_TipoChiusuraChiamata.LabelClass, TCK_TipoChiusuraChiamata.DisplayOrder, TCK_TipoChiusuraChiamata.TipoAssistenzaKING, derivedtbl_1.IdProdotto AS CodiceAssistenza, derivedtbl_1.ResiduoOre AS TotOre, CAST(TCK_TipoChiusuraChiamata.Id AS nvarchar) + CASE WHEN derivedtbl_1.IdProdotto IS NOT NULL THEN '-' + derivedtbl_1.IdProdotto ELSE '' END AS IdTipologia FROM TCK_TipoChiusuraChiamata LEFT OUTER JOIN (SELECT Denom, CodCliente, IdProdotto, Totale, Totinterventi, ResiduoOre, U_CC, DataCar, U_Tipo_Assistenza FROM U_CarnetAttivi_KING_View WHERE CodCliente = (SELECT CodCli FROM TCK_TestataTicket WHERE CodRapportino = @IdTicket) AND U_CC = 0) AS derivedtbl_1 ON TCK_TipoChiusuraChiamata.TipoAssistenzaKING = derivedtbl_1.U_Tipo_Assistenza WHERE TCK_TipoChiusuraChiamata.Id <> 0 ORDER BY TCK_TipoChiusuraChiamata.DisplayOrder">
-                                                                                                <SelectParameters>
-                                                                                                    <asp:QueryStringParameter QueryStringField="IdTicket" Name="IdTicket"></asp:QueryStringParameter>
-                                                                                                </SelectParameters>
-                                                                                            </asp:SqlDataSource>
-                                                                                        </dx:LayoutItemNestedControlContainer>
-                                                                                    </LayoutItemNestedControlCollection>
-                                                                                    <CaptionSettings VerticalAlign="Top" Location="Top" />
-                                                                                </dx:LayoutItem>
+                                                                                            <dx:LayoutItem Caption="Fatturazione" FieldName="TCK_TipoChiusuraChiamataFattura" ColumnSpan="2">
+                                                                                                <LayoutItemNestedControlCollection>
+                                                                                                    <dx:LayoutItemNestedControlContainer>
+                                                                                                        <dx:ASPxComboBox ID="TCK_TipoChiusuraChiamataFattura_Combobox" ClientInstanceName="TCK_TipoChiusuraChiamataFattura_Combobox" Value='<%# Bind("TCK_TipoChiusuraChiamataFattura") %>' TextField="IdDescrizione" ValueField="Id" DisplayFormatString="{0} - {1}" TextFormatString="{0}" DataSourceID="DtsTCK_TipoChiusuraChiamataFattura" runat="server" ValueType="System.Int32" Width="100%" CssClass="fatturazione-tck">
+                                                                                                            <Columns>
+                                                                                                                <dx:ListBoxColumn FieldName="Id" Width="30%" ClientVisible="false"></dx:ListBoxColumn>
+                                                                                                                <dx:ListBoxColumn FieldName="Descrizione" Width="30%"></dx:ListBoxColumn>
+                                                                                                                <dx:ListBoxColumn FieldName="CodiceAssistenza" Width="55%"></dx:ListBoxColumn>
+                                                                                                                <dx:ListBoxColumn FieldName="TotOre" Caption="Ore" Width="15%"></dx:ListBoxColumn>
+                                                                                                            </Columns>
+                                                                                                        </dx:ASPxComboBox>
+                                                                                                        <asp:SqlDataSource ID="DtsTCK_TipoChiusuraChiamataFattura" runat="server" ConnectionString="<%$ ConnectionStrings:info4portaleConnectionString %>" SelectCommand="SELECT TCK_TipoChiusuraChiamata.Id, TCK_TipoChiusuraChiamata.Descrizione, CAST(TCK_TipoChiusuraChiamata.Id AS nvarchar) + ' - ' + TCK_TipoChiusuraChiamata.Descrizione AS IdDescrizione, TCK_TipoChiusuraChiamata.LabelClass, TCK_TipoChiusuraChiamata.DisplayOrder, TCK_TipoChiusuraChiamata.TipoAssistenzaKING, derivedtbl_1.IdProdotto AS CodiceAssistenza, derivedtbl_1.ResiduoOre AS TotOre, CAST(TCK_TipoChiusuraChiamata.Id AS nvarchar) + CASE WHEN derivedtbl_1.IdProdotto IS NOT NULL THEN '-' + derivedtbl_1.IdProdotto ELSE '' END AS IdTipologia FROM TCK_TipoChiusuraChiamata LEFT OUTER JOIN (SELECT Denom, CodCliente, IdProdotto, Totale, Totinterventi, ResiduoOre, U_CC, DataCar, U_Tipo_Assistenza FROM U_CarnetAttivi_KING_View WHERE CodCliente = (SELECT CodCli FROM TCK_TestataTicket WHERE CodRapportino = @IdTicket) AND U_CC = 0) AS derivedtbl_1 ON TCK_TipoChiusuraChiamata.TipoAssistenzaKING = derivedtbl_1.U_Tipo_Assistenza WHERE TCK_TipoChiusuraChiamata.Id <> 0 ORDER BY TCK_TipoChiusuraChiamata.DisplayOrder">
+                                                                                                            <SelectParameters>
+                                                                                                                <asp:QueryStringParameter QueryStringField="IdTicket" Name="IdTicket"></asp:QueryStringParameter>
+                                                                                                            </SelectParameters>
+                                                                                                        </asp:SqlDataSource>
+                                                                                                    </dx:LayoutItemNestedControlContainer>
+                                                                                                </LayoutItemNestedControlCollection>
+                                                                                                <CaptionSettings VerticalAlign="Top" Location="Top" />
+                                                                                            </dx:LayoutItem>
 
-                                                                                <dx:LayoutItem Caption="Chiusura:" FieldName="TCK_StatusChiamataChiusura" ColumnSpan="2">
-                                                                                    <LayoutItemNestedControlCollection>
-                                                                                        <dx:LayoutItemNestedControlContainer>
-                                                                                            <dx:ASPxRadioButtonList ID="Rbl_TCK_StatusChiamata_chiusura" runat="server" ClientInstanceName="Rbl_TCK_StatusChiamata_chiusura"
-                                                                                                ValueType="System.Int32"
-                                                                                                Value='<%# Bind("TCK_StatusChiamataChiusura") %>'
-                                                                                                TextField="Descrizione"
-                                                                                                ValueField="Id"
-                                                                                                DataSourceID="DtsTCK_StatusChiamata"
-                                                                                                RepeatDirection="Horizontal"
-                                                                                                RepeatColumns="3"
-                                                                                                RepeatLayout="Flow"
-                                                                                                CssClass="chiusura-tck">
+                                                                                            <dx:LayoutItem Caption="Chiusura:" FieldName="TCK_StatusChiamataChiusura" ColumnSpan="2">
+                                                                                                <LayoutItemNestedControlCollection>
+                                                                                                    <dx:LayoutItemNestedControlContainer>
+                                                                                                        <dx:ASPxRadioButtonList ID="Rbl_TCK_StatusChiamata_chiusura" runat="server" ClientInstanceName="Rbl_TCK_StatusChiamata_chiusura"
+                                                                                                            ValueType="System.Int32"
+                                                                                                            Value='<%# Bind("TCK_StatusChiamataChiusura") %>'
+                                                                                                            TextField="Descrizione"
+                                                                                                            ValueField="Id"
+                                                                                                            DataSourceID="DtsTCK_StatusChiamata"
+                                                                                                            RepeatDirection="Horizontal"
+                                                                                                            RepeatColumns="3"
+                                                                                                            RepeatLayout="Flow"
+                                                                                                            CssClass="chiusura-tck">
 
-                                                                                                <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationDettagliIntervento">
-                                                                                                    <ErrorFrameStyle BackColor="LightPink" />
-                                                                                                    <RequiredField IsRequired="True" />
-                                                                                                </ValidationSettings>
-                                                                                            </dx:ASPxRadioButtonList>
-                                                                                            <asp:SqlDataSource ID="DtsTCK_StatusChiamata" runat="server" ConnectionString="<%$ ConnectionStrings:info4portaleConnectionString %>" SelectCommand="SELECT Id, Descrizione, LabelClass FROM TCK_StatusChiamata WHERE (LastStep  = 1) ORDER BY Id"></asp:SqlDataSource>
-                                                                                        </dx:LayoutItemNestedControlContainer>
-                                                                                    </LayoutItemNestedControlCollection>
-                                                                                    <CaptionSettings VerticalAlign="Top" Location="Top" />
-                                                                                </dx:LayoutItem>
-                                                                            </Items>
-                                                                        </dx:LayoutGroup>
-                                                                    </Items>
-                                                                    <Paddings Padding="0px"></Paddings>
-                                                                </dx:ASPxFormLayout>
-                                                                </div>                
+                                                                                                            <ValidationSettings ErrorDisplayMode="None" CausesValidation="True" ValidationGroup="ValidationDettagliIntervento">
+                                                                                                                <ErrorFrameStyle BackColor="LightPink" />
+                                                                                                                <RequiredField IsRequired="True" />
+                                                                                                            </ValidationSettings>
+                                                                                                        </dx:ASPxRadioButtonList>
+                                                                                                        <asp:SqlDataSource ID="DtsTCK_StatusChiamata" runat="server" ConnectionString="<%$ ConnectionStrings:info4portaleConnectionString %>" SelectCommand="SELECT Id, Descrizione, LabelClass FROM TCK_StatusChiamata WHERE (LastStep  = 1) ORDER BY Id"></asp:SqlDataSource>
+                                                                                                    </dx:LayoutItemNestedControlContainer>
+                                                                                                </LayoutItemNestedControlCollection>
+                                                                                                <CaptionSettings VerticalAlign="Top" Location="Top" />
+                                                                                            </dx:LayoutItem>
+                                                                                        </Items>
+                                                                                    </dx:LayoutGroup>
+                                                                                </Items>
+                                                                                <Paddings Padding="0px"></Paddings>
+                                                                            </dx:ASPxFormLayout>
+                                                                            </div>                
                                                           </div>
                                                     </div>
                                                 </div>
                                             </div>                                                         
-                                                            </EditItemTemplate>
-                                                        </asp:FormView>
+                                                                        </EditItemTemplate>
+                                                                    </asp:FormView>
+                                                                </dx:PanelContent>
+                                                            </PanelCollection>
+                                                        </dx:ASPxCallbackPanel>
                                                         <dx:BootstrapButton runat="server" ID="BootstrapButton1" ClientInstanceName="UpdateTicketBtn" AutoPostBack="false"
                                                             Badge-CssClass="BadgeBtn-just-icon"
                                                             CssClasses-Control="btn btn-just-icon btn-just-icon-padding btn-success">
@@ -1877,6 +1881,61 @@
             </dx:PopupControlContentControl>
         </ContentCollection>
         <ClientSideEvents Shown="function(s, e) { resizeForzaChiusuraPopup(); }" />
+    </dx:ASPxPopupControl>
+
+    <dx:ASPxPopupControl ID="FirmaPopup" runat="server" ClientInstanceName="FirmaPopup"
+        PopupHorizontalAlign="WindowCenter"
+        PopupVerticalAlign="WindowCenter"
+        Width="850px"
+        Modal="true"
+        ShowCloseButton="true"
+        CloseOnEscape="true"
+        HeaderText="Firma Cliente">
+
+        <ContentCollection>
+            <dx:PopupControlContentControl runat="server">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding" style="margin-top: 5px;">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 5px;">
+                        <div id="signature-pad" class="m-signature-pad" style="min-height: 450px!important; max-height: 300px!important; width: 100%!important">
+                            <asp:FormView ID="DatiFirmaTck_FW" runat="server" DataSourceID="InfoFirmaTck">
+                                <ItemTemplate>
+                                    <asp:Label ID="DatiFirmaTck" runat="server" Font-Size="Large">&nbsp;&nbsp;Cliente: <span style="color: red"><%# Eval("società")%></span>
+                                        Ticket N°: <span style="color: red"><%# Eval("CodRapportino")%></span>
+                                        &nbsp;&nbsp; Responsabile: <span style="color: red">
+                                            <asp:Label ID="firmacliente_Lbl" runat="server" Text='<%# Eval("firmacliente")%>'></asp:Label>
+                                        </span>
+                                    </asp:Label>
+                                </ItemTemplate>
+                            </asp:FormView>
+
+                            <div class="m-signature-pad--body">
+                                <canvas></canvas>
+                            </div>
+
+                            <div class="m-signature-pad--footer">
+                                <div class="description" style="color: black !important">
+                                    <asp:TextBox type="text" name="output" Style="display: none" class="output" ID="signatureOut" runat="server" ValidationGroup="ValidFirma" ClientIDMode="Static" Width="50px" />
+
+                                    <asp:LinkButton ID="SalvaFirma_Btn" runat="server"
+                                        ClientIDMode="Static"
+                                        Style="display: none"
+                                        ValidationGroup="ValidFirma"
+                                        CssClass="btn btn-success">
+    Genera
+                                    </asp:LinkButton>
+                                    <button type="button" class="btn btn-small btn-danger button clear" data-action="clear">
+                                        <i class="fa fa-trash" style="font-size: 15px !important;"></i>Cancella
+                                    </button>
+                                    <button id="Button1" runat="server" type="button" validationgroup="ValidGrp" class="btn btn-small btn-success button save" data-action="save">
+                                        <i class="fa fa-check" style="font-size: 15px !important;"></i>Genera
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
     </dx:ASPxPopupControl>
 
     <dx:ASPxPopupControl ID="ModificaNoteTecnico_popup"
@@ -2313,21 +2372,30 @@
 
     <script>
         function ResizePopup() {
-            if (PopupInviaMail) {
+            if (typeof PopupInviaMail !== "undefined" && PopupInviaMail) {
                 var w = window.innerWidth;
-
                 if (w <= 991) {
                     PopupInviaMail.SetWidth(w * 0.9);
                 } else {
                     PopupInviaMail.SetWidth(800);
                 }
             }
-            if (PopupAllegato) {
-                var w = window.innerWidth;
 
+            if (typeof FirmaPopup !== "undefined" && FirmaPopup) {
+                var w = window.innerWidth;
                 if (w <= 991) {
-                    PopupAllegato.SetWidth(w * 0.9);
-                    PopupAllegato.SetHeight(w * 0.9);
+                    FirmaPopup.SetWidth(w * 1);
+                    FirmaPopup.SetHeight(w * 1.3);
+                } else {
+                    FirmaPopup.SetWidth(800);
+                }
+            }
+
+            if (typeof PopupAllegato !== "undefined" && PopupAllegato) {
+                var w = window.innerWidth;
+                if (w <= 991) {
+                    PopupAllegato.SetWidth(w * 1);
+                    PopupAllegato.SetHeight(w * 1.3);
                 } else {
                     PopupAllegato.SetWidth(800);
                 }
@@ -2336,6 +2404,7 @@
 
         window.addEventListener('resize', ResizePopup);
         window.addEventListener('load', ResizePopup);
+
     </script>
     <script>
         function ExecNotify1() {
@@ -2491,8 +2560,69 @@
             <asp:QueryStringParameter DefaultValue="0" Name="Param1" QueryStringField="IdTicket" />
         </SelectParameters>
     </asp:SqlDataSource>
+    <asp:SqlDataSource ID="InfoFirmaTck" runat="server" ConnectionString="<%$ ConnectionStrings:info4portaleConnectionString %>" SelectCommand="SELECT Società, CodRapportino, firmacliente FROM TCK_TestataTicket WHERE (CodRapportino = @IdTicket)">
+        <SelectParameters>
+            <asp:QueryStringParameter DefaultValue="0" Name="IdTicket" QueryStringField="IdTicket" />
+        </SelectParameters>
+    </asp:SqlDataSource>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="PageScriptContent" runat="server">
+    <script type="text/javascript">
+        var waitForPopup = setInterval(function () {
+            if (window.FirmaPopup) {
+                clearInterval(waitForPopup);
+
+                var popup = window.FirmaPopup;
+
+                popup.Shown.AddHandler(function (s, e) {
+                    var wrapper = document.getElementById("signature-pad");
+                    if (!wrapper) return;
+
+                    var canvas = wrapper.querySelector("canvas");
+                    var clearButton = wrapper.querySelector("[data-action=clear]");
+                    var saveButton = wrapper.querySelector("[data-action=save]");
+                    var output = document.getElementById("signatureOut");
+
+                    if (!window.signaturePad) {
+                        window.signaturePad = new SignaturePad(canvas, { backgroundColor: '' });
+                    }
+
+                    function resizeCanvas() {
+                        var ratio = Math.max(window.devicePixelRatio || 1, 1);
+                        canvas.width = canvas.offsetWidth * ratio;
+                        canvas.height = canvas.offsetHeight * ratio;
+                        canvas.getContext("2d").scale(ratio, ratio);
+                    }
+                    resizeCanvas();
+                    window.onresize = resizeCanvas;
+
+                    if (clearButton && !clearButton.dataset.bound) {
+                        clearButton.addEventListener("click", function () {
+                            window.signaturePad.clear();
+                            output.value = '';
+                        });
+                        clearButton.dataset.bound = true;
+                    }
+
+                    if (saveButton && !saveButton.dataset.bound) {
+                        saveButton.addEventListener("click", function () {
+                            if (window.signaturePad.isEmpty()) {
+                                alert("Firma vuota!");
+                                return;
+                            }
+                            // salva la firma in hidden field ASP.NET
+                            output.value = window.signaturePad.toDataURL();
+
+
+                            popup.Hide();
+                            CallbackPanelFormView.PerformCallback();
+                        });
+                        saveButton.dataset.bound = true;
+                    }
+                });
+            }
+        }, 50); // controlla ogni 50ms finché FirmaPopup non esiste
+    </script>
     <script>
         function validateCheckBoxList() {
             const list = document.getElementById('<%= AssociaTecnico_Ckbl.ClientID %>');
@@ -2562,8 +2692,25 @@
             CallbackPanelModificaNoteTecnico.PerformCallback("SalvaNoteTecnico");
         }
         function salvaAssociazioneTecnico() {
-            CallbackPanelAssociaTecnico.PerformCallback("SalvaAssociazioneTecnico");
+            if (typeof CallbackPanelAssociaTecnico !== "undefined" && CallbackPanelAssociaTecnico) {
+                CallbackPanelAssociaTecnico.PerformCallback("SalvaAssociazioneTecnico");
+            } else {
+                console.warn("CallbackPanelAssociaTecnico non è ancora definito!");
+            }
         }
+
+        if (typeof CallbackPanelAssociaTecnico !== "undefined" && CallbackPanelAssociaTecnico) {
+            CallbackPanelAssociaTecnico.EndCallback.AddHandler(function (s, e) {
+                var cpSaved = s.cpSaved;
+                if (cpSaved && cpSaved === "OK") {
+                    location.reload();
+                }
+            });
+        } else {
+            console.warn("CallbackPanelAssociaTecnico non è ancora definito al momento dell'aggiunta handler.");
+        }
+
+
         function toggleCalendarFields(checkbox) {
             var fields = document.getElementById('calendarFields');
             fields.style.display = checkbox.checked ? 'flex' : 'none';
@@ -2629,7 +2776,7 @@
                 AssociaTecnico_popup.Hide();
                 Tecnici_Gridview.Refresh();
                 showNotification();
-
+                location.reload();
                 console.log('cpTotalTecnici:', s.cpTotalTecnici);
                 console.log('cpTotalOre:', s.cpTotalOre);
                 console.log('totalTecnici element:', document.getElementById('totalTecnici'));
@@ -2746,6 +2893,18 @@
             .toggle-switch input:checked + .slider::before {
                 transform: translateX(26px);
             }
+
+        #sidebar {
+            display: none !important;
+        }
+
+        .page-header.position-relative {
+            display: none !important;
+        }
+
+        .navbar.navbar-fixed-top {
+            display: none !important;
+        }
     </style>
     <script>
         //Adatta il popup alla larghezza dello schermo

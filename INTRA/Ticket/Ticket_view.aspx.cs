@@ -43,8 +43,6 @@ namespace INTRA.Ticket
                 FormViewDettagliIntervento.DataBind();
                 FormViewTicketSpese.DefaultMode = FormViewMode.Edit;
                 FormViewTicketSpese.DataBind();
-                //FormViewTicketMateriali.ChangeMode(FormViewMode.Insert);
-                //FormViewTicketMateriali.DataBind();
 
                 // Gestione visibilità bottoni
                 string idTicket = Request.QueryString["IdTicket"];
@@ -115,12 +113,10 @@ namespace INTRA.Ticket
                         DisableControls(FormViewTicket);
                         DisableControls(FormViewDettagliIntervento);
                         DisableControls(FormViewTicketSpese);
-                        //DisableControls(FormViewTicketMateriali);
                         DisableControls(FormViewEseguito);
                         UpdateTicketBtn.Visible = false;
                         BootstrapButton3.Visible = false;
                         BootstrapButton1.Visible = false;
-                        //BootstrapButton5.Visible = false;
                         // Disabilita tutti tranne il delete
                         Tecnici_Gridview.SettingsEditing.Mode = GridViewEditingMode.EditForm;
                         Generic_Gridview.SettingsEditing.Mode = GridViewEditingMode.EditForm;
@@ -150,12 +146,10 @@ namespace INTRA.Ticket
                         DisableControls(FormViewTicket);
                         DisableControls(FormViewDettagliIntervento);
                         DisableControls(FormViewTicketSpese);
-                        //DisableControls(FormViewTicketMateriali);
                         DisableControls(FormViewEseguito);
                         UpdateTicketBtn.Visible = false;
                         BootstrapButton3.Visible = false;
                         BootstrapButton1.Visible = false;
-                        //BootstrapButton5.Visible = false;
                         // Disabilita tutti tranne il delete
                         Tecnici_Gridview.SettingsEditing.Mode = GridViewEditingMode.EditForm;
                         Generic_Gridview.SettingsEditing.Mode = GridViewEditingMode.EditForm;
@@ -416,7 +410,6 @@ namespace INTRA.Ticket
             {
                 FormViewTicket.DataBind();
                 FormViewTicketSpese.DataBind();
-                //FormViewTicketMateriali.DataBind();
                 AllegatiTck_Gridview.DataBind();
             }
         }
@@ -634,64 +627,6 @@ namespace INTRA.Ticket
                 cmd.ExecuteNonQuery();
             }
         }
-        //protected void Update_FormViewTicketMat_Callback(object sender, DevExpress.Web.CallbackEventArgs e)
-        //{
-
-        //    ASPxFormLayout layoutMateriali = FormViewTicketMateriali.FindControl("TicketAddFormMateriali") as ASPxFormLayout;
-        //    if (layoutMateriali == null) return;
-
-        //    string idTicket = Request.QueryString["IdTicket"];
-        //    if (string.IsNullOrEmpty(idTicket)) return;
-
-        //    // Recupera i valori
-        //    string codMateriale = (layoutMateriali.FindControl("TxtCodMateriale") as ASPxTextBox)?.Text?.Trim();
-        //    string descrizione = (layoutMateriali.FindControl("TxtDescrizione") as ASPxTextBox)?.Text?.Trim();
-        //    string um = (layoutMateriali.FindControl("TxtUm") as ASPxTextBox)?.Text?.Trim();
-        //    decimal qta = (layoutMateriali.FindControl("TxtQta") as ASPxSpinEdit)?.Number ?? 0;
-
-        //    if (string.IsNullOrWhiteSpace(codMateriale) ||
-        //        string.IsNullOrWhiteSpace(descrizione) ||
-        //        string.IsNullOrWhiteSpace(um) ||
-        //        qta <= 0)
-        //    {
-        //        return;
-        //    }
-
-        //    try
-        //    {
-        //        string connStr = ConfigurationManager.ConnectionStrings["info4portaleConnectionString"].ConnectionString;
-
-        //        using (SqlConnection conn = new SqlConnection(connStr))
-        //        {
-        //            conn.Open();
-
-        //            string sql = @"
-        //        INSERT INTO TCK_DettRicambiTicket
-        //        (CodRapportino, CodMateriale, Descrizione, Um, Qta)
-        //        VALUES
-        //        (@CodRapportino, @CodMateriale, @Descrizione, @Um, @Qta)";
-
-        //            using (SqlCommand cmd = new SqlCommand(sql, conn))
-        //            {
-        //                cmd.Parameters.AddWithValue("@CodRapportino", idTicket);
-        //                cmd.Parameters.AddWithValue("@CodMateriale", codMateriale);
-        //                cmd.Parameters.AddWithValue("@Descrizione", descrizione);
-        //                cmd.Parameters.AddWithValue("@Um", um);
-        //                cmd.Parameters.AddWithValue("@Qta", qta);
-
-        //                cmd.ExecuteNonQuery();
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //    }
-        //// Reset campi form
-        //(layoutMateriali.FindControl("TxtCodMateriale") as ASPxTextBox).Text = "";
-        //    (layoutMateriali.FindControl("TxtDescrizione") as ASPxTextBox).Text = "";
-        //    (layoutMateriali.FindControl("TxtUm") as ASPxTextBox).Text = "";
-        //    (layoutMateriali.FindControl("TxtQta") as ASPxSpinEdit).Number = 0;
-        //}
 
         protected void Eseguito_CallbackPnl_Callback(object sender, CallbackEventArgsBase e)
         {
@@ -1488,6 +1423,33 @@ SELECT cast(TCK_TestataTicket.TCK_TipoChiusuraChiamataFattura as nvarchar) + cas
             CallbackPanelAssociaTecnico.JSProperties["cpSaved"] = "OK";
         }
 
+        public System.Drawing.Image Base64ToImage(string base64String)
+        {
+            // Convert Base64 String to byte[]
+            byte[] imageBytes = Convert.FromBase64String(base64String);
+            MemoryStream ms = new MemoryStream(imageBytes, 0,
+              imageBytes.Length);
+
+            // Convert byte[] to Image
+            ms.Write(imageBytes, 0, imageBytes.Length);
+            System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
+            return image;
+        }
+        protected void CallbackPanelFormView_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
+        {
+            string IdTicket = Request.QueryString["IdTicket"];
+            string FirmaCliente = signatureOut.Text;
+            TCK_Ticket Rapportini = new TCK_Ticket();
+            // salviamo la firma nel campo ImgFirmaCliente della testa rapportino 
+            Rapportini.CodRapportino = Convert.ToInt32(IdTicket);
+            Rapportini.ImgFirmaCliente = FirmaCliente;
+            System.Web.UI.WebControls.Label firmacliente_Lbl = (System.Web.UI.WebControls.Label)DatiFirmaTck_FW.FindControl("firmacliente_Lbl");
+            Rapportini.FirmaCliente = firmacliente_Lbl.Text;
+            Rapportini.TicketFirmato = true;
+            Rapportini.TCK_TestataTicket_FirmaUpdate(Rapportini);
+            FormViewDettagliIntervento.DataBind();
+            ((DevExpress.Web.ASPxCallbackPanel)sender).JSProperties["cpSaved"] = "OK";
+        }
 
     }
 }
