@@ -1349,7 +1349,7 @@
                                 <Columns>
                                     <dx:GridViewCommandColumn VisibleIndex="0" ShowEditButton="true" ShowDeleteButton="false" ShowNewButtonInHeader="true" Width="60px">
                                         <CustomButtons>
-                                            <dx:BootstrapGridViewCommandColumnCustomButton ID="Elimina" IconCssClass="icon4u icon-delete image" CssClass="btn btn-sm btn-custom-padding action-btn delete" Text="" />
+                                            <dx:BootstrapGridViewCommandColumnCustomButton ID="Elimina" IconCssClass="icon4u icon-delete image" CssClass="btn btn-sm btn-custom-padding action-btn delete" Text=""/>
                                         </CustomButtons>
                                     </dx:GridViewCommandColumn>
                                     <dx:GridViewDataComboBoxColumn FieldName="Utente" Caption="Tecnico" VisibleIndex="1" PropertiesComboBox-ValidationSettings-RequiredField-IsRequired="true">

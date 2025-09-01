@@ -137,7 +137,7 @@
             this.xrLabel3,
             this.xrLabel2,
             this.xrLabel1});
-            this.ReportHeader.HeightF = 23.95833F;
+            this.ReportHeader.HeightF = 23F;
             this.ReportHeader.Name = "ReportHeader";
             // 
             // xrLabel4
@@ -227,7 +227,7 @@
             this.DataSource = this.sqlDataSource1;
             this.FilterString = "[CodRapportino] = ?IdTicket";
             this.Font = new DevExpress.Drawing.DXFont("Arial", 9.75F);
-            this.Margins = new DevExpress.Drawing.DXMargins(100F, 383F, 0F, 0F);
+            this.Margins = new DevExpress.Drawing.DXMargins(100F, 384F, 0F, 0F);
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.IdTicket});
             this.Version = "24.2";

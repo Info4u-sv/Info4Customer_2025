@@ -132,7 +132,11 @@ namespace INTRA.Ticket
                             col.ShowNewButtonInHeader = false;
                             col.ShowEditButton = false;
                         });
-
+                        var cmdCol = Tecnici_Gridview.Columns.OfType<GridViewCommandColumn>().FirstOrDefault(c => c.VisibleIndex == 0);
+                        if (cmdCol != null)
+                        {
+                            cmdCol.Visible = false;
+                        }
                         // Disabilita update automatico
                         Tecnici_Gridview.SettingsBehavior.AllowFocusedRow = false;
                         Generic_Gridview.SettingsBehavior.AllowFocusedRow = false;
@@ -159,12 +163,20 @@ namespace INTRA.Ticket
                         {
                             col.ShowNewButtonInHeader = false;
                             col.ShowEditButton = false;
+                            col.ShowDeleteButton = false;
                         });
                         Generic_Gridview.Columns.OfType<GridViewCommandColumn>().ToList().ForEach(col =>
                         {
                             col.ShowNewButtonInHeader = false;
                             col.ShowEditButton = false;
+                            col.ShowDeleteButton = false;
                         });
+                        var cmdCol = Tecnici_Gridview.Columns.OfType<GridViewCommandColumn>().FirstOrDefault(c => c.VisibleIndex == 0);
+                        if (cmdCol != null)
+                        {
+                                cmdCol.Visible = false;
+                                cmdCol.Visible = true; 
+                        }
 
                         // Disabilita update automatico
                         Tecnici_Gridview.SettingsBehavior.AllowFocusedRow = false;
